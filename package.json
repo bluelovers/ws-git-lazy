@@ -1,30 +1,36 @@
 {
-  "name": "gitlog",
+  "name": "gitlog2",
   "version": "3.1.2",
   "description": "Git log parser for Node.JS",
-  "main": "index.js",
-  "scripts": {
-    "lint": "jshint .",
-    "checkStyle": "jscs .",
-    "test": "istanbul cover ./node_modules/.bin/_mocha -- -r should",
-    "posttest": "istanbul check-coverage --statements 95 --branches 85 --functions 100 --lines 95 && rm -rf coverage"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/domharrington/node-gitlog.git"
-  },
   "keywords": [
     "git",
     "log",
     "parser"
   ],
+  "homepage": "https://github.com/bluelovers/node-gitlog#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/node-gitlog/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/node-gitlog.git"
+  },
+  "license": "ISC",
   "author": "Dom Harrington",
-  "license": "BSD",
-  "engines": {
-    "node": ">=0.11.12"
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "checkStyle": "jscs .",
+    "lint": "jshint .",
+    "test": "istanbul cover ./node_modules/.bin/_mocha -- -r should",
+    "posttest": "istanbul check-coverage --statements 95 --branches 85 --functions 100 --lines 95 && rm -rf coverage"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "lodash.assign": "^4.2.0"
   },
   "devDependencies": {
     "istanbul": "^0.4.5",
@@ -33,8 +39,10 @@
     "mocha": "^3.0.2",
     "should": "~11.1.0"
   },
-  "dependencies": {
-    "debug": "^3.1.0",
-    "lodash.assign": "^4.2.0"
+  "engines": {
+    "node": ">=0.11.12"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
   }
 }
