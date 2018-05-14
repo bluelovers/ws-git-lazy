@@ -5,7 +5,8 @@ const extend = require("lodash.assign");
 const debug_1 = require("debug");
 const arrayUniq = require("array-uniq");
 const sortObjectKeys = require("sort-object-keys2");
-let debug = debug_1.default('gitlog'), delimiter = '\t', fields = {
+let debug = debug_1.default('gitlog'), delimiter = '\t', notOptFields = ['status', 'files'];
+const fields = {
     hash: '%H',
     abbrevHash: '%h',
     treeHash: '%T',
@@ -23,19 +24,7 @@ let debug = debug_1.default('gitlog'), delimiter = '\t', fields = {
     subject: '%s',
     body: '%b',
     rawBody: '%B'
-}, notOptFields = ['status', 'files'];
-/***
- Add optional parameter to command
- */
-function addOptional(command, options) {
-    let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer'];
-    for (let i = cmdOptional.length; i--;) {
-        if (options[cmdOptional[i]]) {
-            command += ' --' + cmdOptional[i] + '="' + options[cmdOptional[i]] + '"';
-        }
-    }
-    return command;
-}
+};
 function gitlog(options, cb) {
     if (!options.repo)
         throw new Error('Repo required!');
@@ -176,8 +165,21 @@ function parseCommits(commits, options) {
         if (nameStatus && options.nameStatusFiles) {
             parsed.fileStatus = arrayUniq(nameStatusFiles);
         }
-        return sortObjectKeys(parsed, gitlog.KEY_ORDER);
+        parsed = sortObjectKeys(parsed, gitlog.KEY_ORDER);
+        return parsed;
     });
+}
+/***
+ Add optional parameter to command
+ */
+function addOptional(command, options) {
+    let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer'];
+    for (let i = cmdOptional.length; i--;) {
+        if (options[cmdOptional[i]]) {
+            command += ' --' + cmdOptional[i] + '="' + options[cmdOptional[i]] + '"';
+        }
+    }
+    return command;
 }
 (function (gitlog) {
     gitlog.KEY_ORDER = [

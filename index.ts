@@ -7,45 +7,7 @@ import * as sortObjectKeys from 'sort-object-keys2';
 
 let debug = debug0('gitlog')
 	, delimiter = '\t'
-	, fields =
-	{
-		hash: '%H'
-		, abbrevHash: '%h'
-		, treeHash: '%T'
-		, abbrevTreeHash: '%t'
-		, parentHashes: '%P'
-		, abbrevParentHashes: '%P'
-		, authorName: '%an'
-		, authorEmail: '%ae'
-		, authorDate: '%ai'
-		, authorDateRel: '%ar'
-		, committerName: '%cn'
-		, committerEmail: '%ce'
-		, committerDate: '%cd'
-		, committerDateRel: '%cr'
-		, subject: '%s'
-		, body: '%b'
-		, rawBody: '%B'
-	}
 	, notOptFields = ['status', 'files']
-
-/***
- Add optional parameter to command
- */
-function addOptional(command: string, options: IOptions)
-{
-	let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer']
-	for (let i = cmdOptional.length; i--;)
-	{
-		if (options[cmdOptional[i]])
-		{
-			command += ' --' + cmdOptional[i] + '="' + options[cmdOptional[i]] + '"'
-		}
-	}
-	return command
-}
-
-type IFieldsArray = Array<keyof typeof fields | 'status' | 'files'>
 
 interface IOptions
 {
@@ -73,6 +35,29 @@ interface IOptions
 
 	returnAllFields?: boolean,
 }
+
+type IFieldsArray = Array<keyof typeof fields>
+
+const fields =
+	{
+		hash: '%H'
+		, abbrevHash: '%h'
+		, treeHash: '%T'
+		, abbrevTreeHash: '%t'
+		, parentHashes: '%P'
+		, abbrevParentHashes: '%P'
+		, authorName: '%an'
+		, authorEmail: '%ae'
+		, authorDate: '%ai'
+		, authorDateRel: '%ar'
+		, committerName: '%cn'
+		, committerEmail: '%ce'
+		, committerDate: '%cd'
+		, committerDateRel: '%cr'
+		, subject: '%s'
+		, body: '%b'
+		, rawBody: '%B'
+	}
 
 function gitlog(options: IOptions, cb?: IAsyncCallback)
 {
@@ -314,8 +299,26 @@ function parseCommits(commits: string[], options: IOptions)
 			parsed.fileStatus = arrayUniq(nameStatusFiles) as typeof nameStatusFiles;
 		}
 
-		return sortObjectKeys(parsed, gitlog.KEY_ORDER)
+		parsed = sortObjectKeys(parsed, gitlog.KEY_ORDER)
+
+		return parsed
 	})
+}
+
+/***
+ Add optional parameter to command
+ */
+function addOptional(command: string, options: IOptions)
+{
+	let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer']
+	for (let i = cmdOptional.length; i--;)
+	{
+		if (options[cmdOptional[i]])
+		{
+			command += ' --' + cmdOptional[i] + '="' + options[cmdOptional[i]] + '"'
+		}
+	}
+	return command
 }
 
 namespace gitlog

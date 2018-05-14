@@ -7,12 +7,14 @@ Git log parser for Node.JS
 
 ## Installation
 
-     npm install gitlog --save
+     npm install gitlog2 --save
 
 ## Usage
 
+[API](index.d.ts)
+
 ```js
-const gitlog = require('gitlog');
+const gitlog = require('gitlog2');
 
 const options =
     { repo: __dirname + '/test-repo-folder'
