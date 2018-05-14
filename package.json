@@ -1,0 +1,41 @@
+{
+  "name": "git-diff-from",
+  "version": "1.0.0",
+  "description": ">",
+  "keywords": [
+    "commit",
+    "diff",
+    "diff-tree",
+    "git",
+    "git diff-tree",
+    "hash",
+    "log",
+    "range",
+    "revision",
+    "revision range"
+  ],
+  "homepage": "https://github.com/bluelovers/git-diff-from#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/git-diff-from/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/git-diff-from.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "crlf-normalize": "^1.0.2",
+    "cross-spawn": "^6.0.5",
+    "git-rev-range": "^1.0.1",
+    "git-root": "^1.0.0"
+  },
+  "devDependencies": {}
+}
