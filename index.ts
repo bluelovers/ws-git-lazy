@@ -2,7 +2,7 @@
  * Created by user on 2018/5/14/014.
  */
 
-import * as gitlog from 'gitlog';
+import gitlog from 'gitlog2';
 
 export const REVISION_DEFAULT = 'HEAD';
 
@@ -11,36 +11,54 @@ export interface IOptions
 	cwd?: string,
 	realHash?: boolean,
 	fullHash?: boolean,
+	maxNumber?: number,
+}
+
+export function revisionRangeData(from: number | string, to: string = 'HEAD', options?: string | IOptions)
+{
+	if (typeof from == 'number')
+	{
+		({ from, to } = resolveRevision(from, to, options));
+	}
+
+	return { from, to };
 }
 
 export function revisionRange(from: number | string, to: string = 'HEAD', options?: string | IOptions)
 {
-	if (typeof from == 'number')
-	{
-		({from, to} = resolveRevision(from, to, options));
-	}
+	({ from, to } = revisionRangeData(from, to, options));
 
 	return `${from}..${to}`;
 }
 
-export function resolveLog(range: number = 20, revision: string = 'HEAD', options?: string | IOptions)
+export function resolveLog(from: number | string = 20, to: string = 'HEAD', options?: string | IOptions)
 {
+	if (typeof from == 'string')
+	{
+		return gitlog({
+			repo: getCwd(options),
+			branch: revisionRange(from, to),
+
+			number: (<IOptions>options).maxNumber || -1,
+		});
+	}
+
 	return gitlog({
 		repo: getCwd(options),
-		number: range + 1,
-		branch: `${revision}`,
+		number: from + 1,
+		branch: `${to}`,
 	});
 }
 
-export function resolveRevision(range: number, revision: string = 'HEAD', options?: string | IOptions)
+export function resolveRevision(range: number | string, revision: string = 'HEAD', options?: string | IOptions)
 {
 	revision = revision || 'HEAD';
 
 	let a = resolveLog(range, revision, options);
 
-	range = a.length;
+	let len = a.length;
 
-	let fromName = range > 1 ? `${revision}~${range-1}` : revision;
+	let fromName = (typeof range == 'number' && len > 1) ? `${revision}~${len - 1}` : (typeof range == 'string' ? range : revision);
 	let toName = revision;
 
 	let from = fromName;
@@ -50,12 +68,12 @@ export function resolveRevision(range: number, revision: string = 'HEAD', option
 	{
 		if ((<IOptions>options).fullHash)
 		{
-			from = a[range-1].hash;
+			from = a[len - 1].hash;
 			to = a[0].hash;
 		}
 		else
 		{
-			from = a[range-1].abbrevHash;
+			from = a[len - 1].abbrevHash;
 			to = a[0].abbrevHash;
 		}
 	}
@@ -66,6 +84,8 @@ export function resolveRevision(range: number, revision: string = 'HEAD', option
 
 		fromName,
 		toName,
+
+		length: a.length,
 	};
 }
 
@@ -75,4 +95,5 @@ export function getCwd(cwd?: string | IOptions)
 }
 
 import * as self from './index';
+
 export default self;

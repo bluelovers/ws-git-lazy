@@ -32,3 +32,21 @@ a = resolveRevision(5, null, {
 
 console.log(a);
 console.log(revisionRange(a.from, a.to, cwd));
+
+a = resolveRevision(5, null, {
+	cwd,
+	realHash: true,
+	fullHash: true,
+});
+
+console.log(a);
+console.log(revisionRange(a.from, a.to, cwd));
+
+a = resolveRevision('a9c93026130d18c12adfe547436c934ab685ff71', 'e1cfc6d163a81ad98fbd9a8684020dbaba7fdd33', {
+	cwd,
+	realHash: true,
+});
+
+console.log(a);
+console.log(revisionRange(a.from, a.to, cwd));
+

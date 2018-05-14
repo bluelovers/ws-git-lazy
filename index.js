@@ -1,37 +1,52 @@
 "use strict";
+/**
+ * Created by user on 2018/5/14/014.
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
-const gitlog = require("gitlog");
+const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
-function revisionRange(from, to = 'HEAD', options) {
+function revisionRangeData(from, to = 'HEAD', options) {
     if (typeof from == 'number') {
         ({ from, to } = resolveRevision(from, to, options));
     }
+    return { from, to };
+}
+exports.revisionRangeData = revisionRangeData;
+function revisionRange(from, to = 'HEAD', options) {
+    ({ from, to } = revisionRangeData(from, to, options));
     return `${from}..${to}`;
 }
 exports.revisionRange = revisionRange;
-function resolveLog(range = 20, revision = 'HEAD', options) {
-    return gitlog({
+function resolveLog(from = 20, to = 'HEAD', options) {
+    if (typeof from == 'string') {
+        return gitlog2_1.default({
+            repo: getCwd(options),
+            branch: revisionRange(from, to),
+            number: options.maxNumber || -1,
+        });
+    }
+    return gitlog2_1.default({
         repo: getCwd(options),
-        number: range + 1,
-        branch: `${revision}`,
+        number: from + 1,
+        branch: `${to}`,
     });
 }
 exports.resolveLog = resolveLog;
 function resolveRevision(range, revision = 'HEAD', options) {
     revision = revision || 'HEAD';
     let a = resolveLog(range, revision, options);
-    range = a.length;
-    let fromName = range > 1 ? `${revision}~${range - 1}` : revision;
+    let len = a.length;
+    let fromName = (typeof range == 'number' && len > 1) ? `${revision}~${len - 1}` : (typeof range == 'string' ? range : revision);
     let toName = revision;
     let from = fromName;
     let to = toName;
     if (options && (options.realHash || options.fullHash)) {
         if (options.fullHash) {
-            from = a[range - 1].hash;
+            from = a[len - 1].hash;
             to = a[0].hash;
         }
         else {
-            from = a[range - 1].abbrevHash;
+            from = a[len - 1].abbrevHash;
             to = a[0].abbrevHash;
         }
     }
@@ -40,6 +55,7 @@ function resolveRevision(range, revision = 'HEAD', options) {
         to,
         fromName,
         toName,
+        length: a.length,
     };
 }
 exports.resolveRevision = resolveRevision;
