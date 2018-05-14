@@ -1,6 +1,5 @@
 /// <reference types="node" />
 import { ExecOptions as IExecOptions } from 'child_process';
-export = gitlog;
 declare let fields: {
     hash: string;
     abbrevHash: string;
@@ -20,9 +19,6 @@ declare let fields: {
     body: string;
     rawBody: string;
 };
-interface IAsyncCallback {
-    (error: any, commits: ReturnType<typeof parseCommits>): void;
-}
 declare type IFieldsArray = Array<keyof typeof fields | 'status' | 'files'>;
 interface IOptions {
     number?: number;
@@ -35,6 +31,12 @@ interface IOptions {
     execOptions?: IExecOptions;
     branch?: string;
     file?: string;
+    author?: string;
+    since?: string;
+    after?: string;
+    until?: string;
+    before?: string;
+    committer?: string;
 }
 declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[];
 interface IParseCommit {
@@ -60,3 +62,17 @@ interface IParseCommit {
     fileStatus?: [string, string][];
 }
 declare function parseCommits(commits: string[], options: IOptions): IParseCommit[];
+declare namespace gitlog {
+    type IReturnCommits = ReturnType<typeof parseCommits>;
+    function sync(options: IOptions): IParseCommit[];
+    function asyncCallback(options: IOptions, cb: IAsyncCallback): IParseCommit[];
+    function async(options: IOptions): Promise<IParseCommit[]>;
+}
+interface IAsyncCallback {
+    (error: any, commits: ReturnType<typeof parseCommits>): void;
+}
+declare const _default: typeof gitlog & {
+    gitlog: typeof gitlog;
+    default: typeof gitlog;
+};
+export = _default;
