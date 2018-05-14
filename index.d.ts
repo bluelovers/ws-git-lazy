@@ -65,7 +65,7 @@ declare function parseCommits(commits: string[], options: IOptions): IParseCommi
 declare namespace gitlog {
     type IReturnCommits = ReturnType<typeof parseCommits>;
     function sync(options: IOptions): IParseCommit[];
-    function asyncCallback(options: IOptions, cb: IAsyncCallback): IParseCommit[];
+    function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
     function async(options: IOptions): Promise<IParseCommit[]>;
 }
 interface IAsyncCallback {

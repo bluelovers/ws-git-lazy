@@ -314,8 +314,14 @@ namespace gitlog
 		return gitlog(options);
 	}
 
-	export function asyncCallback(options: IOptions, cb: IAsyncCallback)
+	export function asyncCallback(options: IOptions, cb: IAsyncCallback): void
 	{
+		if (typeof cb !== 'function')
+		{
+			throw new TypeError();
+		}
+
+		// @ts-ignore
 		return gitlog(options, cb);
 	}
 

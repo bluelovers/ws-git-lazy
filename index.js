@@ -178,6 +178,10 @@ function parseCommits(commits, options) {
     }
     gitlog.sync = sync;
     function asyncCallback(options, cb) {
+        if (typeof cb !== 'function') {
+            throw new TypeError();
+        }
+        // @ts-ignore
         return gitlog(options, cb);
     }
     gitlog.asyncCallback = asyncCallback;
