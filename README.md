@@ -1,5 +1,7 @@
 # git-rev-range
 
+   npm install git-rev-range
+
 [index.d.ts](index.d.ts)
 
 ## demo

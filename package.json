@@ -1,22 +1,33 @@
 {
   "name": "git-rev-range",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "git-rev-range",
   "keywords": [
-    "log",
     "commit",
-    "revision",
-    "revision range",
-    "range",
+    "git",
     "hash",
-    "git"
+    "log",
+    "range",
+    "revision",
+    "revision range"
   ],
+  "homepage": "https://github.com/bluelovers/git-rev-range#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/git-rev-range/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/git-rev-range.git"
+  },
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "gitlog": "^3.1.2"
   }
