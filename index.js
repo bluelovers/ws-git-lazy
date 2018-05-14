@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const gitlog = require("gitlog");
+exports.REVISION_DEFAULT = 'HEAD';
 function revisionRange(from, to = 'HEAD', options) {
     if (typeof from == 'number') {
         ({ from, to } = resolveRevision(from, to, options));
@@ -14,7 +15,7 @@ exports.revisionRange = revisionRange;
 function resolveLog(range = 20, revision = 'HEAD', options) {
     return gitlog({
         repo: getCwd(options),
-        number: range,
+        number: range + 1,
         branch: `${revision}`,
     });
 }
@@ -23,7 +24,7 @@ function resolveRevision(range, revision = 'HEAD', options) {
     revision = revision || 'HEAD';
     let a = resolveLog(range, revision, options);
     range = a.length;
-    let fromName = `${revision}~${range}`;
+    let fromName = range > 1 ? `${revision}~${range - 1}` : revision;
     let toName = revision;
     let from = fromName;
     let to = toName;

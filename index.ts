@@ -4,6 +4,8 @@
 
 import * as gitlog from 'gitlog';
 
+export const REVISION_DEFAULT = 'HEAD';
+
 export interface IOptions
 {
 	cwd?: string,
@@ -30,7 +32,7 @@ export function resolveLog(range: number = 20, revision: string = 'HEAD', option
 {
 	return gitlog({
 		repo: getCwd(options),
-		number: range,
+		number: range + 1,
 		branch: `${revision}`,
 	});
 }
@@ -43,7 +45,7 @@ export function resolveRevision(range: number, revision: string = 'HEAD', option
 
 	range = a.length;
 
-	let fromName = `${revision}~${range}`;
+	let fromName = range > 1 ? `${revision}~${range-1}` : revision;
 	let toName = revision;
 
 	let from = fromName;

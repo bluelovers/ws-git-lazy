@@ -1,3 +1,4 @@
+export declare const REVISION_DEFAULT = "HEAD";
 export interface IOptions {
     cwd?: string;
     realHash?: boolean;
