@@ -3,8 +3,8 @@
  */
 
 import * as crossSpawn from 'cross-spawn';
-import { resolveRevision, revisionRange, getCwd } from 'git-rev-range';
-import * as path from 'path';
+import { resolveRevision, revisionRange, getCwd, revisionRangeData } from 'git-rev-range';
+import * as path from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
 import * as gitRoot from 'git-root';
 
@@ -23,21 +23,27 @@ export const defaultOptions: IOptions = {
  */
 export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD', options: IOptions = {})
 {
+	options = Object.assign({}, defaultOptions, options);
+
 	let cwd = getCwd(options.cwd);
-	let root = gitRoot(cwd);
+	let root = gitRoot(cwd) as string;
 
 	if (!root)
 	{
 		throw new RangeError(`no exists git at ${cwd}`);
 	}
 
+	let opts2 = {
+		cwd,
+		realHash: true,
+	};
+
+	({ from, to } = revisionRangeData(from, to, opts2));
+
 	let log = crossSpawn.sync('git', filterArgv([
 		...'diff-tree -r --no-commit-id --name-status'.split(' '),
 		`--encoding=${options.encoding}`,
-		revisionRange(from, to, {
-			cwd,
-			realHash: true,
-		}),
+		revisionRange(from, to, opts2),
 	]), {
 		//stdio: 'inherit',
 		cwd,
@@ -45,40 +51,48 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD',
 
 	if (log.error || log.stderr.length)
 	{
-
+		throw new Error(log.stderr.toString())
 	}
-	else
-	{
-		return crlf(log.stdout.toString())
-			.split(LF)
-			.reduce(function (a, line)
+
+	let list = crlf(log.stdout.toString())
+		.split(LF)
+		.reduce(function (a, line)
+		{
+			line = line.replace(/^\s+/g, '');
+
+			if (line)
 			{
-				line = line.replace(/^\s+/g, '');
+				let [status, file] = line.split(/\t/);
 
-				if (line)
-				{
-					let [status, file] = line.split(/\t/);
+				let fullpath = path.join(root, file);
+				file = path.relative(root, fullpath);
 
-					let fullpath = path.posix.join(root, file);
-					file = path.posix.relative(root, fullpath);
+				let row = {
+					status,
+					path: file,
+					fullpath,
+				};
 
-					let row = {
-						status,
-						path: file,
-						fullpath,
-					};
+				a.push(row)
+			}
 
-					a.push(row)
-				}
+			return a;
+		}, [] as {
+			status: string,
+			path: string,
+			fullpath: string,
+		}[])
+	;
 
-				return a;
-			}, [] as {
-				status: string,
-				path: string,
-				fullpath: string,
-			}[])
-		;
-	}
+	cwd = path.resolve(cwd);
+	root = path.resolve(root);
+
+	return Object.assign(list, {
+		from,
+		to,
+		cwd,
+		root,
+	});
 }
 
 export function filterArgv(argv: string[])
