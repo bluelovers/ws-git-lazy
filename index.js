@@ -1,5 +1,11 @@
-module.exports = gitlog;
-var exec = require('child_process').exec, execSync = require('child_process').execSync, existsSync = require('fs').existsSync, debug = require('debug')('gitlog'), extend = require('lodash.assign'), delimiter = '\t', fields = { hash: '%H',
+"use strict";
+const child_process_1 = require("child_process");
+const fs_1 = require("fs");
+const extend = require("lodash.assign");
+const debug_1 = require("debug");
+const arrayUniq = require("array-uniq");
+let debug = debug_1.default('gitlog'), delimiter = '\t', fields = {
+    hash: '%H',
     abbrevHash: '%h',
     treeHash: '%T',
     abbrevTreeHash: '%t',
@@ -18,8 +24,8 @@ var exec = require('child_process').exec, execSync = require('child_process').ex
     rawBody: '%B'
 }, notOptFields = ['status', 'files'];
 function addOptional(command, options) {
-    var cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer'];
-    for (var i = cmdOptional.length; i--;) {
+    let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer'];
+    for (let i = cmdOptional.length; i--;) {
         if (options[cmdOptional[i]]) {
             command += ' --' + cmdOptional[i] + '="' + options[cmdOptional[i]] + '"';
         }
@@ -29,9 +35,10 @@ function addOptional(command, options) {
 function gitlog(options, cb) {
     if (!options.repo)
         throw new Error('Repo required!');
-    if (!existsSync(options.repo))
+    if (!fs_1.existsSync(options.repo))
         throw new Error('Repo location does not exist');
-    var defaultOptions = { number: 10,
+    let defaultOptions = {
+        number: 10,
         fields: ['abbrevHash', 'hash', 'subject', 'authorName'],
         nameStatus: true,
         findCopiesHarder: false,
@@ -40,7 +47,7 @@ function gitlog(options, cb) {
     };
     options = extend({}, defaultOptions, options);
     extend(options.execOptions, defaultOptions.execOptions);
-    var command = 'git log ';
+    let command = 'git log ';
     if (options.findCopiesHarder) {
         command += '--find-copies-harder ';
     }
@@ -53,7 +60,7 @@ function gitlog(options, cb) {
     command = addOptional(command, options);
     command += ' --pretty="@begin@';
     options.fields.forEach(function (field) {
-        if (!fields[field] && field.indexOf(notOptFields) === -1)
+        if (!fields[field] && notOptFields.indexOf(field) === -1)
             throw new Error('Unknown field: ' + field);
         command += delimiter + fields[field];
     });
@@ -67,54 +74,60 @@ function gitlog(options, cb) {
     command += fileNameAndStatus(options);
     debug('command', options.execOptions, command);
     if (!cb) {
-        var stdout = execSync(command, options.execOptions).toString(), commits = stdout.split('@begin@');
+        let stdout = child_process_1.execSync(command, options.execOptions).toString(), commits = stdout.split('@begin@');
         if (commits[0] === '') {
             commits.shift();
         }
         debug('commits', commits);
-        commits = parseCommits(commits, options.fields, options.nameStatus);
+        commits = parseCommits(commits, options);
         return commits;
     }
-    exec(command, options.execOptions, function (err, stdout, stderr) {
+    child_process_1.exec(command, options.execOptions, function (err, stdout, stderr) {
         debug('stdout', stdout);
-        var commits = stdout.split('@begin@');
+        let commits = stdout.split('@begin@');
         if (commits[0] === '') {
             commits.shift();
         }
         debug('commits', commits);
-        commits = parseCommits(commits, options.fields, options.nameStatus);
+        commits = parseCommits(commits, options);
         cb(stderr || err, commits);
     });
 }
 function fileNameAndStatus(options) {
     return options.nameStatus ? ' --name-status' : '';
 }
-function parseCommits(commits, fields, nameStatus) {
-    return commits.map(function (commit) {
-        var parts = commit.split('@end@');
-        commit = parts[0].split(delimiter);
+function parseCommits(commits, options) {
+    let { fields, nameStatus } = options;
+    return commits.map(function (_commit) {
+        let parts = _commit.split('@end@');
+        let commit = parts[0].split(delimiter);
+        let nameStatusFiles = [];
         if (parts[1]) {
-            var parseNameStatus = parts[1].trimLeft().split('\n');
+            let parseNameStatus = parts[1].trimLeft().split('\n');
             if (parseNameStatus[parseNameStatus.length - 1] === '') {
                 parseNameStatus.pop();
             }
-            parseNameStatus.forEach(function (d, i) {
-                parseNameStatus[i] = d.split(delimiter);
-            });
-            parseNameStatus = parseNameStatus.reduce(function (a, b) {
-                var tempArr = [b[0], b[b.length - 1]];
-                for (var i = 1, len = b.length - 1; i < len; i++) {
+            parseNameStatus = parseNameStatus
+                .map(function (d, i) {
+                return d.split(delimiter);
+            })
+                .reduce(function (a, b) {
+                let tempArr = [b[0], b[b.length - 1]];
+                for (let i = 1, len = b.length - 1; i < len; i++) {
                     if (b[0].slice(0, 1) === 'R') {
                         tempArr.push('D', b[i]);
                     }
                 }
                 return a.concat(tempArr);
             }, []);
+            if (parseNameStatus.length && options.nameStatusFiles) {
+                nameStatusFiles = parseNameStatus.slice();
+            }
             commit = commit.concat(parseNameStatus);
         }
         debug('commit', commit);
         commit.shift();
-        var parsed = {};
+        let parsed = {};
         if (nameStatus) {
             notOptFields.forEach(function (d) {
                 parsed[d] = [];
@@ -126,12 +139,16 @@ function parseCommits(commits, fields, nameStatus) {
             }
             else {
                 if (nameStatus) {
-                    var pos = (index - fields.length) % notOptFields.length;
+                    let pos = (index - fields.length) % notOptFields.length;
                     debug('nameStatus', (index - fields.length), notOptFields.length, pos, commitField);
                     parsed[notOptFields[pos]].push(commitField);
                 }
             }
         });
+        if (nameStatus && options.nameStatusFiles) {
+            parsed.fileStatus = arrayUniq(nameStatusFiles);
+        }
         return parsed;
     });
 }
+module.exports = gitlog;
