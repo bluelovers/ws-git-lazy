@@ -34,7 +34,7 @@
   "dependencies": {
     "crlf-normalize": "^1.0.2",
     "cross-spawn": "^6.0.5",
-    "git-rev-range": "^1.0.1",
+    "git-rev-range": "^1.0.3",
     "git-root": "^1.0.0"
   },
   "devDependencies": {}
