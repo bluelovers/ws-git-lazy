@@ -1,0 +1,23 @@
+{
+  "name": "git-rev-range",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "log",
+    "commit",
+    "revision",
+    "revision range",
+    "range",
+    "hash",
+    "git"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gitlog": "^3.1.2"
+  }
+}
