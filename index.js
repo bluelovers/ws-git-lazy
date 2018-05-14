@@ -4,6 +4,7 @@ const fs_1 = require("fs");
 const extend = require("lodash.assign");
 const debug_1 = require("debug");
 const arrayUniq = require("array-uniq");
+const sortObjectKeys = require("sort-object-keys2");
 let debug = debug_1.default('gitlog'), delimiter = '\t', fields = {
     hash: '%H',
     abbrevHash: '%h',
@@ -51,6 +52,12 @@ function gitlog(options, cb) {
     // Set defaults
     options = extend({}, defaultOptions, options);
     extend(options.execOptions, defaultOptions.execOptions);
+    if (options.returnAllFields) {
+        options.fields = [].concat(Object.keys(fields));
+        if (options.nameStatus && typeof options.nameStatusFiles == 'undefined') {
+            options.nameStatusFiles = true;
+        }
+    }
     // Start constructing command
     let command = 'git log ';
     if (options.findCopiesHarder) {
@@ -128,20 +135,20 @@ function parseCommits(commits, options) {
                 // anything inbetween could be the old name if renamed or copied
                 .reduce(function (a, b) {
                 let tempArr = [b[0], b[b.length - 1]];
+                // @ts-ignore
+                nameStatusFiles.push(tempArr);
                 // If any files in between loop through them
                 for (let i = 1, len = b.length - 1; i < len; i++) {
                     // If status R then add the old filename as a deleted file + status
                     // Other potentials are C for copied but this wouldn't require the original deleting
                     if (b[0].slice(0, 1) === 'R') {
                         tempArr.push('D', b[i]);
+                        // @ts-ignore
+                        nameStatusFiles.push(['D', b[i]]);
                     }
                 }
                 return a.concat(tempArr);
             }, []);
-            if (parseNameStatus.length && options.nameStatusFiles) {
-                // @ts-ignore
-                nameStatusFiles = parseNameStatus.slice();
-            }
             commit = commit.concat(parseNameStatus);
         }
         debug('commit', commit);
@@ -169,10 +176,32 @@ function parseCommits(commits, options) {
         if (nameStatus && options.nameStatusFiles) {
             parsed.fileStatus = arrayUniq(nameStatusFiles);
         }
-        return parsed;
+        return sortObjectKeys(parsed, gitlog.KEY_ORDER);
     });
 }
 (function (gitlog) {
+    gitlog.KEY_ORDER = [
+        'hash',
+        'abbrevHash',
+        'treeHash',
+        'abbrevTreeHash',
+        'parentHashes',
+        'abbrevParentHashes',
+        'authorName',
+        'authorEmail',
+        'authorDate',
+        'authorDateRel',
+        'committerName',
+        'committerEmail',
+        'committerDate',
+        'committerDateRel',
+        'subject',
+        'body',
+        'rawBody',
+        'status',
+        'files',
+        'fileStatus',
+    ];
     function sync(options) {
         return gitlog(options);
     }

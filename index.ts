@@ -3,6 +3,7 @@ import { existsSync } from 'fs';
 import * as extend from 'lodash.assign';
 import debug0 from 'debug';
 import * as arrayUniq from 'array-uniq';
+import * as sortObjectKeys from 'sort-object-keys2';
 
 let debug = debug0('gitlog')
 	, delimiter = '\t'
@@ -69,6 +70,8 @@ interface IOptions
 	until?: string,
 	before?: string,
 	committer?: string,
+
+	returnAllFields?: boolean,
 }
 
 function gitlog(options: IOptions, cb?: IAsyncCallback)
@@ -89,6 +92,16 @@ function gitlog(options: IOptions, cb?: IAsyncCallback)
 	// Set defaults
 	options = extend({}, defaultOptions, options)
 	extend(options.execOptions, defaultOptions.execOptions)
+
+	if (options.returnAllFields)
+	{
+		options.fields = [].concat(Object.keys(fields));
+
+		if (options.nameStatus && typeof options.nameStatusFiles == 'undefined')
+		{
+			options.nameStatusFiles = true;
+		}
+	}
 
 	// Start constructing command
 	let command = 'git log '
@@ -238,6 +251,10 @@ function parseCommits(commits: string[], options: IOptions)
 				.reduce(function (a, b)
 				{
 					let tempArr = [b[0], b[b.length - 1]];
+
+					// @ts-ignore
+					nameStatusFiles.push(tempArr);
+
 					// If any files in between loop through them
 					for (let i = 1, len = b.length - 1; i < len; i++)
 					{
@@ -246,18 +263,14 @@ function parseCommits(commits: string[], options: IOptions)
 						if (b[0].slice(0, 1) === 'R')
 						{
 							tempArr.push('D', b[i]);
+							// @ts-ignore
+							nameStatusFiles.push(['D', b[i]]);
 						}
 					}
 
 					return a.concat(tempArr);
 				}, [])
 			;
-
-			if (parseNameStatus.length && options.nameStatusFiles)
-			{
-				// @ts-ignore
-				nameStatusFiles = parseNameStatus.slice();
-			}
 
 			commit = commit.concat(parseNameStatus)
 		}
@@ -301,13 +314,36 @@ function parseCommits(commits: string[], options: IOptions)
 			parsed.fileStatus = arrayUniq(nameStatusFiles) as typeof nameStatusFiles;
 		}
 
-		return parsed
+		return sortObjectKeys(parsed, gitlog.KEY_ORDER)
 	})
 }
 
 namespace gitlog
 {
 	export type IReturnCommits = ReturnType<typeof parseCommits>;
+
+	export const KEY_ORDER = [
+		'hash',
+		'abbrevHash',
+		'treeHash',
+		'abbrevTreeHash',
+		'parentHashes',
+		'abbrevParentHashes',
+		'authorName',
+		'authorEmail',
+		'authorDate',
+		'authorDateRel',
+		'committerName',
+		'committerEmail',
+		'committerDate',
+		'committerDateRel',
+		'subject',
+		'body',
+		'rawBody',
+		'status',
+		'files',
+		'fileStatus',
+	];
 
 	export function sync(options: IOptions)
 	{

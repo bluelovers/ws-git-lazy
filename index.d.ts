@@ -37,8 +37,9 @@ interface IOptions {
     until?: string;
     before?: string;
     committer?: string;
+    returnAllFields?: boolean;
 }
-declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[];
+declare function gitlog(options: IOptions, cb?: IAsyncCallback): Partial<IParseCommit>[];
 interface IParseCommit {
     hash?: string;
     abbrevHash?: string;
@@ -61,12 +62,13 @@ interface IParseCommit {
     rawBody?: string;
     fileStatus?: [string, string][];
 }
-declare function parseCommits(commits: string[], options: IOptions): IParseCommit[];
+declare function parseCommits(commits: string[], options: IOptions): Partial<IParseCommit>[];
 declare namespace gitlog {
     type IReturnCommits = ReturnType<typeof parseCommits>;
-    function sync(options: IOptions): IParseCommit[];
+    const KEY_ORDER: string[];
+    function sync(options: IOptions): Partial<IParseCommit>[];
     function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
-    function async(options: IOptions): Promise<IParseCommit[]>;
+    function async(options: IOptions): Promise<Partial<IParseCommit>[]>;
 }
 interface IAsyncCallback {
     (error: any, commits: ReturnType<typeof parseCommits>): void;

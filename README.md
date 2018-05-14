@@ -79,7 +79,7 @@ Find commits on all branches instead of just on the current one.
 This option is disabled by default.
 
 ### branch ([revision range](https://git-scm.com/docs/git-log#git-log-ltrevisionrangegt))
-Show only commits in the specified branch or revision range. 
+Show only commits in the specified branch or revision range.
 
 By default uses the current branch and defaults to `HEAD` (i.e. the whole history leading to the current commit).
 
@@ -125,6 +125,7 @@ Defaults to 'abbrevHash', 'hash', 'subject' and 'authorName'.
 This module works by executing a child process (using `child_process.exec()`) to the `git` executable, then parsing the stdout into commits. This is done using the `--pretty` command line option which allows you to provide a custom formatter to `git log`. To enable easy parsing the format is delimited by a tab (`\t`) character.
 
 ## Example
+
 ```javascript
   { hash: '6a7ef5e3b3d9c77743140443c8f9e792b0715721',
     abbrevHash: '6a7ef5e',
@@ -141,6 +142,9 @@ This module works by executing a child process (using `child_process.exec()`) to
     committerDate: 'Thu Apr 9 09:39:23 2015 +0100',
     committerDateRel: '6 days ago',
     subject: '1.0.0',
+    body: '',
+    rawBody: '.\n',
     status: [ 'M' ],
-    files: [ 'package.json' ] }
+    files: [ 'package.json' ],
+    fileStatus: [ [ 'M', 'package.json' ] ]}
 ```
