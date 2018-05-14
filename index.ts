@@ -20,11 +20,6 @@ export function revisionRange(from: number | string, to: string = 'HEAD', option
 		({from, to} = resolveRevision(from, to, options));
 	}
 
-	if (from == to)
-	{
-		return from;
-	}
-
 	return `${from}..${to}`;
 }
 

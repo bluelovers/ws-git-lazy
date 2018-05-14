@@ -6,9 +6,6 @@ function revisionRange(from, to = 'HEAD', options) {
     if (typeof from == 'number') {
         ({ from, to } = resolveRevision(from, to, options));
     }
-    if (from == to) {
-        return from;
-    }
     return `${from}..${to}`;
 }
 exports.revisionRange = revisionRange;
