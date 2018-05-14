@@ -1,5 +1,7 @@
 # git-diff-from
 
+    git diff-tree
+
 ```ts
 import * as path from "path";
 import gitDiffFrom from 'git-diff-from';
