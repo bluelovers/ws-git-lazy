@@ -29,6 +29,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "gitlog2": "^3.1.2"
+    "gitlog2": "^3.1.3"
   }
 }
