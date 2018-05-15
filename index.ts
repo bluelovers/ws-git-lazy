@@ -14,9 +14,9 @@ export interface IOptions
 	maxNumber?: number,
 }
 
-export function revisionRangeData(from: number | string, to: string = 'HEAD', options?: string | IOptions)
+export function revisionRangeData(from: number | string, to: string = 'HEAD', options: string | IOptions = {})
 {
-	if (typeof from == 'number')
+	if (typeof from == 'number' || ((<IOptions>options).realHash || (<IOptions>options).fullHash))
 	{
 		({ from, to } = resolveRevision(from, to, options));
 	}
@@ -24,14 +24,14 @@ export function revisionRangeData(from: number | string, to: string = 'HEAD', op
 	return { from, to };
 }
 
-export function revisionRange(from: number | string, to: string = 'HEAD', options?: string | IOptions)
+export function revisionRange(from: number | string, to: string = 'HEAD', options: string | IOptions = {})
 {
 	({ from, to } = revisionRangeData(from, to, options));
 
 	return `${from}..${to}`;
 }
 
-export function resolveLog(from: number | string = 20, to: string = 'HEAD', options?: string | IOptions)
+export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {})
 {
 	if (typeof from == 'string')
 	{
@@ -50,7 +50,7 @@ export function resolveLog(from: number | string = 20, to: string = 'HEAD', opti
 	});
 }
 
-export function resolveRevision(range: number | string, revision: string = 'HEAD', options?: string | IOptions)
+export function resolveRevision(range: number | string, revision: string = 'HEAD', options: string | IOptions = {})
 {
 	revision = revision || 'HEAD';
 

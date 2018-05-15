@@ -5,19 +5,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
-function revisionRangeData(from, to = 'HEAD', options) {
-    if (typeof from == 'number') {
+function revisionRangeData(from, to = 'HEAD', options = {}) {
+    if (typeof from == 'number' || (options.realHash || options.fullHash)) {
         ({ from, to } = resolveRevision(from, to, options));
     }
     return { from, to };
 }
 exports.revisionRangeData = revisionRangeData;
-function revisionRange(from, to = 'HEAD', options) {
+function revisionRange(from, to = 'HEAD', options = {}) {
     ({ from, to } = revisionRangeData(from, to, options));
     return `${from}..${to}`;
 }
 exports.revisionRange = revisionRange;
-function resolveLog(from = 20, to = 'HEAD', options) {
+function resolveLog(from = 20, to = 'HEAD', options = {}) {
     if (typeof from == 'string') {
         return gitlog2_1.default({
             repo: getCwd(options),
@@ -32,7 +32,7 @@ function resolveLog(from = 20, to = 'HEAD', options) {
     });
 }
 exports.resolveLog = resolveLog;
-function resolveRevision(range, revision = 'HEAD', options) {
+function resolveRevision(range, revision = 'HEAD', options = {}) {
     revision = revision || 'HEAD';
     let a = resolveLog(range, revision, options);
     let len = a.length;
