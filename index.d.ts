@@ -8,6 +8,7 @@ export interface IOptions {
     fullHash?: boolean;
     maxNumber?: number;
 }
+export declare function isRevision(s: string): boolean;
 export declare function revisionRangeData(from: number | string, to?: string, options?: string | IOptions): any;
 export declare function revisionRange(from: number | string, to?: string, options?: string | IOptions): any;
 export declare function resolveLog(from?: number | string, to?: string, options?: string | IOptions): any;

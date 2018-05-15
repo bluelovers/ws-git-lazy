@@ -5,8 +5,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
+function isRevision(s) {
+    if (!/^HEAD|^\d+$/.test(s) && /^\w{9,}$/.test(s)) {
+        return true;
+    }
+    return false;
+}
+exports.isRevision = isRevision;
 function revisionRangeData(from, to = 'HEAD', options = {}) {
-    if (typeof from == 'number' || (options.realHash || options.fullHash)) {
+    if (typeof from == 'number' || ((options.realHash || options.fullHash) && (!isRevision(from) || !isRevision(to)))) {
         ({ from, to } = resolveRevision(from, to, options));
     }
     return { from, to };

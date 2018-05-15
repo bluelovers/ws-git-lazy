@@ -14,9 +14,19 @@ export interface IOptions
 	maxNumber?: number,
 }
 
+export function isRevision(s: string)
+{
+	if (!/^HEAD|^\d+$/.test(s) && /^\w{9,}$/.test(s))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 export function revisionRangeData(from: number | string, to: string = 'HEAD', options: string | IOptions = {})
 {
-	if (typeof from == 'number' || ((<IOptions>options).realHash || (<IOptions>options).fullHash))
+	if (typeof from == 'number' || (((<IOptions>options).realHash || (<IOptions>options).fullHash) && (!isRevision(from) || !isRevision(to))))
 	{
 		({ from, to } = resolveRevision(from, to, options));
 	}
