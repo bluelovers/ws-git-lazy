@@ -21,8 +21,15 @@ export const defaultOptions: IOptions = {
 /**
  * git diff-tree -r --no-commit-id --name-status --encoding=UTF-8  HEAD~1 HEAD
  */
-export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD', options: IOptions = {})
+export function gitDiffFrom(from: string | number, options?: IOptions): ReturnType<typeof gitDiffFrom>
+export function gitDiffFrom(from: string | number, to: string, options?: IOptions): ReturnType<typeof gitDiffFrom>
+export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = 'HEAD', options: IOptions = {})
 {
+	if (typeof to === 'object' && to !== null)
+	{
+		[options, to] = [to, 'HEAD'];
+	}
+
 	options = Object.assign({}, defaultOptions, options);
 
 	let cwd = getCwd(options.cwd);
@@ -54,6 +61,8 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD',
 		throw new Error(log.stderr.toString())
 	}
 
+	let files: string[] = [];
+
 	let list = crlf(log.stdout.toString())
 		.split(LF)
 		.reduce(function (a, line)
@@ -72,6 +81,8 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD',
 					path: file,
 					fullpath,
 				};
+
+				files.push(file);
 
 				a.push(row)
 			}
@@ -92,6 +103,7 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string = 'HEAD',
 		to,
 		cwd,
 		root,
+		files,
 	});
 }
 

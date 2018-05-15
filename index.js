@@ -11,10 +11,10 @@ const gitRoot = require("git-root");
 exports.defaultOptions = {
     encoding: 'UTF-8',
 };
-/**
- * git diff-tree -r --no-commit-id --name-status --encoding=UTF-8  HEAD~1 HEAD
- */
 function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
+    if (typeof to === 'object' && to !== null) {
+        [options, to] = [to, 'HEAD'];
+    }
     options = Object.assign({}, exports.defaultOptions, options);
     let cwd = git_rev_range_1.getCwd(options.cwd);
     let root = gitRoot(cwd);
@@ -37,6 +37,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
     if (log.error || log.stderr.length) {
         throw new Error(log.stderr.toString());
     }
+    let files = [];
     let list = crlf_normalize_1.crlf(log.stdout.toString())
         .split(crlf_normalize_1.LF)
         .reduce(function (a, line) {
@@ -50,6 +51,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
                 path: file,
                 fullpath,
             };
+            files.push(file);
             a.push(row);
         }
         return a;
@@ -61,6 +63,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
         to,
         cwd,
         root,
+        files,
     });
 }
 exports.gitDiffFrom = gitDiffFrom;
