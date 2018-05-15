@@ -41,6 +41,14 @@ function resolveRevision(range, revision = 'HEAD', options = {}) {
     let from = fromName;
     let to = toName;
     if (options && (options.realHash || options.fullHash)) {
+        if (a.length === 0) {
+            a = gitlog2_1.default({
+                repo: getCwd(options),
+                branch: to,
+                number: 1,
+            });
+            len = a.length;
+        }
         if (options.fullHash) {
             from = a[len - 1].hash;
             to = a[0].hash;

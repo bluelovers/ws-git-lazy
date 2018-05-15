@@ -66,6 +66,19 @@ export function resolveRevision(range: number | string, revision: string = 'HEAD
 
 	if (options && ((<IOptions>options).realHash || (<IOptions>options).fullHash))
 	{
+
+		if (a.length === 0)
+		{
+			a = gitlog({
+				repo: getCwd(options),
+				branch: to,
+
+				number: 1,
+			});
+
+			len = a.length;
+		}
+
 		if ((<IOptions>options).fullHash)
 		{
 			from = a[len - 1].hash;
