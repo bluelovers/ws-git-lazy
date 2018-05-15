@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
 function isRevision(s) {
-    if (!/^HEAD|^\d+$/.test(s) && /^\w{9,}$/.test(s)) {
+    if (!/^HEAD|^\d+$/.test(s) && /^\w{7,}$/.test(s)) {
         return true;
     }
     return false;

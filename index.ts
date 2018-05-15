@@ -16,7 +16,7 @@ export interface IOptions
 
 export function isRevision(s: string)
 {
-	if (!/^HEAD|^\d+$/.test(s) && /^\w{9,}$/.test(s))
+	if (!/^HEAD|^\d+$/.test(s) && /^\w{7,}$/.test(s))
 	{
 		return true;
 	}
