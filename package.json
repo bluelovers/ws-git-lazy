@@ -1,0 +1,26 @@
+{
+  "name": "git-root2",
+  "version": "1.0.0",
+  "description": "get git root path",
+  "homepage": "https://github.com/bluelovers/git-root2#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/git-root2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/git-root2.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "bin": {
+    "git-root2": "./bin/git-root.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cross-spawn": "^6.0.5"
+  },
+  "devDependencies": {}
+}
