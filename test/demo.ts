@@ -5,7 +5,7 @@
 import * as path from "path";
 import gitDiffFrom from '../index';
 
-let r = gitDiffFrom(10, null, {
+let r = gitDiffFrom(10, {
 	cwd: path.resolve('D:/Users/Documents/The Project/nodejs-test/node-novel2/dist_novel'),
 });
 
