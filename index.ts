@@ -45,3 +45,8 @@ export = gitRoot as typeof gitRoot & {
 
 // @ts-ignore
 gitRoot.default = gitRoot.gitRoot = gitRoot;
+
+// @ts-ignore
+Object.defineProperty(gitRoot, "__esModule", { value: true });
+// @ts-ignore
+Object.defineProperty(exports, "__esModule", { value: true });
