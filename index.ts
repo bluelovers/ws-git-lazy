@@ -7,12 +7,12 @@ import * as crossSpawn from 'cross-spawn';
 
 function gitRoot(cwd?: string): string
 {
-	let p = crossSpawn.sync('git', [
+	let p = (crossSpawn.sync('git', [
 		'rev-parse',
 		'--show-toplevel',
 	], {
 		cwd,
-	}).stdout.toString().replace(/^[\n\r]+|[\n\r]+$/g, '');
+	}).stdout || '').toString().replace(/^[\n\r]+|[\n\r]+$/g, '');
 
 	if (p)
 	{
@@ -20,6 +20,21 @@ function gitRoot(cwd?: string): string
 	}
 
 	return null;
+}
+
+namespace gitRoot
+{
+	export function isGitRoot(target: string)
+	{
+		let root = gitRoot(target);
+
+		return (root && path.resolve(root) === path.resolve(target));
+	}
+
+	export async function async(cwd?: string)
+	{
+		return gitRoot(cwd);
+	}
 }
 
 export = gitRoot as typeof gitRoot & {
@@ -30,9 +45,3 @@ export = gitRoot as typeof gitRoot & {
 
 // @ts-ignore
 gitRoot.default = gitRoot.gitRoot = gitRoot;
-
-// @ts-ignore
-gitRoot.async = async function (cwd?: string)
-{
-	return gitRoot(cwd);
-};
