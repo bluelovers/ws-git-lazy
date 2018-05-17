@@ -5,7 +5,7 @@ const extend = require("lodash.assign");
 const debug_1 = require("debug");
 const arrayUniq = require("array-uniq");
 const sortObjectKeys = require("sort-object-keys2");
-let debug = debug_1.default('gitlog'), delimiter = '\t', notOptFields = ['status', 'files'];
+const debug = debug_1.default('gitlog'), delimiter = '\t', notOptFields = ['status', 'files'];
 const fields = {
     hash: '%H',
     abbrevHash: '%h',
@@ -27,17 +27,19 @@ const fields = {
     tags: '%D'
 };
 function gitlog(options, cb) {
-    if (!options.repo)
-        throw new Error('Repo required!');
-    if (!fs_1.existsSync(options.repo))
-        throw new Error('Repo location does not exist');
+    // lazy name
+    const REPO = typeof options.repo != 'undefined' ? options.repo : options.cwd;
+    if (!REPO)
+        throw new Error(`Repo required!, but got "${REPO}"`);
+    if (!fs_1.existsSync(REPO))
+        throw new Error(`Repo location does not exist: "${REPO}"`);
     let defaultOptions = {
         number: 10,
-        fields: ['abbrevHash', 'hash', 'subject', 'authorName'],
+        fields: gitlog.defaultFields,
         nameStatus: true,
         findCopiesHarder: false,
         all: false,
-        execOptions: { cwd: options.repo }
+        execOptions: { cwd: REPO }
     };
     // Set defaults
     options = extend({}, defaultOptions, options);
@@ -195,6 +197,7 @@ function addOptional(command, options) {
     return command;
 }
 (function (gitlog) {
+    gitlog.defaultFields = ['abbrevHash', 'hash', 'subject', 'authorName'];
     gitlog.KEY_ORDER = [
         'hash',
         'abbrevHash',
@@ -213,6 +216,7 @@ function addOptional(command, options) {
         'subject',
         'body',
         'rawBody',
+        'tags',
         'status',
         'files',
         'fileStatus',

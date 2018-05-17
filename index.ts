@@ -5,15 +5,18 @@ import debug0 from 'debug';
 import * as arrayUniq from 'array-uniq';
 import * as sortObjectKeys from 'sort-object-keys2';
 
-let debug = debug0('gitlog')
-	, delimiter = '\t'
-	, notOptFields = ['status', 'files']
+const debug = debug0('gitlog'),
+	delimiter = '\t',
+	notOptFields = ['status', 'files']
+;
 
 interface IOptions
 {
 	number?: number,
 	fields?: IFieldsArray,
+
 	repo?: string,
+	cwd?: string,
 
 	nameStatus?: boolean,
 
@@ -38,42 +41,43 @@ interface IOptions
 
 type IFieldsArray = Array<keyof typeof fields>
 
-const fields =
-	{
-		hash: '%H'
-		, abbrevHash: '%h'
-		, treeHash: '%T'
-		, abbrevTreeHash: '%t'
-		, parentHashes: '%P'
-		, abbrevParentHashes: '%P'
-		, authorName: '%an'
-		, authorEmail: '%ae'
-		, authorDate: '%ai'
-		, authorDateRel: '%ar'
-		, committerName: '%cn'
-		, committerEmail: '%ce'
-		, committerDate: '%cd'
-		, committerDateRel: '%cr'
-		, subject: '%s'
-		, body: '%b'
-		, rawBody: '%B'
-		, tags: '%D'
-	}
+const fields = {
+	hash: '%H',
+	abbrevHash: '%h',
+	treeHash: '%T',
+	abbrevTreeHash: '%t',
+	parentHashes: '%P',
+	abbrevParentHashes: '%P',
+	authorName: '%an',
+	authorEmail: '%ae',
+	authorDate: '%ai',
+	authorDateRel: '%ar',
+	committerName: '%cn',
+	committerEmail: '%ce',
+	committerDate: '%cd',
+	committerDateRel: '%cr',
+	subject: '%s',
+	body: '%b',
+	rawBody: '%B',
+	tags: '%D'
+};
 
 function gitlog(options: IOptions, cb?: IAsyncCallback)
 {
-	if (!options.repo) throw new Error('Repo required!')
-	if (!existsSync(options.repo)) throw new Error('Repo location does not exist');
+	// lazy name
+	const REPO = typeof options.repo != 'undefined' ? options.repo : options.cwd;
 
-	let defaultOptions: IOptions =
-		{
-			number: 10
-			, fields: ['abbrevHash', 'hash', 'subject', 'authorName']
-			, nameStatus: true
-			, findCopiesHarder: false
-			, all: false
-			, execOptions: { cwd: options.repo }
-		}
+	if (!REPO) throw new Error(`Repo required!, but got "${REPO}"`);
+	if (!existsSync(REPO)) throw new Error(`Repo location does not exist: "${REPO}"`);
+
+	let defaultOptions: IOptions = {
+		number: 10,
+		fields: gitlog.defaultFields,
+		nameStatus: true,
+		findCopiesHarder: false,
+		all: false,
+		execOptions: { cwd: REPO }
+	};
 
 	// Set defaults
 	options = extend({}, defaultOptions, options)
@@ -195,6 +199,9 @@ interface IParseCommit
 	committerDate?: string,
 	committerDateRel?: string,
 	subject?: string,
+
+	tags?: string[],
+
 	status?: string[],
 	files?: string[],
 
@@ -342,6 +349,8 @@ namespace gitlog
 {
 	export type IReturnCommits = ReturnType<typeof parseCommits>;
 
+	export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
+
 	export const KEY_ORDER = [
 		'hash',
 		'abbrevHash',
@@ -360,6 +369,7 @@ namespace gitlog
 		'subject',
 		'body',
 		'rawBody',
+		'tags',
 		'status',
 		'files',
 		'fileStatus',

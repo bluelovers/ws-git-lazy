@@ -4,6 +4,7 @@ interface IOptions {
     number?: number;
     fields?: IFieldsArray;
     repo?: string;
+    cwd?: string;
     nameStatus?: boolean;
     nameStatusFiles?: boolean;
     findCopiesHarder?: boolean;
@@ -57,6 +58,7 @@ interface IParseCommit {
     committerDate?: string;
     committerDateRel?: string;
     subject?: string;
+    tags?: string[];
     status?: string[];
     files?: string[];
     body?: string;
@@ -66,6 +68,7 @@ interface IParseCommit {
 declare function parseCommits(commits: string[], options: IOptions): IParseCommit[];
 declare namespace gitlog {
     type IReturnCommits = ReturnType<typeof parseCommits>;
+    const defaultFields: IFieldsArray;
     const KEY_ORDER: string[];
     function sync(options: IOptions): IParseCommit[];
     function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
