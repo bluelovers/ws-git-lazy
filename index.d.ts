@@ -38,6 +38,7 @@ declare const fields: {
     subject: string;
     body: string;
     rawBody: string;
+    tags: string;
 };
 declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[];
 interface IParseCommit {

@@ -23,7 +23,8 @@ const fields = {
     committerDateRel: '%cr',
     subject: '%s',
     body: '%b',
-    rawBody: '%B'
+    rawBody: '%B',
+    tags: '%D'
 };
 function gitlog(options, cb) {
     if (!options.repo)
@@ -152,7 +153,19 @@ function parseCommits(commits, options) {
         }
         commit.forEach(function (commitField, index) {
             if (fields[index]) {
-                parsed[fields[index]] = commitField;
+                if (fields[index] === 'tags') {
+                    let tags = [];
+                    let start = commitField.indexOf('tag: ');
+                    if (start >= 0) {
+                        commitField.substr(start + 5).trim().split(',').forEach(function (tag) {
+                            tags.push(tag.trim());
+                        });
+                    }
+                    parsed[fields[index]] = tags;
+                }
+                else {
+                    parsed[fields[index]] = commitField;
+                }
             }
             else {
                 if (nameStatus) {

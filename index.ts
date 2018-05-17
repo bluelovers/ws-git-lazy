@@ -57,6 +57,7 @@ const fields =
 		, subject: '%s'
 		, body: '%b'
 		, rawBody: '%B'
+		, tags: '%D'
 	}
 
 function gitlog(options: IOptions, cb?: IAsyncCallback)
@@ -280,7 +281,23 @@ function parseCommits(commits: string[], options: IOptions)
 		{
 			if (fields[index])
 			{
-				parsed[fields[index]] = commitField
+				if (fields[index] === 'tags')
+				{
+					let tags = [];
+					let start = commitField.indexOf('tag: ');
+					if (start >= 0)
+					{
+						commitField.substr(start + 5).trim().split(',').forEach(function (tag)
+						{
+							tags.push(tag.trim());
+						});
+					}
+					parsed[fields[index]] = tags;
+				}
+				else
+				{
+					parsed[fields[index]] = commitField
+				}
 			}
 			else
 			{
