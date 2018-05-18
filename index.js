@@ -8,6 +8,7 @@ const git_rev_range_1 = require("git-rev-range");
 const path = require("upath2");
 const crlf_normalize_1 = require("crlf-normalize");
 const gitRoot = require("git-root");
+const git_decode_1 = require("git-decode");
 exports.defaultOptions = {
     encoding: 'UTF-8',
 };
@@ -44,6 +45,13 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
         line = line.replace(/^\s+/g, '');
         if (line) {
             let [status, file] = line.split(/\t/);
+            /**
+             * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
+             */
+            if (file.indexOf('"') == 0) {
+                file = file.replace(/^"|"$/g, '');
+                file = git_decode_1.decode(file);
+            }
             let fullpath = path.join(root, file);
             file = path.relative(root, fullpath);
             let row = {

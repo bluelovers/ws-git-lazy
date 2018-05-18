@@ -7,6 +7,7 @@ import { resolveRevision, revisionRange, getCwd, revisionRangeData } from 'git-r
 import * as path from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
 import * as gitRoot from 'git-root';
+import { decode } from 'git-decode';
 
 export interface IOptions
 {
@@ -89,6 +90,16 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 			if (line)
 			{
 				let [status, file] = line.split(/\t/);
+
+				/**
+				 * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
+				 */
+				if (file.indexOf('"') == 0)
+				{
+					file = file.replace(/^"|"$/g, '');
+
+					file = decode(file);
+				}
 
 				let fullpath = path.join(root, file);
 				file = path.relative(root, fullpath);
