@@ -33,17 +33,10 @@ function gitlog(options, cb) {
         throw new Error(`Repo required!, but got "${REPO}"`);
     if (!fs_1.existsSync(REPO))
         throw new Error(`Repo location does not exist: "${REPO}"`);
-    let defaultOptions = {
-        number: 10,
-        fields: gitlog.defaultFields,
-        nameStatus: true,
-        findCopiesHarder: false,
-        all: false,
-        execOptions: { cwd: REPO }
-    };
+    let defaultExecOptions = { cwd: REPO };
     // Set defaults
-    options = extend({}, defaultOptions, options);
-    extend(options.execOptions, defaultOptions.execOptions);
+    options = extend({}, gitlog.defaultOptions, { execOptions: defaultExecOptions }, options);
+    options.execOptions = extend(options.execOptions, defaultExecOptions);
     if (options.returnAllFields) {
         options.fields = [].concat(Object.keys(fields));
         if (options.nameStatus && typeof options.nameStatusFiles == 'undefined') {
@@ -198,6 +191,13 @@ function addOptional(command, options) {
 }
 (function (gitlog) {
     gitlog.defaultFields = ['abbrevHash', 'hash', 'subject', 'authorName'];
+    gitlog.defaultOptions = {
+        number: 10,
+        fields: gitlog.defaultFields,
+        nameStatus: true,
+        findCopiesHarder: false,
+        all: false,
+    };
     gitlog.KEY_ORDER = [
         'hash',
         'abbrevHash',
@@ -249,4 +249,4 @@ function addOptional(command, options) {
 })(gitlog || (gitlog = {}));
 // @ts-ignore
 gitlog.default = gitlog.gitlog = gitlog;
-module.exports = gitlog;
+module.exports = Object.freeze(gitlog);

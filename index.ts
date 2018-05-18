@@ -10,37 +10,6 @@ const debug = debug0('gitlog'),
 	notOptFields = ['status', 'files']
 ;
 
-interface IOptions
-{
-	number?: number,
-	fields?: IFieldsArray,
-
-	repo?: string,
-	cwd?: string,
-
-	nameStatus?: boolean,
-
-	nameStatusFiles?: boolean,
-
-	findCopiesHarder?: boolean,
-	all?: boolean,
-	execOptions?: IExecOptions,
-
-	branch?: string,
-	file?: string,
-
-	author?: string,
-	since?: string,
-	after?: string,
-	until?: string,
-	before?: string,
-	committer?: string,
-
-	returnAllFields?: boolean,
-}
-
-type IFieldsArray = Array<keyof typeof fields>
-
 const fields = {
 	hash: '%H',
 	abbrevHash: '%h',
@@ -62,6 +31,9 @@ const fields = {
 	tags: '%D'
 };
 
+import IOptions = gitlog.IOptions
+import IFieldsArray = gitlog.IFieldsArray
+
 function gitlog(options: IOptions, cb?: IAsyncCallback)
 {
 	// lazy name
@@ -70,18 +42,11 @@ function gitlog(options: IOptions, cb?: IAsyncCallback)
 	if (!REPO) throw new Error(`Repo required!, but got "${REPO}"`);
 	if (!existsSync(REPO)) throw new Error(`Repo location does not exist: "${REPO}"`);
 
-	let defaultOptions: IOptions = {
-		number: 10,
-		fields: gitlog.defaultFields,
-		nameStatus: true,
-		findCopiesHarder: false,
-		all: false,
-		execOptions: { cwd: REPO }
-	};
+	let defaultExecOptions = { cwd: REPO };
 
 	// Set defaults
-	options = extend({}, defaultOptions, options)
-	extend(options.execOptions, defaultOptions.execOptions)
+	options = extend({}, gitlog.defaultOptions, { execOptions: defaultExecOptions }, options);
+	options.execOptions = extend(options.execOptions, defaultExecOptions);
 
 	if (options.returnAllFields)
 	{
@@ -351,6 +316,14 @@ namespace gitlog
 
 	export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
 
+	export const defaultOptions: IOptions = {
+		number: 10,
+		fields: defaultFields,
+		nameStatus: true,
+		findCopiesHarder: false,
+		all: false,
+	};
+
 	export const KEY_ORDER = [
 		'hash',
 		'abbrevHash',
@@ -374,6 +347,37 @@ namespace gitlog
 		'files',
 		'fileStatus',
 	];
+
+	export interface IOptions
+	{
+		number?: number,
+		fields?: IFieldsArray,
+
+		repo?: string,
+		cwd?: string,
+
+		nameStatus?: boolean,
+
+		nameStatusFiles?: boolean,
+
+		findCopiesHarder?: boolean,
+		all?: boolean,
+		execOptions?: IExecOptions,
+
+		branch?: string,
+		file?: string,
+
+		author?: string,
+		since?: string,
+		after?: string,
+		until?: string,
+		before?: string,
+		committer?: string,
+
+		returnAllFields?: boolean,
+	}
+
+	export type IFieldsArray = Array<keyof typeof fields>
 
 	export function sync(options: IOptions)
 	{
@@ -417,10 +421,10 @@ interface IAsyncCallback
 
 type valueof<T> = T[keyof T]
 
-export = gitlog as typeof gitlog & {
-	gitlog: typeof gitlog,
-	default: typeof gitlog,
-}
-
 // @ts-ignore
 gitlog.default = gitlog.gitlog = gitlog;
+
+export = Object.freeze(gitlog as typeof gitlog & {
+	gitlog: typeof gitlog,
+	default: typeof gitlog,
+})
