@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { ExecOptions as IExecOptions } from 'child_process';
-declare const fields: {
+const fields: {
     hash: string;
     abbrevHash: string;
     treeHash: string;
@@ -45,7 +45,7 @@ interface IParseCommit {
     rawBody?: string;
     fileStatus?: [string, string][];
 }
-declare function parseCommits(commits: string[], options: IOptions): IParseCommit[];
+function parseCommits(commits: string[], options: IOptions): IParseCommit[];
 declare namespace gitlog {
     type IReturnCommits = ReturnType<typeof parseCommits>;
     const defaultFields: IFieldsArray;

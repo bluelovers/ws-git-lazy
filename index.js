@@ -4,6 +4,7 @@ const fs_1 = require("fs");
 const extend = require("lodash.assign");
 const debug_1 = require("debug");
 const arrayUniq = require("array-uniq");
+const git_decode_1 = require("git-decode");
 const sortObjectKeys = require("sort-object-keys2");
 const debug = debug_1.default('gitlog'), delimiter = '\t', notOptFields = ['status', 'files'];
 const fields = {
@@ -120,6 +121,7 @@ function parseCommits(commits, options) {
                 // anything inbetween could be the old name if renamed or copied
                 .reduce(function (a, b) {
                 let tempArr = [b[0], b[b.length - 1]];
+                tempArr[1] = _decode(tempArr[1]);
                 // @ts-ignore
                 nameStatusFiles.push(tempArr);
                 // If any files in between loop through them
@@ -129,7 +131,7 @@ function parseCommits(commits, options) {
                     if (b[0].slice(0, 1) === 'R') {
                         tempArr.push('D', b[i]);
                         // @ts-ignore
-                        nameStatusFiles.push(['D', b[i]]);
+                        nameStatusFiles.push(['D', _decode(b[i])]);
                     }
                 }
                 return a.concat(tempArr);
@@ -247,6 +249,13 @@ function addOptional(command, options) {
     }
     gitlog.async = async;
 })(gitlog || (gitlog = {}));
+function _decode(file) {
+    if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/)) {
+        file = file.replace(/^"|"$/g, '');
+        file = git_decode_1.decode(file);
+    }
+    return file;
+}
 // @ts-ignore
 gitlog.default = gitlog.gitlog = gitlog;
 module.exports = Object.freeze(gitlog);

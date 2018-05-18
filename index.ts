@@ -3,6 +3,7 @@ import { existsSync } from 'fs';
 import * as extend from 'lodash.assign';
 import debug0 from 'debug';
 import * as arrayUniq from 'array-uniq';
+import { decode } from 'git-decode';
 import * as sortObjectKeys from 'sort-object-keys2';
 
 const debug = debug0('gitlog'),
@@ -210,6 +211,8 @@ function parseCommits(commits: string[], options: IOptions)
 				{
 					let tempArr = [b[0], b[b.length - 1]];
 
+					tempArr[1] = _decode(tempArr[1]);
+
 					// @ts-ignore
 					nameStatusFiles.push(tempArr);
 
@@ -222,7 +225,7 @@ function parseCommits(commits: string[], options: IOptions)
 						{
 							tempArr.push('D', b[i]);
 							// @ts-ignore
-							nameStatusFiles.push(['D', b[i]]);
+							nameStatusFiles.push(['D', _decode(b[i])]);
 						}
 					}
 
@@ -412,6 +415,18 @@ namespace gitlog
 			})
 		});
 	}
+}
+
+function _decode(file: string): string
+{
+	if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/))
+	{
+		file = file.replace(/^"|"$/g, '');
+
+		file = decode(file);
+	}
+
+	return file;
 }
 
 interface IAsyncCallback
