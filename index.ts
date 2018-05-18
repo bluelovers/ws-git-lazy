@@ -94,7 +94,7 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 				/**
 				 * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
 				 */
-				if (file.indexOf('"') == 0)
+				if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/))
 				{
 					file = file.replace(/^"|"$/g, '');
 

@@ -48,7 +48,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
             /**
              * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
              */
-            if (file.indexOf('"') == 0) {
+            if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/)) {
                 file = file.replace(/^"|"$/g, '');
                 file = git_decode_1.decode(file);
             }
