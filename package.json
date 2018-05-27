@@ -30,8 +30,5 @@
     "lodash.assign": "^4.2.0",
     "sort-object-keys2": "^1.0.3"
   },
-  "devDependencies": {},
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org"
-  }
+  "devDependencies": {}
 }
