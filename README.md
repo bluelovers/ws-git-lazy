@@ -14,7 +14,7 @@ Git log parser for Node.JS
 [API](index.d.ts)
 
 ```js
-const gitlog = require('gitlog2');
+const gitlog = require('gitlog2').gitlog;
 
 const options =
     { repo: __dirname + '/test-repo-folder'

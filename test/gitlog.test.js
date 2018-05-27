@@ -1,4 +1,4 @@
-var gitlog = require('../')
+var gitlog = require('../').gitlog
 	, exec = require('child_process').exec
 	, testRepoLocation = __dirname + '/test-repo-clone'
 	, gitVer = '1.0.0'

@@ -32,10 +32,11 @@ const fields = {
 	tags: '%D'
 };
 
-import IOptions = gitlog.IOptions
-import IFieldsArray = gitlog.IFieldsArray
 
-function gitlog(options: IOptions, cb?: IAsyncCallback)
+// @ts-ignore
+//Object.defineProperty(exports, "__esModule", { value: true });
+
+export function gitlog(options: IOptions, cb?: IAsyncCallback)
 {
 	// lazy name
 	const REPO = typeof options.repo != 'undefined' ? options.repo : options.cwd;
@@ -46,7 +47,7 @@ function gitlog(options: IOptions, cb?: IAsyncCallback)
 	let defaultExecOptions = { cwd: REPO };
 
 	// Set defaults
-	options = extend({}, gitlog.defaultOptions, { execOptions: defaultExecOptions }, options);
+	options = extend({}, defaultOptions, { execOptions: defaultExecOptions }, options);
 	options.execOptions = extend(options.execOptions, defaultExecOptions);
 
 	if (options.returnAllFields)
@@ -148,7 +149,7 @@ function fileNameAndStatus(options)
 	return options.nameStatus ? ' --name-status' : '';
 }
 
-interface IParseCommit
+export interface IParseCommit
 {
 	hash?: string,
 	abbrevHash?: string,
@@ -177,7 +178,7 @@ interface IParseCommit
 	fileStatus?: [string, string][],
 }
 
-function parseCommits(commits: string[], options: IOptions)
+export function parseCommits(commits: string[], options: IOptions)
 {
 	let { fields, nameStatus } = options;
 
@@ -291,7 +292,7 @@ function parseCommits(commits: string[], options: IOptions)
 			parsed.fileStatus = arrayUniq(nameStatusFiles) as typeof nameStatusFiles;
 		}
 
-		parsed = sortObjectKeys(parsed, gitlog.KEY_ORDER)
+		parsed = sortObjectKeys(parsed, KEY_ORDER)
 
 		return parsed
 	})
@@ -313,108 +314,105 @@ function addOptional(command: string, options: IOptions)
 	return command
 }
 
-namespace gitlog
+export type IReturnCommits = ReturnType<typeof parseCommits>;
+
+export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
+
+export const defaultOptions: IOptions = {
+	number: 10,
+	fields: defaultFields,
+	nameStatus: true,
+	findCopiesHarder: false,
+	all: false,
+};
+
+export const KEY_ORDER = [
+	'hash',
+	'abbrevHash',
+	'treeHash',
+	'abbrevTreeHash',
+	'parentHashes',
+	'abbrevParentHashes',
+	'authorName',
+	'authorEmail',
+	'authorDate',
+	'authorDateRel',
+	'committerName',
+	'committerEmail',
+	'committerDate',
+	'committerDateRel',
+	'subject',
+	'body',
+	'rawBody',
+	'tags',
+	'status',
+	'files',
+	'fileStatus',
+];
+
+export interface IOptions
 {
-	export type IReturnCommits = ReturnType<typeof parseCommits>;
+	number?: number,
+	fields?: IFieldsArray,
 
-	export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
+	repo?: string,
+	cwd?: string,
 
-	export const defaultOptions: IOptions = {
-		number: 10,
-		fields: defaultFields,
-		nameStatus: true,
-		findCopiesHarder: false,
-		all: false,
-	};
+	nameStatus?: boolean,
 
-	export const KEY_ORDER = [
-		'hash',
-		'abbrevHash',
-		'treeHash',
-		'abbrevTreeHash',
-		'parentHashes',
-		'abbrevParentHashes',
-		'authorName',
-		'authorEmail',
-		'authorDate',
-		'authorDateRel',
-		'committerName',
-		'committerEmail',
-		'committerDate',
-		'committerDateRel',
-		'subject',
-		'body',
-		'rawBody',
-		'tags',
-		'status',
-		'files',
-		'fileStatus',
-	];
+	nameStatusFiles?: boolean,
 
-	export interface IOptions
+	findCopiesHarder?: boolean,
+	all?: boolean,
+	execOptions?: IExecOptions,
+
+	branch?: string,
+	file?: string,
+
+	author?: string,
+	since?: string,
+	after?: string,
+	until?: string,
+	before?: string,
+	committer?: string,
+
+	returnAllFields?: boolean,
+}
+
+export type IFieldsArray = Array<keyof typeof fields>
+
+export function sync(options: IOptions)
+{
+	return gitlog(options);
+}
+
+export function asyncCallback(options: IOptions, cb: IAsyncCallback): void
+{
+	if (typeof cb !== 'function')
 	{
-		number?: number,
-		fields?: IFieldsArray,
-
-		repo?: string,
-		cwd?: string,
-
-		nameStatus?: boolean,
-
-		nameStatusFiles?: boolean,
-
-		findCopiesHarder?: boolean,
-		all?: boolean,
-		execOptions?: IExecOptions,
-
-		branch?: string,
-		file?: string,
-
-		author?: string,
-		since?: string,
-		after?: string,
-		until?: string,
-		before?: string,
-		committer?: string,
-
-		returnAllFields?: boolean,
+		throw new TypeError();
 	}
 
-	export type IFieldsArray = Array<keyof typeof fields>
+	// @ts-ignore
+	return gitlog(options, cb);
+}
 
-	export function sync(options: IOptions)
+export function async(options: IOptions)
+{
+	return new Promise<ReturnType<typeof parseCommits>>(function (resolve, reject)
 	{
-		return gitlog(options);
-	}
-
-	export function asyncCallback(options: IOptions, cb: IAsyncCallback): void
-	{
-		if (typeof cb !== 'function')
+		gitlog(options, function (error, commits)
 		{
-			throw new TypeError();
-		}
-
-		// @ts-ignore
-		return gitlog(options, cb);
-	}
-
-	export function async(options: IOptions)
-	{
-		return new Promise<ReturnType<typeof parseCommits>>(function (resolve, reject)
-		{
-			gitlog(options, function (error, commits)
+			if (error)
 			{
-				if (error)
-				{
-					reject(error)
-				}
-				else
-				{
-					resolve(commits)
-				}
-			})
-		});
-	}
+				reject(error)
+			}
+			else
+			{
+				resolve(commits)
+			}
+		})
+	});
 }
 
 function _decode(file: string): string
@@ -436,10 +434,7 @@ interface IAsyncCallback
 
 type valueof<T> = T[keyof T]
 
-// @ts-ignore
-gitlog.default = gitlog.gitlog = gitlog;
+export default gitlog
 
-export = Object.freeze(gitlog as typeof gitlog & {
-	gitlog: typeof gitlog,
-	default: typeof gitlog,
-})
+// @ts-ignore
+Object.freeze(exports);

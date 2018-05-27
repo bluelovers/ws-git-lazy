@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
 const fs_1 = require("fs");
 const extend = require("lodash.assign");
@@ -27,6 +28,8 @@ const fields = {
     rawBody: '%B',
     tags: '%D'
 };
+// @ts-ignore
+//Object.defineProperty(exports, "__esModule", { value: true });
 function gitlog(options, cb) {
     // lazy name
     const REPO = typeof options.repo != 'undefined' ? options.repo : options.cwd;
@@ -36,7 +39,7 @@ function gitlog(options, cb) {
         throw new Error(`Repo location does not exist: "${REPO}"`);
     let defaultExecOptions = { cwd: REPO };
     // Set defaults
-    options = extend({}, gitlog.defaultOptions, { execOptions: defaultExecOptions }, options);
+    options = extend({}, exports.defaultOptions, { execOptions: defaultExecOptions }, options);
     options.execOptions = extend(options.execOptions, defaultExecOptions);
     if (options.returnAllFields) {
         options.fields = [].concat(Object.keys(fields));
@@ -97,6 +100,7 @@ function gitlog(options, cb) {
         cb(stderr || err, commits);
     });
 }
+exports.gitlog = gitlog;
 function fileNameAndStatus(options) {
     return options.nameStatus ? ' --name-status' : '';
 }
@@ -175,10 +179,11 @@ function parseCommits(commits, options) {
         if (nameStatus && options.nameStatusFiles) {
             parsed.fileStatus = arrayUniq(nameStatusFiles);
         }
-        parsed = sortObjectKeys(parsed, gitlog.KEY_ORDER);
+        parsed = sortObjectKeys(parsed, exports.KEY_ORDER);
         return parsed;
     });
 }
+exports.parseCommits = parseCommits;
 /***
  Add optional parameter to command
  */
@@ -191,64 +196,62 @@ function addOptional(command, options) {
     }
     return command;
 }
-(function (gitlog) {
-    gitlog.defaultFields = ['abbrevHash', 'hash', 'subject', 'authorName'];
-    gitlog.defaultOptions = {
-        number: 10,
-        fields: gitlog.defaultFields,
-        nameStatus: true,
-        findCopiesHarder: false,
-        all: false,
-    };
-    gitlog.KEY_ORDER = [
-        'hash',
-        'abbrevHash',
-        'treeHash',
-        'abbrevTreeHash',
-        'parentHashes',
-        'abbrevParentHashes',
-        'authorName',
-        'authorEmail',
-        'authorDate',
-        'authorDateRel',
-        'committerName',
-        'committerEmail',
-        'committerDate',
-        'committerDateRel',
-        'subject',
-        'body',
-        'rawBody',
-        'tags',
-        'status',
-        'files',
-        'fileStatus',
-    ];
-    function sync(options) {
-        return gitlog(options);
+exports.defaultFields = ['abbrevHash', 'hash', 'subject', 'authorName'];
+exports.defaultOptions = {
+    number: 10,
+    fields: exports.defaultFields,
+    nameStatus: true,
+    findCopiesHarder: false,
+    all: false,
+};
+exports.KEY_ORDER = [
+    'hash',
+    'abbrevHash',
+    'treeHash',
+    'abbrevTreeHash',
+    'parentHashes',
+    'abbrevParentHashes',
+    'authorName',
+    'authorEmail',
+    'authorDate',
+    'authorDateRel',
+    'committerName',
+    'committerEmail',
+    'committerDate',
+    'committerDateRel',
+    'subject',
+    'body',
+    'rawBody',
+    'tags',
+    'status',
+    'files',
+    'fileStatus',
+];
+function sync(options) {
+    return gitlog(options);
+}
+exports.sync = sync;
+function asyncCallback(options, cb) {
+    if (typeof cb !== 'function') {
+        throw new TypeError();
     }
-    gitlog.sync = sync;
-    function asyncCallback(options, cb) {
-        if (typeof cb !== 'function') {
-            throw new TypeError();
-        }
-        // @ts-ignore
-        return gitlog(options, cb);
-    }
-    gitlog.asyncCallback = asyncCallback;
-    function async(options) {
-        return new Promise(function (resolve, reject) {
-            gitlog(options, function (error, commits) {
-                if (error) {
-                    reject(error);
-                }
-                else {
-                    resolve(commits);
-                }
-            });
+    // @ts-ignore
+    return gitlog(options, cb);
+}
+exports.asyncCallback = asyncCallback;
+function async(options) {
+    return new Promise(function (resolve, reject) {
+        gitlog(options, function (error, commits) {
+            if (error) {
+                reject(error);
+            }
+            else {
+                resolve(commits);
+            }
         });
-    }
-    gitlog.async = async;
-})(gitlog || (gitlog = {}));
+    });
+}
+exports.async = async;
 function _decode(file) {
     if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/)) {
         file = file.replace(/^"|"$/g, '');
@@ -256,6 +259,6 @@ function _decode(file) {
     }
     return file;
 }
+exports.default = gitlog;
 // @ts-ignore
-gitlog.default = gitlog.gitlog = gitlog;
-module.exports = Object.freeze(gitlog);
+Object.freeze(exports);

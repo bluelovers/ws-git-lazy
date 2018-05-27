@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { ExecOptions as IExecOptions } from 'child_process';
-const fields: {
+declare const fields: {
     hash: string;
     abbrevHash: string;
     treeHash: string;
@@ -20,9 +20,8 @@ const fields: {
     rawBody: string;
     tags: string;
 };
-import IOptions = gitlog.IOptions;
-declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[];
-interface IParseCommit {
+export declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[];
+export interface IParseCommit {
     hash?: string;
     abbrevHash?: string;
     treeHash?: string;
@@ -45,42 +44,36 @@ interface IParseCommit {
     rawBody?: string;
     fileStatus?: [string, string][];
 }
-function parseCommits(commits: string[], options: IOptions): IParseCommit[];
-declare namespace gitlog {
-    type IReturnCommits = ReturnType<typeof parseCommits>;
-    const defaultFields: IFieldsArray;
-    const defaultOptions: IOptions;
-    const KEY_ORDER: string[];
-    interface IOptions {
-        number?: number;
-        fields?: IFieldsArray;
-        repo?: string;
-        cwd?: string;
-        nameStatus?: boolean;
-        nameStatusFiles?: boolean;
-        findCopiesHarder?: boolean;
-        all?: boolean;
-        execOptions?: IExecOptions;
-        branch?: string;
-        file?: string;
-        author?: string;
-        since?: string;
-        after?: string;
-        until?: string;
-        before?: string;
-        committer?: string;
-        returnAllFields?: boolean;
-    }
-    type IFieldsArray = Array<keyof typeof fields>;
-    function sync(options: IOptions): IParseCommit[];
-    function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
-    function async(options: IOptions): Promise<IParseCommit[]>;
+export declare function parseCommits(commits: string[], options: IOptions): IParseCommit[];
+export declare type IReturnCommits = ReturnType<typeof parseCommits>;
+export declare const defaultFields: IFieldsArray;
+export declare const defaultOptions: IOptions;
+export declare const KEY_ORDER: string[];
+export interface IOptions {
+    number?: number;
+    fields?: IFieldsArray;
+    repo?: string;
+    cwd?: string;
+    nameStatus?: boolean;
+    nameStatusFiles?: boolean;
+    findCopiesHarder?: boolean;
+    all?: boolean;
+    execOptions?: IExecOptions;
+    branch?: string;
+    file?: string;
+    author?: string;
+    since?: string;
+    after?: string;
+    until?: string;
+    before?: string;
+    committer?: string;
+    returnAllFields?: boolean;
 }
+export declare type IFieldsArray = Array<keyof typeof fields>;
+export declare function sync(options: IOptions): IParseCommit[];
+export declare function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
+export declare function async(options: IOptions): Promise<IParseCommit[]>;
 interface IAsyncCallback {
     (error: any, commits: ReturnType<typeof parseCommits>): void;
 }
-declare const _default: typeof gitlog & {
-    gitlog: typeof gitlog;
-    default: typeof gitlog;
-};
-export = _default;
+export default gitlog;
