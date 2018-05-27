@@ -1,6 +1,6 @@
 {
   "name": "git-diff-from",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "git diff-tree",
   "keywords": [
     "commit",
@@ -35,9 +35,11 @@
     "crlf-normalize": "^1.0.2",
     "cross-spawn": "^6.0.5",
     "git-decode": "^1.0.0",
-    "git-rev-range": "^1.0.7",
+    "git-rev-range": "^1.1.0",
     "git-root": "^1.0.0",
     "upath2": "^2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^10.0.8"
+  }
 }

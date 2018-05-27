@@ -5,8 +5,11 @@
 import * as path from "path";
 import gitDiffFrom from '../index';
 
-let r = gitDiffFrom(10, {
-	cwd: path.resolve('D:/Users/Documents/The Project/nodejs-test/node-novel2/dist_novel'),
+let from = '96d60cdc0';
+
+let r = gitDiffFrom(from, 'origin/master', {
+	cwd: path.resolve('D:/Users/Documents/The Project/nodejs-yarn/ws-novel/packages/node-novel-travis-test/dist_novel'),
+
 });
 
 console.log(r);
