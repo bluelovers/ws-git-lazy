@@ -14,11 +14,31 @@ function isRevision(s) {
 exports.isRevision = isRevision;
 function revisionRangeData(from, to = 'HEAD', options = {}) {
     if (typeof from == 'number' || ((options.realHash || options.fullHash) && (!isRevision(from) || !isRevision(to)))) {
+        if (typeof from == 'string' && !options.excludeStart) {
+            from = revisionBefore(from);
+            options = getOptions(options);
+            options.excludeStart = true;
+        }
         ({ from, to } = resolveRevision(from, to, options));
     }
     return { from, to };
 }
 exports.revisionRangeData = revisionRangeData;
+function revisionBefore(rev, n = 1) {
+    if (/^\d+$/.test(rev)) {
+        //
+    }
+    else if (/~\d+$/.test(rev)) {
+        rev = rev.replace(/(~)(\d+)$/, function (...m) {
+            return m[1] + (Number(m[2]) + n);
+        });
+    }
+    else if (/^\w+$/.test(rev)) {
+        rev += '~' + n;
+    }
+    return rev;
+}
+exports.revisionBefore = revisionBefore;
 function revisionRange(from, to = 'HEAD', options = {}) {
     ({ from, to } = revisionRangeData(from, to, options));
     return `${from}..${to}`;
@@ -41,6 +61,7 @@ function resolveLog(from = 20, to = 'HEAD', options = {}) {
 exports.resolveLog = resolveLog;
 function resolveRevision(range, revision = 'HEAD', options = {}) {
     revision = revision || 'HEAD';
+    options = getOptions(options);
     let a = resolveLog(range, revision, options);
     let len = a.length;
     let fromName = (typeof range == 'number' && len > 1) ? `${revision}~${len - 1}` : (typeof range == 'string' ? range : revision);
@@ -74,6 +95,15 @@ function resolveRevision(range, revision = 'HEAD', options = {}) {
     };
 }
 exports.resolveRevision = resolveRevision;
+function getOptions(cwd) {
+    if (typeof cwd == 'string') {
+        return {
+            cwd,
+        };
+    }
+    return cwd;
+}
+exports.getOptions = getOptions;
 function getCwd(cwd) {
     return cwd && (typeof cwd == 'string' ? cwd : cwd.cwd) || process.cwd();
 }

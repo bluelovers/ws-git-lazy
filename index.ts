@@ -12,6 +12,8 @@ export interface IOptions
 	realHash?: boolean,
 	fullHash?: boolean,
 	maxNumber?: number,
+
+	excludeStart?: boolean,
 }
 
 export function isRevision(s: string)
@@ -28,10 +30,39 @@ export function revisionRangeData(from: number | string, to: string = 'HEAD', op
 {
 	if (typeof from == 'number' || (((<IOptions>options).realHash || (<IOptions>options).fullHash) && (!isRevision(from) || !isRevision(to))))
 	{
+		if (typeof from == 'string' && !(<IOptions>options).excludeStart)
+		{
+			from = revisionBefore(from);
+
+			options = getOptions(options);
+			options.excludeStart = true;
+		}
+
 		({ from, to } = resolveRevision(from, to, options));
 	}
 
 	return { from, to };
+}
+
+export function revisionBefore(rev: string, n: number = 1)
+{
+	if (/^\d+$/.test(rev))
+	{
+		//
+	}
+	else if (/~\d+$/.test(rev))
+	{
+		rev = rev.replace(/(~)(\d+)$/, function (...m)
+		{
+			return m[1] + (Number(m[2]) + n)
+		});
+	}
+	else if (/^\w+$/.test(rev))
+	{
+		rev += '~' + n;
+	}
+
+	return rev;
 }
 
 export function revisionRange(from: number | string, to: string = 'HEAD', options: string | IOptions = {})
@@ -41,7 +72,7 @@ export function revisionRange(from: number | string, to: string = 'HEAD', option
 	return `${from}..${to}`;
 }
 
-export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {})
+export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {}): ReturnType<typeof gitlog>
 {
 	if (typeof from == 'string')
 	{
@@ -64,6 +95,8 @@ export function resolveRevision(range: number | string, revision: string = 'HEAD
 {
 	revision = revision || 'HEAD';
 
+	options = getOptions(options);
+
 	let a = resolveLog(range, revision, options);
 
 	let len = a.length;
@@ -76,7 +109,6 @@ export function resolveRevision(range: number | string, revision: string = 'HEAD
 
 	if (options && ((<IOptions>options).realHash || (<IOptions>options).fullHash))
 	{
-
 		if (a.length === 0)
 		{
 			a = gitlog({
@@ -110,6 +142,18 @@ export function resolveRevision(range: number | string, revision: string = 'HEAD
 
 		length: a.length,
 	};
+}
+
+export function getOptions(cwd?: string | IOptions): IOptions
+{
+	if (typeof cwd == 'string')
+	{
+		return {
+			cwd,
+		};
+	}
+
+	return cwd;
 }
 
 export function getCwd(cwd?: string | IOptions)
