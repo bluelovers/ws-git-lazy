@@ -7,7 +7,8 @@ const crossSpawn = require("cross-spawn");
 const git_rev_range_1 = require("git-rev-range");
 const path = require("upath2");
 const crlf_normalize_1 = require("crlf-normalize");
-const gitRoot = require("git-root");
+// @ts-ignore
+const gitRoot = require("git-root2");
 const git_decode_1 = require("git-decode");
 exports.defaultOptions = {
     encoding: 'UTF-8',
