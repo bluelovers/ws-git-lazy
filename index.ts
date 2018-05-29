@@ -66,63 +66,67 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 
 	({ from, to } = revisionRangeData(from, to, opts2));
 
-	let log = crossSpawn.sync('git', filterArgv([
-		...'diff-tree -r --no-commit-id --name-status'.split(' '),
-		`--encoding=${options.encoding}`,
-		revisionRange(from, to, opts2),
-	]), {
-		//stdio: 'inherit',
-		cwd,
-	});
-
-	if (log.error || log.stderr.length)
-	{
-		throw new Error(log.stderr.toString())
-	}
-
 	let files: string[] = [];
+	let list: {
+		status: string,
+		path: string,
+		fullpath: string,
+	}[] = [];
 
-	let list = crlf(log.stdout.toString())
-		.split(LF)
-		.reduce(function (a, line)
+	if (from != to)
+	{
+		let log = crossSpawn.sync('git', filterArgv([
+			...'diff-tree -r --no-commit-id --name-status'.split(' '),
+			`--encoding=${options.encoding}`,
+			revisionRange(from, to, opts2),
+		]), {
+			//stdio: 'inherit',
+			cwd,
+		});
+
+		if (log.error || log.stderr.length)
 		{
-			line = line.replace(/^\s+/g, '');
+			throw new Error(log.stderr.toString())
+		}
 
-			if (line)
+		list = crlf(log.stdout.toString())
+			.split(LF)
+			.reduce(function (a, line)
 			{
-				let [status, file] = line.split(/\t/);
+				line = line.replace(/^\s+/g, '');
 
-				/**
-				 * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
-				 */
-				if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/))
+				if (line)
 				{
-					file = file.replace(/^"|"$/g, '');
+					let [status, file] = line.split(/\t/);
 
-					file = decode(file);
+					/**
+					 * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
+					 */
+					if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/))
+					{
+						file = file.replace(/^"|"$/g, '');
+
+						file = decode(file);
+					}
+
+					let fullpath = path.join(root, file);
+					file = path.relative(root, fullpath);
+
+					let row = {
+						status,
+						path: file,
+						fullpath,
+					};
+
+					files.push(file);
+
+					a.push(row)
 				}
 
-				let fullpath = path.join(root, file);
-				file = path.relative(root, fullpath);
-
-				let row = {
-					status,
-					path: file,
-					fullpath,
-				};
-
-				files.push(file);
-
-				a.push(row)
-			}
-
-			return a;
-		}, [] as {
-			status: string,
-			path: string,
-			fullpath: string,
-		}[])
-	;
+				return a;
+			}, [])
+		;
+	}
 
 	cwd = path.resolve(cwd);
 	root = path.resolve(root);
