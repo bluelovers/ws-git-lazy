@@ -68,6 +68,8 @@ export interface IOptions {
     before?: string;
     committer?: string;
     returnAllFields?: boolean;
+    noMerges?: boolean;
+    firstParent?: boolean;
 }
 export declare type IFieldsArray = Array<keyof typeof fields>;
 export declare function sync(options: IOptions): IParseCommit[];

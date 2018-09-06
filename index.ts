@@ -1,10 +1,10 @@
 import { exec, execSync, ExecOptions as IExecOptions } from 'child_process';
 import { existsSync } from 'fs';
-import * as extend from 'lodash.assign';
+import extend = require('lodash.assign');
 import debug0 from 'debug';
-import * as arrayUniq from 'array-uniq';
+import { array_unique } from 'array-hyper-unique';
 import { decode } from 'git-decode';
-import * as sortObjectKeys from 'sort-object-keys2';
+import sortObjectKeys = require('sort-object-keys2');
 
 const debug = debug0('gitlog'),
 	delimiter = '\t',
@@ -60,22 +60,34 @@ export function gitlog(options: IOptions, cb?: IAsyncCallback)
 		}
 	}
 
+	let C = ' ';
+
 	// Start constructing command
-	let command = 'git log '
+	let command = 'git log ' + C
 
 	if (options.findCopiesHarder)
 	{
-		command += '--find-copies-harder '
+		command += '--find-copies-harder ' + C
 	}
 
 	if (options.all)
 	{
-		command += '--all '
+		command += '--all ' + C
 	}
 
 	if (options.number > 0)
 	{
-		command += '-n ' + options.number
+		command += '-n ' + options.number + C
+	}
+
+	if (options.noMerges)
+	{
+		command += '--no-merges' + C
+	}
+
+	if (options.firstParent)
+	{
+		command += '--first-parent' + C
 	}
 
 	command = addOptional(command, options)
@@ -289,7 +301,7 @@ export function parseCommits(commits: string[], options: IOptions)
 
 		if (nameStatus && options.nameStatusFiles)
 		{
-			parsed.fileStatus = arrayUniq(nameStatusFiles) as typeof nameStatusFiles;
+			parsed.fileStatus = array_unique(nameStatusFiles) as typeof nameStatusFiles;
 		}
 
 		parsed = sortObjectKeys(parsed, KEY_ORDER)
@@ -377,6 +389,9 @@ export interface IOptions
 	committer?: string,
 
 	returnAllFields?: boolean,
+
+	noMerges?: boolean,
+	firstParent?: boolean,
 }
 
 export type IFieldsArray = Array<keyof typeof fields>

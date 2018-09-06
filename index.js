@@ -4,7 +4,7 @@ const child_process_1 = require("child_process");
 const fs_1 = require("fs");
 const extend = require("lodash.assign");
 const debug_1 = require("debug");
-const arrayUniq = require("array-uniq");
+const array_hyper_unique_1 = require("array-hyper-unique");
 const git_decode_1 = require("git-decode");
 const sortObjectKeys = require("sort-object-keys2");
 const debug = debug_1.default('gitlog'), delimiter = '\t', notOptFields = ['status', 'files'];
@@ -47,16 +47,23 @@ function gitlog(options, cb) {
             options.nameStatusFiles = true;
         }
     }
+    let C = ' ';
     // Start constructing command
-    let command = 'git log ';
+    let command = 'git log ' + C;
     if (options.findCopiesHarder) {
-        command += '--find-copies-harder ';
+        command += '--find-copies-harder ' + C;
     }
     if (options.all) {
-        command += '--all ';
+        command += '--all ' + C;
     }
     if (options.number > 0) {
-        command += '-n ' + options.number;
+        command += '-n ' + options.number + C;
+    }
+    if (options.noMerges) {
+        command += '--no-merges' + C;
+    }
+    if (options.firstParent) {
+        command += '--first-parent' + C;
     }
     command = addOptional(command, options);
     // Start of custom format
@@ -177,7 +184,7 @@ function parseCommits(commits, options) {
             }
         });
         if (nameStatus && options.nameStatusFiles) {
-            parsed.fileStatus = arrayUniq(nameStatusFiles);
+            parsed.fileStatus = array_hyper_unique_1.array_unique(nameStatusFiles);
         }
         parsed = sortObjectKeys(parsed, exports.KEY_ORDER);
         return parsed;
