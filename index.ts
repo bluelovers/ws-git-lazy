@@ -2,7 +2,7 @@
  * Created by user on 2018/5/14/014.
  */
 
-import gitlog from 'gitlog2';
+import gitlog, { IOptions as IGitlogOptions } from 'gitlog2';
 
 export const REVISION_DEFAULT = 'HEAD';
 
@@ -14,7 +14,10 @@ export interface IOptions
 	maxNumber?: number,
 
 	excludeStart?: boolean,
+
+	gitlogOptions?: IGitlogOptions,
 }
+export { IGitlogOptions }
 
 export function isRevision(s: string)
 {
@@ -74,9 +77,13 @@ export function revisionRange(from: number | string, to: string = 'HEAD', option
 
 export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {}): ReturnType<typeof gitlog>
 {
+	options = getOptions(options);
+
 	if (typeof from == 'string')
 	{
 		return gitlog({
+			...options.gitlogOptions,
+
 			repo: getCwd(options),
 			branch: revisionRange(from, to),
 
@@ -85,6 +92,8 @@ export function resolveLog(from: number | string = 20, to: string = 'HEAD', opti
 	}
 
 	return gitlog({
+		...options.gitlogOptions,
+
 		repo: getCwd(options),
 		number: from + 1,
 		branch: `${to}`,
@@ -112,6 +121,9 @@ export function resolveRevision(range: number | string, revision: string = 'HEAD
 		if (a.length === 0)
 		{
 			a = gitlog({
+
+				...options.gitlogOptions,
+
 				repo: getCwd(options),
 				branch: to,
 

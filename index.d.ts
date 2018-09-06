@@ -1,7 +1,7 @@
 /**
  * Created by user on 2018/5/14/014.
  */
-import gitlog from 'gitlog2';
+import gitlog, { IOptions as IGitlogOptions } from 'gitlog2';
 export declare const REVISION_DEFAULT = "HEAD";
 export interface IOptions {
     cwd?: string;
@@ -9,7 +9,9 @@ export interface IOptions {
     fullHash?: boolean;
     maxNumber?: number;
     excludeStart?: boolean;
+    gitlogOptions?: IGitlogOptions;
 }
+export { IGitlogOptions };
 export declare function isRevision(s: string): boolean;
 export declare function revisionRangeData(from: number | string, to?: string, options?: string | IOptions): {
     from: string;

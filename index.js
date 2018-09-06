@@ -45,18 +45,11 @@ function revisionRange(from, to = 'HEAD', options = {}) {
 }
 exports.revisionRange = revisionRange;
 function resolveLog(from = 20, to = 'HEAD', options = {}) {
+    options = getOptions(options);
     if (typeof from == 'string') {
-        return gitlog2_1.default({
-            repo: getCwd(options),
-            branch: revisionRange(from, to),
-            number: options.maxNumber || -1,
-        });
+        return gitlog2_1.default(Object.assign({}, options.gitlogOptions, { repo: getCwd(options), branch: revisionRange(from, to), number: options.maxNumber || -1 }));
     }
-    return gitlog2_1.default({
-        repo: getCwd(options),
-        number: from + 1,
-        branch: `${to}`,
-    });
+    return gitlog2_1.default(Object.assign({}, options.gitlogOptions, { repo: getCwd(options), number: from + 1, branch: `${to}` }));
 }
 exports.resolveLog = resolveLog;
 function resolveRevision(range, revision = 'HEAD', options = {}) {
@@ -70,11 +63,7 @@ function resolveRevision(range, revision = 'HEAD', options = {}) {
     let to = toName;
     if (options && (options.realHash || options.fullHash)) {
         if (a.length === 0) {
-            a = gitlog2_1.default({
-                repo: getCwd(options),
-                branch: to,
-                number: 1,
-            });
+            a = gitlog2_1.default(Object.assign({}, options.gitlogOptions, { repo: getCwd(options), branch: to, number: 1 }));
             len = a.length;
         }
         if (options.fullHash) {
