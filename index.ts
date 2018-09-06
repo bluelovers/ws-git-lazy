@@ -6,8 +6,7 @@ import * as crossSpawn from 'cross-spawn';
 import { resolveRevision, revisionRange, getCwd, revisionRangeData } from 'git-rev-range';
 import * as path from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
-// @ts-ignore
-import * as gitRoot from 'git-root2';
+import gitRoot = require('git-root2');
 import { decode } from 'git-decode';
 
 export interface IOptions
