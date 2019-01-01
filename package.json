@@ -1,6 +1,6 @@
 {
   "name": "git-decode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "decode/encode git style utf8",
   "homepage": "https://github.com/bluelovers/git-decode#readme",
   "bugs": {

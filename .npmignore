@@ -20,3 +20,5 @@ test
 
 /.*
 /example/
+*.ts
+!*.d.ts
