@@ -1,6 +1,6 @@
 {
   "name": "gitlog2",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Git log parser for Node.JS",
   "keywords": [
     "git",
@@ -24,9 +24,9 @@
   },
   "scripts": {},
   "dependencies": {
-    "array-hyper-unique": "^1.0.2",
-    "debug": "^3.1.0",
-    "git-decode": "^1.0.0",
+    "array-hyper-unique": "^1.0.7",
+    "debug": "^4.1.1",
+    "git-decode": "^1.0.1",
     "lodash.assign": "^4.2.0",
     "sort-object-keys2": "^1.0.3"
   },

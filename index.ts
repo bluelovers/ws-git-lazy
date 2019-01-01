@@ -364,9 +364,15 @@ export const KEY_ORDER = [
 
 export interface IOptions
 {
+	/**
+	 * The number of commits to return.
+	 */
 	number?: number,
 	fields?: IFieldsArray,
 
+	/**
+	 * The location of the repo, required field.
+	 */
 	repo?: string,
 	cwd?: string,
 
@@ -374,19 +380,54 @@ export interface IOptions
 
 	nameStatusFiles?: boolean,
 
+	/**
+	 * Much more likely to set status codes to 'C' if files are exact copies of each other.
+	 */
 	findCopiesHarder?: boolean,
+	/**
+	 * Find commits on all branches instead of just on the current one.
+	 */
 	all?: boolean,
+	/**
+	 * Specify some options to be passed to the .exec() method:
+	 */
 	execOptions?: IExecOptions,
 
+	/**
+	 * Show only commits in the specified branch or revision range.
+	 */
 	branch?: string,
+	/**
+	 * Show only commits that are enough to explain how the files that match the specified paths came to be.
+	 */
 	file?: string,
 
-	author?: string,
+	/**
+	 * Show commits more recent than a specific date.
+	 */
 	since?: string,
+	/**
+	 * Show commits more recent than a specific date.
+	 */
 	after?: string,
+
+	/**
+	 * Show commits older than a specific date.
+	 */
 	until?: string,
+	/**
+	 * Show commits older than a specific date.
+	 */
 	before?: string,
+
+	/**
+	 * Limit the commits output to ones with author/committer header lines that match the specified pattern.
+	 */
 	committer?: string,
+	/**
+	 * Limit the commits output to ones with author/committer header lines that match the specified pattern.
+	 */
+	author?: string,
 
 	returnAllFields?: boolean,
 
@@ -428,6 +469,16 @@ export function async(options: IOptions)
 			}
 		})
 	});
+}
+
+/**
+ * for moment
+ */
+export enum EnumGitDateFormat
+{
+	AUTHOR_DATE = 'YYYY-MM-DD HH:mm:ss Z',
+	COMMITTER_DATE = 'ddd MMM DD HH:mm:ss YYYY ZZ',
+	RFC_2822 = 'ddd MMM DD HH:mm:ss YYYY ZZ',
 }
 
 function _decode(file: string): string
