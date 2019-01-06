@@ -8,7 +8,7 @@ import { existsSync } from "fs";
 import { decode as _decode } from 'git-decode';
 import {
 	defaultOptions,
-	delimiter, EnumPrettyFormatFlags, EnumPrettyFormatMark,
+	delimiter, EnumFileStatus, EnumPrettyFormatFlags, EnumPrettyFormatMark,
 	fields,
 	ICommands, IFieldsArray,
 	IOptions,
@@ -111,8 +111,6 @@ export function buildCommands(options: IOptions): {
 	commands = addFlagsBool(commands, options, [
 		'nameStatus',
 	]);
-
-	console.dir(commands);
 
 	debug('command', options.execOptions, commands);
 
@@ -229,13 +227,13 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 {
 	let { fields, nameStatus } = options;
 
-	return commits.map(function (_commit)
+	return commits.map(function (_commit, _index)
 	{
 		let parts = _commit.split(EnumPrettyFormatMark.END);
 
 		let commit = parts[0].split(delimiter);
 
-		let nameStatusFiles: [string, string][] = [];
+		let nameStatusFiles: IParseCommit["fileStatus"] = [];
 
 		if (parts[1])
 		{
@@ -257,7 +255,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 				// anything inbetween could be the old name if renamed or copied
 				.reduce(function (a, b)
 				{
-					let tempArr = [b[0], b[b.length - 1]];
+					let tempArr: [EnumFileStatus, string] = [b[0] as EnumFileStatus, b[b.length - 1]];
 
 					tempArr[1] = decode(tempArr[1]);
 
@@ -269,11 +267,11 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 					{
 						// If status R then add the old filename as a deleted file + status
 						// Other potentials are C for copied but this wouldn't require the original deleting
-						if (b[0].slice(0, 1) === 'R')
+						if (b[0].slice(0, 1) === EnumFileStatus.RENAMED)
 						{
-							tempArr.push('D', b[i]);
+							tempArr.push(EnumFileStatus.DELETED, b[i]);
 							// @ts-ignore
-							nameStatusFiles.push(['D', decode(b[i])]);
+							nameStatusFiles.push([EnumFileStatus.DELETED, decode(b[i])]);
 						}
 					}
 
@@ -284,12 +282,14 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 			commit = commit.concat(parseNameStatus)
 		}
 
-		debug('commit', commit)
+		debug('commit', commit);
 
 		// Remove the first empty char from the array
-		commit.shift()
+		commit.shift();
 
-		let parsed: IParseCommit = {}
+		let parsed: IParseCommit = {
+			_index,
+		};
 
 		if (nameStatus)
 		{
@@ -310,9 +310,9 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 			{
 				if (nameStatus)
 				{
-					let pos = (index - fields.length) % notOptFields.length
+					let pos = (index - fields.length) % notOptFields.length;
 
-					debug('nameStatus', (index - fields.length), notOptFields.length, pos, commitField)
+					debug('nameStatus', (index - fields.length), notOptFields.length, pos, commitField);
 					parsed[notOptFields[pos]].push(commitField)
 				}
 			}
@@ -323,13 +323,14 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 			parsed.fileStatus = array_unique(nameStatusFiles) as typeof nameStatusFiles;
 		}
 
+		// @ts-ignore
 		parsed = sortObjectKeys(parsed, KEY_ORDER);
 
 		return parsed
 	})
 }
 
-export function parseCommitsStdout(options: IOptions, stdout: Buffer)
+export function parseCommitsStdout(options: IOptions, stdout: Buffer): IReturnCommits
 {
 	let str: string;
 
@@ -346,7 +347,7 @@ export function parseCommitsStdout(options: IOptions, stdout: Buffer)
 
 	//console.log(str);
 
-	let commits = str.split(EnumPrettyFormatMark.BEGIN) as IReturnCommits;
+	let commits: unknown[] = str.split(EnumPrettyFormatMark.BEGIN);
 	if (commits[0] === '')
 	{
 		commits.shift()
@@ -357,12 +358,32 @@ export function parseCommitsStdout(options: IOptions, stdout: Buffer)
 
 	debug('commits:parsed', commits);
 
-	return commits;
+	return commits as IReturnCommits;
 }
 
-export interface IAsyncCallback
+export interface IAsyncCallback<E = ReturnType<typeof createError>>
 {
-	(error, commits: IReturnCommits): void
+	(error: E, commits: IReturnCommits): void,
+	(error: never, commits: IReturnCommits): void,
+}
+
+export function createError<D extends any, E extends Error>(message?, data?: D, err?: {
+	new (): E,
+	new (...argv): E,
+}): E & {
+	data: D,
+}
+{
+	// @ts-ignore
+	err = err || Error;
+
+	let e = message instanceof Error ? message : new err(message);
+
+	// @ts-ignore
+	e.data = data;
+
+	// @ts-ignore
+	return e;
 }
 
 // @ts-ignore

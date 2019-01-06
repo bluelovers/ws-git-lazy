@@ -10,6 +10,9 @@ export interface IOptions {
      * The number of commits to return.
      */
     number?: number;
+    /**
+     * An array of fields to return from the log
+     */
     fields?: IFieldsArray;
     /**
      * The location of the repo, required field.
@@ -133,12 +136,23 @@ export interface IParseCommitCore {
      */
     subject?: string;
     tags?: string[];
-    status?: string[];
+    /**
+     * 每個檔案對應的變動狀態
+     * 與 files 內容相對應
+     */
+    status?: EnumFileStatus[];
+    /**
+     * 每個變動狀態的檔案名稱
+     * 與 status 內容相對應
+     */
     files?: string[];
     /**
      * commit 信息内容
      */
     body?: string;
+    /**
+     * raw body (subject + body)
+     */
     rawBody?: string;
     commitNotes?: string;
     encoding?: string;
@@ -149,8 +163,50 @@ export interface IParseCommitCore {
     refNames?: string;
 }
 export declare type IParseCommit = IParseCommitCore & {
-    fileStatus?: [string, string][];
+    /**
+     * 每個變動狀態的變動狀態與檔案名稱
+     * = status + files
+     */
+    fileStatus?: [EnumFileStatus, string][];
+    /**
+     * 此 log 出現的原始順序
+     * 作為後期處理時可以額外做判斷的依據
+     */
+    _index: number;
 };
+/**
+ * https://git-scm.com/docs/git-status
+ */
+export declare enum EnumFileStatus {
+    /**
+     * unmodified
+     */
+    UNMODIFIED = " ",
+    /**
+     * modified
+     */
+    MODIFIED = "M",
+    /**
+     * added
+     */
+    ADDED = "A",
+    /**
+     * deleted
+     */
+    DELETED = "D",
+    /**
+     * renamed
+     */
+    RENAMED = "R",
+    /**
+     * copied
+     */
+    COPIED = "C",
+    /**
+     * updated but unmerged
+     */
+    UPDATED_BUT_UNMERGED = "U"
+}
 export declare type IFieldsArray = Array<keyof typeof fields>;
 /**
  * for moment

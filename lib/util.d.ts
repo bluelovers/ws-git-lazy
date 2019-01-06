@@ -21,7 +21,14 @@ export declare function addFlagsBool(commands: ICommands, options: IOptions, fla
 export declare function addOptional(commands: ICommands, options: IOptions): (string | number)[];
 export declare function parseCommitFields(parsed: IParseCommit, commitField: string, index: number, fields: IFieldsArray): IParseCommit;
 export declare function parseCommits(commits: string[], options: IOptions): IReturnCommits;
-export declare function parseCommitsStdout(options: IOptions, stdout: Buffer): IParseCommit[];
-export interface IAsyncCallback {
-    (error: any, commits: IReturnCommits): void;
+export declare function parseCommitsStdout(options: IOptions, stdout: Buffer): IReturnCommits;
+export interface IAsyncCallback<E = ReturnType<typeof createError>> {
+    (error: E, commits: IReturnCommits): void;
+    (error: never, commits: IReturnCommits): void;
 }
+export declare function createError<D extends any, E extends Error>(message?: any, data?: D, err?: {
+    new (): E;
+    new (...argv: any[]): E;
+}): E & {
+    data: D;
+};

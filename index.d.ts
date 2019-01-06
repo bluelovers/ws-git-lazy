@@ -2,15 +2,35 @@ import { defaultOptions, EnumGitDateFormat, IOptions, IParseCommit, IReturnCommi
 import { IAsyncCallback } from './lib/util';
 import Bluebird = require('bluebird');
 export { EnumGitDateFormat, IReturnCommits, IParseCommit, IOptions, IFieldsArray, defaultFields, defaultOptions };
+export declare function gitlog(options: IOptions): IParseCommit[];
+export declare namespace gitlog {
+    var gitlog: typeof gitlog;
+    var default: typeof gitlog;
+}
+export declare function gitlog(options: IOptions, cb: IAsyncCallback): Bluebird<IParseCommit[]>;
+export declare namespace gitlog {
+    var gitlog: typeof gitlog;
+    var default: typeof gitlog;
+}
 export declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[] | Bluebird<IParseCommit[]>;
 export declare namespace gitlog {
     var gitlog: typeof gitlog;
     var default: typeof gitlog;
 }
 export declare namespace gitlog {
-    function sync(options: IOptions): IParseCommit[] | Bluebird<IParseCommit[]>;
-    function asyncCallback(options: IOptions, cb: IAsyncCallback): void;
-    function async(options: IOptions): Promise<IParseCommit[]>;
+    /**
+     * this method can make sure u are use sync mode
+     */
+    function sync(options: IOptions): IParseCommit[];
+    /**
+     * allow `await` when use `callback` mode,
+     * but remember u can't change `return value` when use `callback`
+     */
+    function asyncCallback(options: IOptions, cb: IAsyncCallback): Bluebird<IParseCommit[]>;
+    /**
+     * async Promise mode
+     */
+    function async(options: IOptions): Bluebird<IParseCommit[]>;
 }
 export import sync = gitlog.sync;
 export import asyncCallback = gitlog.asyncCallback;
