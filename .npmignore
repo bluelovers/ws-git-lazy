@@ -19,3 +19,7 @@ test
 .gitkeep
 
 /.*
+/example/
+
+*.ts
+!*.d.ts

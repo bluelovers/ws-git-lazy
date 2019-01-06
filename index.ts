@@ -2,7 +2,7 @@
  * Created by user on 2018/5/14/014.
  */
 
-import gitlog, { IOptions as IGitlogOptions } from 'gitlog2';
+import gitlog, { IOptions as IGitlogOptions, IReturnCommits } from 'gitlog2';
 
 export const REVISION_DEFAULT = 'HEAD';
 
@@ -49,7 +49,7 @@ export function revisionRangeData(from: number | string, to: string = 'HEAD', op
 
 export function revisionBefore(rev: string, n: number = 1)
 {
-	if (/^\d+$/.test(rev))
+	if (typeof rev === 'number' || /^\d{1,7}$/.test(rev))
 	{
 		//
 	}
@@ -75,7 +75,7 @@ export function revisionRange(from: number | string, to: string = 'HEAD', option
 	return `${from}..${to}`;
 }
 
-export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {}): ReturnType<typeof gitlog>
+export function resolveLog(from: number | string = 20, to: string = 'HEAD', options: string | IOptions = {}): IReturnCommits
 {
 	options = getOptions(options);
 

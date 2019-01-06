@@ -1,7 +1,7 @@
 /**
  * Created by user on 2018/5/14/014.
  */
-import gitlog, { IOptions as IGitlogOptions } from 'gitlog2';
+import { IOptions as IGitlogOptions, IReturnCommits } from 'gitlog2';
 export declare const REVISION_DEFAULT = "HEAD";
 export interface IOptions {
     cwd?: string;
@@ -19,7 +19,7 @@ export declare function revisionRangeData(from: number | string, to?: string, op
 };
 export declare function revisionBefore(rev: string, n?: number): string;
 export declare function revisionRange(from: number | string, to?: string, options?: string | IOptions): string;
-export declare function resolveLog(from?: number | string, to?: string, options?: string | IOptions): ReturnType<typeof gitlog>;
+export declare function resolveLog(from?: number | string, to?: string, options?: string | IOptions): IReturnCommits;
 export declare function resolveRevision(range: number | string, revision?: string, options?: string | IOptions): {
     from: string;
     to: string;
