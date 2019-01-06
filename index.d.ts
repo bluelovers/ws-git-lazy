@@ -3,5 +3,6 @@
  */
 export declare function encode(s: string): string;
 export declare function decode(s: any): string;
+export declare function decode2(input: string): string;
 import * as self from './index';
 export default self;

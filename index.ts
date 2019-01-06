@@ -86,6 +86,21 @@ export function decode(s)
 	return t;
 }
 
+export function decode2(input: string): string
+{
+	if (input.indexOf('"') == 0)
+	{
+		input = input.replace(/^"|"$/g, '');
+	}
+
+	if (/(?:\\(\d{3}))/.test(input))
+	{
+		input= decode(input);
+	}
+
+	return input;
+}
+
 import * as self from './index';
 
 export default self;

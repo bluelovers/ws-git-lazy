@@ -1,7 +1,19 @@
 {
   "name": "git-decode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "decode/encode git style utf8",
+  "keywords": [
+    "decode",
+    "encode",
+    "filename",
+    "git",
+    "log",
+    "name",
+    "str",
+    "string",
+    "unicode",
+    "utf8"
+  ],
   "homepage": "https://github.com/bluelovers/git-decode#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/git-decode/issues"
@@ -17,6 +29,7 @@
     "test": "test"
   },
   "scripts": {
+    "prepublishOnly": "npm test",
     "test": "mocha"
   },
   "dependencies": {
