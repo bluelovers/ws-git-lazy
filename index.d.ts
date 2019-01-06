@@ -11,13 +11,13 @@ export interface IGitDiffFromRow {
     path: string;
     fullpath: string;
 }
-export interface IGitDiffFrom extends Array<IGitDiffFromRow> {
+export declare type IGitDiffFrom = Array<IGitDiffFromRow> & {
     from: string;
     to: string;
     cwd: string;
     root: string;
     files: string[];
-}
+};
 /**
  * git diff-tree -r --no-commit-id --name-status --encoding=UTF-8  HEAD~1 HEAD
  */

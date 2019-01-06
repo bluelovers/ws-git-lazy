@@ -2,12 +2,12 @@
  * Created by user on 2018/5/14/014.
  */
 
-import * as crossSpawn from 'cross-spawn';
-import { resolveRevision, revisionRange, getCwd, revisionRangeData } from 'git-rev-range';
+import * as crossSpawn from 'cross-spawn-extra';
+import { resolveRevision, revisionRange, getCwd, revisionRangeData, IOptions as IGitRevRangeOptions } from 'git-rev-range';
 import * as path from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
 import gitRoot = require('git-root2');
-import { decode } from 'git-decode';
+import { decode, decode2 } from 'git-decode';
 
 export interface IOptions
 {
@@ -26,8 +26,7 @@ export interface IGitDiffFromRow
 	fullpath: string,
 }
 
-export interface IGitDiffFrom extends Array<IGitDiffFromRow>
-{
+export type IGitDiffFrom = Array<IGitDiffFromRow> & {
 	from: string,
 	to: string,
 	cwd: string,
@@ -58,9 +57,13 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 		throw new RangeError(`no exists git at ${cwd}`);
 	}
 
-	let opts2 = {
+	let opts2: IGitRevRangeOptions = {
 		cwd,
 		realHash: true,
+		gitlogOptions: {
+			firstParent: true,
+			displayFilesChangedDuringMerge: true,
+		},
 	};
 
 	({ from, to } = revisionRangeData(from, to, opts2));
@@ -81,6 +84,7 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 		]), {
 			//stdio: 'inherit',
 			cwd,
+			stripAnsi: true,
 		});
 
 		if (log.error || log.stderr.length)
@@ -99,14 +103,9 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 					let [status, file] = line.split(/\t/);
 
 					/**
-					 * @FIXME 沒有正確回傳 utf-8 而是變成編碼化
+					 * 沒有正確回傳 utf-8 而是變成編碼化
 					 */
-					if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/))
-					{
-						file = file.replace(/^"|"$/g, '');
-
-						file = decode(file);
-					}
+					file = decode2(file);
 
 					let fullpath = path.join(root, file);
 					file = path.relative(root, fullpath);
