@@ -13,7 +13,7 @@ export const defaultOptions: IOptions = {
 	all: false,
 };
 
-export interface IOptions
+export interface IOptionsGitFlogsExtra
 {
 	/**
 	 * The number of commits to return.
@@ -21,20 +21,23 @@ export interface IOptions
 	number?: number,
 
 	/**
-	 * An array of fields to return from the log
+	 * `-m --first-parent` use with firstParent
+	 * 讓合併紀錄可以顯示此合併變動的檔案狀態
+	 *
+	 * This flag makes the merge commits show the full diff like regular commits;
+	 * for each merge parent, a separate log entry and diff is generated.
+	 * An exception is that only diff against the first parent is shown when --first-parent option is given;
+	 * in that case, the output represents the changes the merge brought into the then-current branch.
+	 *
+	 * @see https://stackoverflow.com/questions/37801342/using-git-log-to-display-files-changed-during-merge
 	 */
-	fields?: IFieldsArray,
+	displayFilesChangedDuringMerge?: boolean,
+}
 
-	/**
-	 * The location of the repo, required field.
-	 */
-	repo?: string,
-	cwd?: string,
-
+export interface IOptionsGitFlogs
+{
 	nameStatus?: boolean,
-
-	nameStatusFiles?: boolean,
-
+	
 	/**
 	 * Much more likely to set status codes to 'C' if files are exact copies of each other.
 	 */
@@ -43,19 +46,56 @@ export interface IOptions
 	 * Find commits on all branches instead of just on the current one.
 	 */
 	all?: boolean,
-	/**
-	 * Specify some options to be passed to the .exec() method:
-	 */
-	execOptions?: SpawnSyncOptions,
 
 	/**
-	 * Show only commits in the specified branch or revision range.
+	 * Print only merge commits. This is exactly the same as --min-parents=2
 	 */
-	branch?: string,
+	merges?: boolean,
 	/**
-	 * Show only commits that are enough to explain how the files that match the specified paths came to be.
+	 * Do not print commits with more than one parent. This is exactly the same as --max-parents=1
 	 */
-	file?: string,
+	noMerges?: boolean,
+
+	/**
+	 * 只返回對主分支的提交歷史
+	 *
+	 * Follow only the first parent commit upon seeing a merge commit. This option can give a better overview when viewing the evolution of a particular topic branch, because merges into a topic branch tend to be only about adjusting to updated upstream from time to time, and this option allows you to ignore the individual commits brought in to your history by such a merge. Cannot be combined with --bisect.
+	 */
+	firstParent?: boolean,
+
+	/**
+	 * Continue listing the history of a file beyond renames
+	 * (works only for a single file).
+	 */
+	follow?: boolean,
+
+	/**
+	 * 较为完整的提交历史
+	 * Same as the default mode, but does not prune some history.
+	 *
+	 * @see https://judes.me/tech/2017/02/06/overwrite-code.html
+	 */
+	fullHistory?: boolean,
+	/**
+	 * 最为完整的提交历史
+	 * 搭配 fullHistory 使用
+	 *
+	 * All commits in the simplified history are shown.
+	 */
+	sparse?: boolean,
+
+	/**
+	 * Additional option to --full-history to remove some needless merges from the resulting history, as there are no selected commits contributing to this merge.
+	 */
+	simplifyMerges?: boolean,
+}
+
+export interface IOptionsGitWithValue
+{
+	/**
+	 * Skip number commits before starting to show the commit output.
+	 */
+	skip?: number,
 
 	/**
 	 * Show commits more recent than a specific date.
@@ -83,20 +123,42 @@ export interface IOptions
 	 * Limit the commits output to ones with author/committer header lines that match the specified pattern.
 	 */
 	author?: string,
+}
+
+export type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlogsExtra & {
+
+	/**
+	 * An array of fields to return from the log
+	 */
+	fields?: IFieldsArray,
+
+	/**
+	 * The location of the repo, required field.
+	 */
+	repo?: string,
+	cwd?: string,
+
+	nameStatusFiles?: boolean,
+
+	/**
+	 * Specify some options to be passed to the .exec() method:
+	 */
+	execOptions?: SpawnSyncOptions,
+
+	/**
+	 * Show only commits in the specified branch or revision range.
+	 */
+	branch?: string,
+	/**
+	 * Show only commits that are enough to explain how the files that match the specified paths came to be.
+	 */
+	file?: string,
+	files?: string[],
 
 	returnAllFields?: boolean,
 
-	noMerges?: boolean,
-	firstParent?: boolean,
-
-	/**
-	 * Continue listing the history of a file beyond renames
-	 * (works only for a single file).
-	 */
-	follow?: boolean,
-
 	fnHandleBuffer?(buf: Buffer): string,
-}
+};
 
 /**
  * https://ruby-china.org/topics/939

@@ -3,7 +3,7 @@
  */
 /// <reference types="node" />
 import debug0 = require('debug');
-import { EnumPrettyFormatFlags, ICommands, IFieldsArray, IOptions, IParseCommit, IReturnCommits } from './type';
+import { EnumPrettyFormatFlags, ICommands, IFieldsArray, IOptions, IOptionsGitFlogs, IParseCommit, IReturnCommits } from './type';
 export declare const debug: debug0.IDebugger;
 export declare function handleOptions(options: IOptions): IOptions;
 export declare function buildCommands(options: IOptions): {
@@ -14,7 +14,7 @@ export declare function addPrettyFormat(commands: ICommands, options: IOptions, 
 export declare function decode(file: string): string;
 export declare function decamelize(key: string): string;
 export declare function toFlag(key: string): string;
-export declare function addFlagsBool(commands: ICommands, options: IOptions, flagNames: string[]): (string | number)[];
+export declare function addFlagsBool(commands: ICommands, options: IOptions, flagNames: (keyof IOptionsGitFlogs)[]): (string | number)[];
 /***
  Add optional parameter to command
  */

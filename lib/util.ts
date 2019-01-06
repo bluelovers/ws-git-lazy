@@ -11,7 +11,7 @@ import {
 	delimiter, EnumFileStatus, EnumPrettyFormatFlags, EnumPrettyFormatMark,
 	fields,
 	ICommands, IFieldsArray,
-	IOptions,
+	IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra,
 	IParseCommit,
 	IReturnCommits,
 	KEY_ORDER,
@@ -28,7 +28,7 @@ export const debug = debug0('gitlog');
 export function handleOptions(options: IOptions)
 {
 	// lazy name
-	const REPO = typeof options.repo != 'undefined' ? options.repo : options.cwd;
+	const REPO = (options.repo && options.repo != null) ? options.repo : options.cwd;
 
 	if (!REPO) throw new Error(`Repo required!, but got "${REPO}"`);
 	if (!existsSync(REPO)) throw new Error(`Repo location does not exist: "${REPO}"`);
@@ -82,11 +82,14 @@ export function buildCommands(options: IOptions): {
 		'firstParent',
 	]);
 
+	if (options.displayFilesChangedDuringMerge)
+	{
+		commands.push('-m');
+	}
+
 	commands = addOptional(commands, options);
 
-	{
-		commands = addPrettyFormat(commands, options, EnumPrettyFormatFlags.PRETTY)
-	}
+	commands = addPrettyFormat(commands, options, EnumPrettyFormatFlags.PRETTY);
 
 	// Append branch (revision range) if specified
 	if (options.branch)
@@ -94,23 +97,34 @@ export function buildCommands(options: IOptions): {
 		commands.push(options.branch);
 	}
 
-	if (options.file)
+	//File and file status
+	commands = addFlagsBool(commands, options, [
+		'nameStatus',
+		'merges',
+		'fullHistory',
+		'sparse',
+		'simplifyMerges',
+	]);
+
+	if (options.file || options.files && options.files.length)
 	{
-		commands.push('--', options.file);
+		let ls = [options.file].concat(options.files || []).filter(v => v != null);
+
+		if (!ls.length)
+		{
+			throw new TypeError(`file list is empty`);
+		}
 
 		commands = addFlagsBool(commands, options, [
 			'follow',
 		]);
+
+		commands.push('--', ...ls);
 	}
 	else if (options.follow)
 	{
 		throw new TypeError(`options.follow works only for a single file`)
 	}
-
-	//File and file status
-	commands = addFlagsBool(commands, options, [
-		'nameStatus',
-	]);
 
 	debug('command', options.execOptions, commands);
 
@@ -159,7 +173,7 @@ export function toFlag(key: string)
 	return '--' + decamelize(key);
 }
 
-export function addFlagsBool(commands: ICommands, options: IOptions, flagNames: string[])
+export function addFlagsBool(commands: ICommands, options: IOptions, flagNames: (keyof IOptionsGitFlogs)[])
 {
 	for (let k of flagNames)
 	{
@@ -177,7 +191,7 @@ export function addFlagsBool(commands: ICommands, options: IOptions, flagNames: 
  */
 export function addOptional(commands: ICommands, options: IOptions)
 {
-	let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer']
+	let cmdOptional: (keyof IOptionsGitWithValue)[] = ['author', 'since', 'after', 'until', 'before', 'committer', 'skip'];
 	for (let k of cmdOptional)
 	{
 		if (options[k])
@@ -229,6 +243,8 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 
 	return commits.map(function (_commit, _index)
 	{
+		//console.log(_commit);
+
 		let parts = _commit.split(EnumPrettyFormatMark.END);
 
 		let commit = parts[0].split(delimiter);

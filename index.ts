@@ -3,7 +3,7 @@ import {
 	defaultOptions,
 	EnumGitDateFormat,
 	fields,
-	IOptions,
+	IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra,
 	IParseCommit,
 	IReturnCommits,
 	IFieldsArray,
@@ -23,7 +23,8 @@ import Bluebird = require('bluebird');
 import crossSpawn = require('cross-spawn-extra');
 import extend = require('lodash.assign');
 
-export { EnumGitDateFormat, IReturnCommits, IParseCommit, IOptions, IFieldsArray, defaultFields, defaultOptions }
+export { EnumGitDateFormat, IReturnCommits, IParseCommit, IFieldsArray, defaultFields, defaultOptions }
+export { IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, }
 
 export function gitlog(options: IOptions): IParseCommit[]
 export function gitlog(options: IOptions, cb: IAsyncCallback): Bluebird<IParseCommit[]>

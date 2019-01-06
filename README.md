@@ -17,6 +17,7 @@
   (`2019-01-06 04:54:09 +0800`)
 - support return `unix timestamp`, so u don't need worry about how to convert date format back to timestamp
 - allow `await` when use `callback` mode, but remember u can't change `return value` when use `callback`
+- add `options.displayFilesChangedDuringMerge`, can work perfect with `options.firstParent`
 
 ## Usage
 
