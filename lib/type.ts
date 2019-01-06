@@ -37,7 +37,7 @@ export interface IOptionsGitFlogsExtra
 export interface IOptionsGitFlogs
 {
 	nameStatus?: boolean,
-	
+
 	/**
 	 * Much more likely to set status codes to 'C' if files are exact copies of each other.
 	 */
@@ -125,6 +125,9 @@ export interface IOptionsGitWithValue
 	author?: string,
 }
 
+/**
+ * @see https://cloud.tencent.com/developer/section/1138655
+ */
 export type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlogsExtra & {
 
 	/**

@@ -101,6 +101,9 @@ export interface IOptionsGitWithValue {
      */
     author?: string;
 }
+/**
+ * @see https://cloud.tencent.com/developer/section/1138655
+ */
 export declare type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlogsExtra & {
     /**
      * An array of fields to return from the log
