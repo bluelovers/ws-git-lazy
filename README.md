@@ -1,13 +1,21 @@
 # node-gitlog
 
-Git log parser for Node.JS
+    Git log parser for Node.JS
 
 [![build status](https://api.travis-ci.org/bluelovers/node-gitlog.svg)](http://travis-ci.org/bluelovers/node-gitlog)
 [![dependency status](https://david-dm.org/bluelovers/node-gitlog.svg)](https://david-dm.org/bluelovers/node-gitlog)
 
 ## Installation
 
-     npm install gitlog2 --save
+     npm install gitlog2
+
+### breaking change
+
+#### v5.x
+
+- from `v5.x` change date format, and make `authorDate`/`committerDate` is same format
+  (`2019-01-06 04:54:09 +0800`)
+- support return `unix timestamp`, so u don't need worry about how to convert date format back to timestamp
 
 ## Usage
 
@@ -28,7 +36,7 @@ const options =
       , 'authorDateRel'
       ]
     , execOptions:
-      { maxBuffer: 1000 x 1024
+      { maxBuffer: 1000 * 1024
       }
     };
 

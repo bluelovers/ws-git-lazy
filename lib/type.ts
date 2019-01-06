@@ -85,10 +85,22 @@ export interface IOptions
 	noMerges?: boolean,
 	firstParent?: boolean,
 
+	/**
+	 * Continue listing the history of a file beyond renames
+	 * (works only for a single file).
+	 */
+	follow?: boolean,
+
 	fnHandleBuffer?(buf: Buffer): string,
 }
 
-export const fields = {
+/**
+ * https://ruby-china.org/topics/939
+ * https://git-scm.com/docs/pretty-formats
+ */
+export const fields: {
+	[name in keyof IParseCommitCore]: string
+} = {
 	hash: '%H',
 	abbrevHash: '%h',
 	treeHash: '%T',
@@ -99,32 +111,77 @@ export const fields = {
 	authorEmail: '%ae',
 	authorDate: '%ai',
 	authorDateRel: '%ar',
+	authorDateUnixTimestamp: '%at',
 	committerName: '%cn',
 	committerEmail: '%ce',
-	committerDate: '%cd',
+	committerDate: '%ci',
 	committerDateRel: '%cr',
+	committerDateUnixTimestamp: '%ct',
 	subject: '%s',
 	body: '%b',
 	rawBody: '%B',
 	tags: '%D',
+
+	commitNotes: '%N',
+
+	encoding: '%e',
+
+	refNames: '%D',
 };
 
-export interface IParseCommit
+export interface IParseCommitCore
 {
+	/**
+	 * commit hash
+	 */
 	hash?: string,
+	/**
+	 * 缩短的 commit hash
+	 */
 	abbrevHash?: string,
 	treeHash?: string,
+	/**
+	 * 缩短的 tree hash
+	 */
 	abbrevTreeHash?: string,
 	parentHashes?: string,
+	/**
+	 * 缩短的 parent hashes
+	 */
 	abbrevParentHashes?: string,
 	authorName?: string,
 	authorEmail?: string,
+	/**
+	 * 日期, ISO 8601 格式
+	 * @example 2019-01-06 04:54:09 +0800
+	 */
 	authorDate?: string,
+	/**
+	 * 日期, 相对格式(1 day ago)
+	 * @example 20 hours ago
+	 */
 	authorDateRel?: string,
+	/**
+	 * 日期, UNIX timestamp
+	 */
+	authorDateUnixTimestamp?: number,
 	committerName?: string,
 	committerEmail?: string,
+	/**
+	 * 提交日期, ISO 8601 格式
+	 */
 	committerDate?: string,
+	/**
+	 * 提交日期, 相对格式(1 day ago)
+	 */
 	committerDateRel?: string,
+	/**
+	 * 提交日期, UNIX timestamp
+	 */
+	committerDateUnixTimestamp?: number,
+	/**
+	 * commit 信息标题
+	 */
 	subject?: string,
 
 	tags?: string[],
@@ -132,9 +189,25 @@ export interface IParseCommit
 	status?: string[],
 	files?: string[],
 
+	/**
+	 * commit 信息内容
+	 */
 	body?: string,
 	rawBody?: string,
 
+	commitNotes?: string,
+
+	encoding?: string,
+
+	/**
+	 * ref names without the " (", ")" wrapping.
+	 * @example HEAD -> master, origin/master
+	 */
+	refNames?: string,
+
+}
+
+export type IParseCommit = IParseCommitCore & {
 	fileStatus?: [string, string][],
 }
 
@@ -145,16 +218,28 @@ export type IFieldsArray = Array<keyof typeof fields>
  */
 export enum EnumGitDateFormat
 {
+	/**
+	 * git style ISO 8601
+	 *
+	 * @example 2019-01-06 04:54:09 +0800
+	 */
+	ISO_8601 = 'YYYY-MM-DD HH:mm:ss Z',
+	/**
+	 * git style RFC 2822
+	 */
+	RFC_2822 = 'ddd MMM DD HH:mm:ss YYYY ZZ',
+
+	// old version
+
 	AUTHOR_DATE = 'YYYY-MM-DD HH:mm:ss Z',
 	COMMITTER_DATE = 'ddd MMM DD HH:mm:ss YYYY ZZ',
-	RFC_2822 = 'ddd MMM DD HH:mm:ss YYYY ZZ',
 }
 
 export type IReturnCommits = IParseCommit[];
 
 export type ICommands = Array<number | string>
 
-export const KEY_ORDER = [
+export const KEY_ORDER: (keyof IParseCommit)[] = [
 	'hash',
 	'abbrevHash',
 	'treeHash',
@@ -165,20 +250,40 @@ export const KEY_ORDER = [
 	'authorEmail',
 	'authorDate',
 	'authorDateRel',
+	'authorDateUnixTimestamp',
 	'committerName',
 	'committerEmail',
 	'committerDate',
 	'committerDateRel',
+	'committerDateUnixTimestamp',
 	'subject',
 	'body',
 	'rawBody',
 	'tags',
+	'refNames',
 	'status',
 	'files',
 	'fileStatus',
 ];
-export const delimiter = '\t';
+export const delimiter = "\t";
 export const notOptFields = ['status', 'files'];
+
+export const enum EnumPrettyFormatFlags
+{
+	PRETTY = 'pretty',
+	FORMAT = 'format',
+}
+
+export const enum EnumPrettyFormatMark
+{
+	BEGIN = '@begin@',
+
+	DELIMITER = '\t',
+
+	END = '@end@',
+
+	JOIN = '',
+}
 
 // @ts-ignore
 Object.freeze(exports);

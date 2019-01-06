@@ -3,14 +3,14 @@
  */
 
 import { array_unique } from 'array-hyper-unique';
-import debug0 from 'debug';
+import debug0 = require('debug');
 import { existsSync } from "fs";
 import { decode as _decode } from 'git-decode';
 import {
 	defaultOptions,
-	delimiter,
+	delimiter, EnumPrettyFormatFlags, EnumPrettyFormatMark,
 	fields,
-	ICommands,
+	ICommands, IFieldsArray,
 	IOptions,
 	IParseCommit,
 	IReturnCommits,
@@ -18,7 +18,10 @@ import {
 	notOptFields,
 } from './type';
 import extend = require('lodash.assign');
+import _decamelize = require('decamelize');
 import sortObjectKeys = require('sort-object-keys2');
+import { SpawnSyncOptions } from 'cross-spawn-extra/core';
+import { LF } from 'crlf-normalize';
 
 export const debug = debug0('gitlog');
 
@@ -30,7 +33,10 @@ export function handleOptions(options: IOptions)
 	if (!REPO) throw new Error(`Repo required!, but got "${REPO}"`);
 	if (!existsSync(REPO)) throw new Error(`Repo location does not exist: "${REPO}"`);
 
-	let defaultExecOptions = { cwd: REPO };
+	let defaultExecOptions: SpawnSyncOptions = {
+		cwd: REPO,
+		stripAnsi: true,
+	};
 
 	// Set defaults
 	options = extend({}, defaultOptions, { execOptions: defaultExecOptions }, options);
@@ -61,45 +67,25 @@ export function buildCommands(options: IOptions): {
 		'log',
 	];
 
-	if (options.findCopiesHarder)
-	{
-		commands.push('--find-copies-harder');
-	}
-
-	if (options.all)
-	{
-		commands.push('--all');
-	}
+	commands = addFlagsBool(commands, options, [
+		'findCopiesHarder',
+		'all',
+	]);
 
 	if (options.number > 0)
 	{
 		commands.push('-n', options.number);
 	}
 
-	if (options.noMerges)
-	{
-		commands.push('--no-merges');
-	}
-
-	if (options.firstParent)
-	{
-		commands.push('--first-parent');
-	}
+	commands = addFlagsBool(commands, options, [
+		'noMerges',
+		'firstParent',
+	]);
 
 	commands = addOptional(commands, options);
 
 	{
-		// Start of custom format
-		// Iterating through the fields and adding them to the custom format
-		let command = options.fields.reduce(function (command, field)
-		{
-			if (!fields[field] && notOptFields.indexOf(field) === -1) throw new Error('Unknown field: ' + field)
-			command += delimiter + fields[field]
-
-			return command;
-		}, '--pretty=@begin@') + '@end@';
-
-		commands.push(command);
+		commands = addPrettyFormat(commands, options, EnumPrettyFormatFlags.PRETTY)
 	}
 
 	// Append branch (revision range) if specified
@@ -111,17 +97,46 @@ export function buildCommands(options: IOptions): {
 	if (options.file)
 	{
 		commands.push('--', options.file);
+
+		commands = addFlagsBool(commands, options, [
+			'follow',
+		]);
+	}
+	else if (options.follow)
+	{
+		throw new TypeError(`options.follow works only for a single file`)
 	}
 
 	//File and file status
-	if (options.nameStatus)
-	{
-		commands.push('--name-status');
-	}
+	commands = addFlagsBool(commands, options, [
+		'nameStatus',
+	]);
+
+	console.dir(commands);
 
 	debug('command', options.execOptions, commands);
 
 	return { bin, commands }
+}
+
+export function addPrettyFormat(commands: ICommands, options: IOptions, flagName = EnumPrettyFormatFlags.PRETTY)
+{
+	// Start of custom format
+	// Iterating through the fields and adding them to the custom format
+	let command = options.fields.reduce(function (command, field)
+		{
+			if (!fields[field] && notOptFields.indexOf(field) === -1) throw new RangeError('Unknown field: ' + field);
+
+			command.push(EnumPrettyFormatMark.DELIMITER + fields[field]);
+
+			return command;
+		}, [`${toFlag(flagName)}=${EnumPrettyFormatMark.BEGIN}`])
+		.concat([EnumPrettyFormatMark.END])
+		.join(EnumPrettyFormatMark.JOIN);
+
+	commands.push(command);
+
+	return commands
 }
 
 export function decode(file: string): string
@@ -136,20 +151,78 @@ export function decode(file: string): string
 	return file;
 }
 
+export function decamelize(key: string): string
+{
+	return _decamelize(key, '-')
+}
+
+export function toFlag(key: string)
+{
+	return '--' + decamelize(key);
+}
+
+export function addFlagsBool(commands: ICommands, options: IOptions, flagNames: string[])
+{
+	for (let k of flagNames)
+	{
+		if (options[k])
+		{
+			commands.push(toFlag(k))
+		}
+	}
+
+	return commands
+}
+
 /***
  Add optional parameter to command
  */
 export function addOptional(commands: ICommands, options: IOptions)
 {
 	let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer']
-	for (let i = cmdOptional.length; i--;)
+	for (let k of cmdOptional)
 	{
-		if (options[cmdOptional[i]])
+		if (options[k])
 		{
-			commands.push(`--${cmdOptional[i]}="${options[cmdOptional[i]]}"`)
+			commands.push(`--${k}=${options[k]}`)
 		}
 	}
 	return commands
+}
+
+export function parseCommitFields(parsed: IParseCommit, commitField: string, index: number, fields: IFieldsArray)
+{
+	let key = fields[index];
+
+	switch (key)
+	{
+		case 'tags':
+			let tags = [];
+			let start = commitField.indexOf('tag: ');
+			if (start >= 0)
+			{
+				commitField
+					.substr(start + 5)
+					.trim()
+					.split(',')
+					.forEach(function (tag)
+					{
+						tags.push(tag.trim());
+					})
+				;
+			}
+			parsed[key] = tags;
+			break;
+		case 'authorDateUnixTimestamp':
+		case 'committerDateUnixTimestamp':
+			parsed[key] = parseInt(commitField);
+			break;
+		default:
+			parsed[key] = commitField;
+			break;
+	}
+
+	return parsed;
 }
 
 export function parseCommits(commits: string[], options: IOptions): IReturnCommits
@@ -158,7 +231,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 
 	return commits.map(function (_commit)
 	{
-		let parts = _commit.split('@end@')
+		let parts = _commit.split(EnumPrettyFormatMark.END);
 
 		let commit = parts[0].split(delimiter);
 
@@ -166,7 +239,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 
 		if (parts[1])
 		{
-			let parseNameStatus = parts[1].trimLeft().split('\n');
+			let parseNameStatus = parts[1].trimLeft().split(LF);
 
 			// Removes last empty char if exists
 			if (parseNameStatus[parseNameStatus.length - 1] === '')
@@ -231,23 +304,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 		{
 			if (fields[index])
 			{
-				if (fields[index] === 'tags')
-				{
-					let tags = [];
-					let start = commitField.indexOf('tag: ');
-					if (start >= 0)
-					{
-						commitField.substr(start + 5).trim().split(',').forEach(function (tag)
-						{
-							tags.push(tag.trim());
-						});
-					}
-					parsed[fields[index]] = tags;
-				}
-				else
-				{
-					parsed[fields[index]] = commitField
-				}
+				parsed = parseCommitFields(parsed, commitField, index, fields);
 			}
 			else
 			{
@@ -259,7 +316,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 					parsed[notOptFields[pos]].push(commitField)
 				}
 			}
-		})
+		});
 
 		if (nameStatus && options.nameStatusFiles)
 		{
@@ -287,7 +344,9 @@ export function parseCommitsStdout(options: IOptions, stdout: Buffer)
 		str = stdout.toString()
 	}
 
-	let commits = str.split('@begin@') as IReturnCommits;
+	//console.log(str);
+
+	let commits = str.split(EnumPrettyFormatMark.BEGIN) as IReturnCommits;
 	if (commits[0] === '')
 	{
 		commits.shift()
