@@ -1,0 +1,16 @@
+{
+  "name": "ws-git-lazy",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "sort-package-json": "oao run-script \"sort-package-json2\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@bluelovers/tsconfig": "^1.0.1"
+  },
+  "resolutions": {}
+}
