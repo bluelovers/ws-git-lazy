@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Created by user on 2019/3/10.
+ */
+const create_empty_1 = require("./lib/create-empty");
+exports.createEmptyBranch = create_empty_1.default;
+const current_name_1 = require("./lib/current-name");
+exports.currentBranchName = current_name_1.default;
+exports.default = exports;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBOztHQUVHO0FBQ0gscURBQW1EO0FBSWxELDRCQUpNLHNCQUFpQixDQUlOO0FBSGxCLHFEQUFtRDtBQUlsRCw0QkFKTSxzQkFBaUIsQ0FJTjtBQUdsQixrQkFBZSxPQUFtQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBDcmVhdGVkIGJ5IHVzZXIgb24gMjAxOS8zLzEwLlxuICovXG5pbXBvcnQgY3JlYXRlRW1wdHlCcmFuY2ggZnJvbSAnLi9saWIvY3JlYXRlLWVtcHR5JztcbmltcG9ydCBjdXJyZW50QnJhbmNoTmFtZSBmcm9tICcuL2xpYi9jdXJyZW50LW5hbWUnO1xuXG5leHBvcnQge1xuXHRjcmVhdGVFbXB0eUJyYW5jaCxcblx0Y3VycmVudEJyYW5jaE5hbWUsXG59XG5cbmV4cG9ydCBkZWZhdWx0IGV4cG9ydHMgYXMgdHlwZW9mIGltcG9ydCgnLi9pbmRleCcpO1xuIl19

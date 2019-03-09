@@ -1,0 +1,25 @@
+{
+  "name": "@git-lazy/util",
+  "private": false,
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "crlf-normalize": "latest",
+    "debug": "^4.1.1",
+    "cross-spawn-extra": "latest",
+    "debug-color2": "latest"
+  },
+  "devDependencies": {
+    "@types/bluebird": "latest",
+    "@types/debug": "latest",
+    "@types/node": "latest"
+  },
+  "peerDependencies": {
+  }
+}

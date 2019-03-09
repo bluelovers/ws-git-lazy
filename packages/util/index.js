@@ -1,0 +1,17 @@
+"use strict";
+/**
+ * Created by user on 2019/3/10.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+const log_1 = require("./log");
+exports.console = log_1.console;
+exports.enableDebug = log_1.enableDebug;
+exports.disableDebug = log_1.disableDebug;
+exports.debug = log_1.debug;
+exports.debugConsole = log_1.debugConsole;
+function notEmptyString(s) {
+    return typeof s === 'string' && s.trim() !== '';
+}
+exports.notEmptyString = notEmptyString;
+exports.default = exports;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7O0dBRUc7O0FBRUgsK0JBQStFO0FBQ3RFLGtCQURBLGFBQU8sQ0FDQTtBQUFFLHNCQURBLGlCQUFXLENBQ0E7QUFBRSx1QkFEQSxrQkFBWSxDQUNBO0FBQUUsZ0JBREEsV0FBSyxDQUNBO0FBQUUsdUJBREEsa0JBQVksQ0FDQTtBQUVoRSxTQUFnQixjQUFjLENBQUMsQ0FBUztJQUV2QyxPQUFPLE9BQU8sQ0FBQyxLQUFLLFFBQVEsSUFBSSxDQUFDLENBQUMsSUFBSSxFQUFFLEtBQUssRUFBRSxDQUFBO0FBQ2hELENBQUM7QUFIRCx3Q0FHQztBQUVELGtCQUFlLE9BQW1DLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIENyZWF0ZWQgYnkgdXNlciBvbiAyMDE5LzMvMTAuXG4gKi9cblxuaW1wb3J0IHsgY29uc29sZSwgZW5hYmxlRGVidWcsIGRpc2FibGVEZWJ1ZywgZGVidWcsIGRlYnVnQ29uc29sZSB9IGZyb20gJy4vbG9nJ1xuZXhwb3J0IHsgY29uc29sZSwgZW5hYmxlRGVidWcsIGRpc2FibGVEZWJ1ZywgZGVidWcsIGRlYnVnQ29uc29sZSB9XG5cbmV4cG9ydCBmdW5jdGlvbiBub3RFbXB0eVN0cmluZyhzOiBzdHJpbmcpXG57XG5cdHJldHVybiB0eXBlb2YgcyA9PT0gJ3N0cmluZycgJiYgcy50cmltKCkgIT09ICcnXG59XG5cbmV4cG9ydCBkZWZhdWx0IGV4cG9ydHMgYXMgdHlwZW9mIGltcG9ydCgnLi9pbmRleCcpO1xuIl19
