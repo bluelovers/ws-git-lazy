@@ -1,6 +1,6 @@
 {
   "name": "git-root2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "get git root path",
   "homepage": "https://github.com/bluelovers/git-root2#readme",
   "bugs": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "cross-spawn": "^6.0.5",
-    "upath2": "^2.1.2"
+    "upath2": "^2.1.3"
   },
   "devDependencies": {}
 }

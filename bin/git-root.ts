@@ -1,6 +1,14 @@
 #!/usr/bin/env node
 
 import gitRoot from '..';
-//import gitRoot = require('..');
 
-console.log(gitRoot());
+let root = gitRoot();
+
+if (root == null)
+{
+	console.error(root);
+}
+else
+{
+	console.log(root);
+}

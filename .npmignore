@@ -1,22 +1,32 @@
-# Created by .ignore support plugin (hsz.mobi)
-### npm template
-.idea
 
+.idea
 ~ci.list.txt
 ~ci.log.txt
 ~ci.errors.txt
-
 *.stackdump
 *.bak
 *.old
-
+*.log
 tsconfig.json
-#package-lock.json
-
+package-lock.json
 test
-
 .github
 .gitkeep
-
 /.*
-bin/*.d.ts
+tests
+/~*
+__test__
+__tests__
+/node_modules/
+**/node_modules/
+
+*.ts
+!*.d.ts
+/bin/**/*.d.ts
+/bin/*.d.ts
+
+*.tgz
+/tsconfig.json.tpl
+
+yarn-error.log
+.git

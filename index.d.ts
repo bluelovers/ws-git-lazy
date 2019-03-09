@@ -3,12 +3,11 @@
  */
 declare function gitRoot(cwd?: string): string;
 declare namespace gitRoot {
+    var default: typeof gitRoot;
+}
+declare namespace gitRoot {
     function isGitRoot(target: string): boolean;
+    function sync(cwd?: string): string;
     function async(cwd?: string): Promise<string>;
 }
-declare const _default: typeof gitRoot & {
-    gitRoot(cwd?: string): string;
-    default(cwd?: string): string;
-    async(cwd?: string): Promise<string>;
-};
-export = _default;
+export = gitRoot;

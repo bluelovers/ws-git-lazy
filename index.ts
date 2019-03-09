@@ -3,7 +3,8 @@
  */
 
 import path = require('upath2');
-import * as crossSpawn from 'cross-spawn';
+import fs = require('fs');
+import crossSpawn = require('cross-spawn');
 
 function gitRoot(cwd?: string): string
 {
@@ -16,7 +17,12 @@ function gitRoot(cwd?: string): string
 
 	if (p)
 	{
-		return path.resolve(p);
+		p = path.resolve(p);
+
+		if (fs.existsSync(p))
+		{
+			return p;
+		}
 	}
 
 	return null;
@@ -31,22 +37,17 @@ namespace gitRoot
 		return (root && path.resolve(root) === path.resolve(target));
 	}
 
+	export function sync(cwd?: string)
+	{
+		return gitRoot(cwd);
+	}
+
 	export async function async(cwd?: string)
 	{
 		return gitRoot(cwd);
 	}
 }
 
-export = gitRoot as typeof gitRoot & {
-	gitRoot(cwd?: string): ReturnType<typeof gitRoot>,
-	default(cwd?: string): ReturnType<typeof gitRoot>,
-	async(cwd?: string): Promise<ReturnType<typeof gitRoot>>,
-}
+gitRoot.default = gitRoot;
 
-// @ts-ignore
-gitRoot.default = gitRoot.gitRoot = gitRoot;
-
-// @ts-ignore
-Object.defineProperty(gitRoot, "__esModule", { value: true });
-// @ts-ignore
-Object.defineProperty(exports, "__esModule", { value: true });
+export = gitRoot
