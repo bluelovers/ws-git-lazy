@@ -31,21 +31,20 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 
 		let current_name = currentBranchName(cwd);
 
-		if (notEmptyString(current_name))
+		if (!notEmptyString(current_name))
 		{
 			throw new Error(`fatal: can't get current branch name`);
 		}
 
 		let cp = checkGitOutput(crossSpawnSync('git', [
 			'checkout',
-			'--no-track',
 			'--orphan',
 			new_name,
 		], opts), true);
 
 		let current_new = currentBranchName(cwd);
 
-		if (current_new !== new_name)
+		if (current_new !== new_name && current_new != null)
 		{
 			throw new Error(`fatal: can't create new branch "${new_name}", current is "${current_new}"`);
 		}
