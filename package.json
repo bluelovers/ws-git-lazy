@@ -6,12 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "workspace-publish": "yarn workspace-publish",
-    "workspace-version": "yarn workspace-version",
+    "run-workspace-publish": "yarn workspace-publish",
+    "run-workspace-version": "yarn workspace-version",
     "sort-package-json": "oao run-script \"sort-package-json2\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "lerna": "^3.13.1",
     "workspace-release": "^0.4.5"
   },
   "devDependencies": {
