@@ -3,6 +3,8 @@
  */
 import createEmptyBranch from './lib/create-empty';
 import currentBranchName from './lib/current-name';
-export { createEmptyBranch, currentBranchName, };
+import localBranchExists from './lib/branch-exists';
+import localBranchList from './lib/branch-list';
+export { createEmptyBranch, currentBranchName, localBranchExists, localBranchList, };
 declare const _default: typeof import(".");
 export default _default;

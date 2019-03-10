@@ -18,6 +18,7 @@ export function getCrossSpawnError<T extends SpawnASyncReturns>(cp: T | any): IS
 
 export function crossSpawnOutput(buf: SpawnSyncReturns["output"] | Buffer, options: {
 	clearEol?: boolean,
+	stripAnsi?: boolean,
 } = {
 	clearEol: true,
 }): string
@@ -42,9 +43,14 @@ export function crossSpawnOutput(buf: SpawnSyncReturns["output"] | Buffer, optio
 		output = (buf || '').toString();
 	}
 
+	if (options.stripAnsi)
+	{
+		output = stripAnsi(output);
+	}
+
 	output = crlf(output);
 
-	if (options.clearEol)
+	if (options.clearEol || options.clearEol == null)
 	{
 		output = output.replace(/\n+$/g, '');
 	}

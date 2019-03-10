@@ -8,6 +8,7 @@ import { isGitRoot } from 'git-root2';
 import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
 import currentBranchName from './current-name';
 import fs = require('fs');
+import localBranchExists from './branch-exists';
 
 const defaultMessage = 'create empty branch by git-lazy';
 
@@ -27,6 +28,7 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 
 		let opts: SpawnOptions = {
 			cwd,
+			stripAnsi: true,
 		};
 
 		let current_name = currentBranchName(cwd);
@@ -34,6 +36,11 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 		if (!notEmptyString(current_name))
 		{
 			throw new Error(`fatal: can't get current branch name`);
+		}
+
+		if (localBranchExists(new_name, cwd))
+		{
+			throw new Error(`fatal: target branch "${new_name}" already exists`);
 		}
 
 		let cp = checkGitOutput(crossSpawnSync('git', [
@@ -44,9 +51,14 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 
 		let current_new = currentBranchName(cwd);
 
-		if (current_new !== new_name && current_new != null)
+		if (current_new === new_name)
 		{
-			throw new Error(`fatal: can't create new branch "${new_name}", current is "${current_new}"`);
+			throw new Error(`fatal: branch "${new_name}" already exists, delete it or change a new name`);
+		}
+
+		if (current_new != null)
+		{
+			throw new Error(`fatal: something wrong, expect new branch is undefined, but got "${current_new}"`);
 		}
 
 		debug.enabled && debug(crossSpawnOutput(cp.output));
@@ -89,6 +101,13 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 		]), opts), true);
 
 		debug.enabled && debug(crossSpawnOutput(cp.output));
+
+		let current_new2 = currentBranchName(cwd);
+
+		if (current_new2 !== new_name)
+		{
+			throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);
+		}
 
 		return cwd;
 	}
