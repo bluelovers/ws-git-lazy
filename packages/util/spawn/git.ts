@@ -11,6 +11,9 @@ import { console, debugConsole } from '../log';
 
 export * from './types';
 
+/**
+ * 適用於 git 的 crossSpawnSync
+ */
 export function crossSpawnSync(command: string, args?: Array<unknown>, options?: SpawnSyncOptions)
 {
 	let print: boolean;
@@ -33,6 +36,9 @@ export function crossSpawnSync(command: string, args?: Array<unknown>, options?:
 	return cp;
 }
 
+/**
+ * 適用於 git 的 crossSpawnAsync
+ */
 export function crossSpawnAsync(command: string, args?: Array<unknown>, options?: SpawnOptions)
 {
 	return CrossSpawn.async(command, args, options)
@@ -41,6 +47,8 @@ export function crossSpawnAsync(command: string, args?: Array<unknown>, options?
 }
 
 /**
+ * 檢查 git 輸出訊息來判斷指令是否成功或錯誤
+ *
  * because git output log has bug
  * when error happen didn't trigger cp.error
  */

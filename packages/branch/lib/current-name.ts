@@ -7,6 +7,9 @@ import { debug, notEmptyString } from '@git-lazy/util';
 import { isGitRoot } from 'git-root2';
 import { crossSpawnOutput } from '@git-lazy/util/spawn/util';
 
+/**
+ * 取得目前分支名稱
+ */
 export function currentBranchName(REPO_PATH: string)
 {
 	let cp = crossSpawnSync('git', [

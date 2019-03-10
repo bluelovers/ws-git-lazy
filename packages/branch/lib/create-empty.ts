@@ -11,9 +11,12 @@ import fs = require('fs');
 
 const defaultMessage = 'create empty branch by git-lazy';
 
-export function createEmptyBranch(old_name: string, new_name: string, options?: createEmptyBranch.IOptions)
+/**
+ * 建立空白分支
+ */
+export function createEmptyBranch(new_name: string, options?: createEmptyBranch.IOptions)
 {
-	if ((options = _createEmptyBranch(old_name, new_name, options)))
+	if ((options = _createEmptyBranch(new_name, options)))
 	{
 		let { cwd, msg, author } = options;
 
@@ -96,24 +99,42 @@ export declare namespace createEmptyBranch
 {
 	export interface IOptions
 	{
+		/**
+		 * 要建立空白分支的 git repo 路徑，只允許根目錄
+		 */
 		cwd?: string,
+		/**
+		 * 清理檔案的模式
+		 */
 		mode?: EnumMode,
+		/**
+		 * 設定 commit 的 訊息
+		 */
 		msg?: string,
+		/**
+		 * 設定 commit 的 author
+		 */
 		author?: string,
 	}
 
 	export const enum EnumMode
 	{
+		/**
+		 * 預設模式 比較快 不移除檔案 只操作 GIT 紀錄
+		 */
 		ORPHAN = 0,
+		/**
+		 * 會移除檔案
+		 */
 		ORPHAN_RM = 1,
 	}
 }
 
 export default createEmptyBranch
 
-function _createEmptyBranch(old_name: string, new_name: string, options: createEmptyBranch.IOptions)
+function _createEmptyBranch(new_name: string, options: createEmptyBranch.IOptions)
 {
-	if (notEmptyString(old_name) && notEmptyString(new_name) && old_name !== new_name)
+	if (notEmptyString(new_name))
 	{
 		options = options || {};
 
