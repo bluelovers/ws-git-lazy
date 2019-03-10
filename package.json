@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "lerna-publish": "lerna publish",
     "run-workspace-publish": "yarn workspace-publish",
     "run-workspace-version": "yarn workspace-version",
     "sort-package-json": "oao run-script \"sort-package-json2\"",
