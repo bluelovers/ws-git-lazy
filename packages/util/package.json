@@ -19,5 +19,6 @@
     "@types/bluebird": "latest",
     "@types/debug": "latest",
     "@types/node": "latest"
-  }
+  },
+  "gitHead": "715decdf0da1ade8da668fa038d0bbdded646421"
 }

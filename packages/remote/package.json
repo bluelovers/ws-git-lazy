@@ -1,5 +1,6 @@
 {
   "name": "@git-lazy/remote",
+  "private": false,
   "version": "1.0.0",
   "description": "@git-lazy/remote",
   "license": "ISC",
@@ -10,5 +11,6 @@
   },
   "dependencies": {
     "@git-lazy/util": "^1.0.0"
-  }
+  },
+  "gitHead": "715decdf0da1ade8da668fa038d0bbdded646421"
 }
