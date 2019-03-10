@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "crlf-normalize": "ylatest",
+    "crlf-normalize": "latest",
     "cross-spawn-extra": "latest",
     "debug": "^4.1.1",
     "debug-color2": "latest"

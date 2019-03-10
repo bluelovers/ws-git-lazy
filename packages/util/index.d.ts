@@ -1,8 +1,8 @@
 /**
  * Created by user on 2019/3/10.
  */
-import { console, enableDebug, disableDebug, debug, debugConsole } from './log';
+import { console, debug, debugConsole, disableDebug, enableDebug } from './log';
 export { console, enableDebug, disableDebug, debug, debugConsole };
-export declare function notEmptyString(s: string): boolean;
+export { notEmptyString, getCWD } from './util';
 declare const _default: typeof import(".");
 export default _default;

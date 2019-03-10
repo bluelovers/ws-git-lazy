@@ -2,13 +2,15 @@
  * Created by user on 2019/3/10.
  */
 
-import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
-import { notEmptyString, debug } from '@git-lazy/util';
+import { checkGitOutput, crossSpawnSync, SpawnOptions } from '@git-lazy/util/spawn/git';
+import { debug, notEmptyString } from '@git-lazy/util';
 import { isGitRoot } from 'git-root2';
 import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
 import currentBranchName from './current-name';
-import fs = require('fs');
 import localBranchExists from './branch-exists';
+import { getCWD } from '@git-lazy/util/util/index';
+import fs = require('fs');
+import gitlog = require('gitlog2');
 
 const defaultMessage = 'create empty branch by git-lazy';
 
@@ -74,6 +76,7 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 					'.',
 				];
 				break;
+			case createEmptyBranch.EnumMode.ORPHAN:
 			default:
 				mode_argv = [
 					'reset',
@@ -81,7 +84,7 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 				break;
 		}
 
-		debug.enabled && debug(mode_argv);
+		debug.enabled && debug(options.mode, mode_argv);
 
 		cp = checkGitOutput(crossSpawnSync('git', mode_argv, opts), true);
 
@@ -107,6 +110,29 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 		if (current_new2 !== new_name)
 		{
 			throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);
+		}
+
+		let _logs = gitlog.sync({
+			cwd,
+		});
+
+		debug.enabled && debug(_logs);
+
+		if (_logs.length !== 1)
+		{
+			throw new Error(`fatal: expect log length = 1, but got ${_logs.length}`);
+		}
+
+		let _log = _logs[0];
+
+		if (_log.subject !== msg)
+		{
+			throw new Error(`fatal: commit log not subject not equal, current is:\n${_log.subject}`);
+		}
+
+		if (_log.files.length)
+		{
+			throw new Error(`fatal: expect log files length = 0, but got ${_log.files.length}`);
 		}
 
 		return cwd;
@@ -156,9 +182,9 @@ function _createEmptyBranch(new_name: string, options: createEmptyBranch.IOption
 	{
 		options = options || {};
 
-		let { cwd = process.cwd() } = options;
+		let cwd = getCWD(options.cwd, getCWD.EnumRealPath.FS);
 
-		if (notEmptyString(cwd) && (cwd = fs.realpathSync(cwd)))
+		if (notEmptyString(cwd))
 		{
 			options.cwd = cwd;
 

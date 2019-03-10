@@ -1,3 +1,6 @@
 {
-  "extends": "@bluelovers/tsconfig"
+  "extends": "@bluelovers/tsconfig",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  }
 }

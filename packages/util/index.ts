@@ -2,12 +2,12 @@
  * Created by user on 2019/3/10.
  */
 
-import { console, enableDebug, disableDebug, debug, debugConsole } from './log'
+import Bluebird = require('bluebird');
+
+import { console, debug, debugConsole, disableDebug, enableDebug } from './log';
+
 export { console, enableDebug, disableDebug, debug, debugConsole }
 
-export function notEmptyString(s: string)
-{
-	return typeof s === 'string' && s.trim() !== ''
-}
+export { notEmptyString, getCWD } from './util';
 
 export default exports as typeof import('./index');
