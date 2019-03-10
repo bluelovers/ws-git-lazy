@@ -1,7 +1,7 @@
 {
   "name": "@git-lazy/util",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "@git-lazy core lib and a better cross spawn for git",
   "license": "ISC",
   "author": "",

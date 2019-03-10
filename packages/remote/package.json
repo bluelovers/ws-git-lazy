@@ -1,7 +1,7 @@
 {
   "name": "@git-lazy/remote",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "@git-lazy/remote",
   "license": "ISC",
   "author": "",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.0"
+    "@git-lazy/util": "^1.0.1"
   },
   "gitHead": "715decdf0da1ade8da668fa038d0bbdded646421"
 }
