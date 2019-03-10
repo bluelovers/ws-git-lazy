@@ -11,15 +11,13 @@
   },
   "dependencies": {
     "crlf-normalize": "latest",
-    "debug": "^4.1.1",
     "cross-spawn-extra": "latest",
+    "debug": "^4.1.1",
     "debug-color2": "latest"
   },
   "devDependencies": {
     "@types/bluebird": "latest",
     "@types/debug": "latest",
     "@types/node": "latest"
-  },
-  "peerDependencies": {
   }
 }
