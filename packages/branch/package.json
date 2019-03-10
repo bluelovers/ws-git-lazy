@@ -1,11 +1,15 @@
 {
   "name": "@git-lazy/branch",
-  "version": "1.0.1",
-  "description": "@git-lazy/branch",
+  "version": "0.0.0",
   "private": false,
+  "description": "@git-lazy/branch",
   "license": "ISC",
   "author": "",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,5 +17,8 @@
     "@git-lazy/util": "^1.0.1",
     "git-root2": "^1.0.5"
   },
-  "gitHead": "715decdf0da1ade8da668fa038d0bbdded646421"
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }
