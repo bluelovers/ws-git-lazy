@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/remote",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": false,
   "description": "@git-lazy/remote",
   "license": "ISC",
@@ -17,5 +17,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e854e62ecfcf25dce97546bc17d1960b2aa7d9fd"
 }
