@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/branch",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": false,
   "description": "@git-lazy/branch",
   "license": "ISC",
@@ -17,7 +17,6 @@
     "@git-lazy/util": "^1.0.1",
     "git-root2": "^1.0.5"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }
