@@ -102,7 +102,7 @@ export declare namespace createEmptyBranch
 		author?: string,
 	}
 
-	export enum EnumMode
+	export const enum EnumMode
 	{
 		ORPHAN = 0,
 		ORPHAN_RM = 1,

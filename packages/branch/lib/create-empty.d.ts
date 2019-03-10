@@ -9,7 +9,7 @@ export declare namespace createEmptyBranch {
         msg?: string;
         author?: string;
     }
-    enum EnumMode {
+    const enum EnumMode {
         ORPHAN = 0,
         ORPHAN_RM = 1
     }
