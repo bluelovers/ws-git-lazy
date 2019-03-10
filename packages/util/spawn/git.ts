@@ -54,30 +54,44 @@ export function crossSpawnAsync(command: string, args?: Array<unknown>, options?
  */
 export function checkGitOutput<T extends SpawnSyncReturns | SpawnASyncReturns>(cp: T, throwError?: boolean, printStderr?: boolean)
 {
-	if (cp.stderr && cp.stderr.length)
+	let s1: string;
+
+	if (cp.error)
 	{
-		let s1 = String(cp.stderr);
-		let s2 = stripAnsi(s1);
+		// @ts-ignore
+		cp.errorCrossSpawn = cp.errorCrossSpawn || cp.error;
+	}
+	else if (cp.stderr && cp.stderr.length)
+	{
+		s1 = String(cp.stderr);
 
-		if (/^fatal\:/im.test(s2) || /^unknown option:/i.test(s2))
+		if (!cp.error)
 		{
-			let e = new Error(s1);
+			let s2 = stripAnsi(s1);
 
-			cp.error = cp.error || e;
-			// @ts-ignore
-			cp.errorCrossSpawn = e;
-
-			if (throwError)
+			if (/^fatal\:/im.test(s2) || /^unknown option:/i.test(s2))
 			{
-				throw e
+				let e = new Error(s1) as ISpawnASyncError;
+
+				// @ts-ignore
+				e.child = cp;
+
+				cp.error = cp.error || e;
+				// @ts-ignore
+				cp.errorCrossSpawn = cp.errorCrossSpawn || e;
 			}
 		}
+	}
 
-		if (printStderr)
-		{
-			debugConsole.info(`cp.stderr`);
-			debugConsole.warn(s1);
-		}
+	if (throwError && cp.error)
+	{
+		throw cp.error
+	}
+
+	if (printStderr && s1 != null)
+	{
+		debugConsole.info(`cp.stderr`);
+		debugConsole.warn(s1);
 	}
 
 	return cp;

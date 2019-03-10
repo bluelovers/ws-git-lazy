@@ -20,8 +20,6 @@ export function currentBranchName(REPO_PATH: string)
 		cwd: REPO_PATH,
 	});
 
-	cp = checkGitOutput(cp);
-
 	if (!cp.error)
 	{
 		let name = crossSpawnOutput(cp.stdout, {

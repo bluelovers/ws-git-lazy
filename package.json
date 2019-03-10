@@ -6,11 +6,13 @@
     "packages/*"
   ],
   "scripts": {
+    "workspace-publish": "yarn workspace-publish",
+    "workspace-version": "yarn workspace-version",
     "sort-package-json": "oao run-script \"sort-package-json2\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-
+    "workspace-release": "^0.4.5"
   },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.1"

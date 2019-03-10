@@ -1,12 +1,15 @@
-/**
- * Created by user on 2019/3/10.
- */
+# @git-lazy/util
 
+    @git-lazy core lib and a better cross spawn for git
+
+```
+npm install @git-lazy/util
+```
+
+```ts
 import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
 import { notEmptyString, debug } from '@git-lazy/util';
-import { isGitRoot } from 'git-root2';
 import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
-import fs = require('fs');
 
 export function localBranchList(REPO_PATH: string): string[]
 {
@@ -17,6 +20,8 @@ export function localBranchList(REPO_PATH: string): string[]
 	], {
 		cwd: REPO_PATH,
 	});
+
+	cp = checkGitOutput(cp);
 
 	if (!cp.error)
 	{
@@ -40,5 +45,4 @@ export function localBranchList(REPO_PATH: string): string[]
 
 	return [];
 }
-
-export default localBranchList
+```
