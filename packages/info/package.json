@@ -9,22 +9,20 @@
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
     "ncu": "npx yarn-tool ncu -u",
-    "prepublishOnly": "npm run ncu && npm run sort-package-json && npm run test",
-    "postpublish": "git commit -m 'publish new version' .",
+    "prepublishOnly": "npm run ncu && npm run sort-package-json",
+    "postpublish": "git commit -m \"publish new version\" .",
     "sort-package-json": "npx sort-package-json ./package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "git-root2": "^1.0.5",
-    "glob-search": "^1.0.1",
-    "hosted-git-info": "^2.7.1",
+    "glob-search": "^1.0.2",
     "parse-git-config": "^3.0.0"
   },
   "devDependencies": {
-    "@types/hosted-git-info": "^2.7.0",
     "@types/parse-git-config": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
