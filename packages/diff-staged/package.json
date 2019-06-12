@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/diff-staged",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
   "bugs": {
@@ -26,7 +26,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.2",
+    "@git-lazy/util": "^1.0.3",
     "array-hyper-unique": "^1.0.7",
     "node-novel-globby": "^2.0.9"
   }
