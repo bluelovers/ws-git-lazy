@@ -51,3 +51,7 @@ yarn-error.log
 
 /*.log
 .git
+/.eslintignore
+/.eslintrc.json.tpl
+/.browserslistrc
+/.nvmrc
