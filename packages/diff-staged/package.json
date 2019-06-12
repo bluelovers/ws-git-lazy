@@ -17,17 +17,18 @@
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
     "ncu": "npx yarn-tool ncu -u",
-    "prepublishOnly": "npm run ncu && npm run sort-package-json && npm run test",
+    "prepublishOnly": "npm run ncu && npm run sort-package-json",
     "postpublish": "git commit -m \"publish new version\" .",
     "sort-package-json": "npx sort-package-json ./package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@git-lazy/util": "^1.0.3",
     "array-hyper-unique": "^1.0.7",
     "node-novel-globby": "^2.0.9"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "2645523e8b56dc3c82cea3e07ff9179c8801f6b3"
 }

@@ -15,7 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "git-root2": "^1.0.5",
+    "git-root2": "^1.0.6",
     "glob-search": "^1.0.2",
     "parse-git-config": "^3.0.0"
   },
@@ -24,5 +24,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "2645523e8b56dc3c82cea3e07ff9179c8801f6b3"
 }
