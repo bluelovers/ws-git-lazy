@@ -2,9 +2,9 @@
  * Created by user on 2019/6/13.
  */
 
-import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
-import { sortTree } from 'node-novel-globby/lib/glob-sort';
-import { array_unique, lazy_unique } from 'array-hyper-unique';
+import { crossSpawnSync } from '@git-lazy/util/spawn/git';
+import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
+import { hasGit } from '@git-lazy/root';
 
 export interface IOptions
 {
@@ -13,7 +13,7 @@ export interface IOptions
 
 export function gitDiffStaged(git_root: string, options?: IOptions): string[]
 {
-	git_root = validGitRoot(git_root);
+	git_root = hasGit(git_root);
 
 	const { bin = 'git' } = (options || {});
 
@@ -22,12 +22,12 @@ export function gitDiffStaged(git_root: string, options?: IOptions): string[]
 		stripAnsi: true,
 	});
 
-	return _handle(cp.stdout.toString());
+	return handleSpawnOutputArray(cp.stdout.toString());
 }
 
 export function gitDiffStagedDir(git_root: string, options?: IOptions): string[]
 {
-	git_root = validGitRoot(git_root);
+	git_root = hasGit(git_root);
 
 	const { bin = 'git' } = (options || {});
 
@@ -47,7 +47,7 @@ export function gitDiffStagedDir(git_root: string, options?: IOptions): string[]
 		},
 	);
 
-	return _handle([
+	return handleSpawnOutputArray([
 		cp.stdout.toString(),
 		cp2.stdout.toString(),
 	].join('\n'), s =>
@@ -58,7 +58,7 @@ export function gitDiffStagedDir(git_root: string, options?: IOptions): string[]
 
 export function gitDiffStagedFile(git_root: string, options?: IOptions): string[]
 {
-	git_root = validGitRoot(git_root);
+	git_root = hasGit(git_root);
 
 	const { bin = 'git' } = (options || {});
 
@@ -78,36 +78,10 @@ export function gitDiffStagedFile(git_root: string, options?: IOptions): string[
 		},
 	);
 
-	return _handle([
+	return handleSpawnOutputArray([
 		cp.stdout.toString(),
 		cp2.stdout.toString(),
 	].join('\n'));
-}
-
-function _handle(output: string, trimFn?: (text: string) => string): string[]
-{
-	trimFn = trimFn || (s => s);
-
-	return sortTree(array_unique(output
-		.split(/[\n\r]+/)
-		.map(s => trimFn(s).trim())
-		.filter(_filterEmpty)))
-		;
-}
-
-function _filterEmpty(v: string): boolean
-{
-	return v != null && v !== ''
-}
-
-function validGitRoot(git_root: string)
-{
-	if (!git_root)
-	{
-		throw new TypeError(`'${git_root}' is not a valid git root`);
-	}
-
-	return git_root
 }
 
 export default gitDiffStagedFile

@@ -1,6 +1,6 @@
 {
-  "name": "@git-lazy/diff-staged",
-  "version": "1.0.2",
+  "name": "@git-lazy/root",
+  "version": "1.0.0",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
   "bugs": {
@@ -22,12 +22,10 @@
     "sort-package-json": "npx sort-package-json ./package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@git-lazy/root": "1",
-    "@git-lazy/util": "^1.0.4"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "0d2587d91228de24d13e981eb05f1a67bc8c019b"
+  "dependencies": {
+    "git-root2": "^1.0.7"
+  }
 }

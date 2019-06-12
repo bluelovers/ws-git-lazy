@@ -14,7 +14,7 @@ export * from './types';
 /**
  * 適用於 git 的 crossSpawnSync
  */
-export function crossSpawnSync(command: string, args?: Array<unknown>, options?: SpawnSyncOptions)
+export function crossSpawnSync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnSyncOptions): SpawnSyncReturns<T>
 {
 	let print: boolean;
 
@@ -27,7 +27,7 @@ export function crossSpawnSync(command: string, args?: Array<unknown>, options?:
 		}
 	}
 
-	let cp = CrossSpawn.sync(command, args, options);
+	let cp = CrossSpawn.sync<T>(command, args, options);
 
 	print && console.log(crossSpawnOutput(cp.output));
 
@@ -39,9 +39,9 @@ export function crossSpawnSync(command: string, args?: Array<unknown>, options?:
 /**
  * 適用於 git 的 crossSpawnAsync
  */
-export function crossSpawnAsync(command: string, args?: Array<unknown>, options?: SpawnOptions)
+export function crossSpawnAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnOptions): SpawnASyncReturnsPromise<T>
 {
-	return CrossSpawn.async(command, args, options)
+	return CrossSpawn.async<T>(command, args, options)
 		.then(checkGitOutput)
 	;
 }
@@ -52,7 +52,7 @@ export function crossSpawnAsync(command: string, args?: Array<unknown>, options?
  * because git output log has bug
  * when error happen didn't trigger cp.error
  */
-export function checkGitOutput<T extends SpawnSyncReturns | SpawnASyncReturns>(cp: T, throwError?: boolean, printStderr?: boolean)
+export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | SpawnASyncReturns<string | Buffer>>(cp: T, throwError?: boolean, printStderr?: boolean)
 {
 	let s1: string;
 
