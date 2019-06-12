@@ -22,10 +22,11 @@
     "sort-package-json": "npx sort-package-json ./package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "git-root2": "^1.0.7"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "git-root2": "^1.0.7"
-  }
+  "gitHead": "aec3e4fca05555da2a0202380b52706093426414"
 }
