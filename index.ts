@@ -5,15 +5,22 @@
 import path = require('upath2');
 import fs = require('fs');
 import crossSpawn = require('cross-spawn');
+import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
+import { crossSpawnOutput } from '@git-lazy/util/spawn/util';
 
 function gitRoot(cwd?: string): string
 {
-	let p = (crossSpawn.sync('git', [
+	let p = crossSpawnOutput((crossSpawnSync('git', [
 		'rev-parse',
 		'--show-toplevel',
 	], {
 		cwd,
-	}).stdout || '').toString().replace(/^[\n\r]+|[\n\r]+$/g, '');
+		stripAnsi: true,
+	}).stdout || ''), {
+		stripAnsi: true,
+		clearEol: true,
+	}).replace(/^[\n\r]+|[\n\r]+$/g, '')
+	;
 
 	if (p)
 	{
@@ -42,6 +49,7 @@ namespace gitRoot
 		return gitRoot(cwd);
 	}
 
+	// lazy fake async
 	export async function async(cwd?: string)
 	{
 		return gitRoot(cwd);

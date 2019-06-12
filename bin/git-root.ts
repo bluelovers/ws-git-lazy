@@ -2,11 +2,12 @@
 
 import gitRoot from '..';
 
-let root = gitRoot();
+const root = gitRoot();
 
-if (root == null)
+if (root == null || root === '')
 {
-	console.error(root);
+	console.error(`can't found git root`);
+	process.exitCode = 1;
 }
 else
 {

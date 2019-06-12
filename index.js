@@ -2,16 +2,56 @@
 /**
  * Created by user on 2018/5/16/016.
  */
-const path = require("upath2");
-const fs = require("fs");
-const crossSpawn = require("cross-spawn");
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var path = require("upath2");
+var fs = require("fs");
+var git_1 = require("@git-lazy/util/spawn/git");
+var util_1 = require("@git-lazy/util/spawn/util");
 function gitRoot(cwd) {
-    let p = (crossSpawn.sync('git', [
+    var p = util_1.crossSpawnOutput((git_1.crossSpawnSync('git', [
         'rev-parse',
         '--show-toplevel',
     ], {
-        cwd,
-    }).stdout || '').toString().replace(/^[\n\r]+|[\n\r]+$/g, '');
+        cwd: cwd,
+        stripAnsi: true,
+    }).stdout || ''), {
+        stripAnsi: true,
+        clearEol: true,
+    }).replace(/^[\n\r]+|[\n\r]+$/g, '');
     if (p) {
         p = path.resolve(p);
         if (fs.existsSync(p)) {
@@ -22,7 +62,7 @@ function gitRoot(cwd) {
 }
 (function (gitRoot) {
     function isGitRoot(target) {
-        let root = gitRoot(target);
+        var root = gitRoot(target);
         return (root && path.resolve(root) === path.resolve(target));
     }
     gitRoot.isGitRoot = isGitRoot;
@@ -30,11 +70,15 @@ function gitRoot(cwd) {
         return gitRoot(cwd);
     }
     gitRoot.sync = sync;
-    async function async(cwd) {
-        return gitRoot(cwd);
+    // lazy fake async
+    function async(cwd) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, gitRoot(cwd)];
+            });
+        });
     }
     gitRoot.async = async;
 })(gitRoot || (gitRoot = {}));
-gitRoot.default = gitRoot;
+gitRoot["default"] = gitRoot;
 module.exports = gitRoot;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7O0dBRUc7QUFFSCwrQkFBZ0M7QUFDaEMseUJBQTBCO0FBQzFCLDBDQUEyQztBQUUzQyxTQUFTLE9BQU8sQ0FBQyxHQUFZO0lBRTVCLElBQUksQ0FBQyxHQUFHLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxLQUFLLEVBQUU7UUFDL0IsV0FBVztRQUNYLGlCQUFpQjtLQUNqQixFQUFFO1FBQ0YsR0FBRztLQUNILENBQUMsQ0FBQyxNQUFNLElBQUksRUFBRSxDQUFDLENBQUMsUUFBUSxFQUFFLENBQUMsT0FBTyxDQUFDLG9CQUFvQixFQUFFLEVBQUUsQ0FBQyxDQUFDO0lBRTlELElBQUksQ0FBQyxFQUNMO1FBQ0MsQ0FBQyxHQUFHLElBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFFcEIsSUFBSSxFQUFFLENBQUMsVUFBVSxDQUFDLENBQUMsQ0FBQyxFQUNwQjtZQUNDLE9BQU8sQ0FBQyxDQUFDO1NBQ1Q7S0FDRDtJQUVELE9BQU8sSUFBSSxDQUFDO0FBQ2IsQ0FBQztBQUVELFdBQVUsT0FBTztJQUVoQixTQUFnQixTQUFTLENBQUMsTUFBYztRQUV2QyxJQUFJLElBQUksR0FBRyxPQUFPLENBQUMsTUFBTSxDQUFDLENBQUM7UUFFM0IsT0FBTyxDQUFDLElBQUksSUFBSSxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxLQUFLLElBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQztJQUM5RCxDQUFDO0lBTGUsaUJBQVMsWUFLeEIsQ0FBQTtJQUVELFNBQWdCLElBQUksQ0FBQyxHQUFZO1FBRWhDLE9BQU8sT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDO0lBQ3JCLENBQUM7SUFIZSxZQUFJLE9BR25CLENBQUE7SUFFTSxLQUFLLFVBQVUsS0FBSyxDQUFDLEdBQVk7UUFFdkMsT0FBTyxPQUFPLENBQUMsR0FBRyxDQUFDLENBQUM7SUFDckIsQ0FBQztJQUhxQixhQUFLLFFBRzFCLENBQUE7QUFDRixDQUFDLEVBbEJTLE9BQU8sS0FBUCxPQUFPLFFBa0JoQjtBQUVELE9BQU8sQ0FBQyxPQUFPLEdBQUcsT0FBTyxDQUFDO0FBRTFCLGlCQUFTLE9BQU8sQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTgvNS8xNi8wMTYuXG4gKi9cblxuaW1wb3J0IHBhdGggPSByZXF1aXJlKCd1cGF0aDInKTtcbmltcG9ydCBmcyA9IHJlcXVpcmUoJ2ZzJyk7XG5pbXBvcnQgY3Jvc3NTcGF3biA9IHJlcXVpcmUoJ2Nyb3NzLXNwYXduJyk7XG5cbmZ1bmN0aW9uIGdpdFJvb3QoY3dkPzogc3RyaW5nKTogc3RyaW5nXG57XG5cdGxldCBwID0gKGNyb3NzU3Bhd24uc3luYygnZ2l0JywgW1xuXHRcdCdyZXYtcGFyc2UnLFxuXHRcdCctLXNob3ctdG9wbGV2ZWwnLFxuXHRdLCB7XG5cdFx0Y3dkLFxuXHR9KS5zdGRvdXQgfHwgJycpLnRvU3RyaW5nKCkucmVwbGFjZSgvXltcXG5cXHJdK3xbXFxuXFxyXSskL2csICcnKTtcblxuXHRpZiAocClcblx0e1xuXHRcdHAgPSBwYXRoLnJlc29sdmUocCk7XG5cblx0XHRpZiAoZnMuZXhpc3RzU3luYyhwKSlcblx0XHR7XG5cdFx0XHRyZXR1cm4gcDtcblx0XHR9XG5cdH1cblxuXHRyZXR1cm4gbnVsbDtcbn1cblxubmFtZXNwYWNlIGdpdFJvb3Rcbntcblx0ZXhwb3J0IGZ1bmN0aW9uIGlzR2l0Um9vdCh0YXJnZXQ6IHN0cmluZylcblx0e1xuXHRcdGxldCByb290ID0gZ2l0Um9vdCh0YXJnZXQpO1xuXG5cdFx0cmV0dXJuIChyb290ICYmIHBhdGgucmVzb2x2ZShyb290KSA9PT0gcGF0aC5yZXNvbHZlKHRhcmdldCkpO1xuXHR9XG5cblx0ZXhwb3J0IGZ1bmN0aW9uIHN5bmMoY3dkPzogc3RyaW5nKVxuXHR7XG5cdFx0cmV0dXJuIGdpdFJvb3QoY3dkKTtcblx0fVxuXG5cdGV4cG9ydCBhc3luYyBmdW5jdGlvbiBhc3luYyhjd2Q/OiBzdHJpbmcpXG5cdHtcblx0XHRyZXR1cm4gZ2l0Um9vdChjd2QpO1xuXHR9XG59XG5cbmdpdFJvb3QuZGVmYXVsdCA9IGdpdFJvb3Q7XG5cbmV4cG9ydCA9IGdpdFJvb3RcbiJdfQ==
