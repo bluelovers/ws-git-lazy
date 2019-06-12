@@ -62,3 +62,8 @@ tests/**/*.d.ts
 tests/*.js
 tests/*.d.ts
 tests/temp*
+/.eslintignore
+/tsconfig.json.tpl
+/.eslintrc.json.tpl
+/.browserslistrc
+/.nvmrc

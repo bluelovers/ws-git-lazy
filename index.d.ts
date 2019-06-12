@@ -1,4 +1,4 @@
-import { defaultOptions, EnumGitDateFormat, IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, IParseCommit, IReturnCommits, IFieldsArray, defaultFields } from './lib/type';
+import { defaultOptions, EnumGitDateFormat, EnumGitDateFormat as _EnumGitDateFormat, IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, IParseCommit, IReturnCommits, IFieldsArray, defaultFields } from './lib/type';
 import { IAsyncCallback } from './lib/util';
 import Bluebird = require('bluebird');
 export { EnumGitDateFormat, IReturnCommits, IParseCommit, IFieldsArray, defaultFields, defaultOptions };
@@ -32,6 +32,7 @@ export declare namespace gitlog {
      * async Promise mode
      */
     function async(options: IOptions): Bluebird<IParseCommit[]>;
+    const EnumGitDateFormat: typeof _EnumGitDateFormat;
 }
 export import sync = gitlog.sync;
 export import asyncCallback = gitlog.asyncCallback;

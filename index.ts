@@ -2,6 +2,7 @@ import { existsSync } from 'fs';
 import {
 	defaultOptions,
 	EnumGitDateFormat,
+	EnumGitDateFormat as _EnumGitDateFormat,
 	fields,
 	IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra,
 	IParseCommit,
@@ -22,6 +23,7 @@ import {
 import Bluebird = require('bluebird');
 import crossSpawn = require('cross-spawn-extra');
 import extend = require('lodash.assign');
+import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
 
 export { EnumGitDateFormat, IReturnCommits, IParseCommit, IFieldsArray, defaultFields, defaultOptions }
 export { IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, }
@@ -37,10 +39,10 @@ export function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[] |
 	if (!cb)
 	{
 		// run Sync
-		return parseCommitsStdout(options, crossSpawn.sync(bin, commands, options.execOptions).stdout)
+		return parseCommitsStdout(options, crossSpawnSync(bin, commands, options.execOptions as any).stdout)
 	}
 
-	return crossSpawn.async(bin, commands, options.execOptions)
+	return crossSpawnAsync(bin, commands, options.execOptions)
 		.then(function (child)
 		{
 			let { stdout, stderr, error } = child;
@@ -131,6 +133,8 @@ export namespace gitlog
 	 * for trigger async Promise mode
 	 */
 	function dummy() {}
+
+	export const EnumGitDateFormat = _EnumGitDateFormat
 }
 
 export import sync = gitlog.sync;

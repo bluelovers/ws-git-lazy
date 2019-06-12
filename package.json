@@ -1,6 +1,6 @@
 {
   "name": "gitlog2",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Git log parser for Node.JS",
   "keywords": [
     "git",
@@ -19,23 +19,32 @@
   "author": "Dom Harrington",
   "main": "index.js",
   "directories": {
-    "example": "example",
+    "lib": "lib",
     "test": "test"
   },
-  "scripts": {},
+  "scripts": {
+    "coverage": "npx nyc npm run test",
+    "lint": "npx eslint **/*.ts",
+    "ncu": "npx yarn-tool ncu -u",
+    "prepublishOnly": "npm run ncu && npm run sort-package-json",
+    "postpublish": "git commit -m \"publish new version\" .",
+    "sort-package-json": "npx sort-package-json ./package.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
+    "@git-lazy/util": "^1.0.4",
     "array-hyper-unique": "^1.0.7",
-    "bluebird": "^3.5.3",
-    "cross-spawn-extra": "^1.0.3",
-    "debug": "^4.1.1",
-    "decamelize": "^2.0.0",
-    "git-decode": "^1.0.1",
-    "lodash.assign": "^4.2.0",
+    "bluebird": "^3.5.5",
     "crlf-normalize": "^1.0.3",
-    "sort-object-keys2": "^1.0.3"
+    "cross-spawn-extra": "^1.0.6",
+    "debug": "^4.1.1",
+    "decamelize": "^3.2.0",
+    "git-decode": "^1.0.2",
+    "lodash.assign": "^4.2.0",
+    "sort-object-keys2": "^1.1.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.25",
-    "@types/debug": "^0.0.31"
+    "@types/bluebird": "^3.5.27",
+    "@types/debug": "^4.1.4"
   }
 }
