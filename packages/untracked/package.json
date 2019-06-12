@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/untracked",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
   "bugs": {
@@ -23,9 +23,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "array-hyper-unique": "^1.0.7",
-    "@git-lazy/root": "1",
-    "@git-lazy/util": "^1.0.4"
+    "@git-lazy/root": "^1.0.1",
+    "@git-lazy/util": "^1.0.5",
+    "array-hyper-unique": "^1.0.7"
   },
   "publishConfig": {
     "access": "public"
