@@ -10,14 +10,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "crlf": "^1.1.1",
     "crlf-normalize": "latest",
     "cross-spawn-extra": "latest",
     "debug": "^4.1.1",
-    "debug-color2": "latest"
+    "debug-color2": "latest",
+    "micromatch": "^4.0.2"
   },
   "devDependencies": {
     "@types/bluebird": "latest",
     "@types/debug": "latest",
+    "@types/micromatch": "^3.1.0",
     "@types/node": "latest"
   },
   "publishConfig": {

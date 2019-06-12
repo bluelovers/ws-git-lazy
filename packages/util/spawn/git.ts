@@ -97,4 +97,7 @@ export function checkGitOutput<T extends SpawnSyncReturns | SpawnASyncReturns>(c
 	return cp;
 }
 
+export const sync = crossSpawnSync;
+export const async = crossSpawnAsync;
+
 export default exports as typeof import('./git');

@@ -22,5 +22,7 @@ export declare function crossSpawnAsync(command: string, args?: Array<unknown>, 
  * when error happen didn't trigger cp.error
  */
 export declare function checkGitOutput<T extends SpawnSyncReturns | SpawnASyncReturns>(cp: T, throwError?: boolean, printStderr?: boolean): T;
+export declare const sync: typeof crossSpawnSync;
+export declare const async: typeof crossSpawnAsync;
 declare const _default: typeof import("./git");
 export default _default;

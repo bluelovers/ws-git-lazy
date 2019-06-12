@@ -7,17 +7,17 @@
   ],
   "scripts": {
     "lerna-publish": "lerna publish",
-    "run-workspace-publish": "yarn workspace-publish",
-    "run-workspace-version": "yarn workspace-version",
-    "sort-package-json": "oao run-script \"sort-package-json2\"",
+    "run-workspace-publish": "yarn run workspace-publish",
+    "run-workspace-version": "yarn run workspace-version",
+    "sort-package-json": "lerna exec \"sort-package-json\"",
+    "ncu": "lerna exec \"yt ncu -u\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "lerna": "^3.13.1",
-    "workspace-release": "^0.4.5"
+    "workspace-release": "^0.5.1"
   },
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.1"
+    "@bluelovers/tsconfig": "^1.0.8"
   },
   "resolutions": {}
 }

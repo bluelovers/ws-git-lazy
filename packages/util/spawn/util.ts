@@ -25,7 +25,7 @@ export function crossSpawnOutput(buf: SpawnSyncReturns["output"] | Buffer, optio
 {
 	let output = '';
 
-	if (Array.isArray(buf))
+	if (!Buffer.isBuffer(buf) && Array.isArray(buf))
 	{
 		output = buf
 			.filter(function (b)
