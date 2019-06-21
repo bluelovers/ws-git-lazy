@@ -32,7 +32,11 @@ export declare namespace createEmptyBranch {
         /**
          * 會移除檔案
          */
-        ORPHAN_RM = 1
+        ORPHAN_RM = 1,
+        /**
+         * 會強制移除檔案
+         */
+        ORPHAN_RM_FORCE = 2
     }
 }
 export default createEmptyBranch;

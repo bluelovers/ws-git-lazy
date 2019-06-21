@@ -69,6 +69,13 @@ export function createEmptyBranch(new_name: string, options?: createEmptyBranch.
 
 		switch (options.mode)
 		{
+			case createEmptyBranch.EnumMode.ORPHAN_RM_FORCE:
+				mode_argv = [
+					'rm',
+					'-rf',
+					'.',
+				];
+				break;
 			case createEmptyBranch.EnumMode.ORPHAN_RM:
 				mode_argv = [
 					'rm',
@@ -171,6 +178,10 @@ export declare namespace createEmptyBranch
 		 * 會移除檔案
 		 */
 		ORPHAN_RM = 1,
+		/**
+		 * 會強制移除檔案
+		 */
+		ORPHAN_RM_FORCE = 2,
 	}
 }
 
