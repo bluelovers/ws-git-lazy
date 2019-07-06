@@ -1,0 +1,37 @@
+{
+  "name": "@git-lazy/change-root-dir",
+  "version": "1.0.0",
+  "description": "Change the root directory of a Git repository",
+  "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-git-lazy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-git-lazy.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "npx nyc yarn run test",
+    "lint": "npx eslint **/*.ts",
+    "ncu": "npx yarn-tool ncu -u",
+    "npm:publish": "npm publish",
+    "prepublishOnly": "yarn run ncu && yarn run sort-package-json && yarn run test",
+    "postpublish": "echo \"publish new version\"",
+    "sort-package-json": "npx sort-package-json ./package.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc:default": "tsc -p tsconfig.json",
+    "tsc:esm": "tsc -p tsconfig.esm.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bluelovers/fast-glob": "^3.0.4",
+    "@git-lazy/root": "^1.0.1",
+    "@git-lazy/util": "^1.0.5",
+    "ts-type": "^1.2.9"
+  }
+}
