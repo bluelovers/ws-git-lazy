@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/change-root-dir",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Change the root directory of a Git repository",
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
   "bugs": {
