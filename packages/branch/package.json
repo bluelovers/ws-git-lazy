@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/branch",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "description": "@git-lazy/branch",
   "license": "ISC",
@@ -15,7 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.5",
+    "@git-lazy/util": "^1.0.6",
     "git-root2": "^1.0.5",
     "gitlog2": "^5.0.2"
   },
