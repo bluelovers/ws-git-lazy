@@ -2,11 +2,23 @@
 /**
  * Created by user on 2019/3/10.
  */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.async = exports.sync = exports.crossSpawnAsync = exports.crossSpawnSync = void 0;
 const cross_spawn_extra_1 = require("cross-spawn-extra");
-exports.crossSpawnSync = cross_spawn_extra_1.sync;
-exports.crossSpawnAsync = cross_spawn_extra_1.async;
+Object.defineProperty(exports, "crossSpawnSync", { enumerable: true, get: function () { return cross_spawn_extra_1.sync; } });
+Object.defineProperty(exports, "crossSpawnAsync", { enumerable: true, get: function () { return cross_spawn_extra_1.async; } });
+__exportStar(require("./types"), exports);
 exports.sync = cross_spawn_extra_1.sync;
 exports.async = cross_spawn_extra_1.async;
 exports.default = exports;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7O0dBRUc7O0FBSUgseURBQXFGO0FBSTVFLHlCQUpRLHdCQUFjLENBSVI7QUFBRSwwQkFKaUIseUJBQWUsQ0FJakI7QUFFM0IsUUFBQSxJQUFJLEdBQUcsd0JBQWMsQ0FBQztBQUN0QixRQUFBLEtBQUssR0FBRyx5QkFBZSxDQUFDO0FBRXJDLGtCQUFlLE9BQW1DLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIENyZWF0ZWQgYnkgdXNlciBvbiAyMDE5LzMvMTAuXG4gKi9cblxuaW1wb3J0IEJsdWViaXJkID0gcmVxdWlyZSgnYmx1ZWJpcmQnKTtcbmltcG9ydCBDcm9zc1NwYXduID0gcmVxdWlyZSgnY3Jvc3Mtc3Bhd24tZXh0cmEnKTtcbmltcG9ydCB7IHN5bmMgYXMgY3Jvc3NTcGF3blN5bmMsIGFzeW5jIGFzIGNyb3NzU3Bhd25Bc3luYyB9IGZyb20gJ2Nyb3NzLXNwYXduLWV4dHJhJztcblxuZXhwb3J0ICogZnJvbSAnLi90eXBlcydcblxuZXhwb3J0IHsgY3Jvc3NTcGF3blN5bmMsIGNyb3NzU3Bhd25Bc3luYyB9XG5cbmV4cG9ydCBjb25zdCBzeW5jID0gY3Jvc3NTcGF3blN5bmM7XG5leHBvcnQgY29uc3QgYXN5bmMgPSBjcm9zc1NwYXduQXN5bmM7XG5cbmV4cG9ydCBkZWZhdWx0IGV4cG9ydHMgYXMgdHlwZW9mIGltcG9ydCgnLi9pbmRleCcpO1xuIl19
+//# sourceMappingURL=index.js.map

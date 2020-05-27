@@ -2,31 +2,21 @@
 /**
  * Created by user on 2019/3/10.
  */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const debug_color2_1 = require("debug-color2");
-const _debug = require("debug");
-function createConsole(...argv) {
-    const console = new debug_color2_1.Console(...argv);
-    console.enabledColor = true;
-    console.inspectOptions = console.inspectOptions || {};
-    console.inspectOptions.colors = true;
-    return console;
-}
-exports.createConsole = createConsole;
-exports.console = createConsole();
-exports.debug = _debug('@git-lazy');
-exports.debugConsole = createConsole();
-exports.debug.log = exports.debugConsole.grey;
-exports.debugConsole.enabled = exports.debug.enabled;
-function enableDebug() {
-    exports.debug.enabled = true;
-    exports.debugConsole.enabled = true;
-}
-exports.enableDebug = enableDebug;
-function disableDebug() {
-    exports.debug.enabled = false;
-    exports.debugConsole.enabled = false;
-}
-exports.disableDebug = disableDebug;
-exports.default = exports.console;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9nLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsibG9nLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTs7R0FFRzs7QUFFSCwrQ0FBdUM7QUFDdkMsZ0NBQWlDO0FBRWpDLFNBQWdCLGFBQWEsQ0FBQyxHQUFHLElBQUk7SUFFcEMsTUFBTSxPQUFPLEdBQUcsSUFBSSxzQkFBTyxDQUFDLEdBQUcsSUFBSSxDQUFDLENBQUM7SUFFckMsT0FBTyxDQUFDLFlBQVksR0FBRyxJQUFJLENBQUM7SUFFNUIsT0FBTyxDQUFDLGNBQWMsR0FBRyxPQUFPLENBQUMsY0FBYyxJQUFJLEVBQUUsQ0FBQztJQUN0RCxPQUFPLENBQUMsY0FBYyxDQUFDLE1BQU0sR0FBRyxJQUFJLENBQUM7SUFFckMsT0FBTyxPQUFPLENBQUE7QUFDZixDQUFDO0FBVkQsc0NBVUM7QUFFWSxRQUFBLE9BQU8sR0FBRyxhQUFhLEVBQUUsQ0FBQztBQUUxQixRQUFBLEtBQUssR0FBRyxNQUFNLENBQUMsV0FBVyxDQUFDLENBQUM7QUFDNUIsUUFBQSxZQUFZLEdBQUcsYUFBYSxFQUFFLENBQUM7QUFFNUMsYUFBSyxDQUFDLEdBQUcsR0FBRyxvQkFBWSxDQUFDLElBQUksQ0FBQztBQUU5QixvQkFBWSxDQUFDLE9BQU8sR0FBRyxhQUFLLENBQUMsT0FBTyxDQUFDO0FBRXJDLFNBQWdCLFdBQVc7SUFFMUIsYUFBSyxDQUFDLE9BQU8sR0FBRyxJQUFJLENBQUM7SUFDckIsb0JBQVksQ0FBQyxPQUFPLEdBQUcsSUFBSSxDQUFDO0FBQzdCLENBQUM7QUFKRCxrQ0FJQztBQUVELFNBQWdCLFlBQVk7SUFFM0IsYUFBSyxDQUFDLE9BQU8sR0FBRyxLQUFLLENBQUM7SUFDdEIsb0JBQVksQ0FBQyxPQUFPLEdBQUcsS0FBSyxDQUFDO0FBQzlCLENBQUM7QUFKRCxvQ0FJQztBQUVELGtCQUFlLGVBQU8sQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTkvMy8xMC5cbiAqL1xuXG5pbXBvcnQgeyBDb25zb2xlIH0gZnJvbSAnZGVidWctY29sb3IyJztcbmltcG9ydCBfZGVidWcgPSByZXF1aXJlKCdkZWJ1ZycpO1xuXG5leHBvcnQgZnVuY3Rpb24gY3JlYXRlQ29uc29sZSguLi5hcmd2KVxue1xuXHRjb25zdCBjb25zb2xlID0gbmV3IENvbnNvbGUoLi4uYXJndik7XG5cblx0Y29uc29sZS5lbmFibGVkQ29sb3IgPSB0cnVlO1xuXG5cdGNvbnNvbGUuaW5zcGVjdE9wdGlvbnMgPSBjb25zb2xlLmluc3BlY3RPcHRpb25zIHx8IHt9O1xuXHRjb25zb2xlLmluc3BlY3RPcHRpb25zLmNvbG9ycyA9IHRydWU7XG5cblx0cmV0dXJuIGNvbnNvbGVcbn1cblxuZXhwb3J0IGNvbnN0IGNvbnNvbGUgPSBjcmVhdGVDb25zb2xlKCk7XG5cbmV4cG9ydCBjb25zdCBkZWJ1ZyA9IF9kZWJ1ZygnQGdpdC1sYXp5Jyk7XG5leHBvcnQgY29uc3QgZGVidWdDb25zb2xlID0gY3JlYXRlQ29uc29sZSgpO1xuXG5kZWJ1Zy5sb2cgPSBkZWJ1Z0NvbnNvbGUuZ3JleTtcblxuZGVidWdDb25zb2xlLmVuYWJsZWQgPSBkZWJ1Zy5lbmFibGVkO1xuXG5leHBvcnQgZnVuY3Rpb24gZW5hYmxlRGVidWcoKVxue1xuXHRkZWJ1Zy5lbmFibGVkID0gdHJ1ZTtcblx0ZGVidWdDb25zb2xlLmVuYWJsZWQgPSB0cnVlO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gZGlzYWJsZURlYnVnKClcbntcblx0ZGVidWcuZW5hYmxlZCA9IGZhbHNlO1xuXHRkZWJ1Z0NvbnNvbGUuZW5hYmxlZCA9IGZhbHNlO1xufVxuXG5leHBvcnQgZGVmYXVsdCBjb25zb2xlXG4iXX0=
+__exportStar(require("@git-lazy/debug"), exports);
+const debug_1 = __importDefault(require("@git-lazy/debug"));
+exports.default = debug_1.default;
+//# sourceMappingURL=log.js.map

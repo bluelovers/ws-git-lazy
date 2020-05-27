@@ -1,5 +1,5 @@
-import fs = require('fs');
-import path = require('path');
+import { realpathSync } from 'fs';
+import { resolve } from 'path';
 
 export function getCWD(cwd?: string, realpath?: boolean | getCWD.EnumRealPath, failback?: string | (() => string)): string
 {
@@ -36,10 +36,10 @@ export function getCWD(cwd?: string, realpath?: boolean | getCWD.EnumRealPath, f
 	{
 		if (realpath === getCWD.EnumRealPath.FS)
 		{
-			return fs.realpathSync(cwd);
+			return realpathSync(cwd);
 		}
 
-		return path.resolve(cwd);
+		return resolve(cwd);
 	}
 
 	return cwd

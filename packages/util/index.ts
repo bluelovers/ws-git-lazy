@@ -2,7 +2,7 @@
  * Created by user on 2019/3/10.
  */
 
-import Bluebird = require('bluebird');
+import Bluebird from 'bluebird';
 
 import { console, debug, debugConsole, disableDebug, enableDebug } from './log';
 

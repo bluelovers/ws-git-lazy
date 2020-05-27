@@ -2,7 +2,7 @@
  * Created by user on 2019/6/13.
  */
 
-import micromatch = require('micromatch');
+import micromatch from 'micromatch';
 
 export function matchGlob(list: string[], pattern: string[]): string[]
 {

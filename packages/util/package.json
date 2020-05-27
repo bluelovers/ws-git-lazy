@@ -11,6 +11,8 @@
     "postpublish": "echo \"publish new version\""
   },
   "dependencies": {
+    "@git-lazy/spawn": "^1.0.0",
+    "@git-lazy/debug": "^1.0.0",
     "array-hyper-unique": "^1.1.0",
     "crlf": "^1.1.1",
     "crlf-normalize": "latest",

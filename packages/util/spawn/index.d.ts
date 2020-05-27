@@ -18,8 +18,8 @@ export declare const sync: {
 };
 export declare const async: {
     <T = Buffer>(command: string, args?: string[], options?: CrossSpawn.SpawnOptions): CrossSpawn.SpawnASyncReturnsPromise<T>;
-    <T = Buffer>(command: string, args?: any[], options?: CrossSpawn.SpawnOptions): CrossSpawn.SpawnASyncReturnsPromise<T>;
-    <T = Buffer>(...argv: any[]): CrossSpawn.SpawnASyncReturnsPromise<T>;
+    <T_1 = Buffer>(command: string, args?: any[], options?: CrossSpawn.SpawnOptions): CrossSpawn.SpawnASyncReturnsPromise<T_1>;
+    <T_2 = Buffer>(...argv: any[]): CrossSpawn.SpawnASyncReturnsPromise<T_2>;
 };
 declare const _default: typeof import(".");
 export default _default;

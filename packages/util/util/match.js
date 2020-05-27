@@ -2,11 +2,15 @@
 /**
  * Created by user on 2019/6/13.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const micromatch = require("micromatch");
+exports.matchGlob = void 0;
+const micromatch_1 = __importDefault(require("micromatch"));
 function matchGlob(list, pattern) {
-    return micromatch(list, pattern);
+    return micromatch_1.default(list, pattern);
 }
 exports.matchGlob = matchGlob;
 exports.default = matchGlob;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWF0Y2guanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJtYXRjaC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7O0dBRUc7O0FBRUgseUNBQTBDO0FBRTFDLFNBQWdCLFNBQVMsQ0FBQyxJQUFjLEVBQUUsT0FBaUI7SUFFMUQsT0FBTyxVQUFVLENBQUMsSUFBSSxFQUFFLE9BQU8sQ0FBQyxDQUFBO0FBQ2pDLENBQUM7QUFIRCw4QkFHQztBQUVELGtCQUFlLFNBQVMsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTkvNi8xMy5cbiAqL1xuXG5pbXBvcnQgbWljcm9tYXRjaCA9IHJlcXVpcmUoJ21pY3JvbWF0Y2gnKTtcblxuZXhwb3J0IGZ1bmN0aW9uIG1hdGNoR2xvYihsaXN0OiBzdHJpbmdbXSwgcGF0dGVybjogc3RyaW5nW10pOiBzdHJpbmdbXVxue1xuXHRyZXR1cm4gbWljcm9tYXRjaChsaXN0LCBwYXR0ZXJuKVxufVxuXG5leHBvcnQgZGVmYXVsdCBtYXRjaEdsb2JcbiJdfQ==
+//# sourceMappingURL=match.js.map

@@ -1,7 +1,3 @@
 {
-  "extends": "@bluelovers/tsconfig",
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true
-  }
+  "extends": "@bluelovers/tsconfig/esm/mapfile.json"
 }
