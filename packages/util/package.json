@@ -13,15 +13,7 @@
   "dependencies": {
     "@git-lazy/spawn": "^1.0.0",
     "@git-lazy/debug": "^1.0.0",
-    "array-hyper-unique": "^1.1.0",
-    "crlf": "^1.1.1",
-    "crlf-normalize": "latest",
-    "cross-spawn-extra": "latest",
-    "debug": "^4.1.1",
-    "debug-color2": "latest",
-    "git-root2": "^1.0.7",
-    "micromatch": "^4.0.2",
-    "node-novel-globby": "^2.0.11"
+    "micromatch": "^4.0.2"
   },
   "devDependencies": {
     "@types/bluebird": "latest",
