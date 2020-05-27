@@ -16,22 +16,22 @@
   "scripts": {
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
-    "ncu": "npx yarn-tool ncu -u",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "npm:publish": "npm publish",
     "prepublishOnly": "yarn run ncu && yarn run sort-package-json",
     "postpublish": "echo \"publish new version\"",
+    "ncu": "npx yarn-tool ncu -u",
     "sort-package-json": "npx sort-package-json ./package.json",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "tsc:default": "tsc -p tsconfig.json",
     "tsc:esm": "tsc -p tsconfig.esm.json"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/root": "^1.0.2",
     "@git-lazy/util": "^1.0.6",
-    "ts-type": "^1.2.9"
+    "ts-type": "^1.2.16"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

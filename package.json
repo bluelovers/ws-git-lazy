@@ -6,18 +6,19 @@
     "packages/*"
   ],
   "scripts": {
-    "lerna-publish": "lerna publish",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lerna-publish": "lerna publish --yes --cd-version patch",
+    "ncu": "npx yarn-tool ncu -u && npx yarn-tool ws exec yarn-tool ncu -- -u",
     "run-workspace-publish": "yarn run workspace-publish",
     "run-workspace-version": "yarn run workspace-version",
-    "sort-package-json": "lerna exec \"sort-package-json\"",
-    "ncu": "lerna exec \"yt ncu -u\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sort-package-json": "npx yarn-tool sort && npx yarn-tool ws exec yarn-tool sort"
   },
+  "resolutions": {},
   "dependencies": {
     "workspace-release": "^0.5.1"
   },
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.8"
-  },
-  "resolutions": {}
+    "@bluelovers/tsconfig": "^1.0.19",
+    "@types/node": "latest"
+  }
 }

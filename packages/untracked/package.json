@@ -16,16 +16,16 @@
   "scripts": {
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
-    "ncu": "npx yarn-tool ncu -u",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run ncu && npm run sort-package-json",
     "postpublish": "echo \"publish new version\"",
-    "sort-package-json": "npx sort-package-json ./package.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx sort-package-json ./package.json"
   },
   "dependencies": {
     "@git-lazy/root": "^1.0.2",
     "@git-lazy/util": "^1.0.6",
-    "array-hyper-unique": "^1.0.7"
+    "array-hyper-unique": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"

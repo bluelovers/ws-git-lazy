@@ -11,13 +11,13 @@
     "test": "test"
   },
   "scripts": {
-    "postpublish": "echo \"publish new version\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postpublish": "echo \"publish new version\""
   },
   "dependencies": {
     "@git-lazy/util": "^1.0.6",
-    "git-root2": "^1.0.5",
-    "gitlog2": "^5.0.2"
+    "git-root2": "^1.0.7",
+    "gitlog2": "^5.0.3"
   },
   "publishConfig": {
     "access": "public"
