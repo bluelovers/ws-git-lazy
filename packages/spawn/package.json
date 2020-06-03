@@ -42,6 +42,6 @@
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.0.0",
     "debug-color2": "^1.1.7",
-    "node-novel-globby": "^2.0.11"
+    "node-novel-globby": "^2.0.13"
   }
 }
