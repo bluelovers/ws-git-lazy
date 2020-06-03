@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/branch",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": false,
   "description": "@git-lazy/branch",
   "license": "ISC",
@@ -15,7 +15,7 @@
     "postpublish": "echo \"publish new version\""
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.9",
+    "@git-lazy/util": "^1.0.10",
     "git-root2": "^1.0.7",
     "gitlog2": "^5.0.3"
   },
