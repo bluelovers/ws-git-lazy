@@ -21,7 +21,7 @@
     "prepublishOnly": "yarn run ncu && yarn run sort-package-json",
     "postpublish": "echo \"publish new version\"",
     "ncu": "npx yarn-tool ncu -u",
-    "sort-package-json": "npx sort-package-json ./package.json",
+    "sort-package-json": "npx yarn-tool sort",
     "tsc:default": "tsc -p tsconfig.json",
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
@@ -33,5 +33,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "2a00152a6c81ef274b9fb486159137fcd71e94a4"
 }

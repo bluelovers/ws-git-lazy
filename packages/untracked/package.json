@@ -16,11 +16,11 @@
   "scripts": {
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "ncu": "npx yarn-tool ncu -u",
     "prepublishOnly": "npm run ncu && npm run sort-package-json",
     "postpublish": "echo \"publish new version\"",
-    "ncu": "npx yarn-tool ncu -u",
-    "sort-package-json": "npx sort-package-json ./package.json"
+    "sort-package-json": "npx yarn-tool sort",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@git-lazy/root": "^1.0.4",
@@ -30,5 +30,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "aec3e4fca05555da2a0202380b52706093426414"
+  "gitHead": "2a00152a6c81ef274b9fb486159137fcd71e94a4"
 }
