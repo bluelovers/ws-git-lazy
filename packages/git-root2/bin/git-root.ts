@@ -4,10 +4,10 @@ import gitRoot from '..';
 
 const root = gitRoot();
 
-if (root == null || root === '')
+if (!root?.length)
 {
 	console.error(`can't found git root`);
-	process.exitCode = 1;
+	process.exit(1);
 }
 else
 {
