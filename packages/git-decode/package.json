@@ -1,6 +1,6 @@
 {
   "name": "git-decode",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "decode/encode git style utf8",
   "keywords": [
     "decode",
@@ -41,6 +41,5 @@
   },
   "dependencies": {
     "uni-string": "^1.1.2"
-  },
-  "devDependencies": {}
+  }
 }
