@@ -3,6 +3,7 @@
  */
 
 import UString from 'uni-string';
+import { removeQuote } from './lib/util';
 
 export function encode(s: string)
 {
@@ -30,7 +31,7 @@ export function encode(s: string)
 		;
 }
 
-export function decode(s)
+export function decode(s: string)
 {
 	let matches = [];
 
@@ -88,20 +89,12 @@ export function decode(s)
 
 export function decode2(input: string): string
 {
-	if (input.indexOf('"') == 0)
-	{
-		input = input.replace(/^"|"$/g, '');
-	}
-
 	if (/(?:\\(\d{3}))/.test(input))
 	{
 		input= decode(input);
 	}
 
-	return input;
+	return removeQuote(input);
 }
 
-import * as self from './index';
-
-export default self;
-
+export default exports as typeof import('./index');

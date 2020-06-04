@@ -14,26 +14,33 @@
     "unicode",
     "utf8"
   ],
-  "homepage": "https://github.com/bluelovers/git-decode#readme",
+  "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/git-decode#readme",
   "bugs": {
-    "url": "https://github.com/bluelovers/git-decode/issues"
+    "url": "https://github.com/bluelovers/ws-git-lazy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/git-decode.git"
+    "url": "git+https://github.com/bluelovers/ws-git-lazy.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "bluelovers",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "test": "mocha",
+    "npm:publish": "npm publish",
+    "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
+    "prepublish:lockfile": "npx sync-lockfile .",
     "prepublishOnly": "npm test",
-    "test": "mocha"
+    "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "uni-string": "^1.0.1"
+    "uni-string": "^1.1.2"
   },
   "devDependencies": {}
 }
