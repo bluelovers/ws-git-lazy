@@ -2,13 +2,16 @@
 /**
  * Created by user on 2019/6/4.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterRemoteUrl = exports.parseConfig = exports.findConfigPathLocal = void 0;
 const parse_git_config_1 = require("parse-git-config");
-const gitRoot = require("git-root2");
+const git_root2_1 = __importDefault(require("git-root2"));
 const glob_search_1 = require("glob-search");
 function findConfigPathLocal(cwd) {
-    let root = gitRoot(cwd || process.cwd());
+    let root = git_root2_1.default(cwd || process.cwd());
     return glob_search_1.globSearchSync([
         ".git/config",
     ], {

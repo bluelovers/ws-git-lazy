@@ -2,11 +2,11 @@
  * Created by user on 2018/5/14/014.
  */
 
-import * as crossSpawn from 'cross-spawn-extra';
+import crossSpawn from 'cross-spawn-extra';
 import { resolveRevision, revisionRange, getCwd, revisionRangeData, IOptions as IGitRevRangeOptions } from 'git-rev-range';
-import * as path from 'upath2';
+import path from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
-import gitRoot = require('git-root2');
+import gitRoot from 'git-root2';
 import { decode, decode2 } from 'git-decode';
 
 export interface IOptions

@@ -3,6 +3,7 @@
  */
 
 import { SpawnSyncOptions } from "child_process";
+import { SpawnSyncReturns } from 'cross-spawn-extra/core';
 
 export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
 export const defaultOptions: IOptions = {
@@ -160,7 +161,7 @@ export type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlog
 
 	returnAllFields?: boolean,
 
-	fnHandleBuffer?(buf: Buffer): string,
+	fnHandleBuffer?(buf: SpawnSyncReturns["output"] | Buffer): string,
 };
 
 /**
@@ -412,5 +413,3 @@ export const enum EnumPrettyFormatMark
 	JOIN = '',
 }
 
-// @ts-ignore
-Object.freeze(exports);

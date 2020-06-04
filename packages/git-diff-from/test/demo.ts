@@ -2,7 +2,7 @@
  * Created by user on 2018/5/14/014.
  */
 
-import * as path from "path";
+import path from "path";
 import gitlog from 'gitlog2';
 import gitDiffFrom from '../index';
 

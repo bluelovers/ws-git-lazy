@@ -14,7 +14,7 @@ const util_2 = require("@git-lazy/util/spawn/util");
 const current_name_1 = __importDefault(require("./current-name"));
 const branch_exists_1 = __importDefault(require("./branch-exists"));
 const index_1 = require("@git-lazy/util/util/index");
-const gitlog = require("gitlog2");
+const gitlog2_1 = __importDefault(require("gitlog2"));
 const defaultMessage = 'create empty branch by git-lazy';
 /**
  * 建立空白分支
@@ -90,7 +90,7 @@ function createEmptyBranch(new_name, options) {
         if (current_new2 !== new_name) {
             throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);
         }
-        let _logs = gitlog.sync({
+        let _logs = gitlog2_1.default.sync({
             cwd,
         });
         util_1.debug.enabled && util_1.debug(_logs);

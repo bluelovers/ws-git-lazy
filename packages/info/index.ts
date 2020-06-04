@@ -3,7 +3,7 @@
  */
 
 import { resolveConfigPath, sync as parseGitConfig, expandKeys } from 'parse-git-config';
-import gitRoot = require('git-root2');
+import gitRoot from 'git-root2';
 import { globSearch, globSearchSync, async, sync } from 'glob-search';
 
 export function findConfigPathLocal(cwd?: string)

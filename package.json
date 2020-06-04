@@ -19,6 +19,9 @@
   },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.19",
-    "@types/node": "latest"
+    "@types/jest": "^25.2.3",
+    "@types/node": "latest",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0"
   }
 }

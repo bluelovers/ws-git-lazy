@@ -2,31 +2,36 @@
 /**
  * Created by user on 2019/1/6/006.
  */
-exports.__esModule = true;
-var array_hyper_unique_1 = require("array-hyper-unique");
-var debug0 = require("debug");
-var fs_1 = require("fs");
-var git_decode_1 = require("git-decode");
-var type_1 = require("./type");
-var extend = require("lodash.assign");
-var _decamelize = require("decamelize");
-var sortObjectKeys = require("sort-object-keys2");
-var crlf_normalize_1 = require("crlf-normalize");
-exports.debug = debug0('gitlog');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createError = exports.parseCommitsStdout = exports.parseCommits = exports.parseCommitFields = exports.addOptional = exports.addFlagsBool = exports.toFlag = exports.decamelize = exports.decode = exports.addPrettyFormat = exports.buildCommands = exports.handleOptions = exports.debug = void 0;
+const array_hyper_unique_1 = require("array-hyper-unique");
+const debug_1 = __importDefault(require("debug"));
+const fs_1 = require("fs");
+const git_decode_1 = require("git-decode");
+const type_1 = require("./type");
+const lodash_assign_1 = __importDefault(require("lodash.assign"));
+const decamelize_1 = __importDefault(require("decamelize"));
+const sort_object_keys2_1 = __importDefault(require("sort-object-keys2"));
+const crlf_normalize_1 = require("crlf-normalize");
+const util_1 = require("@git-lazy/spawn/lib/util");
+exports.debug = debug_1.default('gitlog');
 function handleOptions(options) {
     // lazy name
-    var REPO = (options.repo && options.repo != null) ? options.repo : options.cwd;
+    const REPO = (options.repo && options.repo != null) ? options.repo : options.cwd;
     if (!REPO)
-        throw new Error("Repo required!, but got \"" + REPO + "\"");
+        throw new Error(`Repo required!, but got "${REPO}"`);
     if (!fs_1.existsSync(REPO))
-        throw new Error("Repo location does not exist: \"" + REPO + "\"");
-    var defaultExecOptions = {
+        throw new Error(`Repo location does not exist: "${REPO}"`);
+    let defaultExecOptions = {
         cwd: REPO,
         stripAnsi: true,
     };
     // Set defaults
-    options = extend({}, type_1.defaultOptions, { execOptions: defaultExecOptions }, options);
-    options.execOptions = extend(options.execOptions, defaultExecOptions);
+    options = lodash_assign_1.default({}, type_1.defaultOptions, { execOptions: defaultExecOptions }, options);
+    options.execOptions = lodash_assign_1.default(options.execOptions, defaultExecOptions);
     if (options.returnAllFields) {
         options.fields = [].concat(Object.keys(type_1.fields));
         if (options.nameStatus && typeof options.nameStatusFiles == 'undefined') {
@@ -38,8 +43,8 @@ function handleOptions(options) {
 exports.handleOptions = handleOptions;
 function buildCommands(options) {
     // Start constructing command
-    var bin = 'git';
-    var commands = [
+    let bin = 'git';
+    let commands = [
         'log',
     ];
     commands = addFlagsBool(commands, options, [
@@ -71,32 +76,31 @@ function buildCommands(options) {
         'simplifyMerges',
     ]);
     if (options.file || options.files && options.files.length) {
-        var ls = [options.file].concat(options.files || []).filter(function (v) { return v != null; });
+        let ls = [options.file].concat(options.files || []).filter(v => v != null);
         if (!ls.length) {
-            throw new TypeError("file list is empty");
+            throw new TypeError(`file list is empty`);
         }
         commands = addFlagsBool(commands, options, [
             'follow',
         ]);
-        commands.push.apply(commands, ['--'].concat(ls));
+        commands.push('--', ...ls);
     }
     else if (options.follow) {
-        throw new TypeError("options.follow works only for a single file");
+        throw new TypeError(`options.follow works only for a single file`);
     }
     exports.debug('command', options.execOptions, commands);
-    return { bin: bin, commands: commands };
+    return { bin, commands };
 }
 exports.buildCommands = buildCommands;
-function addPrettyFormat(commands, options, flagName) {
-    if (flagName === void 0) { flagName = "pretty" /* PRETTY */; }
+function addPrettyFormat(commands, options, flagName = "pretty" /* PRETTY */) {
     // Start of custom format
     // Iterating through the fields and adding them to the custom format
-    var command = options.fields.reduce(function (command, field) {
+    let command = options.fields.reduce(function (command, field) {
         if (!type_1.fields[field] && type_1.notOptFields.indexOf(field) === -1)
             throw new RangeError('Unknown field: ' + field);
         command.push("\t" /* DELIMITER */ + type_1.fields[field]);
         return command;
-    }, [toFlag(flagName) + "=" + "@begin@" /* BEGIN */])
+    }, [`${toFlag(flagName)}=${"@begin@" /* BEGIN */}`])
         .concat(["@end@" /* END */])
         .join("" /* JOIN */);
     commands.push(command);
@@ -112,7 +116,7 @@ function decode(file) {
 }
 exports.decode = decode;
 function decamelize(key) {
-    return _decamelize(key, '-');
+    return decamelize_1.default(key, '-');
 }
 exports.decamelize = decamelize;
 function toFlag(key) {
@@ -120,8 +124,7 @@ function toFlag(key) {
 }
 exports.toFlag = toFlag;
 function addFlagsBool(commands, options, flagNames) {
-    for (var _i = 0, flagNames_1 = flagNames; _i < flagNames_1.length; _i++) {
-        var k = flagNames_1[_i];
+    for (let k of flagNames) {
         if (options[k]) {
             commands.push(toFlag(k));
         }
@@ -133,38 +136,38 @@ exports.addFlagsBool = addFlagsBool;
  Add optional parameter to command
  */
 function addOptional(commands, options) {
-    var cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer', 'skip'];
-    for (var _i = 0, cmdOptional_1 = cmdOptional; _i < cmdOptional_1.length; _i++) {
-        var k = cmdOptional_1[_i];
+    let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer', 'skip'];
+    for (let k of cmdOptional) {
         if (options[k]) {
-            commands.push("--" + k + "=" + options[k]);
+            commands.push(`--${k}=${options[k]}`);
         }
     }
     return commands;
 }
 exports.addOptional = addOptional;
 function parseCommitFields(parsed, commitField, index, fields) {
-    var key = fields[index];
+    let key = fields[index];
     switch (key) {
         case 'tags':
-            var tags_1 = [];
-            var start = commitField.indexOf('tag: ');
+            let tags = [];
+            let start = commitField.indexOf('tag: ');
             if (start >= 0) {
                 commitField
                     .substr(start + 5)
                     .trim()
                     .split(',')
                     .forEach(function (tag) {
-                    tags_1.push(tag.trim());
+                    tags.push(tag.trim());
                 });
             }
-            parsed[key] = tags_1;
+            parsed[key] = tags;
             break;
         case 'authorDateUnixTimestamp':
         case 'committerDateUnixTimestamp':
             parsed[key] = parseInt(commitField);
             break;
         default:
+            // @ts-ignore
             parsed[key] = commitField;
             break;
     }
@@ -172,14 +175,14 @@ function parseCommitFields(parsed, commitField, index, fields) {
 }
 exports.parseCommitFields = parseCommitFields;
 function parseCommits(commits, options) {
-    var fields = options.fields, nameStatus = options.nameStatus;
+    let { fields, nameStatus } = options;
     return commits.map(function (_commit, _index) {
         //console.log(_commit);
-        var parts = _commit.split("@end@" /* END */);
-        var commit = parts[0].split(type_1.delimiter);
-        var nameStatusFiles = [];
+        let parts = _commit.split("@end@" /* END */);
+        let commit = parts[0].split(type_1.delimiter);
+        let nameStatusFiles = [];
         if (parts[1]) {
-            var parseNameStatus = parts[1].trimLeft().split(crlf_normalize_1.LF);
+            let parseNameStatus = parts[1].trimLeft().split(crlf_normalize_1.LF);
             // Removes last empty char if exists
             if (parseNameStatus[parseNameStatus.length - 1] === '') {
                 parseNameStatus.pop();
@@ -192,12 +195,12 @@ function parseCommits(commits, options) {
                 // 0 will always be status, last will be the filename as it is in the commit,
                 // anything inbetween could be the old name if renamed or copied
                 .reduce(function (a, b) {
-                var tempArr = [b[0], b[b.length - 1]];
+                let tempArr = [b[0], b[b.length - 1]];
                 tempArr[1] = decode(tempArr[1]);
                 // @ts-ignore
                 nameStatusFiles.push(tempArr);
                 // If any files in between loop through them
-                for (var i = 1, len = b.length - 1; i < len; i++) {
+                for (let i = 1, len = b.length - 1; i < len; i++) {
                     // If status R then add the old filename as a deleted file + status
                     // Other potentials are C for copied but this wouldn't require the original deleting
                     if (b[0].slice(0, 1) === type_1.EnumFileStatus.RENAMED) {
@@ -213,8 +216,8 @@ function parseCommits(commits, options) {
         exports.debug('commit', commit);
         // Remove the first empty char from the array
         commit.shift();
-        var parsed = {
-            _index: _index,
+        let parsed = {
+            _index,
         };
         if (nameStatus) {
             // Create arrays for non optional fields if turned on
@@ -228,7 +231,7 @@ function parseCommits(commits, options) {
             }
             else {
                 if (nameStatus) {
-                    var pos = (index - fields.length) % type_1.notOptFields.length;
+                    let pos = (index - fields.length) % type_1.notOptFields.length;
                     exports.debug('nameStatus', (index - fields.length), type_1.notOptFields.length, pos, commitField);
                     parsed[type_1.notOptFields[pos]].push(commitField);
                 }
@@ -238,22 +241,22 @@ function parseCommits(commits, options) {
             parsed.fileStatus = array_hyper_unique_1.array_unique(nameStatusFiles);
         }
         // @ts-ignore
-        parsed = sortObjectKeys(parsed, type_1.KEY_ORDER);
+        parsed = sort_object_keys2_1.default(parsed, type_1.KEY_ORDER);
         return parsed;
     });
 }
 exports.parseCommits = parseCommits;
 function parseCommitsStdout(options, stdout) {
-    var str;
+    let str;
     exports.debug('stdout', stdout);
     if (options.fnHandleBuffer) {
         str = options.fnHandleBuffer(stdout);
     }
     else {
-        str = stdout.toString();
+        str = util_1.crossSpawnOutput(stdout);
     }
     //console.log(str);
-    var commits = str.split("@begin@" /* BEGIN */);
+    let commits = str.split("@begin@" /* BEGIN */);
     if (commits[0] === '') {
         commits.shift();
     }
@@ -266,12 +269,11 @@ exports.parseCommitsStdout = parseCommitsStdout;
 function createError(message, data, err) {
     // @ts-ignore
     err = err || Error;
-    var e = message instanceof Error ? message : new err(message);
+    let e = message instanceof Error ? message : new err(message);
     // @ts-ignore
     e.data = data;
     // @ts-ignore
     return e;
 }
 exports.createError = createError;
-// @ts-ignore
-Object.freeze(exports);
+//# sourceMappingURL=util.js.map

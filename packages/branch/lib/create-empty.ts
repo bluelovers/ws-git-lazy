@@ -9,8 +9,8 @@ import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/uti
 import currentBranchName from './current-name';
 import localBranchExists from './branch-exists';
 import { getCWD } from '@git-lazy/util/util/index';
-import fs = require('fs');
-import gitlog = require('gitlog2');
+import fs from 'fs';
+import gitlog from 'gitlog2';
 
 const defaultMessage = 'create empty branch by git-lazy';
 

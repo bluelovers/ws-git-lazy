@@ -3,7 +3,7 @@
  */
 
 import { array_unique } from 'array-hyper-unique';
-import debug0 = require('debug');
+import debug0 from 'debug';
 import { existsSync } from "fs";
 import { decode as _decode } from 'git-decode';
 import {
@@ -17,11 +17,12 @@ import {
 	KEY_ORDER,
 	notOptFields,
 } from './type';
-import extend = require('lodash.assign');
-import _decamelize = require('decamelize');
-import sortObjectKeys = require('sort-object-keys2');
-import { SpawnSyncOptions } from 'cross-spawn-extra/core';
+import extend from 'lodash.assign';
+import _decamelize from 'decamelize';
+import sortObjectKeys from 'sort-object-keys2';
+import { SpawnSyncOptions, SpawnSyncReturns } from 'cross-spawn-extra/core';
 import { LF } from 'crlf-normalize';
+import { crossSpawnOutput } from '@git-lazy/spawn/lib/util';
 
 export const debug = debug0('gitlog');
 
@@ -230,6 +231,7 @@ export function parseCommitFields(parsed: IParseCommit, commitField: string, ind
 			parsed[key] = parseInt(commitField);
 			break;
 		default:
+			// @ts-ignore
 			parsed[key] = commitField;
 			break;
 	}
@@ -346,7 +348,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 	})
 }
 
-export function parseCommitsStdout(options: IOptions, stdout: Buffer): IReturnCommits
+export function parseCommitsStdout(options: IOptions, stdout: SpawnSyncReturns["output"] | Buffer): IReturnCommits
 {
 	let str: string;
 
@@ -358,7 +360,7 @@ export function parseCommitsStdout(options: IOptions, stdout: Buffer): IReturnCo
 	}
 	else
 	{
-		str = stdout.toString()
+		str = crossSpawnOutput(stdout)
 	}
 
 	//console.log(str);
@@ -402,5 +404,3 @@ export function createError<D extends any, E extends Error>(message?, data?: D, 
 	return e;
 }
 
-// @ts-ignore
-Object.freeze(exports);

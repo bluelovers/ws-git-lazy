@@ -2,6 +2,9 @@
 /**
  * Created by user on 2019/3/10.
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.renameRemoteBranch = void 0;
 /**
@@ -10,7 +13,7 @@ exports.renameRemoteBranch = void 0;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const util_2 = require("@git-lazy/util/spawn/util");
-const fs = require("fs");
+const fs_1 = __importDefault(require("fs"));
 function renameRemoteBranch(remote, old_name, new_name, options) {
     if (options = _check_before(remote, old_name, new_name, options)) {
         let { cwd } = options;
@@ -35,7 +38,7 @@ function _check_before(remote, old_name, new_name, options) {
     if (util_1.notEmptyString(remote) && util_1.notEmptyString(old_name) && util_1.notEmptyString(new_name) && old_name !== new_name) {
         options = options || {};
         let { cwd = process.cwd() } = options;
-        if (util_1.notEmptyString(cwd) && (cwd = fs.realpathSync(cwd))) {
+        if (util_1.notEmptyString(cwd) && (cwd = fs_1.default.realpathSync(cwd))) {
             options.cwd = cwd;
             return options;
         }

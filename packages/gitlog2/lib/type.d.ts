@@ -3,6 +3,7 @@
  */
 /// <reference types="node" />
 import { SpawnSyncOptions } from "child_process";
+import { SpawnSyncReturns } from 'cross-spawn-extra/core';
 export declare const defaultFields: IFieldsArray;
 export declare const defaultOptions: IOptions;
 export interface IOptionsGitFlogsExtra {
@@ -129,7 +130,7 @@ export declare type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOption
     file?: string;
     files?: string[];
     returnAllFields?: boolean;
-    fnHandleBuffer?(buf: Buffer): string;
+    fnHandleBuffer?(buf: SpawnSyncReturns["output"] | Buffer): string;
 };
 /**
  * https://ruby-china.org/topics/939

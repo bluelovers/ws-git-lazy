@@ -16,9 +16,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.async = exports.sync = exports.crossSpawnAsync = exports.crossSpawnSync = void 0;
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 Object.defineProperty(exports, "crossSpawnSync", { enumerable: true, get: function () { return cross_spawn_extra_1.sync; } });
+Object.defineProperty(exports, "sync", { enumerable: true, get: function () { return cross_spawn_extra_1.sync; } });
 Object.defineProperty(exports, "crossSpawnAsync", { enumerable: true, get: function () { return cross_spawn_extra_1.async; } });
+Object.defineProperty(exports, "async", { enumerable: true, get: function () { return cross_spawn_extra_1.async; } });
 __exportStar(require("./types"), exports);
-exports.sync = cross_spawn_extra_1.sync;
-exports.async = cross_spawn_extra_1.async;
 exports.default = exports;
 //# sourceMappingURL=index.js.map

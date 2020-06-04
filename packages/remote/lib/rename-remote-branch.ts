@@ -9,7 +9,7 @@
 import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
 import { notEmptyString, debug } from '@git-lazy/util';
 import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
-import fs = require('fs');
+import fs from 'fs';
 
 export function renameRemoteBranch(remote: string, old_name: string, new_name: string, options?: renameRemoteBranch.IOptions)
 {

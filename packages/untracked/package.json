@@ -2,6 +2,7 @@
   "name": "@git-lazy/untracked",
   "version": "1.0.7",
   "description": "",
+  "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-git-lazy/issues"
@@ -11,24 +12,32 @@
     "url": "git+https://github.com/bluelovers/ws-git-lazy.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "bluelovers",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
-    "ncu": "npx yarn-tool ncu -u",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm:publish": "npm publish",
+    "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
+    "prepublish:lockfile": "npx sync-lockfile .",
     "prepublishOnly": "npm run ncu && npm run sort-package-json",
+    "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish": "echo \"publish new version\"",
-    "sort-package-json": "npx yarn-tool sort",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
     "@git-lazy/root": "^1.0.5",
     "@git-lazy/util": "^1.0.11",
     "array-hyper-unique": "^1.1.0"
   },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "2a00152a6c81ef274b9fb486159137fcd71e94a4"
+  }
 }

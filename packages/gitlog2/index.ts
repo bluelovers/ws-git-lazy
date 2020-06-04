@@ -20,10 +20,10 @@ import {
 	handleOptions,
 	buildCommands, createError,
 } from './lib/util';
-import Bluebird = require('bluebird');
-import crossSpawn = require('cross-spawn-extra');
-import extend = require('lodash.assign');
-import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
+import Bluebird from 'bluebird';
+import crossSpawn from 'cross-spawn-extra';
+import extend from 'lodash.assign';
+import { crossSpawnGitSync, crossSpawnGitAsync } from '@git-lazy/spawn';
 
 export { EnumGitDateFormat, IReturnCommits, IParseCommit, IFieldsArray, defaultFields, defaultOptions }
 export { IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, }
@@ -39,15 +39,15 @@ export function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[] |
 	if (!cb)
 	{
 		// run Sync
-		return parseCommitsStdout(options, crossSpawnSync(bin, commands, options.execOptions as any).stdout)
+		return parseCommitsStdout(options, crossSpawnGitSync(bin, commands, options.execOptions as any).stdout as any)
 	}
 
-	return crossSpawnAsync(bin, commands, options.execOptions)
+	return crossSpawnGitAsync(bin, commands, options.execOptions)
 		.then(function (child)
 		{
 			let { stdout, stderr, error } = child;
 
-			let commits = parseCommitsStdout(options, stdout);
+			let commits = parseCommitsStdout(options, stdout as any);
 
 			let err = stderr && stderr.toString() || error || null;
 
@@ -145,6 +145,3 @@ gitlog.gitlog = gitlog;
 gitlog.default = gitlog;
 
 export default gitlog
-
-// @ts-ignore
-Object.freeze(exports);

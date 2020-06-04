@@ -3,12 +3,28 @@
   "version": "1.0.11",
   "private": false,
   "description": "@git-lazy core lib and a better cross spawn for git",
+  "keywords": [],
+  "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/util#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-git-lazy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-git-lazy.git"
+  },
   "license": "ISC",
-  "author": "",
+  "author": "bluelovers",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postpublish": "echo \"publish new version\""
+    "npm:publish": "npm publish",
+    "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
+    "prepublish:lockfile": "npx sync-lockfile .",
+    "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
+    "postpublish": "echo \"publish new version\"",
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.1",
@@ -22,6 +38,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "2a00152a6c81ef274b9fb486159137fcd71e94a4"
+  }
 }

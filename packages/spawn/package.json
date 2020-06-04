@@ -2,6 +2,7 @@
   "name": "@git-lazy/spawn",
   "version": "1.0.4",
   "description": "",
+  "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/spawn#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-git-lazy/issues"
@@ -13,6 +14,9 @@
   "license": "ISC",
   "author": "bluelovers",
   "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
@@ -29,12 +33,6 @@
     "tsc:default": "tsc -p tsconfig.json",
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
-  "devDependencies": {
-    "@types/bluebird": "^3.5.32"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@git-lazy/debug": "^1.0.1",
     "array-hyper-unique": "^1.1.0",
@@ -44,5 +42,10 @@
     "debug-color2": "^1.1.7",
     "node-novel-globby": "^2.0.13"
   },
-  "gitHead": "2a00152a6c81ef274b9fb486159137fcd71e94a4"
+  "devDependencies": {
+    "@types/bluebird": "^3.5.32"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

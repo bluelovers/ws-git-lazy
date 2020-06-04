@@ -1,38 +1,42 @@
 "use strict";
-exports.__esModule = true;
-var type_1 = require("./lib/type");
-exports.defaultOptions = type_1.defaultOptions;
-exports.EnumGitDateFormat = type_1.EnumGitDateFormat;
-exports.defaultFields = type_1.defaultFields;
-var util_1 = require("./lib/util");
-var Bluebird = require("bluebird");
-var git_1 = require("@git-lazy/util/spawn/git");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.async = exports.asyncCallback = exports.sync = exports.gitlog = exports.defaultOptions = exports.defaultFields = exports.EnumGitDateFormat = void 0;
+const type_1 = require("./lib/type");
+Object.defineProperty(exports, "defaultOptions", { enumerable: true, get: function () { return type_1.defaultOptions; } });
+Object.defineProperty(exports, "EnumGitDateFormat", { enumerable: true, get: function () { return type_1.EnumGitDateFormat; } });
+Object.defineProperty(exports, "defaultFields", { enumerable: true, get: function () { return type_1.defaultFields; } });
+const util_1 = require("./lib/util");
+const bluebird_1 = __importDefault(require("bluebird"));
+const spawn_1 = require("@git-lazy/spawn");
 function gitlog(options, cb) {
     options = util_1.handleOptions(options);
-    var _a = util_1.buildCommands(options), bin = _a.bin, commands = _a.commands;
+    let { bin, commands } = util_1.buildCommands(options);
     if (!cb) {
         // run Sync
-        return util_1.parseCommitsStdout(options, git_1.crossSpawnSync(bin, commands, options.execOptions).stdout);
+        return util_1.parseCommitsStdout(options, spawn_1.crossSpawnGitSync(bin, commands, options.execOptions).stdout);
     }
-    return git_1.crossSpawnAsync(bin, commands, options.execOptions)
+    return spawn_1.crossSpawnGitAsync(bin, commands, options.execOptions)
         .then(function (child) {
-        var stdout = child.stdout, stderr = child.stderr, error = child.error;
-        var commits = util_1.parseCommitsStdout(options, stdout);
-        var err = stderr && stderr.toString() || error || null;
+        let { stdout, stderr, error } = child;
+        let commits = util_1.parseCommitsStdout(options, stdout);
+        let err = stderr && stderr.toString() || error || null;
         if (err) {
-            var e_1 = util_1.createError(err, {
-                bin: bin,
-                commands: commands,
-                child: child,
-                commits: commits,
+            let e = util_1.createError(err, {
+                bin,
+                commands,
+                child,
+                commits,
             });
-            return Bluebird.reject(err)
+            return bluebird_1.default.reject(err)
                 .tapCatch(function () {
-                return cb(e_1, commits);
+                return cb(e, commits);
             });
         }
         else {
-            return Bluebird.resolve(commits)
+            return bluebird_1.default.resolve(commits)
                 .tap(function () {
                 return cb(null, commits);
             });
@@ -54,7 +58,7 @@ exports.gitlog = gitlog;
      */
     function asyncCallback(options, cb) {
         if (typeof cb !== 'function') {
-            throw new TypeError("expected cb as function");
+            throw new TypeError(`expected cb as function`);
         }
         // @ts-ignore
         return gitlog(options, cb);
@@ -93,7 +97,6 @@ exports.sync = gitlog.sync;
 exports.asyncCallback = gitlog.asyncCallback;
 exports.async = gitlog.async;
 gitlog.gitlog = gitlog;
-gitlog["default"] = gitlog;
-exports["default"] = gitlog;
-// @ts-ignore
-Object.freeze(exports);
+gitlog.default = gitlog;
+exports.default = gitlog;
+//# sourceMappingURL=index.js.map

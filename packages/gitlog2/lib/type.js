@@ -2,7 +2,8 @@
 /**
  * Created by user on 2019/1/6/006.
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EnumPrettyFormatMark = exports.EnumPrettyFormatFlags = exports.notOptFields = exports.delimiter = exports.KEY_ORDER = exports.EnumGitDateFormat = exports.EnumFileStatus = exports.fields = exports.defaultOptions = exports.defaultFields = void 0;
 exports.defaultFields = ['abbrevHash', 'hash', 'subject', 'authorName'];
 exports.defaultOptions = {
     number: 10,
@@ -122,5 +123,16 @@ exports.KEY_ORDER = [
 ];
 exports.delimiter = "\t";
 exports.notOptFields = ['status', 'files'];
-// @ts-ignore
-Object.freeze(exports);
+var EnumPrettyFormatFlags;
+(function (EnumPrettyFormatFlags) {
+    EnumPrettyFormatFlags["PRETTY"] = "pretty";
+    EnumPrettyFormatFlags["FORMAT"] = "format";
+})(EnumPrettyFormatFlags = exports.EnumPrettyFormatFlags || (exports.EnumPrettyFormatFlags = {}));
+var EnumPrettyFormatMark;
+(function (EnumPrettyFormatMark) {
+    EnumPrettyFormatMark["BEGIN"] = "@begin@";
+    EnumPrettyFormatMark["DELIMITER"] = "\t";
+    EnumPrettyFormatMark["END"] = "@end@";
+    EnumPrettyFormatMark["JOIN"] = "";
+})(EnumPrettyFormatMark = exports.EnumPrettyFormatMark || (exports.EnumPrettyFormatMark = {}));
+//# sourceMappingURL=type.js.map

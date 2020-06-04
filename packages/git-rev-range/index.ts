@@ -173,6 +173,4 @@ export function getCwd(cwd?: string | IOptions)
 	return cwd && (typeof cwd == 'string' ? cwd : (<IOptions>cwd).cwd) || process.cwd();
 }
 
-import * as self from './index';
-
-export default self;
+export default exports as typeof import('./index');
