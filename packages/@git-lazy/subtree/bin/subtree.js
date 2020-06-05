@@ -112,6 +112,9 @@ function _builder(cmd, yargs) {
     _ = _.slice(1);
     remote = (_a = remote !== null && remote !== void 0 ? remote : name) !== null && _a !== void 0 ? _a : _.shift();
     branch = branch !== null && branch !== void 0 ? branch : _.shift();
+    delete args_plus.P;
+    delete args_plus.h;
+    delete args_plus.v;
     let options = {
         ...args_plus,
         cwd,

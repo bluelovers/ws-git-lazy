@@ -116,6 +116,10 @@ function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 	remote = remote ?? name ?? _.shift();
 	branch = branch ?? _.shift();
 
+	delete args_plus.P;
+	delete args_plus.h;
+	delete args_plus.v;
+
 	let options: IOptions = {
 		...args_plus,
 
