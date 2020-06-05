@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.1...@git-lazy/subtree@1.0.2) (2020-06-05)
+
+
+### Features
+
+* @git-lazy/subtree ([c8a2141](https://github.com/bluelovers/ws-git-lazy/commit/c8a21417c8e5ce4fb4cbd0b1e363c7f08d9a2a99))
+
+
+
+
+
 ## 1.0.1 (2020-06-05)
 
 
