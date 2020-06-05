@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prefix ../node-novel-info 1`] = `
+Object {
+  "prefix": "../node-novel-info",
+  "prefixType": 1,
+}
+`;
+
+exports[`prefix ..\\node-novel-info 1`] = `
+Object {
+  "prefix": "../node-novel-info",
+  "prefixType": 1,
+}
+`;
+
+exports[`prefix ./node-novel-info 1`] = `
+Object {
+  "prefix": "./node-novel-info",
+  "prefixType": 1,
+}
+`;
+
+exports[`prefix .\\node-novel-info 1`] = `
+Object {
+  "prefix": "./node-novel-info",
+  "prefixType": 1,
+}
+`;
+
+exports[`prefix //node-novel-info 1`] = `
+Object {
+  "prefix": "node-novel-info",
+  "prefixType": 0,
+}
+`;
+
+exports[`prefix /node-novel-info 1`] = `
+Object {
+  "prefix": "node-novel-info",
+  "prefixType": 0,
+}
+`;
+
+exports[`prefix \\\\node-novel-info 1`] = `
+Object {
+  "prefix": "node-novel-info",
+  "prefixType": 0,
+}
+`;
+
+exports[`prefix \\node-novel-info 1`] = `
+Object {
+  "prefix": "node-novel-info",
+  "prefixType": 0,
+}
+`;
+
+exports[`prefix packages/node-novel-info 1`] = `
+Object {
+  "prefix": "packages/node-novel-info",
+  "prefixType": 0,
+}
+`;
+
+exports[`prefix packages\\node-novel-info 1`] = `
+Object {
+  "prefix": "packages/node-novel-info",
+  "prefixType": 0,
+}
+`;

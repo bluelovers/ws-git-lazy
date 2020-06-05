@@ -10,6 +10,8 @@ import CrossSpawn from 'cross-spawn-extra';
 
 export * from './lib/types';
 
+export { crossSpawnOutput }
+
 /**
  * 適用於 git 的 crossSpawnSync
  */

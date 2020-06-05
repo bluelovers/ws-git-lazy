@@ -16,9 +16,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = void 0;
+exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.crossSpawnOutput = void 0;
 const debug_1 = require("@git-lazy/debug");
 const util_1 = require("./lib/util");
+Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
 const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 __exportStar(require("./lib/types"), exports);
 /**

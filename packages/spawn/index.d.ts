@@ -4,7 +4,9 @@
 /// <reference types="node" />
 import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra/type';
 import { SpawnASyncReturns, SpawnASyncReturnsPromise, SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { crossSpawnOutput } from './lib/util';
 export * from './lib/types';
+export { crossSpawnOutput };
 /**
  * 適用於 git 的 crossSpawnSync
  */
