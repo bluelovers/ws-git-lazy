@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.13...@git-lazy/remote@1.0.14) (2020-06-05)
+
+**Note:** Version bump only for package @git-lazy/remote
+
+
+
+
+
 ## [1.0.13](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.12...@git-lazy/remote@1.0.13) (2020-06-04)
 
 **Note:** Version bump only for package @git-lazy/remote
