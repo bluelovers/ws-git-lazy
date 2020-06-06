@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import yargs, { Argv } from 'yargs';
-import { EnumSubtreeCmd, IOptions } from '..';
-import { _call, handleOptions, _cmd } from '../lib/core';
+import { EnumSubtreeCmd, IOptionsCommon, IOptions, IOptionsRuntime, IOptionsSplit } from '..';
+import { handleOptions, _cmd, unparseCmd } from '../lib/core';
 import logger from 'debug-color2/logger';
 import console, { debug } from '@git-lazy/debug';
 import unparse from 'yargs-unparser';
 import { version } from '../package.json';
+import { _cmdSplit, handleOptionsSplit, unparseCmdSplit } from '../lib/core/split';
 
 let cli = yargs
 	.option('prefix', {
@@ -21,6 +22,7 @@ let cli = yargs
 		string: true,
 	})
 	.option('branch', {
+		alias: ['b'],
 		string: true,
 	})
 	.option('squash', {
@@ -50,6 +52,7 @@ let cli = yargs
 cli = _setup_cmd(cli, EnumSubtreeCmd.add);
 cli = _setup_cmd(cli, EnumSubtreeCmd.pull);
 cli = _setup_cmd(cli, EnumSubtreeCmd.push);
+cli = _setup_cmd(cli, EnumSubtreeCmd.split);
 
 cli
 	.strict(false)
@@ -57,7 +60,8 @@ cli
 	.showHelpOnFail(true)
 	.version('v')
 	.demandCommand()
-	.command('$0', '', (yargs) => {
+	.command('$0', '', (yargs) =>
+	{
 
 		if (yargs.argv.help || yargs.argv.h)
 		{
@@ -87,7 +91,20 @@ function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
 	aliases.map(cmd => `${cmd} [remote] [branch]`)
 
 	yargs
-		.command(aliases, ``, (yargs: typeof cli) => {
+		.command(aliases, ``, (yargs: typeof cli) =>
+		{
+
+			if (cmd === EnumSubtreeCmd.split)
+			{
+				yargs = yargs
+					.option('rejoin', {
+						boolean: true,
+					})
+					.option('ignoreJoins', {
+						boolean: true,
+					})
+				;
+			}
 
 			if (yargs.argv.help || yargs.argv.h)
 			{
@@ -113,12 +130,19 @@ function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 
 	_ = _.slice(1);
 
-	remote = remote ?? name ?? _.shift();
+	if (cmd !== EnumSubtreeCmd.split)
+	{
+		remote = remote ?? name ?? _.shift();
+	}
+
 	branch = branch ?? _.shift();
 
 	delete args_plus.P;
 	delete args_plus.h;
 	delete args_plus.v;
+	delete args_plus.b;
+	delete args_plus.disableExec;
+	delete args_plus['disable-exec'];
 
 	let options: IOptions = {
 		...args_plus,
@@ -135,13 +159,21 @@ function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 
 	debug.log(options);
 
-	const opts = handleOptions(options)
+	let opts: IOptionsRuntime | IOptionsRuntime<IOptionsSplit>;
+	let command: string;
 
-	const command = `git ${cmd} ${unparse({
-		...args_plus,
-		_: [opts.remote, opts.branch],
-		prefix: opts.prefix,
-	}).join(' ')}`;
+	if (cmd === EnumSubtreeCmd.split)
+	{
+		opts = handleOptionsSplit(options as IOptionsSplit)
+
+		command = `git ${unparseCmdSplit(cmd, opts).join(' ')}`;
+	}
+	else
+	{
+		opts = handleOptions(options as IOptionsCommon)
+
+		command = `git ${unparseCmd(cmd, opts).join(' ')}`;
+	}
 
 	if (argv.disableExec)
 	{
@@ -152,6 +184,14 @@ function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 		logger.debug(`[GIT]`, opts.root);
 		logger.debug(`[CWD]`, opts.cwd);
 		logger.debug(command);
-		_cmd(cmd, opts)
+
+		if (cmd === EnumSubtreeCmd.split)
+		{
+			_cmdSplit(cmd, opts as IOptionsRuntime<IOptionsSplit>)
+		}
+		else
+		{
+			_cmd(cmd, opts as IOptionsRuntime)
+		}
 	}
 }

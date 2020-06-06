@@ -15,5 +15,6 @@ var EnumSubtreeCmd;
     EnumSubtreeCmd["add"] = "add";
     EnumSubtreeCmd["push"] = "push";
     EnumSubtreeCmd["pull"] = "pull";
+    EnumSubtreeCmd["split"] = "split";
 })(EnumSubtreeCmd = exports.EnumSubtreeCmd || (exports.EnumSubtreeCmd = {}));
 //# sourceMappingURL=types.js.map

@@ -2,49 +2,48 @@
  * Created by user on 2020/6/5.
  */
 
-import { EnumSubtreeCmd, IOptions, IOptionsRuntime, EnumPrefixType } from './types';
-import { resolve, normalize, relative } from 'upath2';
-import gitRoot from 'git-root2';
-import { handlePrefix, inSubPath } from './util';
+import {
+	EnumSubtreeCmd,
+	IOptionsCommon,
+	IOptionsRuntime,
+	IOptionsCore,
+	IOptionsCoreWithHandlers,
+	IOptionsSplit, IOptions,
+} from './types';
+import { handlePrefix, assertString, handlePrefixPath } from './util';
 import crossSpawnGitAsync from '@git-lazy/spawn';
-import debug from '@git-lazy/debug';
+import { handleGitPath } from './util/git';
 
-export function handleOptions(options: IOptions): IOptionsRuntime
+export function handleOptions<O extends IOptions = IOptionsCommon>(options: O): IOptionsRuntime<O>
 {
-	let cwd = resolve(options.cwd ?? process.cwd());
-	let root = normalize(gitRoot(cwd));
+	let { cwd, root } = handleGitPath(options);
 
 	let { prefix, prefixType } = handlePrefix(options.prefix);
-	let prefixPath = prefix;
 
-	if (prefixType !== EnumPrefixType.ROOT)
-	{
-		prefixPath = resolve(cwd, prefix)
+	let { prefixPath } = (options.handlers?.handlePrefixPath ?? handlePrefixPath)({
+		prefix,
+		prefixType,
+		root,
+		cwd,
+	});
 
-		if (inSubPath(prefixPath, root))
-		{
-			prefixPath = relative(root, prefixPath)
-		}
-		else
-		{
-			throw new Error(`prefix path is not allow: ${prefixPath}`)
-		}
+	let options2 = {
+		...options,
 	}
 
-	let branch = options.branch ?? 'master';
-	let remote = options.remote ?? options.name;
-
-	if (typeof remote !== 'string' || !remote.length)
+	if (options.handlers?.handleValue)
 	{
-		throw new TypeError(`remote is not valid: ${remote}`)
+		options = options.handlers.handleValue(options2 as any) as O;
+	}
+	else
+	{
+		options2.branch = options2.branch ?? 'master';
+		options2.remote = options2.remote ?? options2.name;
 	}
 
-	if (typeof branch !== 'string' || !branch.length)
-	{
-		throw new TypeError(`branch is not valid: ${branch}`)
-	}
+	let { remote, branch, } = options2;
 
-	return {
+	let data: IOptionsRuntime<O> = {
 		options,
 		cwd,
 		root,
@@ -56,25 +55,46 @@ export function handleOptions(options: IOptions): IOptionsRuntime
 		prefix,
 		prefixPath,
 	}
+
+	if (options.handlers?.assertValue)
+	{
+		options.handlers.assertValue(data as any)
+	}
+	else
+	{
+		assertString(data.remote, 'remote');
+		assertString(data.branch, 'branch');
+	}
+
+	assertString(data.root, 'root');
+	assertString(data.prefixPath, 'prefix');
+
+	return data
 }
 
-export function _cmd(cmd: EnumSubtreeCmd, opts: IOptionsRuntime)
+export function unparseCmd(cmd: EnumSubtreeCmd, opts: IOptionsRuntime)
 {
-	return crossSpawnGitAsync('git', [
+	return [
 		'subtree',
 		cmd,
 		opts.remote,
+		'-b',
 		opts.branch,
 		'--prefix',
 		opts.prefixPath,
 		...(opts.options.squash ? ['--squash'] : []),
-	], {
+	]
+}
+
+export function _cmd(cmd: EnumSubtreeCmd, opts: IOptionsRuntime)
+{
+	return crossSpawnGitAsync('git', unparseCmd(cmd, opts), {
 		cwd: opts.root,
 		stdio: 'inherit',
 	})
 }
 
-export function _call(cmd: EnumSubtreeCmd, options: IOptions)
+export function _call(cmd: EnumSubtreeCmd, options: IOptionsCommon)
 {
 	let opts = handleOptions(options)
 

@@ -6,36 +6,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._call = exports._cmd = exports.handleOptions = void 0;
-const types_1 = require("./types");
-const upath2_1 = require("upath2");
-const git_root2_1 = __importDefault(require("git-root2"));
+exports._call = exports._cmd = exports.unparseCmd = exports.handleOptions = void 0;
 const util_1 = require("./util");
 const spawn_1 = __importDefault(require("@git-lazy/spawn"));
+const git_1 = require("./util/git");
 function handleOptions(options) {
-    var _a, _b, _c;
-    let cwd = upath2_1.resolve((_a = options.cwd) !== null && _a !== void 0 ? _a : process.cwd());
-    let root = upath2_1.normalize(git_root2_1.default(cwd));
+    var _a, _b, _c, _d, _e, _f;
+    let { cwd, root } = git_1.handleGitPath(options);
     let { prefix, prefixType } = util_1.handlePrefix(options.prefix);
-    let prefixPath = prefix;
-    if (prefixType !== types_1.EnumPrefixType.ROOT) {
-        prefixPath = upath2_1.resolve(cwd, prefix);
-        if (util_1.inSubPath(prefixPath, root)) {
-            prefixPath = upath2_1.relative(root, prefixPath);
-        }
-        else {
-            throw new Error(`prefix path is not allow: ${prefixPath}`);
-        }
+    let { prefixPath } = ((_b = (_a = options.handlers) === null || _a === void 0 ? void 0 : _a.handlePrefixPath) !== null && _b !== void 0 ? _b : util_1.handlePrefixPath)({
+        prefix,
+        prefixType,
+        root,
+        cwd,
+    });
+    let options2 = {
+        ...options,
+    };
+    if ((_c = options.handlers) === null || _c === void 0 ? void 0 : _c.handleValue) {
+        options = options.handlers.handleValue(options2);
     }
-    let branch = (_b = options.branch) !== null && _b !== void 0 ? _b : 'master';
-    let remote = (_c = options.remote) !== null && _c !== void 0 ? _c : options.name;
-    if (typeof remote !== 'string' || !remote.length) {
-        throw new TypeError(`remote is not valid: ${remote}`);
+    else {
+        options2.branch = (_d = options2.branch) !== null && _d !== void 0 ? _d : 'master';
+        options2.remote = (_e = options2.remote) !== null && _e !== void 0 ? _e : options2.name;
     }
-    if (typeof branch !== 'string' || !branch.length) {
-        throw new TypeError(`branch is not valid: ${branch}`);
-    }
-    return {
+    let { remote, branch, } = options2;
+    let data = {
         options,
         cwd,
         root,
@@ -45,18 +41,33 @@ function handleOptions(options) {
         prefix,
         prefixPath,
     };
+    if ((_f = options.handlers) === null || _f === void 0 ? void 0 : _f.assertValue) {
+        options.handlers.assertValue(data);
+    }
+    else {
+        util_1.assertString(data.remote, 'remote');
+        util_1.assertString(data.branch, 'branch');
+    }
+    util_1.assertString(data.root, 'root');
+    util_1.assertString(data.prefixPath, 'prefix');
+    return data;
 }
 exports.handleOptions = handleOptions;
-function _cmd(cmd, opts) {
-    return spawn_1.default('git', [
+function unparseCmd(cmd, opts) {
+    return [
         'subtree',
         cmd,
         opts.remote,
+        '-b',
         opts.branch,
         '--prefix',
         opts.prefixPath,
         ...(opts.options.squash ? ['--squash'] : []),
-    ], {
+    ];
+}
+exports.unparseCmd = unparseCmd;
+function _cmd(cmd, opts) {
+    return spawn_1.default('git', unparseCmd(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });

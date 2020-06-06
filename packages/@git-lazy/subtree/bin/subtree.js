@@ -28,8 +28,8 @@ const __1 = require("..");
 const core_1 = require("../lib/core");
 const logger_1 = __importDefault(require("debug-color2/logger"));
 const debug_1 = __importStar(require("@git-lazy/debug"));
-const yargs_unparser_1 = __importDefault(require("yargs-unparser"));
 const package_json_1 = require("../package.json");
+const split_1 = require("../lib/core/split");
 let cli = yargs_1.default
     .option('prefix', {
     alias: ['P'],
@@ -43,6 +43,7 @@ let cli = yargs_1.default
     string: true,
 })
     .option('branch', {
+    alias: ['b'],
     string: true,
 })
     .option('squash', {
@@ -70,6 +71,7 @@ let cli = yargs_1.default
 cli = _setup_cmd(cli, __1.EnumSubtreeCmd.add);
 cli = _setup_cmd(cli, __1.EnumSubtreeCmd.pull);
 cli = _setup_cmd(cli, __1.EnumSubtreeCmd.push);
+cli = _setup_cmd(cli, __1.EnumSubtreeCmd.split);
 cli
     .strict(false)
     .help()
@@ -95,6 +97,15 @@ function _setup_cmd(yargs, cmd) {
     aliases.map(cmd => `${cmd} [remote] [branch]`);
     yargs
         .command(aliases, ``, (yargs) => {
+        if (cmd === __1.EnumSubtreeCmd.split) {
+            yargs = yargs
+                .option('rejoin', {
+                boolean: true,
+            })
+                .option('ignoreJoins', {
+                boolean: true,
+            });
+        }
         if (yargs.argv.help || yargs.argv.h) {
             return yargs.showHelp();
         }
@@ -110,11 +121,16 @@ function _builder(cmd, yargs) {
     const argv = yargs.argv;
     let { remote, branch, prefix, cwd, name, _, $0, disableExec, ...args_plus } = argv;
     _ = _.slice(1);
-    remote = (_a = remote !== null && remote !== void 0 ? remote : name) !== null && _a !== void 0 ? _a : _.shift();
+    if (cmd !== __1.EnumSubtreeCmd.split) {
+        remote = (_a = remote !== null && remote !== void 0 ? remote : name) !== null && _a !== void 0 ? _a : _.shift();
+    }
     branch = branch !== null && branch !== void 0 ? branch : _.shift();
     delete args_plus.P;
     delete args_plus.h;
     delete args_plus.v;
+    delete args_plus.b;
+    delete args_plus.disableExec;
+    delete args_plus['disable-exec'];
     let options = {
         ...args_plus,
         cwd,
@@ -124,12 +140,16 @@ function _builder(cmd, yargs) {
         prefix,
     };
     debug_1.debug.log(options);
-    const opts = core_1.handleOptions(options);
-    const command = `git ${cmd} ${yargs_unparser_1.default({
-        ...args_plus,
-        _: [opts.remote, opts.branch],
-        prefix: opts.prefix,
-    }).join(' ')}`;
+    let opts;
+    let command;
+    if (cmd === __1.EnumSubtreeCmd.split) {
+        opts = split_1.handleOptionsSplit(options);
+        command = `git ${split_1.unparseCmdSplit(cmd, opts).join(' ')}`;
+    }
+    else {
+        opts = core_1.handleOptions(options);
+        command = `git ${core_1.unparseCmd(cmd, opts).join(' ')}`;
+    }
     if (argv.disableExec) {
         debug_1.default.log(command);
     }
@@ -137,7 +157,12 @@ function _builder(cmd, yargs) {
         logger_1.default.debug(`[GIT]`, opts.root);
         logger_1.default.debug(`[CWD]`, opts.cwd);
         logger_1.default.debug(command);
-        core_1._cmd(cmd, opts);
+        if (cmd === __1.EnumSubtreeCmd.split) {
+            split_1._cmdSplit(cmd, opts);
+        }
+        else {
+            core_1._cmd(cmd, opts);
+        }
     }
 }
 //# sourceMappingURL=subtree.js.map
