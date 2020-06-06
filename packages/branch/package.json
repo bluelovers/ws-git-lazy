@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/branch",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": false,
   "description": "@git-lazy/branch",
   "keywords": [],
@@ -30,9 +30,9 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.14",
-    "git-root2": "^1.0.10",
-    "gitlog2": "^5.0.6"
+    "@git-lazy/util": "^1.0.15",
+    "git-root2": "^1.0.11",
+    "gitlog2": "^5.0.7"
   },
   "publishConfig": {
     "access": "public"
