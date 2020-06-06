@@ -104,4 +104,6 @@ export { crossSpawnGitAsync as async };
 crossSpawnGitAsync.async = crossSpawnGitAsync;
 crossSpawnGitAsync.sync = crossSpawnGitSync;
 
+crossSpawnGitAsync.default = crossSpawnGitAsync;
+
 export default crossSpawnGitAsync

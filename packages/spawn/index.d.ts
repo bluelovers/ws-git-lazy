@@ -18,7 +18,7 @@ export declare function crossSpawnGitAsync<T extends string | Buffer>(command: s
 export declare namespace crossSpawnGitAsync {
     var async: typeof crossSpawnGitAsync;
     var sync: typeof crossSpawnGitSync;
-    var defaul: typeof crossSpawnGitAsync;
+    var default: typeof crossSpawnGitAsync;
 }
 /**
  * 檢查 git 輸出訊息來判斷指令是否成功或錯誤
