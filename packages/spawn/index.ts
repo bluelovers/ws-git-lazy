@@ -101,4 +101,7 @@ export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | Spa
 export { crossSpawnGitSync as sync };
 export { crossSpawnGitAsync as async };
 
+crossSpawnGitAsync.async = crossSpawnGitAsync;
+crossSpawnGitAsync.sync = crossSpawnGitSync;
+
 export default crossSpawnGitAsync

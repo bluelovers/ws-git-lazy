@@ -15,6 +15,11 @@ export declare function crossSpawnGitSync<T extends string | Buffer>(command: st
  * 適用於 git 的 crossSpawnAsync
  */
 export declare function crossSpawnGitAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnOptions): SpawnASyncReturnsPromise<T>;
+export declare namespace crossSpawnGitAsync {
+    var async: typeof crossSpawnGitAsync;
+    var sync: typeof crossSpawnGitSync;
+    var defaul: typeof crossSpawnGitAsync;
+}
 /**
  * 檢查 git 輸出訊息來判斷指令是否成功或錯誤
  *

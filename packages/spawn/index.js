@@ -85,5 +85,8 @@ function checkGitOutput(cp, throwError, printStderr) {
     return cp;
 }
 exports.checkGitOutput = checkGitOutput;
+crossSpawnGitAsync.async = crossSpawnGitAsync;
+crossSpawnGitAsync.sync = crossSpawnGitSync;
+crossSpawnGitAsync.defaul = crossSpawnGitAsync;
 exports.default = crossSpawnGitAsync;
 //# sourceMappingURL=index.js.map
