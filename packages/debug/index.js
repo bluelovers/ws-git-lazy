@@ -19,8 +19,12 @@ function createConsole(...argv) {
 exports.createConsole = createConsole;
 exports.console = createConsole();
 exports.debug = debug_1.default('@git-lazy');
-exports.debugConsole = createConsole();
-exports.debug.log = exports.debugConsole.grey;
+exports.debugConsole = createConsole(null, {
+    label: true,
+    time: true,
+});
+let _log = exports.debugConsole.grey;
+exports.debug.log = _log.bind(_log);
 exports.debugConsole.enabled = exports.debug.enabled;
 function enableDebug() {
     exports.debug.enabled = true;
