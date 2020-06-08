@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/diff-staged@1.0.13...@git-lazy/diff-staged@1.0.14) (2020-06-08)
+
+
+### Features
+
+* use @git-lazy/spawn ([4a4f830](https://github.com/bluelovers/ws-git-lazy/commit/4a4f83049d76d093e4c7a3ff0c4b31b8cfbe501b))
+
+
+
+
+
 ## [1.0.13](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/diff-staged@1.0.12...@git-lazy/diff-staged@1.0.13) (2020-06-06)
 
 **Note:** Version bump only for package @git-lazy/diff-staged
