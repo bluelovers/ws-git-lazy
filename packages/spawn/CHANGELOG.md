@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.11](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.10...@git-lazy/spawn@1.0.11) (2020-06-08)
+
+
+### Features
+
+* little tweak ([a20e85d](https://github.com/bluelovers/ws-git-lazy/commit/a20e85de6cbf8fd5c3c005f456eb1993eadaf7e4))
+
+
+
+
+
 ## [1.0.10](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.9...@git-lazy/spawn@1.0.10) (2020-06-08)
 
 **Note:** Version bump only for package @git-lazy/spawn
