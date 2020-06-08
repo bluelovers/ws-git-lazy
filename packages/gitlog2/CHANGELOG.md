@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.8](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.7...gitlog2@5.0.8) (2020-06-08)
+
+**Note:** Version bump only for package gitlog2
+
+
+
+
+
 ## [5.0.7](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.6...gitlog2@5.0.7) (2020-06-06)
 
 **Note:** Version bump only for package gitlog2
