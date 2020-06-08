@@ -4,7 +4,7 @@
 
 import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra/type';
 import { SpawnASyncReturns, SpawnASyncReturnsPromise, ISpawnASyncError, SpawnSyncReturns, CrossSpawnExtra } from 'cross-spawn-extra/core';
-import { console, debugConsole } from '@git-lazy/debug';
+import { console, debugConsole, debug } from '@git-lazy/debug';
 import { crossSpawnOutput, stripAnsi } from './lib/util';
 import CrossSpawn from 'cross-spawn-extra';
 
@@ -28,6 +28,8 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
 		}
 	}
 
+	debug.log(command, args, options);
+
 	let cp = CrossSpawn.sync<T>(command, args, options);
 
 	print && console.log(crossSpawnOutput(cp.output));
@@ -42,6 +44,8 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
  */
 export function crossSpawnGitAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnOptions): SpawnASyncReturnsPromise<T>
 {
+	debug.log(command, args, options);
+
 	return CrossSpawn.async<T>(command, args, options)
 		.then(checkGitOutput)
 		;

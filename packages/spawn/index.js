@@ -33,6 +33,7 @@ function crossSpawnGitSync(command, args, options) {
             delete options.stdio;
         }
     }
+    debug_1.debug.log(command, args, options);
     let cp = cross_spawn_extra_1.default.sync(command, args, options);
     print && debug_1.console.log(util_1.crossSpawnOutput(cp.output));
     checkGitOutput(cp);
@@ -44,6 +45,7 @@ exports.sync = crossSpawnGitSync;
  * 適用於 git 的 crossSpawnAsync
  */
 function crossSpawnGitAsync(command, args, options) {
+    debug_1.debug.log(command, args, options);
     return cross_spawn_extra_1.default.async(command, args, options)
         .then(checkGitOutput);
 }
