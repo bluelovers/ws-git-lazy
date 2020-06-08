@@ -20,7 +20,7 @@ export function handleSpawnOutputArray(output: string, trimFn?: (text: string) =
 
 export function _filterEmpty(v: string): boolean
 {
-	return v != null && v !== ''
+	return v !== void 0 && v !== null && v !== ''
 }
 
 export default handleSpawnOutputArray

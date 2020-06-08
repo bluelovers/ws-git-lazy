@@ -32,7 +32,7 @@ export function gitDiffStagedDir(git_root: string, options?: IOptions): string[]
 	const { bin = 'git' } = (options || {});
 
 	let cp = crossSpawnSync(bin,
-		'diff --cached --dirstat=files,0'.split(' '),
+		'diff --cached --dirstat=files,0 --no-color'.split(' '),
 		{
 			cwd: git_root,
 			stripAnsi: true,
@@ -40,7 +40,7 @@ export function gitDiffStagedDir(git_root: string, options?: IOptions): string[]
 	);
 
 	let cp2 = crossSpawnSync(bin,
-		'diff --dirstat=files,0'.split(' '),
+		'diff --dirstat=files,0 --no-color'.split(' '),
 		{
 			cwd: git_root,
 			stripAnsi: true,

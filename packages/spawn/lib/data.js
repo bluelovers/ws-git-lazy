@@ -16,7 +16,7 @@ function handleSpawnOutputArray(output, trimFn) {
 }
 exports.handleSpawnOutputArray = handleSpawnOutputArray;
 function _filterEmpty(v) {
-    return v != null && v !== '';
+    return v !== void 0 && v !== null && v !== '';
 }
 exports._filterEmpty = _filterEmpty;
 exports.default = handleSpawnOutputArray;

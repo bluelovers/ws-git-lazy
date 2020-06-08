@@ -23,11 +23,11 @@ exports.gitDiffStaged = gitDiffStaged;
 function gitDiffStagedDir(git_root, options) {
     git_root = root_1.hasGit(git_root);
     const { bin = 'git' } = (options || {});
-    let cp = spawn_1.crossSpawnGitSync(bin, 'diff --cached --dirstat=files,0'.split(' '), {
+    let cp = spawn_1.crossSpawnGitSync(bin, 'diff --cached --dirstat=files,0 --no-color'.split(' '), {
         cwd: git_root,
         stripAnsi: true,
     });
-    let cp2 = spawn_1.crossSpawnGitSync(bin, 'diff --dirstat=files,0'.split(' '), {
+    let cp2 = spawn_1.crossSpawnGitSync(bin, 'diff --dirstat=files,0 --no-color'.split(' '), {
         cwd: git_root,
         stripAnsi: true,
     });
