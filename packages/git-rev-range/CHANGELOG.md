@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.9...git-rev-range@1.1.10) (2020-06-08)
+
+**Note:** Version bump only for package git-rev-range
+
+
+
+
+
 ## [1.1.9](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.8...git-rev-range@1.1.9) (2020-06-08)
 
 **Note:** Version bump only for package git-rev-range
