@@ -2,9 +2,9 @@
  * Created by user on 2019/6/13.
  */
 
-import { crossSpawnSync } from '@git-lazy/util/spawn/git';
-import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
 import { hasGit } from '@git-lazy/root';
+import { crossSpawnGitSync as crossSpawnSync } from '@git-lazy/spawn';
+import handleSpawnOutputArray from '@git-lazy/spawn/lib/data';
 
 export interface IOptions
 {
