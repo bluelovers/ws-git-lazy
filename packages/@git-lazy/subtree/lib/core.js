@@ -58,7 +58,6 @@ function unparseCmd(cmd, opts) {
         'subtree',
         cmd,
         opts.remote,
-        '-b',
         opts.branch,
         '--prefix',
         opts.prefixPath,

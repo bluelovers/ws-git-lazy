@@ -8,6 +8,7 @@ import console, { debug } from '@git-lazy/debug';
 import unparse from 'yargs-unparser';
 import { version } from '../package.json';
 import { _cmdSplit, handleOptionsSplit, unparseCmdSplit } from '../lib/core/split';
+import yesno from 'yesno';
 
 let cli = yargs
 	.option('prefix', {
@@ -122,7 +123,7 @@ function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
 	return yargs
 }
 
-function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
+async function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 {
 	const argv = yargs.argv;
 
@@ -187,6 +188,29 @@ function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 
 		if (cmd === EnumSubtreeCmd.split)
 		{
+			if (!opts.branch)
+			{
+				const ok = await yesno({
+					question: 'Are you sure you want to continue with no branch?',
+				});
+
+				if (!ok)
+				{
+					return yargs.exit(1, new Error(`user cancel`))
+				}
+			}
+			else if (opts.branch === 'master')
+			{
+				const ok = await yesno({
+					question: `Are you sure you want to continue with branch => ${opts.branch}?`,
+				});
+
+				if (!ok)
+				{
+					return yargs.exit(1, new Error(`user cancel`))
+				}
+			}
+
 			_cmdSplit(cmd, opts as IOptionsRuntime<IOptionsSplit>)
 		}
 		else

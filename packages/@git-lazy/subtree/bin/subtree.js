@@ -30,6 +30,7 @@ const logger_1 = __importDefault(require("debug-color2/logger"));
 const debug_1 = __importStar(require("@git-lazy/debug"));
 const package_json_1 = require("../package.json");
 const split_1 = require("../lib/core/split");
+const yesno_1 = __importDefault(require("yesno"));
 let cli = yargs_1.default
     .option('prefix', {
     alias: ['P'],
@@ -116,7 +117,7 @@ function _setup_cmd(yargs, cmd) {
     });
     return yargs;
 }
-function _builder(cmd, yargs) {
+async function _builder(cmd, yargs) {
     var _a;
     const argv = yargs.argv;
     let { remote, branch, prefix, cwd, name, _, $0, disableExec, ...args_plus } = argv;
@@ -158,6 +159,22 @@ function _builder(cmd, yargs) {
         logger_1.default.debug(`[CWD]`, opts.cwd);
         logger_1.default.debug(command);
         if (cmd === __1.EnumSubtreeCmd.split) {
+            if (!opts.branch) {
+                const ok = await yesno_1.default({
+                    question: 'Are you sure you want to continue with no branch?',
+                });
+                if (!ok) {
+                    return yargs.exit(1, new Error(`user cancel`));
+                }
+            }
+            else if (opts.branch === 'master') {
+                const ok = await yesno_1.default({
+                    question: `Are you sure you want to continue with branch => ${opts.branch}?`,
+                });
+                if (!ok) {
+                    return yargs.exit(1, new Error(`user cancel`));
+                }
+            }
             split_1._cmdSplit(cmd, opts);
         }
         else {

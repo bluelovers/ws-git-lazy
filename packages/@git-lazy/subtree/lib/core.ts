@@ -78,7 +78,6 @@ export function unparseCmd(cmd: EnumSubtreeCmd, opts: IOptionsRuntime)
 		'subtree',
 		cmd,
 		opts.remote,
-		'-b',
 		opts.branch,
 		'--prefix',
 		opts.prefixPath,
