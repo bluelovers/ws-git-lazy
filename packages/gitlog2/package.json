@@ -40,7 +40,7 @@
     "array-hyper-unique": "^1.1.2",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.3",
-    "cross-spawn-extra": "^2.0.0",
+    "cross-spawn-extra": "^2.1.0",
     "debug": "^4.1.1",
     "decamelize": "^4.0.0",
     "git-decode": "^1.0.5",
