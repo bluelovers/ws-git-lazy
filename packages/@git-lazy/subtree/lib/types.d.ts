@@ -1,7 +1,7 @@
 /**
  * Created by user on 2020/6/5.
  */
-import { ITSRequireAtLeastOne, ITSRequiredWith } from 'ts-type';
+import { ITSRequireAtLeastOne } from 'ts-type';
 export interface IOptionsCore {
     prefix: string;
     cwd?: string;
@@ -22,7 +22,7 @@ export interface IOptionsCorePlus {
 }
 declare type IOptionsCommonCore = IOptionsCore & ITSRequireAtLeastOne<IOptionsCorePlus>;
 export declare type IOptionsCommon = IOptionsCommonCore & IOptionsCoreWithHandlers;
-interface IOptionsSplitCore extends Omit<ITSRequiredWith<IOptionsCore, 'branch'> & IOptionsCorePlus, 'handlers'> {
+interface IOptionsSplitCore extends Omit<IOptionsCore & IOptionsCorePlus, 'handlers'> {
     rejoin?: boolean;
     ignoreJoins?: boolean;
 }

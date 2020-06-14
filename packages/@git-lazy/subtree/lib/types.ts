@@ -39,7 +39,7 @@ type IOptionsCommonCore = IOptionsCore & ITSRequireAtLeastOne<IOptionsCorePlus>
 
 export type IOptionsCommon = IOptionsCommonCore & IOptionsCoreWithHandlers;
 
-interface IOptionsSplitCore extends Omit<ITSRequiredWith<IOptionsCore, 'branch'> & IOptionsCorePlus, 'handlers'>
+interface IOptionsSplitCore extends Omit<IOptionsCore & IOptionsCorePlus, 'handlers'>
 {
 	rejoin?: boolean,
 	ignoreJoins?: boolean,

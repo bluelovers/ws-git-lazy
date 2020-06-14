@@ -22,6 +22,7 @@ export function currentBranchName(REPO_PATH: string)
 
 	if (!cp.error)
 	{
+		// @ts-ignore
 		let name = crossSpawnOutput(cp.stdout, {
 			clearEol: true,
 			stripAnsi: true,
