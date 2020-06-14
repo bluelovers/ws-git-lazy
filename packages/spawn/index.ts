@@ -7,6 +7,7 @@ import { SpawnASyncReturns, SpawnASyncReturnsPromise, ISpawnASyncError, SpawnSyn
 import { console, debugConsole, debug } from '@git-lazy/debug';
 import { crossSpawnOutput, stripAnsi } from './lib/util';
 import CrossSpawn from 'cross-spawn-extra';
+import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
 
 export * from './lib/types';
 
@@ -15,7 +16,7 @@ export { crossSpawnOutput }
 /**
  * 適用於 git 的 crossSpawnSync
  */
-export function crossSpawnGitSync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnSyncOptions): SpawnSyncReturns<T>
+export function crossSpawnGitSync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: ISpawnGitSyncOptions): SpawnSyncReturns<T>
 {
 	let print: boolean;
 
@@ -34,7 +35,7 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
 
 	print && console.log(crossSpawnOutput(cp.output));
 
-	checkGitOutput(cp);
+	checkGitOutput(cp, options?.throwError, options?.printStderr);
 
 	return cp;
 }
@@ -42,12 +43,12 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
 /**
  * 適用於 git 的 crossSpawnAsync
  */
-export function crossSpawnGitAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: SpawnOptions): SpawnASyncReturnsPromise<T>
+export function crossSpawnGitAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: ISpawnGitAsyncOptions): SpawnASyncReturnsPromise<T>
 {
 	debug.log(command, args, options);
 
 	return CrossSpawn.async<T>(command, args, options)
-		.then(checkGitOutput)
+		.then(cp => checkGitOutput(cp, options?.throwError, options?.printStderr))
 		;
 }
 
@@ -60,6 +61,7 @@ export function crossSpawnGitAsync<T extends string | Buffer>(command: string, a
 export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | SpawnASyncReturns<string | Buffer>>(cp: T, throwError?: boolean, printStderr?: boolean)
 {
 	let s1: string;
+	throwError = throwError ?? true;
 
 	if (cp.error)
 	{
@@ -86,6 +88,13 @@ export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | Spa
 				cp.errorCrossSpawn = cp.errorCrossSpawn || e;
 			}
 		}
+	}
+
+	// @ts-ignore
+	if (!cp.error && cp.exitCode)
+	{
+		// @ts-ignore
+		cp.error = new Error(`Process finished with exit code ${cp.exitCode}`)
 	}
 
 	if (throwError && cp.error)

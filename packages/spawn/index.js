@@ -36,7 +36,7 @@ function crossSpawnGitSync(command, args, options) {
     debug_1.debug.log(command, args, options);
     let cp = cross_spawn_extra_1.default.sync(command, args, options);
     print && debug_1.console.log(util_1.crossSpawnOutput(cp.output));
-    checkGitOutput(cp);
+    checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr);
     return cp;
 }
 exports.crossSpawnGitSync = crossSpawnGitSync;
@@ -47,7 +47,7 @@ exports.sync = crossSpawnGitSync;
 function crossSpawnGitAsync(command, args, options) {
     debug_1.debug.log(command, args, options);
     return cross_spawn_extra_1.default.async(command, args, options)
-        .then(checkGitOutput);
+        .then(cp => checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr));
 }
 exports.crossSpawnGitAsync = crossSpawnGitAsync;
 exports.async = crossSpawnGitAsync;
@@ -59,6 +59,7 @@ exports.async = crossSpawnGitAsync;
  */
 function checkGitOutput(cp, throwError, printStderr) {
     let s1;
+    throwError = throwError !== null && throwError !== void 0 ? throwError : true;
     if (cp.error) {
         // @ts-ignore
         cp.errorCrossSpawn = cp.errorCrossSpawn || cp.error;
@@ -76,6 +77,11 @@ function checkGitOutput(cp, throwError, printStderr) {
                 cp.errorCrossSpawn = cp.errorCrossSpawn || e;
             }
         }
+    }
+    // @ts-ignore
+    if (!cp.error && cp.exitCode) {
+        // @ts-ignore
+        cp.error = new Error(`Process finished with exit code ${cp.exitCode}`);
     }
     if (throwError && cp.error) {
         throw cp.error;
