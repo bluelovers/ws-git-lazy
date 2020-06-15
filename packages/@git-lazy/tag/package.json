@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/tag",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/tag#readme",
   "bugs": {
@@ -32,7 +32,6 @@
   "dependencies": {
     "@git-lazy/spawn": "^1.0.20"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }
