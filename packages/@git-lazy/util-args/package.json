@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/util-args",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/util-args#readme",
   "bugs": {
@@ -33,7 +33,6 @@
     "lodash": "^4.17.15",
     "yargs-unparser": "^1.5.0"
   },
-  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }
