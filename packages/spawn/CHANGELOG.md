@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.13...@git-lazy/spawn@1.0.20) (2020-06-15)
+
+
+### ✨ Features
+
+*  add IOptionsCheck ([9ab8429](https://github.com/bluelovers/ws-git-lazy/commit/9ab8429e94c0258499ca130092c2557cee70b688))
+
+
+### Miscellaneous
+
+* . ([8487ef4](https://github.com/bluelovers/ws-git-lazy/commit/8487ef49cae3f85a0d9d56caa86037d7ae3f7469))
+* . ([ce8d1af](https://github.com/bluelovers/ws-git-lazy/commit/ce8d1af7e69ec037824ec911a90f514cf7d36820))
+* . ([cc30ff2](https://github.com/bluelovers/ws-git-lazy/commit/cc30ff290fb3a0e9b80e6f52f6e0b0cff52fede8))
+* . ([a77b498](https://github.com/bluelovers/ws-git-lazy/commit/a77b4987519be4b0c82ae6249d50ad39a57fa151))
+* . ([8ec9b69](https://github.com/bluelovers/ws-git-lazy/commit/8ec9b69921251b9c208e3bb9b992eb0539a9b2dd))
+* . ([c3c27ec](https://github.com/bluelovers/ws-git-lazy/commit/c3c27ec2973b78f1d2241130736b9e6ff02a0fd4))
+
+
+
+
+
 ## [1.0.13](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.12...@git-lazy/spawn@1.0.13) (2020-06-10)
 
 **Note:** Version bump only for package @git-lazy/spawn

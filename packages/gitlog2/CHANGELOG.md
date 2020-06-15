@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.13](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.12...gitlog2@5.0.13) (2020-06-15)
+
+
+### ✨ Features
+
+*  @git-lazy/clone-subdir ([a80832c](https://github.com/bluelovers/ws-git-lazy/commit/a80832c60115ebaacf21ed2f890c45888f0efadf))
+
+
+
+
+
 ## [5.0.12](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.11...gitlog2@5.0.12) (2020-06-10)
 
 **Note:** Version bump only for package gitlog2
