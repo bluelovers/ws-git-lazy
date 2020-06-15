@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/subtree",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/subtree#readme",
@@ -41,7 +41,7 @@
     "@git-lazy/debug": "^1.0.4",
     "@git-lazy/spawn": "^1.0.20",
     "debug-color2": "^1.1.7",
-    "git-root2": "^1.0.17",
+    "git-root2": "^1.0.18",
     "ts-type": "^1.2.17",
     "upath2": "^3.0.5",
     "yargs": "^15.3.1",
