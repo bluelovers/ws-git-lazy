@@ -11,7 +11,7 @@ const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 const git_rev_range_1 = require("git-rev-range");
 const upath2_1 = __importDefault(require("upath2"));
 const crlf_normalize_1 = require("crlf-normalize");
-const git_root2_1 = __importDefault(require("git-root2"));
+const core_1 = __importDefault(require("git-root2/core"));
 const git_decode_1 = require("git-decode");
 exports.defaultOptions = {
     encoding: 'UTF-8',
@@ -22,7 +22,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
     }
     options = Object.assign({}, exports.defaultOptions, options);
     let cwd = git_rev_range_1.getCwd(options.cwd);
-    let root = git_root2_1.default(cwd);
+    let root = core_1.default(cwd);
     if (!root) {
         throw new RangeError(`no exists git at ${cwd}`);
     }

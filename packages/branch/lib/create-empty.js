@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEmptyBranch = void 0;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
-const git_root2_1 = require("git-root2");
+const core_1 = require("git-root2/core");
 const util_2 = require("@git-lazy/util/spawn/util");
 const current_name_1 = __importDefault(require("./current-name"));
 const branch_exists_1 = __importDefault(require("./branch-exists"));
@@ -22,7 +22,7 @@ const defaultMessage = 'create empty branch by git-lazy';
 function createEmptyBranch(new_name, options) {
     if ((options = _createEmptyBranch(new_name, options))) {
         let { cwd, msg, author } = options;
-        if (!git_root2_1.isGitRoot(cwd)) {
+        if (!core_1.isGitRoot(cwd)) {
             throw new Error(`fatal: target path not a git root "${cwd}"`);
         }
         let opts = {

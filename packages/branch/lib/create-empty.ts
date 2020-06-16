@@ -4,7 +4,7 @@
 
 import { checkGitOutput, crossSpawnSync, SpawnOptions } from '@git-lazy/util/spawn/git';
 import { debug, notEmptyString } from '@git-lazy/util';
-import { isGitRoot } from 'git-root2';
+import { isGitRoot } from 'git-root2/core';
 import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
 import currentBranchName from './current-name';
 import localBranchExists from './branch-exists';

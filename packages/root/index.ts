@@ -2,7 +2,7 @@
  * Created by user on 2019/6/13.
  */
 
-import gitRoot from 'git-root2'
+import gitRoot from 'git-root2/core'
 import path from 'path'
 import fs from 'fs'
 

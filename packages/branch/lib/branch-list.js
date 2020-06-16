@@ -16,6 +16,7 @@ function localBranchList(REPO_PATH) {
         cwd: REPO_PATH,
     });
     if (!cp.error) {
+        // @ts-ignore
         let out = util_2.crossSpawnOutput(cp.stdout, {
             clearEol: true,
             stripAnsi: true,

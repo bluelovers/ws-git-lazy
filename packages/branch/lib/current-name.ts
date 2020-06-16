@@ -4,7 +4,7 @@
 
 import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
 import { debug, notEmptyString } from '@git-lazy/util';
-import { isGitRoot } from 'git-root2';
+import { isGitRoot } from 'git-root2/core';
 import { crossSpawnOutput, stripAnsi } from '@git-lazy/util/spawn/util';
 
 /**
