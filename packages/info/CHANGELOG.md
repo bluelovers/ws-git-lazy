@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/info@1.0.19...@git-lazy/info@1.0.20) (2020-06-16)
+
+
+### 🐛　Bug Fixes
+
+*  avoid bug of https://youtrack.jetbrains.com/issue/WEB-46035 ([42c2391](https://github.com/bluelovers/ws-git-lazy/commit/42c2391bfed977aa4bbb0f3cb9304e4537e43103))
+
+
+
+
+
 ## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/info@1.0.18...@git-lazy/info@1.0.19) (2020-06-15)
 
 **Note:** Version bump only for package @git-lazy/info

@@ -1,6 +1,6 @@
 {
   "name": "git-diff-from",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "git diff-tree",
   "keywords": [
     "commit",
