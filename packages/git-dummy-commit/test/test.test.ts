@@ -1,6 +1,5 @@
-import test from 'ava';
 import shell from 'shelljs';
-import gitDummyCommit from '.';
+import gitDummyCommit from '../index';
 
 shell.config.silent = true;
 
@@ -9,48 +8,40 @@ shell.mkdir('tmp');
 shell.cd('tmp');
 shell.exec('git init');
 
-test('Create dummy commits', t => {
+test('Create dummy commits', () => {
 	gitDummyCommit('awesome commit');
-	t.truthy(shell.exec('git log').stdout.match(/\sawesome commit\s/));
+	expect(shell.exec('git log').stdout.match(/\sawesome commit\s/)).toBeTruthy();
 
 	gitDummyCommit();
-	t.truthy(shell.exec('git log').stdout.match(/\sTest commit\s/));
+	expect(shell.exec('git log').stdout.match(/\sTest commit\s/)).toBeTruthy();
 
 	gitDummyCommit([]);
-	t.truthy(
-		shell.exec('git log').stdout.match(/\sTest commit[\w\W]*Test commit\s/)
-	);
+	expect(shell.exec('git log').stdout.match(/\sTest commit[\w\W]*Test commit\s/)).toBeTruthy();
 
 	gitDummyCommit('     ');
-	t.truthy(
-		shell
-			.exec('git log')
-			.stdout.match(/\sTest commit[\w\W]*Test commit[\w\W]*Test commit\s/)
-	);
+	expect(shell
+		.exec('git log')
+		.stdout.match(/\sTest commit[\w\W]*Test commit[\w\W]*Test commit\s/)).toBeTruthy();
 
 	gitDummyCommit('');
-	t.truthy(
-		shell
-			.exec('git log')
-			.stdout.match(
-				/\sTest commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
-			)
-	);
+	expect(shell
+		.exec('git log')
+		.stdout.match(
+			/\sTest commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
+		)).toBeTruthy();
 
 	gitDummyCommit(['unicorns', 'rainbows']);
-	t.truthy(shell.exec('git log').stdout.match(/\sunicorns\s/));
-	t.truthy(shell.exec('git log').stdout.match(/\srainbows\s/));
+	expect(shell.exec('git log').stdout.match(/\sunicorns\s/)).toBeTruthy();
+	expect(shell.exec('git log').stdout.match(/\srainbows\s/)).toBeTruthy();
 
 	gitDummyCommit([' ', 'balloons']);
-	t.truthy(
-		shell
-			.exec('git log')
-			.stdout.match(
-				/Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
-			)
-	);
-	t.truthy(shell.exec('git log').stdout.match(/\sballoons\s/));
+	expect(shell
+		.exec('git log')
+		.stdout.match(
+			/Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
+		)).toBeTruthy();
+	expect(shell.exec('git log').stdout.match(/\sballoons\s/)).toBeTruthy();
 
 	gitDummyCommit('";touch a;"');
-	t.truthy(shell.exec('git log').stdout.match(/";touch a;"/));
+	expect(shell.exec('git log').stdout.match(/";touch a;"/)).toBeTruthy();
 });

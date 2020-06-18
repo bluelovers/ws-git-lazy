@@ -3,7 +3,7 @@
 'use strict';
 
 const meow = require('meow');
-const gitDummyCommit = require('.');
+const gitDummyCommit = require('..');
 
 const cli = meow([
 	'Usage',

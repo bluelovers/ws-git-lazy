@@ -7,24 +7,32 @@ const defaultMsg = 'Test commit';
 const makeDefault = (str = defaultMsg) =>
 	typeof str === 'string' && !str.trim() ? defaultMsg : str;
 
-module.exports = (msg, silent) => {
+module.exports = (msg, silent) =>
+{
 	let args = [];
 
 	msg = makeDefault(msg);
 
-	if (silent === undefined) {
+	if (silent === undefined)
+	{
 		silent = true;
 	}
 
-	if (Array.isArray(msg)) {
-		if (msg.length > 0) {
+	if (Array.isArray(msg))
+	{
+		if (msg.length > 0)
+		{
 			args = msg
 				.map(m => makeDefault(m))
 				.reduce((messages, m) => [...messages, '-m', m], args);
-		} else {
+		}
+		else
+		{
 			args = ['-m', defaultMsg];
 		}
-	} else {
+	}
+	else
+	{
 		args = ['-m', msg];
 	}
 
