@@ -1,0 +1,18 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 1.3.1 (2020-06-18)
+
+
+### 📦　Code Refactoring
+
+* update to typescript ([6cfeceb](https://github.com/bluelovers/ws-git-lazy/commit/6cfeceb1517b99ae80d830202f7a9a5140615cd5))
+
+
+### 🔖　Miscellaneous
+
+* . ([ad15013](https://github.com/bluelovers/ws-git-lazy/commit/ad15013054201b5ac92a090f05e0d0ffe0c60e9b))
+* . ([0c9810e](https://github.com/bluelovers/ws-git-lazy/commit/0c9810e6ce3e6732c834f139b48782d81d1dee16))
+* Add 'packages/git-dummy-commit/' from commit '0430434bee7973a46fc3b78c9c99255e9f5a2ed5' ([6fdeaba](https://github.com/bluelovers/ws-git-lazy/commit/6fdeaba508f8db1bde333a82453122a671156eba))
