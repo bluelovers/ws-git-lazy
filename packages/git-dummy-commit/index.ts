@@ -1,21 +1,37 @@
 'use strict';
 
-const execa = require('execa');
+import { crossSpawnGitSync } from '@git-lazy/spawn';
 
 const defaultMsg = 'Test commit';
 
-const makeDefault = (str = defaultMsg) =>
-	typeof str === 'string' && !str.trim() ? defaultMsg : str;
+export { defaultMsg }
 
-module.exports = (msg, silent) =>
+function makeDefault(str: string, options?: IOptionsGitDummyCommit)
 {
-	let args = [];
+	return !str
+		?.replace(/^\s+|\s+$/g, '')
+		?.length
+		? (options?.defaultMsg ?? defaultMsg)
+		: str
+		;
+}
 
-	msg = makeDefault(msg);
+export interface IOptionsGitDummyCommit
+{
+	cwd?: string,
+	defaultMsg?: string,
+	silent?: boolean,
+	msg?: string | string[],
+}
 
-	if (silent === undefined)
+export function gitDummyCommit(msg?: string | string[] | IOptionsGitDummyCommit, options?: IOptionsGitDummyCommit)
+{
+	let args: string[] = [];
+
+	if (typeof msg === 'object' && !Array.isArray(msg))
 	{
-		silent = true;
+		options = msg;
+		msg = options.msg;
 	}
 
 	if (Array.isArray(msg))
@@ -23,8 +39,13 @@ module.exports = (msg, silent) =>
 		if (msg.length > 0)
 		{
 			args = msg
-				.map(m => makeDefault(m))
-				.reduce((messages, m) => [...messages, '-m', m], args);
+				.map(m => makeDefault(m, options))
+				.reduce((messages, m) => {
+					messages.push('-m')
+					messages.push(m)
+					return messages
+				}, args)
+			;
 		}
 		else
 		{
@@ -33,8 +54,20 @@ module.exports = (msg, silent) =>
 	}
 	else
 	{
-		args = ['-m', msg];
+		args = ['-m', makeDefault(msg, options)];
 	}
 
-	execa.sync('git', ['commit', ...args, '--allow-empty', '--no-gpg-sign']);
-};
+	const cwd = options?.cwd ?? process.cwd();
+
+	return crossSpawnGitSync('git', [
+		'commit',
+		...args,
+		'--allow-empty',
+		'--no-gpg-sign'
+	], {
+		cwd,
+		stdio: options?.silent === false ? 'inherit' : void 0
+	});
+}
+
+export default gitDummyCommit;

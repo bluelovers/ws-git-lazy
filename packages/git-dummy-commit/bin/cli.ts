@@ -2,15 +2,22 @@
 
 'use strict';
 
-const meow = require('meow');
 const gitDummyCommit = require('..');
 
-const cli = meow([
-	'Usage',
-	'  $ git-dummy-commit [msg] [msg] ...',
-	'',
-	'Examples',
-	'  $ git-dummy-commit "unicorns & rainbows"'
-]);
+let argv = process.argv.slice(2);
 
-gitDummyCommit(cli.input);
+if (argv.length)
+{
+	gitDummyCommit(argv);
+}
+else
+{
+	[
+		'Usage',
+		'  $ git-dummy-commit [msg] [msg] ...',
+		'',
+		'Examples',
+		'  $ git-dummy-commit "unicorns & rainbows"',
+	].forEach(m => console.log(m))
+	process.exit(1);
+}

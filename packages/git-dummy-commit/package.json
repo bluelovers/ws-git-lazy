@@ -27,7 +27,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "jest",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "prepublishOnly_": "yarn run prepublishOnly:check-bin && yarn run test",
@@ -35,9 +35,9 @@
     "sort-package-json": "ynpx --quiet yarn-tool -- sort"
   },
   "dependencies": {
-    "execa": "^4.0.2",
-    "meow": "^7.0.1",
-    "shelljs": "^0.8.4"
+    "@git-lazy/spawn": "^1.0.20"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "shelljs": "^0.8.4"
+  }
 }

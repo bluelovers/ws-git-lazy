@@ -1,14 +1,31 @@
 import shell from 'shelljs';
-import gitDummyCommit from '../index';
+import gitDummyCommit, { IOptionsGitDummyCommit } from '../index';
+import { join } from 'path';
 
-shell.config.silent = true;
+let options: IOptionsGitDummyCommit = {
 
-shell.rm('-rf', 'tmp');
-shell.mkdir('tmp');
-shell.cd('tmp');
-shell.exec('git init');
+}
 
-test('Create dummy commits', () => {
+beforeAll(() => {
+	//shell.config.silent = true;
+	shell.cd(__dirname);
+})
+
+afterAll(() => {
+	shell.cd(__dirname);
+})
+
+test(`create empty temporary git repo`, () => {
+	shell.rm('-rf', 'tmp');
+	shell.mkdir('tmp');
+	shell.cd('tmp');
+	shell.exec('git init');
+})
+
+test('Create dummy commits', () =>
+{
+	shell.cd(join(__dirname, 'tmp'));
+
 	gitDummyCommit('awesome commit');
 	expect(shell.exec('git log').stdout.match(/\sawesome commit\s/)).toBeTruthy();
 
@@ -27,7 +44,7 @@ test('Create dummy commits', () => {
 	expect(shell
 		.exec('git log')
 		.stdout.match(
-			/\sTest commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
+			/\sTest commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/,
 		)).toBeTruthy();
 
 	gitDummyCommit(['unicorns', 'rainbows']);
@@ -38,7 +55,7 @@ test('Create dummy commits', () => {
 	expect(shell
 		.exec('git log')
 		.stdout.match(
-			/Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/
+			/Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit[\w\W]*Test commit\s/,
 		)).toBeTruthy();
 	expect(shell.exec('git log').stdout.match(/\sballoons\s/)).toBeTruthy();
 
