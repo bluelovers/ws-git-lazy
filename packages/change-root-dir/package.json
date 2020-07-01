@@ -33,7 +33,7 @@
     "@bluelovers/fast-glob": "^3.0.4",
     "@git-lazy/root": "^1.0.17",
     "@git-lazy/util": "^1.0.21",
-    "ts-type": "^1.2.17"
+    "ts-type": "^1.2.23"
   },
   "publishConfig": {
     "access": "public"

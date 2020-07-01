@@ -37,9 +37,9 @@
   },
   "dependencies": {
     "@git-lazy/spawn": "^1.0.20",
-    "array-hyper-unique": "^1.1.2",
+    "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
-    "crlf-normalize": "^1.0.3",
+    "crlf-normalize": "^1.0.5",
     "cross-spawn-extra": "^2.1.0",
     "debug": "^4.1.1",
     "decamelize": "^4.0.0",

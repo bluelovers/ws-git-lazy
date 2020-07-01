@@ -40,12 +40,12 @@
   "dependencies": {
     "@git-lazy/debug": "^1.0.4",
     "@git-lazy/spawn": "^1.0.20",
-    "debug-color2": "^1.1.7",
+    "debug-color2": "^1.2.3",
     "git-root2": "^1.0.18",
-    "ts-type": "^1.2.17",
-    "upath2": "^3.0.5",
+    "ts-type": "^1.2.23",
+    "upath2": "^3.1.4",
     "yargs": "^15.3.1",
-    "yargs-unparser": "^1.5.0",
+    "yargs-unparser": "^1.6.3",
     "yesno": "^0.3.1"
   },
   "publishConfig": {

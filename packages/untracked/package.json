@@ -34,7 +34,7 @@
   "dependencies": {
     "@git-lazy/root": "^1.0.17",
     "@git-lazy/util": "^1.0.21",
-    "array-hyper-unique": "^1.1.2"
+    "array-hyper-unique": "^1.1.9"
   },
   "publishConfig": {
     "access": "public"
