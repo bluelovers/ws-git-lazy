@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/git-root2@1.0.18...git-root2@1.0.19) (2020-07-01)
+
+
+### 🔖　Miscellaneous
+
+* . ([e64d7b6](https://github.com/bluelovers/ws-git-lazy/commit/e64d7b630e602b519955a36b77bdc0dd7de6d981))
+
+
+
+
+
 ## [1.0.18](https://github.com/bluelovers/ws-git-lazy/compare/git-root2@1.0.17...git-root2@1.0.18) (2020-06-15)
 
 

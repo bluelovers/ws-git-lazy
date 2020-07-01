@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/clone",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/clone#readme",
   "bugs": {
@@ -30,8 +30,8 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.20",
-    "@git-lazy/util-args": "^1.0.7"
+    "@git-lazy/spawn": "^1.0.21",
+    "@git-lazy/util-args": "^1.0.8"
   },
   "publishConfig": {
     "access": "public"
