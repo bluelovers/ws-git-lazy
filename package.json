@@ -12,7 +12,7 @@
     "ncu": "npx yarn-tool ncu -u && npx yarn-tool ws exec yarn-tool ncu -- -u",
     "run-workspace-publish": "yarn run workspace-publish",
     "run-workspace-version": "yarn run workspace-version",
-    "prepublishOnly": "yarn run prepublishOnly:check-bin && yarn run prepublish:fix-links",
+    "prepublishOnly": "yarn run prepublishOnly:check-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "sort-package-json": "npx yarn-tool sort && npx yarn-tool ws exec yarn-tool sort"
