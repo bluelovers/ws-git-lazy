@@ -9,12 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lerna-publish": "yarn run prepublishOnly && lerna publish --yes --cd-version patch",
+    "prepublishOnly": "yarn run prepublishOnly:check-bin",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "ncu": "npx yarn-tool ncu -u && npx yarn-tool ws exec yarn-tool ncu -- -u",
     "run-workspace-publish": "yarn run workspace-publish",
     "run-workspace-version": "yarn run workspace-version",
-    "prepublishOnly": "yarn run prepublishOnly:check-bin",
-    "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
-    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "sort-package-json": "npx yarn-tool sort && npx yarn-tool ws exec yarn-tool sort"
   },
   "resolutions": {},
@@ -27,11 +27,11 @@
     "@bluelovers/tsconfig": "^1.0.20",
     "@types/bluebird": "^3.5.32",
     "@types/fs-extra": "^9.0.1",
-    "@types/jest": "^26.0.5",
-    "@types/lodash": "^4.14.157",
-    "@types/node": "^14.0.23",
+    "@types/jest": "^26.0.8",
+    "@types/lodash": "^4.14.158",
+    "@types/node": "^14.0.27",
     "@types/yargs": "^15.0.5",
-    "jest": "^26.1.0",
-    "ts-jest": "^26.1.3"
+    "jest": "^26.2.2",
+    "ts-jest": "^26.1.4"
   }
 }
