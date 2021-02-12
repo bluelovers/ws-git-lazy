@@ -7,5 +7,5 @@ export declare namespace getCWD {
     }
 }
 export declare function notEmptyString(s: string): boolean;
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

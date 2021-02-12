@@ -4,5 +4,5 @@
 export declare function encode(s: string): string;
 export declare function decode(s: string): string;
 export declare function decode2(input: string): string;
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

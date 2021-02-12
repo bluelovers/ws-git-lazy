@@ -4,5 +4,5 @@
 import { console, debug, debugConsole, disableDebug, enableDebug } from './log';
 export { console, enableDebug, disableDebug, debug, debugConsole };
 export { notEmptyString, getCWD } from './util';
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

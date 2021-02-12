@@ -6,5 +6,5 @@ import currentBranchName from './lib/current-name';
 import localBranchExists from './lib/branch-exists';
 import localBranchList from './lib/branch-list';
 export { createEmptyBranch, currentBranchName, localBranchExists, localBranchList, };
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

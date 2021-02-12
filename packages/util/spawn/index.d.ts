@@ -6,5 +6,5 @@ export * from './types';
 export { crossSpawnSync, crossSpawnAsync };
 export { crossSpawnSync as sync };
 export { crossSpawnAsync as async };
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

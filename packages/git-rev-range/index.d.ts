@@ -29,5 +29,5 @@ export declare function resolveRevision(range: number | string, revision?: strin
 };
 export declare function getOptions(cwd?: string | IOptions): IOptions;
 export declare function getCwd(cwd?: string | IOptions): string;
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;
