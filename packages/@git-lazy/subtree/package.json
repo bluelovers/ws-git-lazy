@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/subtree",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/subtree#readme",
@@ -38,10 +38,10 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/debug": "^1.0.6",
-    "@git-lazy/spawn": "^1.0.23",
+    "@git-lazy/debug": "^1.0.7",
+    "@git-lazy/spawn": "^1.0.24",
     "debug-color2": "^1.2.3",
-    "git-root2": "^1.0.21",
+    "git-root2": "^1.0.22",
     "ts-type": "^1.2.34",
     "upath2": "^3.1.6",
     "yargs": "^16.2.0",

@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/untracked",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
@@ -32,8 +32,8 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/root": "^1.0.20",
-    "@git-lazy/util": "^1.0.24",
+    "@git-lazy/root": "^1.0.21",
+    "@git-lazy/util": "^1.0.25",
     "array-hyper-unique": "^1.1.9"
   },
   "publishConfig": {

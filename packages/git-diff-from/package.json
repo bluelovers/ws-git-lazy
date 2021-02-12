@@ -1,6 +1,6 @@
 {
   "name": "git-diff-from",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "git diff-tree",
   "keywords": [
     "commit",
@@ -41,9 +41,9 @@
   "dependencies": {
     "crlf-normalize": "^1.0.5",
     "cross-spawn-extra": "^2.1.0",
-    "git-decode": "^1.0.8",
-    "git-rev-range": "^1.1.17",
-    "git-root2": "^1.0.21",
+    "git-decode": "^1.0.9",
+    "git-rev-range": "^1.1.18",
+    "git-root2": "^1.0.22",
     "upath2": "^3.1.6"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"

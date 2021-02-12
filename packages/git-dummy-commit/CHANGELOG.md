@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.4...git-dummy-commit2@1.3.5) (2021-02-12)
+
+
+### 🐛　Bug Fixes
+
+* **script:** update script ([133a686](https://github.com/bluelovers/ws-git-lazy/commit/133a68607c85bf28484e2c1fa2692e9dd1ae5bbf))
+
+
+
+
+
 ## [1.3.4](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.3...git-dummy-commit2@1.3.4) (2021-02-12)
 
 
