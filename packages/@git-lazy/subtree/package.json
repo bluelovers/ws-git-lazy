@@ -42,10 +42,10 @@
     "@git-lazy/spawn": "^1.0.22",
     "debug-color2": "^1.2.3",
     "git-root2": "^1.0.20",
-    "ts-type": "^1.2.32",
-    "upath2": "^3.1.5",
-    "yargs": "^15.4.1",
-    "yargs-unparser": "^1.6.3",
+    "ts-type": "^1.2.34",
+    "upath2": "^3.1.6",
+    "yargs": "^16.2.0",
+    "yargs-unparser": "^2.0.0",
     "yesno": "^0.3.1"
   },
   "publishConfig": {
