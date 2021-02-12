@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.16...git-rev-range@1.1.17) (2021-02-12)
+
+
+### 🛠　Build System
+
+* update typescript ([75041e7](https://github.com/bluelovers/ws-git-lazy/commit/75041e75065a74f02f1d0dd61d72bd83544414cd))
+
+
+
+
+
 ## [1.1.16](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.15...git-rev-range@1.1.16) (2020-07-19)
 
 **Note:** Version bump only for package git-rev-range

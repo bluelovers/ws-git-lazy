@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.16](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.15...gitlog2@5.0.16) (2021-02-12)
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([b9c98eb](https://github.com/bluelovers/ws-git-lazy/commit/b9c98ebff556f7eb0e62dd8bb7889fd43e9698c4))
+
+
+
+
+
 ## [5.0.15](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.14...gitlog2@5.0.15) (2020-07-19)
 
 **Note:** Version bump only for package gitlog2

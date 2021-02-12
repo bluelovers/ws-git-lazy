@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/change-root-dir@1.0.21...@git-lazy/change-root-dir@1.0.22) (2021-02-12)
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([b9c98eb](https://github.com/bluelovers/ws-git-lazy/commit/b9c98ebff556f7eb0e62dd8bb7889fd43e9698c4))
+* update deps ([2aa093a](https://github.com/bluelovers/ws-git-lazy/commit/2aa093a3e2d4f7b4cdb880d2120afb9499278788))
+
+
+
+
+
 ## [1.0.21](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/change-root-dir@1.0.20...@git-lazy/change-root-dir@1.0.21) (2020-07-19)
 
 

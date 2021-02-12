@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.24](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.23...@git-lazy/remote@1.0.24) (2021-02-12)
+
+
+### 🛠　Build System
+
+* update typescript ([75041e7](https://github.com/bluelovers/ws-git-lazy/commit/75041e75065a74f02f1d0dd61d72bd83544414cd))
+
+
+
+
+
 ## [1.0.23](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.22...@git-lazy/remote@1.0.23) (2020-07-19)
 
 **Note:** Version bump only for package @git-lazy/remote

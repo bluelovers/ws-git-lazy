@@ -1,6 +1,6 @@
 {
   "name": "gitlog2",
-  "version": "5.0.15",
+  "version": "5.0.16",
   "description": "Git log parser for Node.JS",
   "keywords": [
     "git",
@@ -36,14 +36,14 @@
     "sort-package-json": "npx sort-package-json ./package.json"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.22",
+    "@git-lazy/spawn": "^1.0.23",
     "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.5",
     "cross-spawn-extra": "^2.1.0",
     "debug": "^4.3.1",
     "decamelize": "^5.0.0",
-    "git-decode": "^1.0.7",
+    "git-decode": "^1.0.8",
     "lodash.assign": "^4.2.0",
     "sort-object-keys2": "^2.0.3"
   },

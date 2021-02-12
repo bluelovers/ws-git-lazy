@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.4](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.3...git-dummy-commit2@1.3.4) (2021-02-12)
+
+
+### ♻️　Chores
+
+* update deps ([2aa093a](https://github.com/bluelovers/ws-git-lazy/commit/2aa093a3e2d4f7b4cdb880d2120afb9499278788))
+
+
+
+
+
 ## [1.3.3](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.2...git-dummy-commit2@1.3.3) (2020-07-19)
 
 **Note:** Version bump only for package git-dummy-commit2

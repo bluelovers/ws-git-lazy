@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/root@1.0.19...@git-lazy/root@1.0.20) (2021-02-12)
+
+**Note:** Version bump only for package @git-lazy/root
+
+
+
+
+
 ## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/root@1.0.18...@git-lazy/root@1.0.19) (2020-07-19)
 
 **Note:** Version bump only for package @git-lazy/root

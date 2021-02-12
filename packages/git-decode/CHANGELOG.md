@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-git-lazy/compare/git-decode@1.0.7...git-decode@1.0.8) (2021-02-12)
+
+
+### 🛠　Build System
+
+* update typescript ([75041e7](https://github.com/bluelovers/ws-git-lazy/commit/75041e75065a74f02f1d0dd61d72bd83544414cd))
+
+
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-git-lazy/compare/git-decode@1.0.6...git-decode@1.0.7) (2020-07-01)
 
 
