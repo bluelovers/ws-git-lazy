@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.27](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/diff-staged@1.0.26...@git-lazy/diff-staged@1.0.27) (2021-05-30)
+
+**Note:** Version bump only for package @git-lazy/diff-staged
+
+
+
+
+
 ## [1.0.26](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/diff-staged@1.0.25...@git-lazy/diff-staged@1.0.26) (2021-02-12)
 
 

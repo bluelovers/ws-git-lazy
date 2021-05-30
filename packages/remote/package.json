@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/remote",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "private": false,
   "description": "@git-lazy/remote",
   "keywords": [],
@@ -31,7 +31,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/util": "^1.0.25"
+    "@git-lazy/util": "^1.0.26"
   },
   "publishConfig": {
     "access": "public"

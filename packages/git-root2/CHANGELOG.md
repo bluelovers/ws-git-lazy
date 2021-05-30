@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.23](https://github.com/bluelovers/ws-git-lazy/compare/git-root2@1.0.22...git-root2@1.0.23) (2021-05-30)
+
+
+### ♻️　Chores
+
+* update deps ([bebf827](https://github.com/bluelovers/ws-git-lazy/commit/bebf827337a43b26600b329275000e43bc9707a7))
+
+
+
+
+
 ## [1.0.22](https://github.com/bluelovers/ws-git-lazy/compare/git-root2@1.0.21...git-root2@1.0.22) (2021-02-12)
 
 

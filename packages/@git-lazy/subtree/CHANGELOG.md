@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.18](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.17...@git-lazy/subtree@1.0.18) (2021-05-30)
+
+
+### ♻️　Chores
+
+* update deps ([bebf827](https://github.com/bluelovers/ws-git-lazy/commit/bebf827337a43b26600b329275000e43bc9707a7))
+
+
+
+
+
 ## [1.0.17](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.16...@git-lazy/subtree@1.0.17) (2021-02-12)
 
 
