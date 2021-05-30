@@ -2,7 +2,7 @@
  * Created by user on 2019/6/13.
  */
 
-import { sortTree } from 'node-novel-globby/lib/glob-sort';
+import { sortTree } from '@lazy-glob/sort-tree';
 import { array_unique } from 'array-hyper-unique';
 
 export { sortTree }

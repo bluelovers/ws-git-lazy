@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@git-lazy/spawn": "^1.0.24",
-    "upath2": "^3.1.6"
+    "upath2": "^3.1.7"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

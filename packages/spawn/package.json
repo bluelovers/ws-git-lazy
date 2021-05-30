@@ -35,15 +35,15 @@
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.7",
+    "@lazy-glob/sort-tree": "^1.0.5",
     "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.5",
     "cross-spawn-extra": "^2.1.0",
-    "debug-color2": "^1.2.3",
-    "node-novel-globby": "^2.0.18"
+    "debug-color2": "^1.2.3"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.33"
+    "@types/bluebird": "^3.5.35"
   },
   "publishConfig": {
     "access": "public"

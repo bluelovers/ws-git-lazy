@@ -8,7 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitUntrackedDir = exports.gitUntrackedFile = void 0;
 const git_1 = require("@git-lazy/util/spawn/git");
-const glob_sort_1 = require("node-novel-globby/lib/glob-sort");
+const sort_tree_1 = require("@lazy-glob/sort-tree");
 const array_hyper_unique_1 = require("array-hyper-unique");
 const data_1 = require("@git-lazy/util/spawn/data");
 const root_1 = require("@git-lazy/root");
@@ -24,7 +24,7 @@ function gitUntrackedFile(git_root, options) {
 }
 exports.gitUntrackedFile = gitUntrackedFile;
 function gitUntrackedDir(git_root, options) {
-    return glob_sort_1.sortTree(array_hyper_unique_1.array_unique(gitUntrackedFile(git_root, options)
+    return sort_tree_1.sortTree(array_hyper_unique_1.array_unique(gitUntrackedFile(git_root, options)
         .map(v => path_1.default.dirname(v))));
 }
 exports.gitUntrackedDir = gitUntrackedDir;

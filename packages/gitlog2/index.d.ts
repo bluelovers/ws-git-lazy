@@ -4,17 +4,7 @@ import Bluebird from 'bluebird';
 export { EnumGitDateFormat, IReturnCommits, IParseCommit, IFieldsArray, defaultFields, defaultOptions };
 export { IOptions, IOptionsGitFlogs, IOptionsGitWithValue, IOptionsGitFlogsExtra, };
 export declare function gitlog(options: IOptions): IParseCommit[];
-export declare namespace gitlog {
-    export var gitlog: typeof import(".").gitlog;
-    var _a: typeof import(".").gitlog;
-    export { _a as default };
-}
 export declare function gitlog(options: IOptions, cb: IAsyncCallback): Bluebird<IParseCommit[]>;
-export declare namespace gitlog {
-    export var gitlog: typeof import(".").gitlog;
-    var _a: typeof import(".").gitlog;
-    export { _a as default };
-}
 export declare function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[] | Bluebird<IParseCommit[]>;
 export declare namespace gitlog {
     export var gitlog: typeof import(".").gitlog;

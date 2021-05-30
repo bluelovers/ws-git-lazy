@@ -29,7 +29,7 @@
   "dependencies": {
     "@git-lazy/debug": "^1.0.7",
     "@git-lazy/spawn": "^1.0.24",
-    "micromatch": "^4.0.2"
+    "micromatch": "^4.0.4"
   },
   "devDependencies": {
     "@types/bluebird": "latest",

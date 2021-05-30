@@ -20,18 +20,17 @@
   "resolutions": {},
   "dependencies": {
     "bluebird": "^3.7.2",
-    "fs-extra": "^9.1.0",
-    "workspace-release": "^0.5.1"
+    "fs-extra": "^10.0.0"
   },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.20",
-    "@types/bluebird": "^3.5.33",
-    "@types/fs-extra": "^9.0.7",
-    "@types/jest": "^26.0.20",
-    "@types/lodash": "^4.14.168",
-    "@types/node": "^14.14.26",
-    "@types/yargs": "^16.0.0",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.5.1"
+    "@types/bluebird": "^3.5.35",
+    "@types/fs-extra": "^9.0.11",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.170",
+    "@types/node": "^15.6.1",
+    "@types/yargs": "^17.0.0",
+    "jest": "^27.0.3",
+    "ts-jest": "^27.0.1"
   }
 }

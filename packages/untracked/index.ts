@@ -3,7 +3,7 @@
  */
 
 import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
-import { sortTree } from 'node-novel-globby/lib/glob-sort';
+import { sortTree } from '@lazy-glob/sort-tree';
 import { array_unique, lazy_unique } from 'array-hyper-unique';
 import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
 import { hasGit } from '@git-lazy/root';
