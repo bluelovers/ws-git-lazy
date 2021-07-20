@@ -22,7 +22,7 @@ export async function gitCloneSubDir(remote: string, options: IOptionsGitCloneSu
 {
 	({ remote, options } = handleOptions(remote, options));
 
-	let cp = await gitClone(remote, options);
+	await gitClone(remote, options);
 
 	let branch = Date.now().toString();
 
@@ -44,7 +44,7 @@ export async function gitCloneSubDir(remote: string, options: IOptionsGitCloneSu
 		throw new Error(`branch '${branch}' not exists`)
 	}
 
-	crossSpawnGitAsync('git', [
+	await crossSpawnGitAsync('git', [
 		'checkout',
 		'-B',
 		`master`,

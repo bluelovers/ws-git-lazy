@@ -14,7 +14,7 @@ const branch_exists_1 = (0, tslib_1.__importDefault)(require("@git-lazy/branch/l
 const current_name_1 = (0, tslib_1.__importDefault)(require("@git-lazy/branch/lib/current-name"));
 async function gitCloneSubDir(remote, options) {
     ({ remote, options } = (0, util_1.handleOptions)(remote, options));
-    let cp = await (0, clone_1.gitClone)(remote, options);
+    await (0, clone_1.gitClone)(remote, options);
     let branch = Date.now().toString();
     let cwd = options.targetDir;
     if (!(0, root_1.isGitRoot)(cwd)) {
@@ -28,7 +28,7 @@ async function gitCloneSubDir(remote, options) {
     if (!(0, branch_exists_1.default)(branch, cwd)) {
         throw new Error(`branch '${branch}' not exists`);
     }
-    (0, spawn_1.default)('git', [
+    await (0, spawn_1.default)('git', [
         'checkout',
         '-B',
         `master`,
