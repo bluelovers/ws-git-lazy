@@ -2,21 +2,19 @@
 /**
  * Created by user on 2019/7/6.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._core = exports.gitChangeRootDir = void 0;
+const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const root_1 = require("@git-lazy/root");
-const fast_glob_1 = __importDefault(require("@bluelovers/fast-glob"));
+const fast_glob_1 = (0, tslib_1.__importDefault)(require("@bluelovers/fast-glob"));
 const util_1 = require("@git-lazy/util/spawn/util");
 /**
  * https://stackoverflow.com/a/11764065/4563339
  */
 function gitChangeRootDir(options) {
     const { bin = 'git', cwd, yesDoIt, force, stdio = 'inherit' } = options;
-    if (!root_1.isGitRoot(cwd)) {
+    if (!(0, root_1.isGitRoot)(cwd)) {
         throw new RangeError(`cwd not a git root ${cwd}`);
     }
     if (!yesDoIt) {
@@ -54,7 +52,7 @@ function _core(options) {
     if (typeof targetPath !== 'string' || targetPath === '') {
         throw new RangeError(`targetPath is not allow, '${targetPath}'`);
     }
-    let cp = git_1.crossSpawnSync(bin, [
+    let cp = (0, git_1.crossSpawnSync)(bin, [
         'filter-branch',
         '--subdirectory-filter',
         targetPath,
@@ -68,7 +66,7 @@ function _core(options) {
         stripAnsi: true,
         stdio,
     });
-    let msg = util_1.crossSpawnOutput(cp.output);
+    let msg = (0, util_1.crossSpawnOutput)(cp.output);
     if (/Cannot create a new backup/i.test(msg)) {
         throw new Error(msg);
     }

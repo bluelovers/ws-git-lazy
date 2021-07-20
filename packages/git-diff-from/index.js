@@ -2,16 +2,14 @@
 /**
  * Created by user on 2018/5/14/014.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterArgv = exports.gitDiffFrom = exports.defaultOptions = void 0;
-const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const tslib_1 = require("tslib");
+const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
 const git_rev_range_1 = require("git-rev-range");
-const upath2_1 = __importDefault(require("upath2"));
+const upath2_1 = (0, tslib_1.__importDefault)(require("upath2"));
 const crlf_normalize_1 = require("crlf-normalize");
-const core_1 = __importDefault(require("git-root2/core"));
+const core_1 = (0, tslib_1.__importDefault)(require("git-root2/core"));
 const git_decode_1 = require("git-decode");
 exports.defaultOptions = {
     encoding: 'UTF-8',
@@ -21,8 +19,8 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
         [options, to] = [to, 'HEAD'];
     }
     options = Object.assign({}, exports.defaultOptions, options);
-    let cwd = git_rev_range_1.getCwd(options.cwd);
-    let root = core_1.default(cwd);
+    let cwd = (0, git_rev_range_1.getCwd)(options.cwd);
+    let root = (0, core_1.default)(cwd);
     if (!root) {
         throw new RangeError(`no exists git at ${cwd}`);
     }
@@ -34,14 +32,14 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
             displayFilesChangedDuringMerge: true,
         },
     };
-    ({ from, to } = git_rev_range_1.revisionRangeData(from, to, opts2));
+    ({ from, to } = (0, git_rev_range_1.revisionRangeData)(from, to, opts2));
     let files = [];
     let list = [];
     if (from != to) {
         let log = cross_spawn_extra_1.default.sync('git', filterArgv([
             ...'diff-tree -r --no-commit-id --name-status'.split(' '),
             `--encoding=${options.encoding}`,
-            git_rev_range_1.revisionRange(from, to, opts2),
+            (0, git_rev_range_1.revisionRange)(from, to, opts2),
         ]), {
             //stdio: 'inherit',
             cwd,
@@ -50,7 +48,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
         if (log.error || log.stderr.length) {
             throw new Error(log.stderr.toString());
         }
-        list = crlf_normalize_1.crlf(log.stdout.toString())
+        list = (0, crlf_normalize_1.crlf)(log.stdout.toString())
             .split(crlf_normalize_1.LF)
             .reduce(function (a, line) {
             line = line.replace(/^\s+/g, '');
@@ -59,7 +57,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
                 /**
                  * 沒有正確回傳 utf-8 而是變成編碼化
                  */
-                file = git_decode_1.decode2(file);
+                file = (0, git_decode_1.decode2)(file);
                 let fullpath = upath2_1.default.join(root, file);
                 file = upath2_1.default.relative(root, fullpath);
                 let row = {

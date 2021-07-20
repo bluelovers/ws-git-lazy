@@ -2,26 +2,14 @@
 /**
  * Created by user on 2020/5/27.
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.crossSpawnOutput = void 0;
+const tslib_1 = require("tslib");
 const debug_1 = require("@git-lazy/debug");
 const util_1 = require("./lib/util");
 Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
-const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
-__exportStar(require("./lib/types"), exports);
+const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
+(0, tslib_1.__exportStar)(require("./lib/types"), exports);
 /**
  * 適用於 git 的 crossSpawnSync
  */
@@ -35,7 +23,7 @@ function crossSpawnGitSync(command, args, options) {
     }
     debug_1.debug.log(command, args, options);
     let cp = cross_spawn_extra_1.default.sync(command, args, options);
-    print && debug_1.console.log(util_1.crossSpawnOutput(cp.output));
+    print && debug_1.console.log((0, util_1.crossSpawnOutput)(cp.output));
     checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr);
     return cp;
 }
@@ -67,7 +55,7 @@ function checkGitOutput(cp, throwError, printStderr) {
     else if (cp.stderr && cp.stderr.length) {
         s1 = String(cp.stderr);
         if (!cp.error) {
-            let s2 = util_1.stripAnsi(s1);
+            let s2 = (0, util_1.stripAnsi)(s1);
             if (/^fatal\:/im.test(s2) || /^unknown option:/i.test(s2)) {
                 let e = new Error(s1);
                 // @ts-ignore

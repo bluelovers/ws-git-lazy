@@ -26,9 +26,9 @@ function getCWD(cwd, realpath, failback) {
     }
     if (realpath && cwd != null) {
         if (realpath === 1 /* FS */) {
-            return fs_1.realpathSync(cwd);
+            return (0, fs_1.realpathSync)(cwd);
         }
-        return path_1.resolve(cwd);
+        return (0, path_1.resolve)(cwd);
     }
     return cwd;
 }

@@ -9,7 +9,7 @@ const path_1 = require("path");
 const types_1 = require("./types");
 function handlePrefix(prefix) {
     const bool = /^\.[\/\\]/.test(prefix);
-    prefix = upath2_1.normalize(prefix);
+    prefix = (0, upath2_1.normalize)(prefix);
     if (bool && !prefix.startsWith('../')) {
         prefix = './' + prefix;
     }
@@ -20,7 +20,7 @@ function handlePrefix(prefix) {
     else if (prefix.startsWith('../') || prefix.startsWith('./')) {
         prefixType = types_1.EnumPrefixType.RELATIVE;
     }
-    else if (path_1.isAbsolute(prefix)) {
+    else if ((0, path_1.isAbsolute)(prefix)) {
         prefixType = types_1.EnumPrefixType.ABSOLUTE;
     }
     return {
@@ -30,8 +30,8 @@ function handlePrefix(prefix) {
 }
 exports.handlePrefix = handlePrefix;
 function inSubPath(sub, root) {
-    let r = upath2_1.normalize(root);
-    let s = upath2_1.normalize(sub);
+    let r = (0, upath2_1.normalize)(root);
+    let s = (0, upath2_1.normalize)(sub);
     return s.indexOf(r) === 0 && s.length > r.length;
 }
 exports.inSubPath = inSubPath;
@@ -39,9 +39,9 @@ function handlePrefixPath(options) {
     let { prefix, prefixType, root, cwd, } = options;
     let prefixPath = prefix;
     if (prefixType !== types_1.EnumPrefixType.ROOT) {
-        prefixPath = upath2_1.resolve(cwd, prefix);
+        prefixPath = (0, upath2_1.resolve)(cwd, prefix);
         if (inSubPath(prefixPath, root)) {
-            prefixPath = upath2_1.relative(root, prefixPath);
+            prefixPath = (0, upath2_1.relative)(root, prefixPath);
         }
         else {
             throw new Error(`prefix path is not allow: ${prefixPath}`);

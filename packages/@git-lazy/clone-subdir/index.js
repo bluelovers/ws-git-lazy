@@ -2,35 +2,33 @@
 /**
  * Created by user on 2020/6/15.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitCloneSubDir = void 0;
+const tslib_1 = require("tslib");
 const clone_1 = require("@git-lazy/clone");
 const subtree_1 = require("@git-lazy/subtree");
 const util_1 = require("@git-lazy/clone/lib/util");
-const spawn_1 = __importDefault(require("@git-lazy/spawn"));
+const spawn_1 = (0, tslib_1.__importDefault)(require("@git-lazy/spawn"));
 const root_1 = require("@git-lazy/root");
-const branch_exists_1 = __importDefault(require("@git-lazy/branch/lib/branch-exists"));
-const current_name_1 = __importDefault(require("@git-lazy/branch/lib/current-name"));
+const branch_exists_1 = (0, tslib_1.__importDefault)(require("@git-lazy/branch/lib/branch-exists"));
+const current_name_1 = (0, tslib_1.__importDefault)(require("@git-lazy/branch/lib/current-name"));
 async function gitCloneSubDir(remote, options) {
-    ({ remote, options } = util_1.handleOptions(remote, options));
-    let cp = await clone_1.gitClone(remote, options);
+    ({ remote, options } = (0, util_1.handleOptions)(remote, options));
+    let cp = await (0, clone_1.gitClone)(remote, options);
     let branch = Date.now().toString();
     let cwd = options.targetDir;
-    if (!root_1.isGitRoot(cwd)) {
+    if (!(0, root_1.isGitRoot)(cwd)) {
         throw new Error(`${options.targetDir} not a git root`);
     }
-    await subtree_1.subtreeSplit({
+    await (0, subtree_1.subtreeSplit)({
         cwd,
         prefix: options.subDir,
         branch,
     });
-    if (!branch_exists_1.default(branch, cwd)) {
+    if (!(0, branch_exists_1.default)(branch, cwd)) {
         throw new Error(`branch '${branch}' not exists`);
     }
-    spawn_1.default('git', [
+    (0, spawn_1.default)('git', [
         'checkout',
         '-B',
         `master`,
@@ -39,7 +37,7 @@ async function gitCloneSubDir(remote, options) {
         cwd,
         stdio: 'inherit',
     });
-    if (branch !== current_name_1.default(cwd)) {
+    if (branch !== (0, current_name_1.default)(cwd)) {
         throw new Error(`something wrong when switch branch {${branch} => master}`);
     }
 }

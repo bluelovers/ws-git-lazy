@@ -2,18 +2,16 @@
 /**
  * Created by user on 2020/6/5.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._call = exports._cmd = exports.unparseCmd = exports.handleOptions = void 0;
+const tslib_1 = require("tslib");
 const util_1 = require("./util");
-const spawn_1 = __importDefault(require("@git-lazy/spawn"));
+const spawn_1 = (0, tslib_1.__importDefault)(require("@git-lazy/spawn"));
 const git_1 = require("./util/git");
 function handleOptions(options) {
     var _a, _b, _c, _d, _e, _f;
-    let { cwd, root } = git_1.handleGitPath(options);
-    let { prefix, prefixType } = util_1.handlePrefix(options.prefix);
+    let { cwd, root } = (0, git_1.handleGitPath)(options);
+    let { prefix, prefixType } = (0, util_1.handlePrefix)(options.prefix);
     let { prefixPath } = ((_b = (_a = options.handlers) === null || _a === void 0 ? void 0 : _a.handlePrefixPath) !== null && _b !== void 0 ? _b : util_1.handlePrefixPath)({
         prefix,
         prefixType,
@@ -45,11 +43,11 @@ function handleOptions(options) {
         options.handlers.assertValue(data);
     }
     else {
-        util_1.assertString(data.remote, 'remote');
-        util_1.assertString(data.branch, 'branch');
+        (0, util_1.assertString)(data.remote, 'remote');
+        (0, util_1.assertString)(data.branch, 'branch');
     }
-    util_1.assertString(data.root, 'root');
-    util_1.assertString(data.prefixPath, 'prefix');
+    (0, util_1.assertString)(data.root, 'root');
+    (0, util_1.assertString)(data.prefixPath, 'prefix');
     return data;
 }
 exports.handleOptions = handleOptions;
@@ -66,7 +64,7 @@ function unparseCmd(cmd, opts) {
 }
 exports.unparseCmd = unparseCmd;
 function _cmd(cmd, opts) {
-    return spawn_1.default('git', unparseCmd(cmd, opts), {
+    return (0, spawn_1.default)('git', unparseCmd(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });

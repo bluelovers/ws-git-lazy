@@ -2,36 +2,34 @@
 /**
  * Created by user on 2019/1/6/006.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createError = exports.parseCommitsStdout = exports.parseCommits = exports.parseCommitFields = exports.addOptional = exports.addFlagsBool = exports.toFlag = exports.decamelize = exports.decode = exports.addPrettyFormat = exports.buildCommands = exports.handleOptions = exports.debug = void 0;
+const tslib_1 = require("tslib");
 const array_hyper_unique_1 = require("array-hyper-unique");
-const debug_1 = __importDefault(require("debug"));
+const debug_1 = (0, tslib_1.__importDefault)(require("debug"));
 const fs_1 = require("fs");
 const git_decode_1 = require("git-decode");
 const type_1 = require("./type");
-const lodash_assign_1 = __importDefault(require("lodash.assign"));
-const decamelize_1 = __importDefault(require("decamelize"));
-const sort_object_keys2_1 = __importDefault(require("sort-object-keys2"));
+const lodash_assign_1 = (0, tslib_1.__importDefault)(require("lodash.assign"));
+const decamelize_1 = (0, tslib_1.__importDefault)(require("decamelize"));
+const sort_object_keys2_1 = (0, tslib_1.__importDefault)(require("sort-object-keys2"));
 const crlf_normalize_1 = require("crlf-normalize");
 const util_1 = require("@git-lazy/spawn/lib/util");
-exports.debug = debug_1.default('gitlog');
+exports.debug = (0, debug_1.default)('gitlog');
 function handleOptions(options) {
     // lazy name
     const REPO = (options.repo && options.repo != null) ? options.repo : options.cwd;
     if (!REPO)
         throw new Error(`Repo required!, but got "${REPO}"`);
-    if (!fs_1.existsSync(REPO))
+    if (!(0, fs_1.existsSync)(REPO))
         throw new Error(`Repo location does not exist: "${REPO}"`);
     let defaultExecOptions = {
         cwd: REPO,
         stripAnsi: true,
     };
     // Set defaults
-    options = lodash_assign_1.default({}, type_1.defaultOptions, { execOptions: defaultExecOptions }, options);
-    options.execOptions = lodash_assign_1.default(options.execOptions, defaultExecOptions);
+    options = (0, lodash_assign_1.default)({}, type_1.defaultOptions, { execOptions: defaultExecOptions }, options);
+    options.execOptions = (0, lodash_assign_1.default)(options.execOptions, defaultExecOptions);
     if (options.returnAllFields) {
         options.fields = [].concat(Object.keys(type_1.fields));
         if (options.nameStatus && typeof options.nameStatusFiles == 'undefined') {
@@ -88,7 +86,7 @@ function buildCommands(options) {
     else if (options.follow) {
         throw new TypeError(`options.follow works only for a single file`);
     }
-    exports.debug('command', options.execOptions, commands);
+    (0, exports.debug)('command', options.execOptions, commands);
     return { bin, commands };
 }
 exports.buildCommands = buildCommands;
@@ -110,13 +108,13 @@ exports.addPrettyFormat = addPrettyFormat;
 function decode(file) {
     if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/)) {
         file = file.replace(/^"|"$/g, '');
-        file = git_decode_1.decode(file);
+        file = (0, git_decode_1.decode)(file);
     }
     return file;
 }
 exports.decode = decode;
 function decamelize(key) {
-    return decamelize_1.default(key, '-');
+    return (0, decamelize_1.default)(key, { separator: '-' });
 }
 exports.decamelize = decamelize;
 function toFlag(key) {
@@ -136,7 +134,15 @@ exports.addFlagsBool = addFlagsBool;
  Add optional parameter to command
  */
 function addOptional(commands, options) {
-    let cmdOptional = ['author', 'since', 'after', 'until', 'before', 'committer', 'skip'];
+    let cmdOptional = [
+        'author',
+        'since',
+        'after',
+        'until',
+        'before',
+        'committer',
+        'skip',
+    ];
     for (let k of cmdOptional) {
         if (options[k]) {
             commands.push(`--${k}=${options[k]}`);
@@ -213,7 +219,7 @@ function parseCommits(commits, options) {
             }, []);
             commit = commit.concat(parseNameStatus);
         }
-        exports.debug('commit', commit);
+        (0, exports.debug)('commit', commit);
         // Remove the first empty char from the array
         commit.shift();
         let parsed = {
@@ -232,37 +238,37 @@ function parseCommits(commits, options) {
             else {
                 if (nameStatus) {
                     let pos = (index - fields.length) % type_1.notOptFields.length;
-                    exports.debug('nameStatus', (index - fields.length), type_1.notOptFields.length, pos, commitField);
+                    (0, exports.debug)('nameStatus', (index - fields.length), type_1.notOptFields.length, pos, commitField);
                     parsed[type_1.notOptFields[pos]].push(commitField);
                 }
             }
         });
         if (nameStatus && options.nameStatusFiles) {
-            parsed.fileStatus = array_hyper_unique_1.array_unique(nameStatusFiles);
+            parsed.fileStatus = (0, array_hyper_unique_1.array_unique)(nameStatusFiles);
         }
         // @ts-ignore
-        parsed = sort_object_keys2_1.default(parsed, type_1.KEY_ORDER);
+        parsed = (0, sort_object_keys2_1.default)(parsed, type_1.KEY_ORDER);
         return parsed;
     });
 }
 exports.parseCommits = parseCommits;
 function parseCommitsStdout(options, stdout) {
     let str;
-    exports.debug('stdout', stdout);
+    (0, exports.debug)('stdout', stdout);
     if (options.fnHandleBuffer) {
         str = options.fnHandleBuffer(stdout);
     }
     else {
-        str = util_1.crossSpawnOutput(stdout);
+        str = (0, util_1.crossSpawnOutput)(stdout);
     }
     //console.log(str);
     let commits = str.split("@begin@" /* BEGIN */);
     if (commits[0] === '') {
         commits.shift();
     }
-    exports.debug('commits', commits);
+    (0, exports.debug)('commits', commits);
     commits = parseCommits(commits, options);
-    exports.debug('commits:parsed', commits);
+    (0, exports.debug)('commits:parsed', commits);
     return commits;
 }
 exports.parseCommitsStdout = parseCommitsStdout;

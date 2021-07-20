@@ -2,12 +2,10 @@
 /**
  * Created by user on 2018/5/15/015.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decode2 = exports.decode = exports.encode = void 0;
-const uni_string_1 = __importDefault(require("uni-string"));
+const tslib_1 = require("tslib");
+const uni_string_1 = (0, tslib_1.__importDefault)(require("uni-string"));
 const util_1 = require("./lib/util");
 function encode(s) {
     return uni_string_1.default.split(s, '')
@@ -64,7 +62,7 @@ function decode2(input) {
     if (/(?:\\(\d{3}))/.test(input)) {
         input = decode(input);
     }
-    return util_1.removeQuote(input);
+    return (0, util_1.removeQuote)(input);
 }
 exports.decode2 = decode2;
 exports.default = exports;

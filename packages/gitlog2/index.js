@@ -1,30 +1,28 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.async = exports.asyncCallback = exports.sync = exports.gitlog = exports.defaultOptions = exports.defaultFields = exports.EnumGitDateFormat = void 0;
+const tslib_1 = require("tslib");
 const type_1 = require("./lib/type");
 Object.defineProperty(exports, "defaultOptions", { enumerable: true, get: function () { return type_1.defaultOptions; } });
 Object.defineProperty(exports, "EnumGitDateFormat", { enumerable: true, get: function () { return type_1.EnumGitDateFormat; } });
 Object.defineProperty(exports, "defaultFields", { enumerable: true, get: function () { return type_1.defaultFields; } });
 const util_1 = require("./lib/util");
-const bluebird_1 = __importDefault(require("bluebird"));
+const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
 const spawn_1 = require("@git-lazy/spawn");
 function gitlog(options, cb) {
-    options = util_1.handleOptions(options);
-    let { bin, commands } = util_1.buildCommands(options);
+    options = (0, util_1.handleOptions)(options);
+    let { bin, commands } = (0, util_1.buildCommands)(options);
     if (!cb) {
         // run Sync
-        return util_1.parseCommitsStdout(options, spawn_1.crossSpawnGitSync(bin, commands, options.execOptions).stdout);
+        return (0, util_1.parseCommitsStdout)(options, (0, spawn_1.crossSpawnGitSync)(bin, commands, options.execOptions).stdout);
     }
-    return spawn_1.crossSpawnGitAsync(bin, commands, options.execOptions)
+    return (0, spawn_1.crossSpawnGitAsync)(bin, commands, options.execOptions)
         .then(function (child) {
         let { stdout, stderr, error } = child;
-        let commits = util_1.parseCommitsStdout(options, stdout);
+        let commits = (0, util_1.parseCommitsStdout)(options, stdout);
         let err = stderr && stderr.toString() || error || null;
         if (err) {
-            let e = util_1.createError(err, {
+            let e = (0, util_1.createError)(err, {
                 bin,
                 commands,
                 child,

@@ -9,14 +9,14 @@ const util_1 = require("@git-lazy/util");
 const util_2 = require("@git-lazy/util/spawn/util");
 const index_1 = require("@git-lazy/util/util/index");
 function deleteBranch(REPO_PATH, name, force) {
-    let cp = git_1.crossSpawnSync('git', [
+    let cp = (0, git_1.crossSpawnSync)('git', [
         'branch',
         force === true ? '-D' : '-d',
         name,
     ], {
-        cwd: index_1.getCWD(REPO_PATH, 1 /* FS */),
+        cwd: (0, index_1.getCWD)(REPO_PATH, 1 /* FS */),
     });
-    util_1.debug.enabled && util_1.debug(util_2.crossSpawnOutput(cp.output));
+    util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
     if (!cp.error) {
         return true;
     }

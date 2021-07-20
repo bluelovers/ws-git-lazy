@@ -9,7 +9,7 @@ Object.defineProperty(exports, "sortTree", { enumerable: true, get: function () 
 const array_hyper_unique_1 = require("array-hyper-unique");
 function handleSpawnOutputArray(output, trimFn) {
     trimFn = trimFn || (s => s);
-    return sort_tree_1.sortTree(array_hyper_unique_1.array_unique(output
+    return (0, sort_tree_1.sortTree)((0, array_hyper_unique_1.array_unique)(output
         .split(/[\n\r]+/)
         .map(s => trimFn(s).trim())
         .filter(_filterEmpty)));

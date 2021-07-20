@@ -2,19 +2,17 @@
 /**
  * Created by user on 2019/3/10.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEmptyBranch = void 0;
+const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const core_1 = require("git-root2/core");
 const util_2 = require("@git-lazy/util/spawn/util");
-const current_name_1 = __importDefault(require("./current-name"));
-const branch_exists_1 = __importDefault(require("./branch-exists"));
+const current_name_1 = (0, tslib_1.__importDefault)(require("./current-name"));
+const branch_exists_1 = (0, tslib_1.__importDefault)(require("./branch-exists"));
 const index_1 = require("@git-lazy/util/util/index");
-const gitlog2_1 = __importDefault(require("gitlog2"));
+const gitlog2_1 = (0, tslib_1.__importDefault)(require("gitlog2"));
 const defaultMessage = 'create empty branch by git-lazy';
 /**
  * 建立空白分支
@@ -22,33 +20,33 @@ const defaultMessage = 'create empty branch by git-lazy';
 function createEmptyBranch(new_name, options) {
     if ((options = _createEmptyBranch(new_name, options))) {
         let { cwd, msg, author } = options;
-        if (!core_1.isGitRoot(cwd)) {
+        if (!(0, core_1.isGitRoot)(cwd)) {
             throw new Error(`fatal: target path not a git root "${cwd}"`);
         }
         let opts = {
             cwd,
             stripAnsi: true,
         };
-        let current_name = current_name_1.default(cwd);
-        if (!util_1.notEmptyString(current_name)) {
+        let current_name = (0, current_name_1.default)(cwd);
+        if (!(0, util_1.notEmptyString)(current_name)) {
             throw new Error(`fatal: can't get current branch name`);
         }
-        if (branch_exists_1.default(new_name, cwd)) {
+        if ((0, branch_exists_1.default)(new_name, cwd)) {
             throw new Error(`fatal: target branch "${new_name}" already exists`);
         }
-        let cp = git_1.checkGitOutput(git_1.crossSpawnSync('git', [
+        let cp = (0, git_1.checkGitOutput)((0, git_1.crossSpawnSync)('git', [
             'checkout',
             '--orphan',
             new_name,
         ], opts), true);
-        let current_new = current_name_1.default(cwd);
+        let current_new = (0, current_name_1.default)(cwd);
         if (current_new === new_name) {
             throw new Error(`fatal: branch "${new_name}" already exists, delete it or change a new name`);
         }
         if (current_new != null) {
             throw new Error(`fatal: something wrong, expect new branch is undefined, but got "${current_new}"`);
         }
-        util_1.debug.enabled && util_1.debug(util_2.crossSpawnOutput(cp.output));
+        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
         let mode_argv;
         switch (options.mode) {
             case 2 /* ORPHAN_RM_FORCE */:
@@ -72,28 +70,28 @@ function createEmptyBranch(new_name, options) {
                 ];
                 break;
         }
-        util_1.debug.enabled && util_1.debug(options.mode, mode_argv);
-        cp = git_1.checkGitOutput(git_1.crossSpawnSync('git', mode_argv, opts), true);
-        util_1.debug.enabled && util_1.debug(util_2.crossSpawnOutput(cp.output));
-        if (!msg || !util_1.notEmptyString(msg = String(msg))) {
+        util_1.debug.enabled && (0, util_1.debug)(options.mode, mode_argv);
+        cp = (0, git_1.checkGitOutput)((0, git_1.crossSpawnSync)('git', mode_argv, opts), true);
+        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        if (!msg || !(0, util_1.notEmptyString)(msg = String(msg))) {
             msg = defaultMessage;
         }
-        cp = git_1.checkGitOutput(git_1.crossSpawnSync('git', util_2.filterCrossSpawnArgv([
+        cp = (0, git_1.checkGitOutput)((0, git_1.crossSpawnSync)('git', (0, util_2.filterCrossSpawnArgv)([
             'commit',
-            util_1.notEmptyString(author) ? `--author=${author}` : null,
+            (0, util_1.notEmptyString)(author) ? `--author=${author}` : null,
             '--allow-empty',
             '-m',
             msg,
         ]), opts), true);
-        util_1.debug.enabled && util_1.debug(util_2.crossSpawnOutput(cp.output));
-        let current_new2 = current_name_1.default(cwd);
+        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        let current_new2 = (0, current_name_1.default)(cwd);
         if (current_new2 !== new_name) {
             throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);
         }
         let _logs = gitlog2_1.default.sync({
             cwd,
         });
-        util_1.debug.enabled && util_1.debug(_logs);
+        util_1.debug.enabled && (0, util_1.debug)(_logs);
         if (_logs.length !== 1) {
             throw new Error(`fatal: expect log length = 1, but got ${_logs.length}`);
         }
@@ -110,10 +108,10 @@ function createEmptyBranch(new_name, options) {
 exports.createEmptyBranch = createEmptyBranch;
 exports.default = createEmptyBranch;
 function _createEmptyBranch(new_name, options) {
-    if (util_1.notEmptyString(new_name)) {
+    if ((0, util_1.notEmptyString)(new_name)) {
         options = options || {};
-        let cwd = index_1.getCWD(options.cwd, 1 /* FS */);
-        if (util_1.notEmptyString(cwd)) {
+        let cwd = (0, index_1.getCWD)(options.cwd, 1 /* FS */);
+        if ((0, util_1.notEmptyString)(cwd)) {
             options.cwd = cwd;
             return options;
         }

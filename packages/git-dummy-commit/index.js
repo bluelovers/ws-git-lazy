@@ -35,7 +35,7 @@ function gitDummyCommit(msg, options) {
         args = ['-m', makeDefault(msg, options)];
     }
     const cwd = (_a = options === null || options === void 0 ? void 0 : options.cwd) !== null && _a !== void 0 ? _a : process.cwd();
-    return spawn_1.crossSpawnGitSync('git', [
+    return (0, spawn_1.crossSpawnGitSync)('git', [
         'commit',
         ...args,
         '--allow-empty',

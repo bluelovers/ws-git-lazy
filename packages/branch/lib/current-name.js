@@ -11,7 +11,7 @@ const util_2 = require("@git-lazy/util/spawn/util");
  * 取得目前分支名稱
  */
 function currentBranchName(REPO_PATH) {
-    let cp = git_1.crossSpawnSync('git', [
+    let cp = (0, git_1.crossSpawnSync)('git', [
         'rev-parse',
         '--abbrev-ref',
         'HEAD',
@@ -20,15 +20,15 @@ function currentBranchName(REPO_PATH) {
     });
     if (!cp.error) {
         // @ts-ignore
-        let name = util_2.crossSpawnOutput(cp.stdout, {
+        let name = (0, util_2.crossSpawnOutput)(cp.stdout, {
             clearEol: true,
             stripAnsi: true,
         });
-        if (util_1.notEmptyString(name) && !/\s/.test(name)) {
+        if ((0, util_1.notEmptyString)(name) && !/\s/.test(name)) {
             return name;
         }
     }
-    util_1.debug.enabled && util_1.debug(util_2.crossSpawnOutput(cp.output));
+    util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
 }
 exports.currentBranchName = currentBranchName;
 exports.default = currentBranchName;

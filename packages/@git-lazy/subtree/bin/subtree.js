@@ -1,36 +1,15 @@
 #!/usr/bin/env node
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const yargs_1 = __importDefault(require("yargs"));
+const tslib_1 = require("tslib");
+const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
 const __1 = require("..");
 const core_1 = require("../lib/core");
-const logger_1 = __importDefault(require("debug-color2/logger"));
-const debug_1 = __importStar(require("@git-lazy/debug"));
+const logger_1 = (0, tslib_1.__importDefault)(require("debug-color2/logger"));
+const debug_1 = (0, tslib_1.__importStar)(require("@git-lazy/debug"));
 const package_json_1 = require("../package.json");
 const split_1 = require("../lib/core/split");
-const yesno_1 = __importDefault(require("yesno"));
+const yesno_1 = (0, tslib_1.__importDefault)(require("yesno"));
 let cli = yargs_1.default
     .option('prefix', {
     alias: ['P'],
@@ -144,12 +123,12 @@ async function _builder(cmd, yargs) {
     let opts;
     let command;
     if (cmd === __1.EnumSubtreeCmd.split) {
-        opts = split_1.handleOptionsSplit(options);
-        command = `git ${split_1.unparseCmdSplit(cmd, opts).join(' ')}`;
+        opts = (0, split_1.handleOptionsSplit)(options);
+        command = `git ${(0, split_1.unparseCmdSplit)(cmd, opts).join(' ')}`;
     }
     else {
-        opts = core_1.handleOptions(options);
-        command = `git ${core_1.unparseCmd(cmd, opts).join(' ')}`;
+        opts = (0, core_1.handleOptions)(options);
+        command = `git ${(0, core_1.unparseCmd)(cmd, opts).join(' ')}`;
     }
     if (argv.disableExec) {
         debug_1.default.log(command);
@@ -160,7 +139,7 @@ async function _builder(cmd, yargs) {
         logger_1.default.debug(command);
         if (cmd === __1.EnumSubtreeCmd.split) {
             if (!opts.branch) {
-                const ok = await yesno_1.default({
+                const ok = await (0, yesno_1.default)({
                     question: 'Are you sure you want to continue with no branch?',
                 });
                 if (!ok) {
@@ -168,17 +147,17 @@ async function _builder(cmd, yargs) {
                 }
             }
             else if (opts.branch === 'master') {
-                const ok = await yesno_1.default({
+                const ok = await (0, yesno_1.default)({
                     question: `Are you sure you want to continue with branch => ${opts.branch}?`,
                 });
                 if (!ok) {
                     return yargs.exit(1, new Error(`user cancel`));
                 }
             }
-            split_1._cmdSplit(cmd, opts);
+            (0, split_1._cmdSplit)(cmd, opts);
         }
         else {
-            core_1._cmd(cmd, opts);
+            (0, core_1._cmd)(cmd, opts);
         }
     }
 }
