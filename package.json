@@ -12,8 +12,8 @@
     "prepublishOnly": "yarn run prepublishOnly:check-bin",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
-    "ncu": "npx yarn-tool ncu -u && npx yarn-tool ws exec yarn-tool ncu -- -u",
-    "sort-package-json": "npx yarn-tool sort && npx yarn-tool ws exec yarn-tool sort"
+    "ncu": "yarn-tool ncu -u && yarn-tool ws exec yarn-tool ncu -- -u",
+    "sort-package-json": "yarn-tool sort && yarn-tool ws exec yarn-tool sort"
   },
   "resolutions": {},
   "dependencies": {
