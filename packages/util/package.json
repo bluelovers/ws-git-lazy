@@ -16,7 +16,7 @@
   "author": "bluelovers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
@@ -29,13 +29,10 @@
   "dependencies": {
     "@git-lazy/debug": "^1.0.8",
     "@git-lazy/spawn": "^1.0.25",
-    "micromatch": "^4.0.4"
+    "micromatch": "^4.0.4",
+    "tslib": "^2.3.0"
   },
-  "devDependencies": {
-    "@types/bluebird": "latest",
-    "@types/debug": "latest",
-    "@types/micromatch": "^4.0.1"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },

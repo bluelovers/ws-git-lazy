@@ -29,7 +29,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
@@ -39,12 +39,13 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "crlf-normalize": "^1.0.5",
+    "crlf-normalize": "^1.0.6",
     "cross-spawn-extra": "^2.1.0",
     "git-decode": "^1.0.9",
     "git-rev-range": "^1.1.19",
     "git-root2": "^1.0.23",
-    "upath2": "^3.1.7"
+    "tslib": "^2.3.0",
+    "upath2": "^3.1.9"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

@@ -26,7 +26,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
@@ -36,7 +36,8 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "gitlog2": "^5.0.18"
+    "gitlog2": "^5.0.18",
+    "tslib": "^2.3.0"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

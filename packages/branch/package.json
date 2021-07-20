@@ -20,7 +20,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
@@ -32,7 +32,8 @@
   "dependencies": {
     "@git-lazy/util": "^1.0.26",
     "git-root2": "^1.0.23",
-    "gitlog2": "^5.0.18"
+    "gitlog2": "^5.0.18",
+    "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "public"

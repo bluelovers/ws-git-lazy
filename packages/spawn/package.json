@@ -20,7 +20,7 @@
   "scripts": {
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "test:jest": "jest --coverage",
     "test:mocha": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "npm:publish": "npm publish",
@@ -35,16 +35,15 @@
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.8",
-    "@lazy-glob/sort-tree": "^1.0.5",
-    "array-hyper-unique": "^1.1.9",
+    "@lazy-glob/sort-tree": "^1.0.6",
+    "array-hyper-unique": "^1.1.10",
     "bluebird": "^3.7.2",
-    "crlf-normalize": "^1.0.5",
+    "crlf-normalize": "^1.0.6",
     "cross-spawn-extra": "^2.1.0",
-    "debug-color2": "^1.2.3"
+    "debug-color2": "^1.2.7",
+    "tslib": "^2.3.0"
   },
-  "devDependencies": {
-    "@types/bluebird": "^3.5.35"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },

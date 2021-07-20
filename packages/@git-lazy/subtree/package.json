@@ -24,7 +24,7 @@
   "scripts": {
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "test:jest": "jest --coverage",
     "test:mocha": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
     "npm:publish": "npm publish",
@@ -40,10 +40,11 @@
   "dependencies": {
     "@git-lazy/debug": "^1.0.8",
     "@git-lazy/spawn": "^1.0.25",
-    "debug-color2": "^1.2.3",
+    "debug-color2": "^1.2.7",
     "git-root2": "^1.0.23",
-    "ts-type": "^1.2.34",
-    "upath2": "^3.1.7",
+    "ts-type": "^1.2.39",
+    "tslib": "^2.3.0",
+    "upath2": "^3.1.9",
     "yargs": "^17.0.1",
     "yargs-unparser": "^2.0.0",
     "yesno": "^0.3.1"

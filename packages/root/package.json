@@ -17,11 +17,11 @@
   "scripts": {
     "coverage": "npx nyc npm run test",
     "lint": "npx eslint **/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
+    "preversion": "yarn run test",
     "prepublish:lockfile": "npx sync-lockfile .",
-    "prepublishOnly": "npm run ncu && npm run sort-package-json",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish": "echo \"publish new version\"",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
@@ -29,7 +29,8 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "git-root2": "^1.0.23"
+    "git-root2": "^1.0.23",
+    "tslib": "^2.3.0"
   },
   "publishConfig": {
     "access": "public"
