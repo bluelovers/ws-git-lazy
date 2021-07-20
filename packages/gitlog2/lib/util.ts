@@ -166,7 +166,7 @@ export function decode(file: string): string
 
 export function decamelize(key: string): string
 {
-	return _decamelize(key, '-')
+	return _decamelize(key, { separator: '-' })
 }
 
 export function toFlag(key: string)
@@ -192,7 +192,15 @@ export function addFlagsBool(commands: ICommands, options: IOptions, flagNames: 
  */
 export function addOptional(commands: ICommands, options: IOptions)
 {
-	let cmdOptional: (keyof IOptionsGitWithValue)[] = ['author', 'since', 'after', 'until', 'before', 'committer', 'skip'];
+	let cmdOptional: (keyof IOptionsGitWithValue)[] = [
+		'author',
+		'since',
+		'after',
+		'until',
+		'before',
+		'committer',
+		'skip',
+	];
 	for (let k of cmdOptional)
 	{
 		if (options[k])
@@ -264,7 +272,7 @@ export function parseCommits(commits: string[], options: IOptions): IReturnCommi
 			}
 
 			parseNameStatus = parseNameStatus
-			// Split each line into it's own delimitered array
+				// Split each line into it's own delimitered array
 				.map(function (d, i)
 				{
 					return d.split(delimiter);
@@ -382,12 +390,13 @@ export function parseCommitsStdout(options: IOptions, stdout: SpawnSyncReturns["
 export interface IAsyncCallback<E = ReturnType<typeof createError>>
 {
 	(error: E, commits: IReturnCommits): void,
+
 	(error: never, commits: IReturnCommits): void,
 }
 
 export function createError<D extends any, E extends Error>(message?, data?: D, err?: {
-	new (): E,
-	new (...argv): E,
+	new(): E,
+	new(...argv): E,
 }): E & {
 	data: D,
 }
