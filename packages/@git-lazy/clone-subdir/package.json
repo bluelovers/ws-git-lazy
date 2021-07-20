@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/clone-subdir",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/clone-subdir#readme",
   "bugs": {
@@ -30,11 +30,11 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/clone": "^1.0.6",
-    "@git-lazy/root": "^1.0.22",
-    "@git-lazy/spawn": "^1.0.25",
-    "@git-lazy/subtree": "^1.0.18",
-    "@git-lazy/util-args": "^1.0.12",
+    "@git-lazy/clone": "^1.0.7",
+    "@git-lazy/root": "^1.0.23",
+    "@git-lazy/spawn": "^1.0.26",
+    "@git-lazy/subtree": "^1.0.19",
+    "@git-lazy/util-args": "^1.0.13",
     "tslib": "^2.3.0"
   },
   "publishConfig": {

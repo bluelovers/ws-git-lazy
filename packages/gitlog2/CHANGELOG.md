@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.19](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.18...gitlog2@5.0.19) (2021-07-20)
+
+
+### 🐛　Bug Fixes
+
+* _decamelize ([f91e88f](https://github.com/bluelovers/ws-git-lazy/commit/f91e88fc7e183302c0bad2b80f6ab1ad2f34713c))
+
+
+### 🛠　Build System
+
+* update .js ([c6f64c5](https://github.com/bluelovers/ws-git-lazy/commit/c6f64c52d8aafa63d2e4424bdc36192fe413733f))
+
+
+### ♻️　Chores
+
+* update deps and use tslib ([910fc69](https://github.com/bluelovers/ws-git-lazy/commit/910fc69537675a16bd0c27bf8d6878196eee51d6))
+
+
+
+
+
 ## [5.0.18](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.17...gitlog2@5.0.18) (2021-05-30)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.25](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.24...@git-lazy/untracked@1.0.25) (2021-07-20)
+
+
+### 🛠　Build System
+
+* update .js ([c6f64c5](https://github.com/bluelovers/ws-git-lazy/commit/c6f64c52d8aafa63d2e4424bdc36192fe413733f))
+
+
+### ♻️　Chores
+
+* update deps and use tslib ([910fc69](https://github.com/bluelovers/ws-git-lazy/commit/910fc69537675a16bd0c27bf8d6878196eee51d6))
+
+
+
+
+
 ## [1.0.24](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.23...@git-lazy/untracked@1.0.24) (2021-05-30)
 
 

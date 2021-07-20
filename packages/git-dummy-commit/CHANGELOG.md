@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.6...git-dummy-commit2@1.3.7) (2021-07-20)
+
+
+### 🛠　Build System
+
+* update .js ([c6f64c5](https://github.com/bluelovers/ws-git-lazy/commit/c6f64c52d8aafa63d2e4424bdc36192fe413733f))
+
+
+### ♻️　Chores
+
+* update deps and use tslib ([910fc69](https://github.com/bluelovers/ws-git-lazy/commit/910fc69537675a16bd0c27bf8d6878196eee51d6))
+
+
+
+
+
 ## [1.3.6](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.5...git-dummy-commit2@1.3.6) (2021-05-30)
 
 **Note:** Version bump only for package git-dummy-commit2
