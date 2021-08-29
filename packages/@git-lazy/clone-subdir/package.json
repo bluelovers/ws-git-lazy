@@ -35,7 +35,7 @@
     "@git-lazy/spawn": "^1.0.26",
     "@git-lazy/subtree": "^1.0.19",
     "@git-lazy/util-args": "^1.0.13",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"

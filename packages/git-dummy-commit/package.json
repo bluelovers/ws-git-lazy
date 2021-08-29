@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@git-lazy/spawn": "^1.0.26",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
     "shelljs": "^0.8.4"

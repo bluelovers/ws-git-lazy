@@ -32,7 +32,7 @@
     "git-root2": "^1.0.24",
     "glob-search": "^2.0.8",
     "parse-git-config": "^3.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"
