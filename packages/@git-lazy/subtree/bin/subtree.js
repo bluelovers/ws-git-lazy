@@ -59,16 +59,18 @@ cli
     .version('v')
     .demandCommand()
     .command('$0', '', (yargs) => {
+    // @ts-ignore
     if (yargs.argv.help || yargs.argv.h) {
         return yargs.showHelp('info');
     }
+    // @ts-ignore
     else if (yargs.argv.version || yargs.argv.v) {
         return debug_1.default.log(`${package_json_1.version}`);
     }
     debug_1.debug.log(yargs.argv);
     yargs.showHelp();
 })
-    .argv;
+    .parseSync();
 function _setup_cmd(yargs, cmd) {
     let aliases = [cmd];
     if (cmd === __1.EnumSubtreeCmd.add) {
@@ -86,10 +88,11 @@ function _setup_cmd(yargs, cmd) {
                 boolean: true,
             });
         }
-        if (yargs.argv.help || yargs.argv.h) {
+        let argv = yargs.parseSync();
+        if (argv.help || argv.h) {
             return yargs.showHelp();
         }
-        else if (yargs.argv.version || yargs.argv.v) {
+        else if (argv.version || argv.v) {
             return debug_1.default.log(`${package_json_1.version}`);
         }
         return _builder(cmd, yargs);
@@ -98,12 +101,14 @@ function _setup_cmd(yargs, cmd) {
 }
 async function _builder(cmd, yargs) {
     var _a;
-    const argv = yargs.argv;
+    const argv = yargs.parseSync();
     let { remote, branch, prefix, cwd, name, _, $0, disableExec, ...args_plus } = argv;
     _ = _.slice(1);
     if (cmd !== __1.EnumSubtreeCmd.split) {
+        // @ts-ignore
         remote = (_a = remote !== null && remote !== void 0 ? remote : name) !== null && _a !== void 0 ? _a : _.shift();
     }
+    // @ts-ignore
     branch = branch !== null && branch !== void 0 ? branch : _.shift();
     delete args_plus.P;
     delete args_plus.h;
@@ -128,6 +133,7 @@ async function _builder(cmd, yargs) {
     }
     else {
         opts = (0, core_1.handleOptions)(options);
+        // @ts-ignore
         command = `git ${(0, core_1.unparseCmd)(cmd, opts).join(' ')}`;
     }
     if (argv.disableExec) {

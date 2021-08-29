@@ -64,10 +64,12 @@ cli
 	.command('$0', '', (yargs) =>
 	{
 
+		// @ts-ignore
 		if (yargs.argv.help || yargs.argv.h)
 		{
 			return yargs.showHelp('info')
 		}
+		// @ts-ignore
 		else if (yargs.argv.version || yargs.argv.v)
 		{
 			return console.log(`${version}`)
@@ -77,10 +79,10 @@ cli
 
 		yargs.showHelp()
 	})
-	.argv
+	.parseSync()
 ;
 
-function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
+function _setup_cmd<Y extends typeof cli>(yargs: Y, cmd: EnumSubtreeCmd): Y
 {
 	let aliases: string[] = [cmd];
 
@@ -92,7 +94,7 @@ function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
 	aliases.map(cmd => `${cmd} [remote] [branch]`)
 
 	yargs
-		.command(aliases, ``, (yargs: typeof cli) =>
+		.command(aliases, ``, (yargs) =>
 		{
 
 			if (cmd === EnumSubtreeCmd.split)
@@ -107,11 +109,13 @@ function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
 				;
 			}
 
-			if (yargs.argv.help || yargs.argv.h)
+			let argv = yargs.parseSync();
+
+			if (argv.help || argv.h)
 			{
 				return yargs.showHelp()
 			}
-			else if (yargs.argv.version || yargs.argv.v)
+			else if (argv.version || argv.v)
 			{
 				return console.log(`${version}`)
 			}
@@ -125,7 +129,7 @@ function _setup_cmd<Y extends Argv<any>>(yargs: Y, cmd: EnumSubtreeCmd): Y
 
 async function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 {
-	const argv = yargs.argv;
+	const argv = yargs.parseSync();
 
 	let { remote, branch, prefix, cwd, name, _, $0, disableExec, ...args_plus } = argv;
 
@@ -133,9 +137,11 @@ async function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 
 	if (cmd !== EnumSubtreeCmd.split)
 	{
+		// @ts-ignore
 		remote = remote ?? name ?? _.shift();
 	}
 
+	// @ts-ignore
 	branch = branch ?? _.shift();
 
 	delete args_plus.P;
@@ -173,6 +179,7 @@ async function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 	{
 		opts = handleOptions(options as IOptionsCommon)
 
+		// @ts-ignore
 		command = `git ${unparseCmd(cmd, opts).join(' ')}`;
 	}
 
