@@ -1,6 +1,6 @@
 {
   "name": "git-rev-range",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "git-rev-range",
   "keywords": [
     "commit",
@@ -36,7 +36,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "gitlog2": "^5.0.19",
+    "gitlog2": "^5.0.20",
     "tslib": "^2.3.1"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
