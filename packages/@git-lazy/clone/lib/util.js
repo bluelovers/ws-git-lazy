@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitCloneCmd = exports.handleOptions = void 0;
 const tslib_1 = require("tslib");
 const path_1 = require("path");
-const util_args_1 = (0, tslib_1.__importDefault)(require("@git-lazy/util-args"));
+const util_args_1 = tslib_1.__importDefault(require("@git-lazy/util-args"));
 const lodash_1 = require("lodash");
 function handleOptions(remote, options) {
     var _a, _b;

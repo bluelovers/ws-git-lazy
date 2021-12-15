@@ -5,10 +5,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isGitRoot = exports.hasGit = exports.gitRoot = void 0;
 const tslib_1 = require("tslib");
-const core_1 = (0, tslib_1.__importDefault)(require("git-root2/core"));
+const core_1 = tslib_1.__importDefault(require("git-root2/core"));
 exports.gitRoot = core_1.default;
-const path_1 = (0, tslib_1.__importDefault)(require("path"));
-const fs_1 = (0, tslib_1.__importDefault)(require("fs"));
+const path_1 = tslib_1.__importDefault(require("path"));
+const fs_1 = tslib_1.__importDefault(require("fs"));
 function hasGit(cwd) {
     if (!cwd || typeof cwd !== 'string' || !(0, core_1.default)(cwd)) {
         throw new TypeError(`'${cwd}' is not exists in git`);

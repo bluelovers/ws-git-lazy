@@ -5,7 +5,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.localBranchExists = void 0;
 const tslib_1 = require("tslib");
-const branch_list_1 = (0, tslib_1.__importDefault)(require("./branch-list"));
+const branch_list_1 = tslib_1.__importDefault(require("./branch-list"));
 function localBranchExists(name, REPO_PATH) {
     return (0, branch_list_1.default)(REPO_PATH).includes(name);
 }

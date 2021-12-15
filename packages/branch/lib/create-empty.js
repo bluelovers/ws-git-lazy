@@ -9,10 +9,10 @@ const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const core_1 = require("git-root2/core");
 const util_2 = require("@git-lazy/util/spawn/util");
-const current_name_1 = (0, tslib_1.__importDefault)(require("./current-name"));
-const branch_exists_1 = (0, tslib_1.__importDefault)(require("./branch-exists"));
+const current_name_1 = tslib_1.__importDefault(require("./current-name"));
+const branch_exists_1 = tslib_1.__importDefault(require("./branch-exists"));
 const index_1 = require("@git-lazy/util/util/index");
-const gitlog2_1 = (0, tslib_1.__importDefault)(require("gitlog2"));
+const gitlog2_1 = tslib_1.__importDefault(require("gitlog2"));
 const defaultMessage = 'create empty branch by git-lazy';
 /**
  * 建立空白分支

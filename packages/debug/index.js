@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.disableDebug = exports.enableDebug = exports.debugConsole = exports.debug = exports.console = exports.createConsole = void 0;
 const tslib_1 = require("tslib");
 const debug_color2_1 = require("debug-color2");
-const debug_1 = (0, tslib_1.__importDefault)(require("debug"));
+const debug_1 = tslib_1.__importDefault(require("debug"));
 function createConsole(...argv) {
     const console = new debug_color2_1.Console(...argv);
     console.enabledColor = true;

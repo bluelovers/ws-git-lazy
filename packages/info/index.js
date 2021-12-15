@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterRemoteUrl = exports.parseConfig = exports.findConfigPathLocal = void 0;
 const tslib_1 = require("tslib");
 const parse_git_config_1 = require("parse-git-config");
-const core_1 = (0, tslib_1.__importDefault)(require("git-root2/core"));
+const core_1 = tslib_1.__importDefault(require("git-root2/core"));
 const glob_search_1 = require("glob-search");
 function findConfigPathLocal(cwd) {
     let root = (0, core_1.default)(cwd || process.cwd());

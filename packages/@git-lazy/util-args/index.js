@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.lazyUnParse = exports.kebabCaseObject = void 0;
 const tslib_1 = require("tslib");
 const lodash_1 = require("lodash");
-const yargs_unparser_1 = (0, tslib_1.__importDefault)(require("yargs-unparser"));
+const yargs_unparser_1 = tslib_1.__importDefault(require("yargs-unparser"));
 function kebabCaseObject(data) {
     return Object.entries(data)
         .reduce((a, [k, v]) => {

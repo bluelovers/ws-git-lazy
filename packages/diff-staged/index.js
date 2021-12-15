@@ -7,7 +7,7 @@ exports.gitDiffStagedFile = exports.gitDiffStagedDir = exports.gitDiffStaged = v
 const tslib_1 = require("tslib");
 const root_1 = require("@git-lazy/root");
 const spawn_1 = require("@git-lazy/spawn");
-const data_1 = (0, tslib_1.__importDefault)(require("@git-lazy/spawn/lib/data"));
+const data_1 = tslib_1.__importDefault(require("@git-lazy/spawn/lib/data"));
 function gitDiffStaged(git_root, options) {
     git_root = (0, root_1.hasGit)(git_root);
     const { bin = 'git' } = (options || {});

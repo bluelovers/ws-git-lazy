@@ -5,13 +5,13 @@ const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/3/10.
  */
-const create_empty_1 = (0, tslib_1.__importDefault)(require("./lib/create-empty"));
+const create_empty_1 = tslib_1.__importDefault(require("./lib/create-empty"));
 exports.createEmptyBranch = create_empty_1.default;
-const current_name_1 = (0, tslib_1.__importDefault)(require("./lib/current-name"));
+const current_name_1 = tslib_1.__importDefault(require("./lib/current-name"));
 exports.currentBranchName = current_name_1.default;
-const branch_exists_1 = (0, tslib_1.__importDefault)(require("./lib/branch-exists"));
+const branch_exists_1 = tslib_1.__importDefault(require("./lib/branch-exists"));
 exports.localBranchExists = branch_exists_1.default;
-const branch_list_1 = (0, tslib_1.__importDefault)(require("./lib/branch-list"));
+const branch_list_1 = tslib_1.__importDefault(require("./lib/branch-list"));
 exports.localBranchList = branch_list_1.default;
 exports.default = exports;
 //# sourceMappingURL=index.js.map

@@ -5,7 +5,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.matchGlob = void 0;
 const tslib_1 = require("tslib");
-const micromatch_1 = (0, tslib_1.__importDefault)(require("micromatch"));
+const micromatch_1 = tslib_1.__importDefault(require("micromatch"));
 function matchGlob(list, pattern) {
     return (0, micromatch_1.default)(list, pattern);
 }

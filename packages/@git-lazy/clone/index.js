@@ -7,7 +7,7 @@ exports.gitCloneSync = exports.gitClone = void 0;
 const tslib_1 = require("tslib");
 const spawn_1 = require("@git-lazy/spawn");
 const util_1 = require("./lib/util");
-(0, tslib_1.__exportStar)(require("./lib/types"), exports);
+tslib_1.__exportStar(require("./lib/types"), exports);
 function gitClone(remote, options) {
     var _a;
     options = options !== null && options !== void 0 ? options : {};

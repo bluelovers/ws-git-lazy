@@ -8,8 +8,8 @@ const tslib_1 = require("tslib");
 const debug_1 = require("@git-lazy/debug");
 const util_1 = require("./lib/util");
 Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
-const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
-(0, tslib_1.__exportStar)(require("./lib/types"), exports);
+const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
+tslib_1.__exportStar(require("./lib/types"), exports);
 /**
  * 適用於 git 的 crossSpawnSync
  */

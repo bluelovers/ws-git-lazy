@@ -11,7 +11,7 @@ const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const util_2 = require("@git-lazy/util/spawn/util");
-const fs_1 = (0, tslib_1.__importDefault)(require("fs"));
+const fs_1 = tslib_1.__importDefault(require("fs"));
 function renameRemoteBranch(remote, old_name, new_name, options) {
     if (options = _check_before(remote, old_name, new_name, options)) {
         let { cwd } = options;

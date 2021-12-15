@@ -10,6 +10,6 @@ Object.defineProperty(exports, "crossSpawnSync", { enumerable: true, get: functi
 Object.defineProperty(exports, "sync", { enumerable: true, get: function () { return cross_spawn_extra_1.sync; } });
 Object.defineProperty(exports, "crossSpawnAsync", { enumerable: true, get: function () { return cross_spawn_extra_1.async; } });
 Object.defineProperty(exports, "async", { enumerable: true, get: function () { return cross_spawn_extra_1.async; } });
-(0, tslib_1.__exportStar)(require("./types"), exports);
+tslib_1.__exportStar(require("./types"), exports);
 exports.default = exports;
 //# sourceMappingURL=index.js.map

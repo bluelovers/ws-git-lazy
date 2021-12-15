@@ -7,7 +7,7 @@ Object.defineProperty(exports, "defaultOptions", { enumerable: true, get: functi
 Object.defineProperty(exports, "EnumGitDateFormat", { enumerable: true, get: function () { return type_1.EnumGitDateFormat; } });
 Object.defineProperty(exports, "defaultFields", { enumerable: true, get: function () { return type_1.defaultFields; } });
 const util_1 = require("./lib/util");
-const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const spawn_1 = require("@git-lazy/spawn");
 function gitlog(options, cb) {
     options = (0, util_1.handleOptions)(options);
