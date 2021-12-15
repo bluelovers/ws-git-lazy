@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/util",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "private": false,
   "description": "@git-lazy core lib and a better cross spawn for git",
   "keywords": [],
@@ -27,8 +27,8 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/debug": "^1.0.10",
-    "@git-lazy/spawn": "^1.0.27",
+    "@git-lazy/debug": "^1.0.11",
+    "@git-lazy/spawn": "^1.0.28",
     "micromatch": "^4.0.4",
     "tslib": "^2.3.1"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.31](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.30...@git-lazy/branch@1.0.31) (2021-12-15)
+
+
+### 🔖　Miscellaneous
+
+* . ([098f4d7](https://github.com/bluelovers/ws-git-lazy/commit/098f4d705517f0efeef7ef5e9a15c0a16038bb4b))
+
+
+
+
+
 ## [1.0.30](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.29...@git-lazy/branch@1.0.30) (2021-08-29)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.27](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.26...@git-lazy/untracked@1.0.27) (2021-12-15)
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([41555b0](https://github.com/bluelovers/ws-git-lazy/commit/41555b057f607358bfc81ef6cd0e4b087ef76fba))
+
+
+### 🔖　Miscellaneous
+
+* . ([098f4d7](https://github.com/bluelovers/ws-git-lazy/commit/098f4d705517f0efeef7ef5e9a15c0a16038bb4b))
+
+
+
+
+
 ## [1.0.26](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.25...@git-lazy/untracked@1.0.26) (2021-08-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/bluelovers/ws-git-lazy/compare/git-decode@1.0.11...git-decode@1.0.12) (2021-12-15)
+
+
+### 🔖　Miscellaneous
+
+* . ([098f4d7](https://github.com/bluelovers/ws-git-lazy/commit/098f4d705517f0efeef7ef5e9a15c0a16038bb4b))
+
+
+
+
+
 ## [1.0.11](https://github.com/bluelovers/ws-git-lazy/compare/git-decode@1.0.10...git-decode@1.0.11) (2021-08-29)
 
 

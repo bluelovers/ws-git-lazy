@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.20...@git-lazy/subtree@1.0.21) (2021-12-15)
+
+
+### 🐛　Bug Fixes
+
+* **cli:** yargs.{ parseSync => parse } ([d5ce2f8](https://github.com/bluelovers/ws-git-lazy/commit/d5ce2f88fce3e9103035dd63fe6be9e3a3787a7b))
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([41555b0](https://github.com/bluelovers/ws-git-lazy/commit/41555b057f607358bfc81ef6cd0e4b087ef76fba))
+
+
+
+
+
 ## [1.0.20](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.19...@git-lazy/subtree@1.0.20) (2021-08-29)
 
 
