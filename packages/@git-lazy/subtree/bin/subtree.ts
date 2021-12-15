@@ -79,7 +79,7 @@ cli
 
 		yargs.showHelp()
 	})
-	.parseSync()
+	.parse()
 ;
 
 function _setup_cmd<Y extends typeof cli>(yargs: Y, cmd: EnumSubtreeCmd): Y

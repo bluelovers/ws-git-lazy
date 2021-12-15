@@ -2,14 +2,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
+const yargs_1 = tslib_1.__importDefault(require("yargs"));
 const __1 = require("..");
 const core_1 = require("../lib/core");
-const logger_1 = (0, tslib_1.__importDefault)(require("debug-color2/logger"));
-const debug_1 = (0, tslib_1.__importStar)(require("@git-lazy/debug"));
+const logger_1 = tslib_1.__importDefault(require("debug-color2/logger"));
+const debug_1 = tslib_1.__importStar(require("@git-lazy/debug"));
 const package_json_1 = require("../package.json");
 const split_1 = require("../lib/core/split");
-const yesno_1 = (0, tslib_1.__importDefault)(require("yesno"));
+const yesno_1 = tslib_1.__importDefault(require("yesno"));
 let cli = yargs_1.default
     .option('prefix', {
     alias: ['P'],
@@ -70,7 +70,7 @@ cli
     debug_1.debug.log(yargs.argv);
     yargs.showHelp();
 })
-    .parseSync();
+    .parse();
 function _setup_cmd(yargs, cmd) {
     let aliases = [cmd];
     if (cmd === __1.EnumSubtreeCmd.add) {
