@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.27](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.26...git-diff-from@1.1.27) (2022-02-15)
+
+
+### 📦　Code Refactoring
+
+* use `crossSpawnGitSync` ([0481959](https://github.com/bluelovers/ws-git-lazy/commit/0481959e166d245113695e034f5e69d842223952))
+
+
+### 🔖　Miscellaneous
+
+* . ([0326985](https://github.com/bluelovers/ws-git-lazy/commit/0326985209ab8b7b05724d9abeae03b4bc44f1d8))
+
+
+
+
+
 ## [1.1.26](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.25...git-diff-from@1.1.26) (2022-02-15)
 
 

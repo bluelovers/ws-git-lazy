@@ -1,6 +1,6 @@
 {
   "name": "gitlog2",
-  "version": "5.0.22",
+  "version": "5.0.23",
   "description": "Git log parser for Node.JS",
   "keywords": [
     "git",

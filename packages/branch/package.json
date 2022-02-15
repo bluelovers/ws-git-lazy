@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/branch",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "private": false,
   "description": "@git-lazy/branch",
   "keywords": [],
@@ -32,7 +32,7 @@
   "dependencies": {
     "@git-lazy/util": "^1.0.30",
     "git-root2": "^1.0.27",
-    "gitlog2": "^5.0.22",
+    "gitlog2": "^5.0.23",
     "tslib": "^2.3.1"
   },
   "publishConfig": {

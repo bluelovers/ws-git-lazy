@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.30](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/info@1.0.29...@git-lazy/info@1.0.30) (2022-02-15)
+
+
+### 🔖　Miscellaneous
+
+* . ([0326985](https://github.com/bluelovers/ws-git-lazy/commit/0326985209ab8b7b05724d9abeae03b4bc44f1d8))
+
+
+
+
+
 ## [1.0.29](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/info@1.0.28...@git-lazy/info@1.0.29) (2022-02-15)
 
 **Note:** Version bump only for package @git-lazy/info

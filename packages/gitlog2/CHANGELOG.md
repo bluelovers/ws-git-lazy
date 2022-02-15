@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.23](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.22...gitlog2@5.0.23) (2022-02-15)
+
+
+### 🔖　Miscellaneous
+
+* . ([0326985](https://github.com/bluelovers/ws-git-lazy/commit/0326985209ab8b7b05724d9abeae03b4bc44f1d8))
+
+
+
+
+
 ## [5.0.22](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.21...gitlog2@5.0.22) (2022-02-15)
 
 
