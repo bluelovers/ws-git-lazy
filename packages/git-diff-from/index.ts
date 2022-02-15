@@ -2,12 +2,12 @@
  * Created by user on 2018/5/14/014.
  */
 
-import crossSpawn from 'cross-spawn-extra';
 import { resolveRevision, revisionRange, getCwd, revisionRangeData, IOptions as IGitRevRangeOptions } from 'git-rev-range';
-import path from 'upath2';
+import { join, relative, resolve } from 'upath2';
 import { crlf, chkcrlf, LF, CRLF, CR } from 'crlf-normalize';
-import gitRoot from 'git-root2/core';
+import { gitRoot } from 'git-root2/core';
 import { decode, decode2 } from 'git-decode';
+import { crossSpawnGitSync } from '@git-lazy/spawn';
 
 export interface IOptions
 {
@@ -77,7 +77,7 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 
 	if (from != to)
 	{
-		let log = crossSpawn.sync('git', filterArgv([
+		let log = crossSpawnGitSync('git', filterArgv([
 			...'diff-tree -r --no-commit-id --name-status'.split(' '),
 			`--encoding=${options.encoding}`,
 			revisionRange(from, to, opts2),
@@ -107,8 +107,8 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 					 */
 					file = decode2(file);
 
-					let fullpath = path.join(root, file);
-					file = path.relative(root, fullpath);
+					let fullpath = join(root, file);
+					file = relative(root, fullpath);
 
 					let row = {
 						status,
@@ -126,8 +126,8 @@ export function gitDiffFrom(from: string | number = 'HEAD', to: string | any = '
 		;
 	}
 
-	cwd = path.resolve(cwd);
-	root = path.resolve(root);
+	cwd = resolve(cwd);
+	root = resolve(root);
 
 	return Object.assign(list, {
 		from,

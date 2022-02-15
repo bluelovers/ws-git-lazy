@@ -39,6 +39,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
+    "@git-lazy/spawn": "^1.0.29",
     "crlf-normalize": "^1.0.7",
     "cross-spawn-extra": "^2.1.0",
     "git-decode": "^1.0.13",

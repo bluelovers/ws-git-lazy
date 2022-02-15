@@ -4,13 +4,12 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterArgv = exports.gitDiffFrom = exports.defaultOptions = void 0;
-const tslib_1 = require("tslib");
-const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const git_rev_range_1 = require("git-rev-range");
-const upath2_1 = tslib_1.__importDefault(require("upath2"));
+const upath2_1 = require("upath2");
 const crlf_normalize_1 = require("crlf-normalize");
-const core_1 = tslib_1.__importDefault(require("git-root2/core"));
+const core_1 = require("git-root2/core");
 const git_decode_1 = require("git-decode");
+const spawn_1 = require("@git-lazy/spawn");
 exports.defaultOptions = {
     encoding: 'UTF-8',
 };
@@ -20,7 +19,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
     }
     options = Object.assign({}, exports.defaultOptions, options);
     let cwd = (0, git_rev_range_1.getCwd)(options.cwd);
-    let root = (0, core_1.default)(cwd);
+    let root = (0, core_1.gitRoot)(cwd);
     if (!root) {
         throw new RangeError(`no exists git at ${cwd}`);
     }
@@ -36,7 +35,7 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
     let files = [];
     let list = [];
     if (from != to) {
-        let log = cross_spawn_extra_1.default.sync('git', filterArgv([
+        let log = (0, spawn_1.crossSpawnGitSync)('git', filterArgv([
             ...'diff-tree -r --no-commit-id --name-status'.split(' '),
             `--encoding=${options.encoding}`,
             (0, git_rev_range_1.revisionRange)(from, to, opts2),
@@ -58,8 +57,8 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
                  * 沒有正確回傳 utf-8 而是變成編碼化
                  */
                 file = (0, git_decode_1.decode2)(file);
-                let fullpath = upath2_1.default.join(root, file);
-                file = upath2_1.default.relative(root, fullpath);
+                let fullpath = (0, upath2_1.join)(root, file);
+                file = (0, upath2_1.relative)(root, fullpath);
                 let row = {
                     status,
                     path: file,
@@ -71,8 +70,8 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
             return a;
         }, []);
     }
-    cwd = upath2_1.default.resolve(cwd);
-    root = upath2_1.default.resolve(root);
+    cwd = (0, upath2_1.resolve)(cwd);
+    root = (0, upath2_1.resolve)(root);
     return Object.assign(list, {
         from,
         to,
