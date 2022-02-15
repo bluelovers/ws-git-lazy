@@ -55,9 +55,9 @@ export function filterRemoteUrl(o: ReturnType<typeof parseConfig>): string
 {
 	let ret: string;
 
-	if (o.branch && o.branch.master && o.branch.master.remote)
+	if (o.branch && o.branch['master'] && o.branch['master'].remote)
 	{
-		ret = _(o.branch.master.remote)
+		ret = _(o.branch['master'].remote)
 	}
 
 	if (!ret)

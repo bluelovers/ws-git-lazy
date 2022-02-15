@@ -21,7 +21,6 @@ import {
 	buildCommands, createError,
 } from './lib/util';
 import Bluebird from 'bluebird';
-import crossSpawn from 'cross-spawn-extra';
 import extend from 'lodash.assign';
 import { crossSpawnGitSync, crossSpawnGitAsync } from '@git-lazy/spawn';
 

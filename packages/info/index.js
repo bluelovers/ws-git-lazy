@@ -29,8 +29,8 @@ function parseConfig(file) {
 exports.parseConfig = parseConfig;
 function filterRemoteUrl(o) {
     let ret;
-    if (o.branch && o.branch.master && o.branch.master.remote) {
-        ret = _(o.branch.master.remote);
+    if (o.branch && o.branch['master'] && o.branch['master'].remote) {
+        ret = _(o.branch['master'].remote);
     }
     if (!ret) {
         ret = _('origin');
