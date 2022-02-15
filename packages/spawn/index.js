@@ -3,13 +3,16 @@
  * Created by user on 2020/5/27.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.crossSpawnOutput = void 0;
+exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.SymbolRawArgv = exports.crossSpawnOutput = void 0;
 const tslib_1 = require("tslib");
 const debug_1 = require("@git-lazy/debug");
 const util_1 = require("./lib/util");
 Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
-const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
+const cross_spawn_extra_1 = require("cross-spawn-extra");
+const promise_tap_then_catch_1 = tslib_1.__importDefault(require("promise-tap-then-catch"));
 tslib_1.__exportStar(require("./lib/types"), exports);
+const SymbolRawArgv = Symbol.for('argv');
+exports.SymbolRawArgv = SymbolRawArgv;
 /**
  * 適用於 git 的 crossSpawnSync
  */
@@ -22,7 +25,13 @@ function crossSpawnGitSync(command, args, options) {
         }
     }
     debug_1.debug.log(command, args, options);
-    let cp = cross_spawn_extra_1.default.sync(command, args, options);
+    let cp = (0, cross_spawn_extra_1.sync)(command, args, options);
+    cp[SymbolRawArgv] = {
+        command,
+        args,
+        options,
+    };
+    // @ts-ignore
     print && debug_1.console.log((0, util_1.crossSpawnOutput)(cp.output));
     checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr);
     return cp;
@@ -34,8 +43,14 @@ exports.sync = crossSpawnGitSync;
  */
 function crossSpawnGitAsync(command, args, options) {
     debug_1.debug.log(command, args, options);
-    return cross_spawn_extra_1.default.async(command, args, options)
-        .then(cp => checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr));
+    return (0, promise_tap_then_catch_1.default)((0, cross_spawn_extra_1.async)(command, args, options)
+        .then(cp => checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr)), cp => {
+        cp[SymbolRawArgv] = {
+            command,
+            args,
+            options,
+        };
+    });
 }
 exports.crossSpawnGitAsync = crossSpawnGitAsync;
 exports.async = crossSpawnGitAsync;

@@ -7,6 +7,8 @@ import { crossSpawnOutput } from './lib/util';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
 export * from './lib/types';
 export { crossSpawnOutput };
+declare const SymbolRawArgv: unique symbol;
+export { SymbolRawArgv };
 /**
  * 適用於 git 的 crossSpawnSync
  */

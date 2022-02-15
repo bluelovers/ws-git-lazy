@@ -3,20 +3,34 @@
  */
 
 import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra/type';
-import { SpawnASyncReturns, SpawnASyncReturnsPromise, ISpawnASyncError, SpawnSyncReturns, CrossSpawnExtra } from 'cross-spawn-extra/core';
+import {
+	SpawnASyncReturns,
+	SpawnASyncReturnsPromise,
+	ISpawnASyncError,
+	SpawnSyncReturns,
+	CrossSpawnExtra,
+} from 'cross-spawn-extra/core';
 import { console, debugConsole, debug } from '@git-lazy/debug';
 import { crossSpawnOutput, stripAnsi } from './lib/util';
-import CrossSpawn from 'cross-spawn-extra';
+import { sync as CrossSpawnSync, async as CrossSpawnASync } from 'cross-spawn-extra';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
+import promiseTapLazy from 'promise-tap-then-catch';
 
 export * from './lib/types';
 
 export { crossSpawnOutput }
 
+const SymbolRawArgv = Symbol.for('argv');
+
+export { SymbolRawArgv }
+
 /**
  * 適用於 git 的 crossSpawnSync
  */
-export function crossSpawnGitSync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: ISpawnGitSyncOptions): SpawnSyncReturns<T>
+export function crossSpawnGitSync<T extends string | Buffer>(command: string,
+	args?: Array<unknown>,
+	options?: ISpawnGitSyncOptions,
+): SpawnSyncReturns<T>
 {
 	let print: boolean;
 
@@ -31,8 +45,15 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
 
 	debug.log(command, args, options);
 
-	let cp = CrossSpawn.sync<T>(command, args, options);
+	let cp = CrossSpawnSync<T>(command, args, options);
 
+	cp[SymbolRawArgv] = {
+		command,
+		args,
+		options,
+	};
+
+	// @ts-ignore
 	print && console.log(crossSpawnOutput(cp.output));
 
 	checkGitOutput(cp, options?.throwError, options?.printStderr);
@@ -43,13 +64,22 @@ export function crossSpawnGitSync<T extends string | Buffer>(command: string, ar
 /**
  * 適用於 git 的 crossSpawnAsync
  */
-export function crossSpawnGitAsync<T extends string | Buffer>(command: string, args?: Array<unknown>, options?: ISpawnGitAsyncOptions): SpawnASyncReturnsPromise<T>
+export function crossSpawnGitAsync<T extends string | Buffer>(command: string,
+	args?: Array<unknown>,
+	options?: ISpawnGitAsyncOptions,
+): SpawnASyncReturnsPromise<T>
 {
 	debug.log(command, args, options);
 
-	return CrossSpawn.async<T>(command, args, options)
-		.then(cp => checkGitOutput(cp, options?.throwError, options?.printStderr))
-		;
+	return promiseTapLazy(CrossSpawnASync<T>(command, args, options)
+		.then(cp => checkGitOutput(cp, options?.throwError, options?.printStderr)), cp =>
+	{
+		cp[SymbolRawArgv] = {
+			command,
+			args,
+			options,
+		}
+	});
 }
 
 /**
@@ -58,7 +88,10 @@ export function crossSpawnGitAsync<T extends string | Buffer>(command: string, a
  * because git output log has bug
  * when error happen didn't trigger cp.error
  */
-export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | SpawnASyncReturns<string | Buffer>>(cp: T, throwError?: boolean, printStderr?: boolean)
+export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | SpawnASyncReturns<string | Buffer>>(cp: T,
+	throwError?: boolean,
+	printStderr?: boolean,
+)
 {
 	let s1: string;
 	throwError = throwError ?? true;
