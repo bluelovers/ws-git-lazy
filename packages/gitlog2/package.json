@@ -39,7 +39,7 @@
     "@git-lazy/spawn": "^1.0.28",
     "array-hyper-unique": "^2.0.6",
     "bluebird": "^3.7.2",
-    "crlf-normalize": "^1.0.6",
+    "crlf-normalize": "^1.0.7",
     "cross-spawn-extra": "^2.1.0",
     "debug": "^4.3.3",
     "decamelize": "<6.0.0 >=5.0.1",
