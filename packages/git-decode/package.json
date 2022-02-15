@@ -1,6 +1,6 @@
 {
   "name": "git-decode",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "decode/encode git style utf8",
   "keywords": [
     "decode",

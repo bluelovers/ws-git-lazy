@@ -1,6 +1,6 @@
 {
   "name": "git-dummy-commit2",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "Create a dummy commit for testing",
   "keywords": [
     "cli-app",
@@ -35,7 +35,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.28",
+    "@git-lazy/spawn": "^1.0.29",
     "tslib": "^2.3.1"
   },
   "devDependencies": {

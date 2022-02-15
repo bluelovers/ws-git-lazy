@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.22](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.21...gitlog2@5.0.22) (2022-02-15)
+
+
+### ✨　Features
+
+* 防止 git ENOBUFS 錯誤 ([f7e9879](https://github.com/bluelovers/ws-git-lazy/commit/f7e9879571d498da83f432018e788e9ffd549003))
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([6aae1e5](https://github.com/bluelovers/ws-git-lazy/commit/6aae1e528b3fcdccd0d8458b7f3fa1006727918e))
+
+
+
+
+
 ## [5.0.21](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.20...gitlog2@5.0.21) (2021-12-15)
 
 

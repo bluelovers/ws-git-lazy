@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.29](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.28...@git-lazy/spawn@1.0.29) (2022-02-15)
+
+
+### ✨　Features
+
+* add `Symbol.for('argv')` ([4b6c7c9](https://github.com/bluelovers/ws-git-lazy/commit/4b6c7c93502abdbd71ad47cad3750eb15cef492f))
+
+
+
+
+
 ## [1.0.28](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.27...@git-lazy/spawn@1.0.28) (2021-12-15)
 
 
