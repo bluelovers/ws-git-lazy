@@ -23,6 +23,7 @@ import sortObjectKeys from 'sort-object-keys2';
 import { SpawnSyncOptions, SpawnSyncReturns } from 'cross-spawn-extra/core';
 import { LF } from 'crlf-normalize';
 import { crossSpawnOutput } from '@git-lazy/spawn/lib/util';
+import { GitExecMaxBuffer } from '@git-lazy/const';
 
 export const debug = debug0('gitlog');
 
@@ -42,6 +43,8 @@ export function handleOptions(options: IOptions)
 	// Set defaults
 	options = extend({}, defaultOptions, { execOptions: defaultExecOptions }, options);
 	options.execOptions = extend(options.execOptions, defaultExecOptions);
+
+	options.execOptions.maxBuffer ??= GitExecMaxBuffer;
 
 	if (options.returnAllFields)
 	{

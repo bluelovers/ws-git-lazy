@@ -15,8 +15,11 @@ const decamelize_1 = tslib_1.__importDefault(require("decamelize"));
 const sort_object_keys2_1 = tslib_1.__importDefault(require("sort-object-keys2"));
 const crlf_normalize_1 = require("crlf-normalize");
 const util_1 = require("@git-lazy/spawn/lib/util");
+const const_1 = require("@git-lazy/const");
 exports.debug = (0, debug_1.default)('gitlog');
 function handleOptions(options) {
+    var _a;
+    var _b;
     // lazy name
     const REPO = (options.repo && options.repo != null) ? options.repo : options.cwd;
     if (!REPO)
@@ -30,6 +33,7 @@ function handleOptions(options) {
     // Set defaults
     options = (0, lodash_assign_1.default)({}, type_1.defaultOptions, { execOptions: defaultExecOptions }, options);
     options.execOptions = (0, lodash_assign_1.default)(options.execOptions, defaultExecOptions);
+    (_a = (_b = options.execOptions).maxBuffer) !== null && _a !== void 0 ? _a : (_b.maxBuffer = const_1.GitExecMaxBuffer);
     if (options.returnAllFields) {
         options.fields = [].concat(Object.keys(type_1.fields));
         if (options.nameStatus && typeof options.nameStatusFiles == 'undefined') {

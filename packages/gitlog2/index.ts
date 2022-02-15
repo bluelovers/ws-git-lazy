@@ -42,7 +42,7 @@ export function gitlog(options: IOptions, cb?: IAsyncCallback): IParseCommit[] |
 		return parseCommitsStdout(options, crossSpawnGitSync(bin, commands, options.execOptions as any).stdout as any)
 	}
 
-	return crossSpawnGitAsync(bin, commands, options.execOptions)
+	return crossSpawnGitAsync(bin, commands, options.execOptions as any)
 		.then(function (child)
 		{
 			let { stdout, stderr, error } = child;

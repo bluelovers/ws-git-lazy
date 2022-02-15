@@ -36,6 +36,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
+    "@git-lazy/const": "^1.0.0",
     "@git-lazy/spawn": "^1.0.28",
     "array-hyper-unique": "^2.0.6",
     "bluebird": "^3.7.2",
