@@ -13,6 +13,7 @@ export interface IOptions {
      * @see https://git-tutorial.readthedocs.io/zh/latest/tagging.html
      */
     annotated?: boolean;
+    target?: string;
 }
 export declare function buildCmd(tag: string, options?: IOptions): string[];
 export declare function gitTag(tag: string, options?: IOptions, spawnOptions?: ISpawnGitAsyncOptions): import("cross-spawn-extra").SpawnASyncReturnsPromise<string | Buffer>;

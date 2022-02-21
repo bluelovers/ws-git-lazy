@@ -23,6 +23,9 @@ function buildCmd(tag, options) {
     if (options.signGitTag) {
         args.push("--sign");
     }
+    if (options.target) {
+        args.push(options.target);
+    }
     return args.filter(v => typeof v !== 'undefined');
 }
 exports.buildCmd = buildCmd;

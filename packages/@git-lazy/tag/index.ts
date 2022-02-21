@@ -15,6 +15,8 @@ export interface IOptions
 	 * @see https://git-tutorial.readthedocs.io/zh/latest/tagging.html
 	 */
 	annotated?: boolean,
+
+	target?: string,
 }
 
 export function buildCmd(tag: string, options?: IOptions): string[]
@@ -39,6 +41,11 @@ export function buildCmd(tag: string, options?: IOptions): string[]
 
 	if (options.signGitTag) {
 		args.push("--sign");
+	}
+
+	if (options.target)
+	{
+		args.push(options.target);
 	}
 
 	return args.filter(v => typeof v !== 'undefined')
