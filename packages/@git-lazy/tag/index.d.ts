@@ -8,6 +8,11 @@ export interface IOptions {
     message?: string;
     forceGitTag?: boolean;
     signGitTag?: boolean;
+    /**
+     * @see https://gitbook.tw/chapters/tag/using-tag
+     * @see https://git-tutorial.readthedocs.io/zh/latest/tagging.html
+     */
+    annotated?: boolean;
 }
 export declare function buildCmd(tag: string, options?: IOptions): string[];
 export declare function gitTag(tag: string, options?: IOptions, spawnOptions?: ISpawnGitAsyncOptions): import("cross-spawn-extra").SpawnASyncReturnsPromise<string | Buffer>;

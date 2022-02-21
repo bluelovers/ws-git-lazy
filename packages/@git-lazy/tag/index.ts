@@ -10,26 +10,38 @@ export interface IOptions
 	message?: string,
 	forceGitTag?: boolean,
 	signGitTag?: boolean,
+	/**
+	 * @see https://gitbook.tw/chapters/tag/using-tag
+	 * @see https://git-tutorial.readthedocs.io/zh/latest/tagging.html
+	 */
+	annotated?: boolean,
 }
 
 export function buildCmd(tag: string, options?: IOptions): string[]
 {
+	options ??= {};
+
 	const args = [
 		"tag",
+		options.annotated && '-a',
 		tag,
-		"-m",
-		options?.message ?? tag,
 	];
 
-	if (options?.forceGitTag) {
+	if (options.message?.length)
+	{
+		args.push('-m');
+		args.push(options.message);
+	}
+
+	if (options.forceGitTag) {
 		args.push("--force");
 	}
 
-	if (options?.signGitTag) {
+	if (options.signGitTag) {
 		args.push("--sign");
 	}
 
-	return args
+	return args.filter(v => typeof v !== 'undefined')
 }
 
 export function gitTag(tag: string, options?: IOptions, spawnOptions?: ISpawnGitAsyncOptions)
