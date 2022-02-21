@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.11](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/tag@1.0.10...@git-lazy/tag@1.0.11) (2022-02-21)
+
+
+### ✨　Features
+
+* get git tags list from target ([bacd841](https://github.com/bluelovers/ws-git-lazy/commit/bacd8419935a8f76fb0f6639d17f239404d94b86))
+* 可指定 tag 目標 ([f648d46](https://github.com/bluelovers/ws-git-lazy/commit/f648d4643286d9ca75d531a4744e60713fb71488))
+* 取消預設自動補上 標籤訊息 的設計 ([c9993fb](https://github.com/bluelovers/ws-git-lazy/commit/c9993fbd36b8c7d4452818ae0d368ab3e1223c4d))
+
+
+
+
+
 ## [1.0.10](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/tag@1.0.9...@git-lazy/tag@1.0.10) (2022-02-15)
 
 **Note:** Version bump only for package @git-lazy/tag

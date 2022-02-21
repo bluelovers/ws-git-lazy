@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.29](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.28...@git-lazy/untracked@1.0.29) (2022-02-21)
+
+**Note:** Version bump only for package @git-lazy/untracked
+
+
+
+
+
 ## [1.0.28](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.27...@git-lazy/untracked@1.0.28) (2022-02-15)
 
 **Note:** Version bump only for package @git-lazy/untracked
