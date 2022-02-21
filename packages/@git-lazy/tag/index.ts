@@ -3,6 +3,7 @@
  */
 
 import { crossSpawnGitSync, crossSpawnGitAsync, ISpawnGitAsyncOptions, ISpawnGitSyncOptions } from '@git-lazy/spawn';
+import { filterCrossSpawnArgv } from '@git-lazy/spawn/lib/util';
 
 export interface IOptions
 {
@@ -48,7 +49,7 @@ export function buildCmd(tag: string, options?: IOptions): string[]
 		args.push(options.target);
 	}
 
-	return args.filter(v => typeof v !== 'undefined')
+	return filterCrossSpawnArgv(args)
 }
 
 export function gitTag(tag: string, options?: IOptions, spawnOptions?: ISpawnGitAsyncOptions)

@@ -41,7 +41,7 @@ function crossSpawnOutput(buf, options = {
 }
 exports.crossSpawnOutput = crossSpawnOutput;
 function filterCrossSpawnArgv(args, fn) {
-    fn = fn || ((value) => value != null);
+    fn = fn || ((value) => typeof value !== 'undefined' && value !== null);
     return args.filter(fn);
 }
 exports.filterCrossSpawnArgv = filterCrossSpawnArgv;

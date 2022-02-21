@@ -5,6 +5,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitTagSync = exports.gitTag = exports.buildCmd = void 0;
 const spawn_1 = require("@git-lazy/spawn");
+const util_1 = require("@git-lazy/spawn/lib/util");
 function buildCmd(tag, options) {
     var _a;
     options !== null && options !== void 0 ? options : (options = {});
@@ -26,7 +27,7 @@ function buildCmd(tag, options) {
     if (options.target) {
         args.push(options.target);
     }
-    return args.filter(v => typeof v !== 'undefined');
+    return (0, util_1.filterCrossSpawnArgv)(args);
 }
 exports.buildCmd = buildCmd;
 function gitTag(tag, options, spawnOptions) {

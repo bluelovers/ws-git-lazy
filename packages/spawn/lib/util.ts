@@ -59,7 +59,7 @@ export function crossSpawnOutput(buf: SpawnSyncReturns["output"] | Buffer, optio
 
 export function filterCrossSpawnArgv<T extends unknown>(args: T[], fn?: (value: T) => boolean)
 {
-	fn = fn || ((value: T) => value != null);
+	fn = fn || ((value: T) => typeof value !== 'undefined' && value !== null);
 
 	return args.filter(fn);
 }
