@@ -14,7 +14,7 @@ function deleteBranch(REPO_PATH, name, force) {
         force === true ? '-D' : '-d',
         name,
     ], {
-        cwd: (0, index_1.getCWD)(REPO_PATH, 1 /* FS */),
+        cwd: (0, index_1.getCWD)(REPO_PATH, 1 /* getCWD.EnumRealPath.FS */),
     });
     util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
     if (!cp.error) {

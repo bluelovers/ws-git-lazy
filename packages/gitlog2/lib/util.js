@@ -64,7 +64,7 @@ function buildCommands(options) {
         commands.push('-m');
     }
     commands = addOptional(commands, options);
-    commands = addPrettyFormat(commands, options, "pretty" /* PRETTY */);
+    commands = addPrettyFormat(commands, options, "pretty" /* EnumPrettyFormatFlags.PRETTY */);
     // Append branch (revision range) if specified
     if (options.branch) {
         commands.push(options.branch);
@@ -94,17 +94,17 @@ function buildCommands(options) {
     return { bin, commands };
 }
 exports.buildCommands = buildCommands;
-function addPrettyFormat(commands, options, flagName = "pretty" /* PRETTY */) {
+function addPrettyFormat(commands, options, flagName = "pretty" /* EnumPrettyFormatFlags.PRETTY */) {
     // Start of custom format
     // Iterating through the fields and adding them to the custom format
     let command = options.fields.reduce(function (command, field) {
         if (!type_1.fields[field] && type_1.notOptFields.indexOf(field) === -1)
             throw new RangeError('Unknown field: ' + field);
-        command.push("\t" /* DELIMITER */ + type_1.fields[field]);
+        command.push("\t" /* EnumPrettyFormatMark.DELIMITER */ + type_1.fields[field]);
         return command;
-    }, [`${toFlag(flagName)}=${"@begin@" /* BEGIN */}`])
-        .concat(["@end@" /* END */])
-        .join("" /* JOIN */);
+    }, [`${toFlag(flagName)}=${"@begin@" /* EnumPrettyFormatMark.BEGIN */}`])
+        .concat(["@end@" /* EnumPrettyFormatMark.END */])
+        .join("" /* EnumPrettyFormatMark.JOIN */);
     commands.push(command);
     return commands;
 }
@@ -188,7 +188,7 @@ function parseCommits(commits, options) {
     let { fields, nameStatus } = options;
     return commits.map(function (_commit, _index) {
         //console.log(_commit);
-        let parts = _commit.split("@end@" /* END */);
+        let parts = _commit.split("@end@" /* EnumPrettyFormatMark.END */);
         let commit = parts[0].split(type_1.delimiter);
         let nameStatusFiles = [];
         if (parts[1]) {
@@ -266,7 +266,7 @@ function parseCommitsStdout(options, stdout) {
         str = (0, util_1.crossSpawnOutput)(stdout);
     }
     //console.log(str);
-    let commits = str.split("@begin@" /* BEGIN */);
+    let commits = str.split("@begin@" /* EnumPrettyFormatMark.BEGIN */);
     if (commits[0] === '') {
         commits.shift();
     }

@@ -25,7 +25,7 @@ function getCWD(cwd, realpath, failback) {
         cwd = undefined;
     }
     if (realpath && cwd != null) {
-        if (realpath === 1 /* FS */) {
+        if (realpath === 1 /* getCWD.EnumRealPath.FS */) {
             return (0, fs_1.realpathSync)(cwd);
         }
         return (0, path_1.resolve)(cwd);

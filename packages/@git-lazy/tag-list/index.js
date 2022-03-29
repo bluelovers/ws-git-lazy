@@ -32,7 +32,7 @@ function buildCmd(options) {
         args.push(options.merged);
     }
     args.push('--sort');
-    args.push(options.sort || "taggerdate" /* taggerdate */);
+    args.push(options.sort || "taggerdate" /* EnumSort.taggerdate */);
     return (0, util_1.filterCrossSpawnArgv)(args);
 }
 exports.buildCmd = buildCmd;

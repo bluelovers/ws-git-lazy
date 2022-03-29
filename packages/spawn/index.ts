@@ -14,7 +14,7 @@ import { console, debugConsole, debug } from '@git-lazy/debug';
 import { crossSpawnOutput, stripAnsi } from './lib/util';
 import { sync as CrossSpawnSync, async as CrossSpawnASync } from 'cross-spawn-extra';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
-import promiseTapLazy from 'promise-tap-then-catch';
+import { promiseTapLazyBoth as promiseTapLazy } from 'promise-tap-then-catch';
 
 export * from './lib/types';
 

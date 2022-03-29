@@ -9,7 +9,7 @@ const debug_1 = require("@git-lazy/debug");
 const util_1 = require("./lib/util");
 Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
 const cross_spawn_extra_1 = require("cross-spawn-extra");
-const promise_tap_then_catch_1 = tslib_1.__importDefault(require("promise-tap-then-catch"));
+const promise_tap_then_catch_1 = require("promise-tap-then-catch");
 tslib_1.__exportStar(require("./lib/types"), exports);
 const SymbolRawArgv = Symbol.for('argv');
 exports.SymbolRawArgv = SymbolRawArgv;
@@ -43,7 +43,7 @@ exports.sync = crossSpawnGitSync;
  */
 function crossSpawnGitAsync(command, args, options) {
     debug_1.debug.log(command, args, options);
-    return (0, promise_tap_then_catch_1.default)((0, cross_spawn_extra_1.async)(command, args, options)
+    return (0, promise_tap_then_catch_1.promiseTapLazyBoth)((0, cross_spawn_extra_1.async)(command, args, options)
         .then(cp => checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr)), cp => {
         cp[SymbolRawArgv] = {
             command,

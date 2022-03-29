@@ -2,6 +2,7 @@
  * Created by user on 2019/1/6/006.
  */
 /// <reference types="node" />
+/// <reference types="node" />
 import { SpawnSyncOptions } from "child_process";
 import { SpawnSyncReturns } from 'cross-spawn-extra/core';
 export declare const defaultFields: IFieldsArray;

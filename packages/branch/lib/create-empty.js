@@ -49,21 +49,21 @@ function createEmptyBranch(new_name, options) {
         util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
         let mode_argv;
         switch (options.mode) {
-            case 2 /* ORPHAN_RM_FORCE */:
+            case 2 /* createEmptyBranch.EnumMode.ORPHAN_RM_FORCE */:
                 mode_argv = [
                     'rm',
                     '-rf',
                     '.',
                 ];
                 break;
-            case 1 /* ORPHAN_RM */:
+            case 1 /* createEmptyBranch.EnumMode.ORPHAN_RM */:
                 mode_argv = [
                     'rm',
                     '-r',
                     '.',
                 ];
                 break;
-            case 0 /* ORPHAN */:
+            case 0 /* createEmptyBranch.EnumMode.ORPHAN */:
             default:
                 mode_argv = [
                     'reset',
@@ -110,7 +110,7 @@ exports.default = createEmptyBranch;
 function _createEmptyBranch(new_name, options) {
     if ((0, util_1.notEmptyString)(new_name)) {
         options = options || {};
-        let cwd = (0, index_1.getCWD)(options.cwd, 1 /* FS */);
+        let cwd = (0, index_1.getCWD)(options.cwd, 1 /* getCWD.EnumRealPath.FS */);
         if ((0, util_1.notEmptyString)(cwd)) {
             options.cwd = cwd;
             return options;
