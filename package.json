@@ -8,7 +8,10 @@
     "packages/@lazy-spawn/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "preversion": "yt ws run test",
+    "test": "yarn run test:since",
+    "test:all": "yarn-tool ws run test --concurrency 1",
+    "test:since": "yarn run test:all -- --since",
     "lerna-publish": "yarn run prepublishOnly && lerna publish --yes --cd-version patch",
     "prepublishOnly": "yarn run prepublishOnly:check-bin",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
