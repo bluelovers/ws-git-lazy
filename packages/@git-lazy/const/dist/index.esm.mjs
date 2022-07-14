@@ -1,4 +1,4 @@
-const GitExecMaxBuffer = 1024 * 1024 * 100;
+const o = 104857600;
 
-export { GitExecMaxBuffer };
+export { o as GitExecMaxBuffer };
 //# sourceMappingURL=index.esm.mjs.map
