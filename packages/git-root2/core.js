@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.async = exports.sync = exports.isGitRoot = exports.gitRoot = void 0;
-const util_1 = require("@git-lazy/spawn/lib/util");
 const upath2_1 = require("upath2");
 const fs_1 = require("fs");
 const spawn_1 = require("@git-lazy/spawn");
+const stringify_1 = require("@lazy-spawn/stringify");
 function gitRoot(cwd) {
-    let p = (0, util_1.crossSpawnOutput)(((0, spawn_1.crossSpawnGitSync)('git', [
+    let p = (0, stringify_1.crossSpawnOutput)(((0, spawn_1.crossSpawnGitSync)('git', [
         'rev-parse',
         '--show-toplevel',
     ], {

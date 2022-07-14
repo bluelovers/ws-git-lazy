@@ -1,7 +1,8 @@
-import { crossSpawnOutput } from '@git-lazy/spawn/lib/util';
+
 import { resolve } from 'upath2';
 import { existsSync } from "fs";
 import { crossSpawnGitSync } from '@git-lazy/spawn';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export function gitRoot(cwd?: string): string
 {

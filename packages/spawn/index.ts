@@ -11,10 +11,11 @@ import {
 	CrossSpawnExtra,
 } from 'cross-spawn-extra/core';
 import { console, debugConsole, debug } from '@git-lazy/debug';
-import { crossSpawnOutput, stripAnsi } from './lib/util';
 import { sync as CrossSpawnSync, async as CrossSpawnASync } from 'cross-spawn-extra';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
 import { promiseTapLazyBoth as promiseTapLazy } from 'promise-tap-then-catch';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
+import { stripAnsiValue } from '@lazy-spawn/strip-ansi';
 
 export * from './lib/types';
 
@@ -107,7 +108,7 @@ export function checkGitOutput<T extends SpawnSyncReturns<string | Buffer> | Spa
 
 		if (!cp.error)
 		{
-			let s2 = stripAnsi(s1);
+			let s2 = stripAnsiValue(s1);
 
 			if (/^fatal\:/im.test(s2) || /^unknown option:/i.test(s2))
 			{

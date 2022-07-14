@@ -3,8 +3,8 @@
  */
 /// <reference types="node" />
 import { SpawnASyncReturns, SpawnASyncReturnsPromise, SpawnSyncReturns } from 'cross-spawn-extra/core';
-import { crossSpawnOutput } from './lib/util';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 export * from './lib/types';
 export { crossSpawnOutput };
 declare const SymbolRawArgv: unique symbol;

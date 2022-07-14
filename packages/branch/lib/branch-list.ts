@@ -2,11 +2,16 @@
  * Created by user on 2019/3/10.
  */
 
-import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
+import {
+	crossSpawnSync,
+	crossSpawnAsync,
+	SpawnOptions,
+	checkGitOutput,
+} from '@git-lazy/util/spawn/git';
 import { notEmptyString, debug } from '@git-lazy/util';
 import { isGitRoot } from 'git-root2/core';
-import { crossSpawnOutput, filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
 import fs from 'fs';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export function localBranchList(REPO_PATH: string): string[]
 {

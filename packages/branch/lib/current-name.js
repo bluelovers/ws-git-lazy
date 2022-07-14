@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.currentBranchName = void 0;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
-const util_2 = require("@git-lazy/util/spawn/util");
+const stringify_1 = require("@lazy-spawn/stringify");
 /**
  * 取得目前分支名稱
  */
@@ -20,7 +20,7 @@ function currentBranchName(REPO_PATH) {
     });
     if (!cp.error) {
         // @ts-ignore
-        let name = (0, util_2.crossSpawnOutput)(cp.stdout, {
+        let name = (0, stringify_1.crossSpawnOutput)(cp.stdout, {
             clearEol: true,
             stripAnsi: true,
         });
@@ -28,7 +28,7 @@ function currentBranchName(REPO_PATH) {
             return name;
         }
     }
-    util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+    util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
 }
 exports.currentBranchName = currentBranchName;
 exports.default = currentBranchName;

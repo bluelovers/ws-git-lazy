@@ -10,8 +10,8 @@ const tslib_1 = require("tslib");
  */
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
-const util_2 = require("@git-lazy/util/spawn/util");
 const fs_1 = tslib_1.__importDefault(require("fs"));
+const stringify_1 = require("@lazy-spawn/stringify");
 function renameRemoteBranch(remote, old_name, new_name, options) {
     if (options = _check_before(remote, old_name, new_name, options)) {
         let { cwd } = options;
@@ -24,10 +24,10 @@ function renameRemoteBranch(remote, old_name, new_name, options) {
             cwd,
         });
         if (!cp.error) {
-            console.log((0, util_2.crossSpawnOutput)(cp.output));
+            console.log((0, stringify_1.crossSpawnOutput)(cp.output));
             return true;
         }
-        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
     }
 }
 exports.renameRemoteBranch = renameRemoteBranch;

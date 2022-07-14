@@ -13,6 +13,7 @@ const current_name_1 = tslib_1.__importDefault(require("./current-name"));
 const branch_exists_1 = tslib_1.__importDefault(require("./branch-exists"));
 const index_1 = require("@git-lazy/util/util/index");
 const gitlog2_1 = tslib_1.__importDefault(require("gitlog2"));
+const stringify_1 = require("@lazy-spawn/stringify");
 const defaultMessage = 'create empty branch by git-lazy';
 /**
  * 建立空白分支
@@ -46,7 +47,7 @@ function createEmptyBranch(new_name, options) {
         if (current_new != null) {
             throw new Error(`fatal: something wrong, expect new branch is undefined, but got "${current_new}"`);
         }
-        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
         let mode_argv;
         switch (options.mode) {
             case 2 /* createEmptyBranch.EnumMode.ORPHAN_RM_FORCE */:
@@ -72,7 +73,7 @@ function createEmptyBranch(new_name, options) {
         }
         util_1.debug.enabled && (0, util_1.debug)(options.mode, mode_argv);
         cp = (0, git_1.checkGitOutput)((0, git_1.crossSpawnSync)('git', mode_argv, opts), true);
-        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
         if (!msg || !(0, util_1.notEmptyString)(msg = String(msg))) {
             msg = defaultMessage;
         }
@@ -83,7 +84,7 @@ function createEmptyBranch(new_name, options) {
             '-m',
             msg,
         ]), opts), true);
-        util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+        util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
         let current_new2 = (0, current_name_1.default)(cwd);
         if (current_new2 !== new_name) {
             throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);

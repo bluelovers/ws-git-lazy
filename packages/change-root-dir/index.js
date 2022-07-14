@@ -8,7 +8,7 @@ const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const root_1 = require("@git-lazy/root");
 const fast_glob_1 = tslib_1.__importDefault(require("@bluelovers/fast-glob"));
-const util_1 = require("@git-lazy/util/spawn/util");
+const stringify_1 = require("@lazy-spawn/stringify");
 /**
  * https://stackoverflow.com/a/11764065/4563339
  */
@@ -66,7 +66,7 @@ function _core(options) {
         stripAnsi: true,
         stdio,
     });
-    let msg = (0, util_1.crossSpawnOutput)(cp.output);
+    let msg = (0, stringify_1.crossSpawnOutput)(cp.output);
     if (/Cannot create a new backup/i.test(msg)) {
         throw new Error(msg);
     }

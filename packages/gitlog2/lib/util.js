@@ -14,8 +14,8 @@ const lodash_assign_1 = tslib_1.__importDefault(require("lodash.assign"));
 const decamelize_1 = tslib_1.__importDefault(require("decamelize"));
 const sort_object_keys2_1 = tslib_1.__importDefault(require("sort-object-keys2"));
 const crlf_normalize_1 = require("crlf-normalize");
-const util_1 = require("@git-lazy/spawn/lib/util");
 const const_1 = require("@git-lazy/const");
+const stringify_1 = require("@lazy-spawn/stringify");
 exports.debug = (0, debug_1.default)('gitlog');
 function handleOptions(options) {
     var _a;
@@ -263,7 +263,7 @@ function parseCommitsStdout(options, stdout) {
         str = options.fnHandleBuffer(stdout);
     }
     else {
-        str = (0, util_1.crossSpawnOutput)(stdout);
+        str = (0, stringify_1.crossSpawnOutput)(stdout);
     }
     //console.log(str);
     let commits = str.split("@begin@" /* EnumPrettyFormatMark.BEGIN */);

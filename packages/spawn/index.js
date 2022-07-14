@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.SymbolRawArgv = exports.crossSpawnOutput = void 0;
 const tslib_1 = require("tslib");
 const debug_1 = require("@git-lazy/debug");
-const util_1 = require("./lib/util");
-Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return util_1.crossSpawnOutput; } });
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const promise_tap_then_catch_1 = require("promise-tap-then-catch");
+const stringify_1 = require("@lazy-spawn/stringify");
+Object.defineProperty(exports, "crossSpawnOutput", { enumerable: true, get: function () { return stringify_1.crossSpawnOutput; } });
+const strip_ansi_1 = require("@lazy-spawn/strip-ansi");
 tslib_1.__exportStar(require("./lib/types"), exports);
 const SymbolRawArgv = Symbol.for('argv');
 exports.SymbolRawArgv = SymbolRawArgv;
@@ -32,7 +33,7 @@ function crossSpawnGitSync(command, args, options) {
         options,
     };
     // @ts-ignore
-    print && debug_1.console.log((0, util_1.crossSpawnOutput)(cp.output));
+    print && debug_1.console.log((0, stringify_1.crossSpawnOutput)(cp.output));
     checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr);
     return cp;
 }
@@ -70,7 +71,7 @@ function checkGitOutput(cp, throwError, printStderr) {
     else if (cp.stderr && cp.stderr.length) {
         s1 = String(cp.stderr);
         if (!cp.error) {
-            let s2 = (0, util_1.stripAnsi)(s1);
+            let s2 = (0, strip_ansi_1.stripAnsiValue)(s1);
             if (/^fatal\:/im.test(s2) || /^unknown option:/i.test(s2)) {
                 let e = new Error(s1);
                 // @ts-ignore

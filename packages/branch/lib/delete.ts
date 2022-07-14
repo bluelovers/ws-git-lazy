@@ -4,8 +4,8 @@
 
 import { crossSpawnSync } from '@git-lazy/util/spawn/git';
 import { debug, notEmptyString } from '@git-lazy/util';
-import { crossSpawnOutput } from '@git-lazy/util/spawn/util';
 import { getCWD } from '@git-lazy/util/util/index';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export function deleteBranch(REPO_PATH: string, name: string, force?: boolean)
 {

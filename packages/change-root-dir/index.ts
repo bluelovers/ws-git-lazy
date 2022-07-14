@@ -7,7 +7,7 @@ import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
 import { hasGit, isGitRoot } from '@git-lazy/root';
 import FastGlob, { Options, EntryItem } from '@bluelovers/fast-glob';
 import { ITSRequiredWith } from 'ts-type';
-import { crossSpawnOutput } from '@git-lazy/util/spawn/util';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export interface IOptions
 {

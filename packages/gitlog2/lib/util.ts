@@ -22,8 +22,8 @@ import _decamelize from 'decamelize';
 import sortObjectKeys from 'sort-object-keys2';
 import { SpawnSyncOptions, SpawnSyncReturns } from 'cross-spawn-extra/core';
 import { LF } from 'crlf-normalize';
-import { crossSpawnOutput } from '@git-lazy/spawn/lib/util';
 import { GitExecMaxBuffer } from '@git-lazy/const';
+import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export const debug = debug0('gitlog');
 
@@ -415,4 +415,3 @@ export function createError<D extends any, E extends Error>(message?, data?: D, 
 	// @ts-ignore
 	return e;
 }
-

@@ -1,7 +1,8 @@
 {
   "packages": [
     "packages/@git-lazy/*",
-    "packages/*"
+    "packages/*",
+    "packages/@lazy-spawn/*"
   ],
   "command": {
     "publish": {

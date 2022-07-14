@@ -35,8 +35,8 @@
     "@git-lazy/root": "^1.0.28",
     "@git-lazy/util": "^1.0.32",
     "@lazy-glob/sort-tree": "^1.0.6",
-    "array-hyper-unique": "^2.0.6",
-    "tslib": "^2.3.1"
+    "array-hyper-unique": "^2.0.8",
+    "tslib": "^2"
   },
   "publishConfig": {
     "access": "public"

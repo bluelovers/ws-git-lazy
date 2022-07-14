@@ -38,7 +38,8 @@
   "dependencies": {
     "@git-lazy/const": "^1.0.1",
     "@git-lazy/spawn": "^1.0.31",
-    "array-hyper-unique": "^2.0.6",
+    "@lazy-spawn/stringify": "^1.0.0",
+    "array-hyper-unique": "^2.0.8",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.7",
     "debug": "^4.3.4",
@@ -46,7 +47,7 @@
     "git-decode": "^1.0.13",
     "lodash.assign": "^4.2.0",
     "sort-object-keys2": "^2.0.3",
-    "tslib": "^2.3.1"
+    "tslib": "^2"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

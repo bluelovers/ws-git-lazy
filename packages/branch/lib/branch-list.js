@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.localBranchList = void 0;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
-const util_2 = require("@git-lazy/util/spawn/util");
+const stringify_1 = require("@lazy-spawn/stringify");
 function localBranchList(REPO_PATH) {
     let cp = (0, git_1.crossSpawnSync)('git', [
         'branch',
@@ -17,7 +17,7 @@ function localBranchList(REPO_PATH) {
     });
     if (!cp.error) {
         // @ts-ignore
-        let out = (0, util_2.crossSpawnOutput)(cp.stdout, {
+        let out = (0, stringify_1.crossSpawnOutput)(cp.stdout, {
             clearEol: true,
             stripAnsi: true,
         });
@@ -28,7 +28,7 @@ function localBranchList(REPO_PATH) {
             return ls;
         }
     }
-    util_1.debug.enabled && (0, util_1.debug)((0, util_2.crossSpawnOutput)(cp.output));
+    util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
     return [];
 }
 exports.localBranchList = localBranchList;
