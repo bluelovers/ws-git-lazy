@@ -1,6 +1,6 @@
 {
   "name": "@lazy-spawn/strip-ansi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -74,8 +74,6 @@
     "has-ansi": "<5 >=4.0.1",
     "strip-ansi": "<7 >=6.0.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "packageManager": "yarn@^1.22.11",
   "publishConfig": {
     "access": "public"

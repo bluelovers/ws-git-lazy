@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/tag",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/tag#readme",
   "bugs": {
@@ -30,7 +30,7 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.31",
+    "@git-lazy/spawn": "^1.0.32",
     "tslib": "^2"
   },
   "publishConfig": {

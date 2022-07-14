@@ -1,6 +1,6 @@
 {
   "name": "git-root2",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "get git root path",
   "keywords": [
     "git",
@@ -35,8 +35,8 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.31",
-    "@lazy-spawn/stringify": "^1.0.0",
+    "@git-lazy/spawn": "^1.0.32",
+    "@lazy-spawn/stringify": "^1.0.1",
     "tslib": "^2",
     "upath2": "^3.1.13"
   },

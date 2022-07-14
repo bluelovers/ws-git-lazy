@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.26](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.25...gitlog2@5.0.26) (2022-07-14)
+
+
+### 📦　Code Refactoring
+
+* { crossSpawnOutput, stripAnsi } ([287760c](https://github.com/bluelovers/ws-git-lazy/commit/287760c0cc6a540a6d7e2d561afeb9ba5d737d8f))
+
+
+
+
+
 ## [5.0.25](https://github.com/bluelovers/ws-git-lazy/compare/gitlog2@5.0.24...gitlog2@5.0.25) (2022-03-29)
 
 

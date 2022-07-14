@@ -1,6 +1,6 @@
 {
   "name": "@lazy-spawn/stringify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "create-by-yarn-tool",
@@ -71,12 +71,10 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-spawn/strip-ansi": "^1.0.0",
+    "@lazy-spawn/strip-ansi": "^1.0.1",
     "ts-type": "^2.1.8",
     "tslib": "^2"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
