@@ -3,6 +3,6 @@
  */
 
 export * from '@git-lazy/spawn/lib/data';
-import handleSpawnOutputArray from '@git-lazy/spawn/lib/data';
+import { handleSpawnOutputArray } from '@git-lazy/spawn/lib/data';
 
 export default handleSpawnOutputArray
