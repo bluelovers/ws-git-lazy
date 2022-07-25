@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "Node16",
+    "noEmit": true,
+    "declaration": false,
+    "noUnusedParameters": false,
+    "allowUnusedLabels": true,
+    "noUnusedLocals": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
+}
