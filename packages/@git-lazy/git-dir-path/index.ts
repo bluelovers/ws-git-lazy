@@ -20,7 +20,7 @@ export function findGitDir(options?: IOptionsFindGitDir)
 		cwd: options.cwd,
 		onlyDirectories: true,
 		throwIfNoEntry: options.throwIfNoEntry,
-	}).result
+	})?.result
 }
 
 export function findGitDirAsync(options?: IOptionsFindGitDir)
@@ -33,7 +33,7 @@ export function findGitDirAsync(options?: IOptionsFindGitDir)
 		cwd: options.cwd,
 		onlyDirectories: true,
 		throwIfNoEntry: options.throwIfNoEntry,
-	}).then(data => data.result)
+	}).then(data => data?.result)
 }
 
 export default findGitDir
