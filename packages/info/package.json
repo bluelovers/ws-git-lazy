@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "git-root2": "^1.0.30",
-    "glob-search": "^2.0.8",
+    "glob-search": "^2.0.12",
     "parse-git-config": "^3.0.0",
     "tslib": "^2"
   },

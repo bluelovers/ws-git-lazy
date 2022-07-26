@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.13",
-    "@lazy-glob/sort-tree": "^1.0.6",
+    "@lazy-glob/sort-tree": "^1.0.9",
     "@lazy-spawn/stringify": "^1.0.1",
     "@lazy-spawn/strip-ansi": "^1.0.1",
     "array-hyper-unique": "^2.0.8",
