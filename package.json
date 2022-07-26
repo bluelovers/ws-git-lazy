@@ -14,6 +14,7 @@
     "test:since": "yarn run test:all -- --since",
     "lerna-publish": "yarn run prepublishOnly && lerna publish --yes --cd-version patch",
     "prepublishOnly": "yarn run prepublishOnly:check-bin",
+    "postversion": "yarn-tool fix-all",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "ncu": "yarn-tool ncu -u && yarn-tool ws exec yarn-tool ncu -- -u",
