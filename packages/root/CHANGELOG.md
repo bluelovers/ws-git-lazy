@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.30](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/root@1.0.29...@git-lazy/root@1.0.30) (2022-07-26)
+
+
+### 📦　Code Refactoring
+
+* remove same function ([5008b84](https://github.com/bluelovers/ws-git-lazy/commit/5008b84ebcec42cc62a50d204d7bae4b388282b4))
+
+
+### BREAKING CHANGES
+
+* remove same function
+
+
+
+
+
 ## [1.0.29](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/root@1.0.28...@git-lazy/root@1.0.29) (2022-07-14)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "gitlog2",
-  "version": "5.0.26",
+  "version": "5.0.27",
   "description": "Git log parser for Node.JS",
   "keywords": [
     "git",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@git-lazy/const": "^1.0.2",
-    "@git-lazy/spawn": "^1.0.32",
+    "@git-lazy/spawn": "^1.0.33",
     "@lazy-spawn/stringify": "^1.0.1",
     "array-hyper-unique": "^2.0.8",
     "bluebird": "^3.7.2",

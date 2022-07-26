@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.26](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.25...@git-lazy/subtree@1.0.26) (2022-07-26)
+
+**Note:** Version bump only for package @git-lazy/subtree
+
+
+
+
+
 ## [1.0.25](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/subtree@1.0.24...@git-lazy/subtree@1.0.25) (2022-07-14)
 
 

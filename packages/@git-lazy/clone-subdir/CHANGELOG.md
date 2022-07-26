@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.16](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone-subdir@1.0.15...@git-lazy/clone-subdir@1.0.16) (2022-07-26)
+
+**Note:** Version bump only for package @git-lazy/clone-subdir
+
+
+
+
+
 ## [1.0.15](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone-subdir@1.0.14...@git-lazy/clone-subdir@1.0.15) (2022-07-14)
 
 

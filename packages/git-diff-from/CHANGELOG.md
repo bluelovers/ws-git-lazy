@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.31](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.30...git-diff-from@1.1.31) (2022-07-26)
+
+**Note:** Version bump only for package git-diff-from
+
+
+
+
+
 ## [1.1.30](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.29...git-diff-from@1.1.30) (2022-07-14)
 
 

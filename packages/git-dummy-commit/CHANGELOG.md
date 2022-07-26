@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.14](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.13...git-dummy-commit2@1.3.14) (2022-07-26)
+
+**Note:** Version bump only for package git-dummy-commit2
+
+
+
+
+
 ## [1.3.13](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.12...git-dummy-commit2@1.3.13) (2022-07-14)
 
 
