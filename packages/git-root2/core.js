@@ -5,6 +5,7 @@ const upath2_1 = require("upath2");
 const fs_1 = require("fs");
 const spawn_1 = require("@git-lazy/spawn");
 const stringify_1 = require("@lazy-spawn/stringify");
+const path_is_same_1 = require("path-is-same");
 function gitRoot(cwd) {
     let p = (0, stringify_1.crossSpawnOutput)(((0, spawn_1.crossSpawnGitSync)('git', [
         'rev-parse',
@@ -26,8 +27,7 @@ function gitRoot(cwd) {
 }
 exports.gitRoot = gitRoot;
 function isGitRoot(target) {
-    let root = gitRoot(target);
-    return (root && (0, upath2_1.resolve)(root) === (0, upath2_1.resolve)(target));
+    return (0, path_is_same_1.pathIsSame)(target, gitRoot(target));
 }
 exports.isGitRoot = isGitRoot;
 function sync(cwd) {

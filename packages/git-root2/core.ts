@@ -3,6 +3,7 @@ import { resolve } from 'upath2';
 import { existsSync } from "fs";
 import { crossSpawnGitSync } from '@git-lazy/spawn';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
+import { pathIsSame } from 'path-is-same';
 
 export function gitRoot(cwd?: string): string
 {
@@ -33,9 +34,7 @@ export function gitRoot(cwd?: string): string
 
 export function isGitRoot(target: string)
 {
-	let root = gitRoot(target);
-
-	return (root && resolve(root) === resolve(target));
+	return pathIsSame(target, gitRoot(target))
 }
 
 export function sync(cwd?: string)

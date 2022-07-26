@@ -2,11 +2,9 @@
  * Created by user on 2019/6/13.
  */
 
-import gitRoot from 'git-root2/core'
-import path from 'path'
-import fs from 'fs'
+import { gitRoot, isGitRoot } from 'git-root2/core'
 
-export { gitRoot }
+export { gitRoot, isGitRoot }
 
 export function hasGit(cwd: string): string
 {
@@ -16,19 +14,6 @@ export function hasGit(cwd: string): string
 	}
 
 	return cwd
-}
-
-export function isGitRoot(cwd: string, realpath?: boolean)
-{
-	let p1 = path.normalize(cwd);
-	let p2 = path.normalize(gitRoot(cwd));
-
-	if (realpath)
-	{
-		return (fs.realpathSync(p1) === fs.realpathSync(p2))
-	}
-
-	return (p1 === p2)
 }
 
 export default gitRoot
