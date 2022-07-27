@@ -1,6 +1,6 @@
 export declare function gitRoot(cwd?: string): string;
 export declare namespace gitRoot {
-    export var isGitRoot: typeof import("./core").isGitRoot;
+    export var isGitRoot: typeof import("@git-lazy/root").isGitRoot;
     export var sync: typeof import("./core").sync;
     export var async: typeof import("./core").async;
     var _a: typeof gitRoot;
