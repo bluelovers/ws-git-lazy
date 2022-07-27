@@ -3,7 +3,9 @@ import { ISpawnGitAsyncOptions } from '@git-lazy/spawn';
 import { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 export declare const enum EnumSort {
     committerdate = "committerdate",
-    taggerdate = "taggerdate"
+    taggerdate = "taggerdate",
+    creatordate = "creatordate",
+    refname = "refname"
 }
 export interface IOptions {
     cwd?: string;

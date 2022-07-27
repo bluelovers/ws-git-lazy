@@ -7,6 +7,8 @@ export const enum EnumSort
 {
 	committerdate = 'committerdate',
 	taggerdate = 'taggerdate',
+	creatordate = 'creatordate',
+	refname = 'refname',
 }
 
 export interface IOptions
@@ -35,7 +37,7 @@ export function buildCmd(options?: IOptions): string[]
 		 * 不加上格式的話會變成依照 TAG 名稱來排序
 		 */
 		'--format',
-		';%(taggerdate:iso-strict)%09%09%(creatordate:iso-strict)%09%09%(refname:strip=2)',
+		`;%(${EnumSort.taggerdate}:iso-strict)%09%09%(${EnumSort.creatordate}:iso-strict)%09%09%(${EnumSort.refname}:strip=2)`,
 	];
 
 	let target = options.target;

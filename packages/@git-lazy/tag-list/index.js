@@ -8,6 +8,8 @@ var EnumSort;
 (function (EnumSort) {
     EnumSort["committerdate"] = "committerdate";
     EnumSort["taggerdate"] = "taggerdate";
+    EnumSort["creatordate"] = "creatordate";
+    EnumSort["refname"] = "refname";
 })(EnumSort = exports.EnumSort || (exports.EnumSort = {}));
 function buildCmd(options) {
     options !== null && options !== void 0 ? options : (options = {});
@@ -17,7 +19,7 @@ function buildCmd(options) {
          * 不加上格式的話會變成依照 TAG 名稱來排序
          */
         '--format',
-        ';%(taggerdate:iso-strict)%09%09%(creatordate:iso-strict)%09%09%(refname:strip=2)',
+        `;%(${"taggerdate" /* EnumSort.taggerdate */}:iso-strict)%09%09%(${"creatordate" /* EnumSort.creatordate */}:iso-strict)%09%09%(${"refname" /* EnumSort.refname */}:strip=2)`,
     ];
     let target = options.target;
     if (typeof target === 'undefined') {
