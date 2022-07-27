@@ -35,7 +35,7 @@ export function buildCmd(options?: IOptions): string[]
 		 * 不加上格式的話會變成依照 TAG 名稱來排序
 		 */
 		'--format',
-		'%(taggerdate:iso-strict)%09%09%(refname:strip=2)',
+		';%(taggerdate:iso-strict)%09%09%(creatordate:iso-strict)%09%09%(refname:strip=2)',
 	];
 
 	let target = options.target;
@@ -102,10 +102,13 @@ export function _handleResult(list: string[]): [string, Date][]
 {
 	return list.map(v =>
 	{
-		let data = v.split('\t\t');
-		let date = new Date(data[0]);
+		let data = v
+			.replace(/^;/, '')
+			.split('\t\t')
+		;
+		let date = new Date(data[0] || data[1]);
 
-		return [data[1], date]
+		return [data[2], date]
 	})
 		.reverse()
 		// @ts-ignore
