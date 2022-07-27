@@ -1,6 +1,6 @@
 {
   "name": "git-diff-from",
-  "version": "1.1.31",
+  "version": "1.1.32",
   "description": "git diff-tree",
   "keywords": [
     "commit",
@@ -39,11 +39,11 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.33",
+    "@git-lazy/spawn": "^1.0.34",
     "crlf-normalize": "^1.0.7",
     "git-decode": "^1.0.14",
-    "git-rev-range": "^1.1.28",
-    "git-root2": "^1.0.31",
+    "git-rev-range": "^1.1.29",
+    "git-root2": "^1.0.32",
     "tslib": "^2",
     "upath2": "^3.1.13"
   },

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/tag-list@1.0.4...@git-lazy/tag-list@1.0.5) (2022-07-27)
+
+
+### 🐛　Bug Fixes
+
+* 修正因為 taggerdate 空白的問題導致解析失敗 ([8c97952](https://github.com/bluelovers/ws-git-lazy/commit/8c97952955e6dde2f4cf7c1aeee486afd4199649))
+* 修正因為 taggerdate 空白的問題導致分析失敗 ([06e524d](https://github.com/bluelovers/ws-git-lazy/commit/06e524d391c12bc886b2d9edabf142eda60eb851))
+
+
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/tag-list@1.0.3...@git-lazy/tag-list@1.0.4) (2022-07-26)
 
 **Note:** Version bump only for package @git-lazy/tag-list
