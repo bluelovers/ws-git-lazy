@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/git-dir-path",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "keywords": [
     "create-by-yarn-tool"
@@ -57,7 +57,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@git-lazy/git-env-var": "^1.0.1",
+    "@git-lazy/git-env-var": "^1.0.3",
     "find-up-paths": "^1.0.3",
     "tslib": "^2"
   },

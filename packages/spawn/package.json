@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/spawn",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/spawn#readme",
@@ -37,10 +37,10 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/debug": "^1.0.13",
+    "@git-lazy/debug": "^1.0.15",
     "@lazy-glob/sort-tree": "^1.0.9",
-    "@lazy-spawn/stringify": "^1.0.2",
-    "@lazy-spawn/strip-ansi": "^1.0.1",
+    "@lazy-spawn/stringify": "^1.0.3",
+    "@lazy-spawn/strip-ansi": "^1.0.2",
     "array-hyper-unique": "^2.0.8",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.7",

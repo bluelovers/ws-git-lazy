@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.37](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.36...@git-lazy/remote@1.0.37) (2022-08-27)
+
+
+
+### 📦　Code Refactoring
+
+* update configuration and import ([6a4d6d4](https://github.com/bluelovers/ws-git-lazy/commit/6a4d6d418dcf351e88a44dcb252269781820309a))
+
+
+
 ## [1.0.36](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/remote@1.0.35...@git-lazy/remote@1.0.36) (2022-07-27)
 
 **Note:** Version bump only for package @git-lazy/remote

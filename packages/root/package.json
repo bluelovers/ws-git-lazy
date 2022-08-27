@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/root",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
@@ -32,7 +32,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "git-root2": "^1.0.32",
+    "git-root2": "^1.0.33",
     "path-is-same": "^1.0.18",
     "tslib": "^2"
   },

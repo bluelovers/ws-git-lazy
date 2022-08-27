@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/git-rebase-todo-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "parse git-rebase-todo file",
   "keywords": [
     "create-by-yarn-tool",

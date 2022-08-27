@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/tag-list",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "get git tags list from target",
   "keywords": [
     "create-by-yarn-tool"
@@ -56,7 +56,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.34",
+    "@git-lazy/spawn": "^1.0.35",
     "ts-type": "^2.1.8",
     "tslib": "^2"
   },
