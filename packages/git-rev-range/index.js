@@ -4,8 +4,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCwd = exports.getOptions = exports.resolveRevision = exports.resolveLog = exports.revisionRange = exports.revisionBefore = exports.revisionRangeData = exports.isRevision = exports.REVISION_DEFAULT = void 0;
-const tslib_1 = require("tslib");
-const gitlog2_1 = tslib_1.__importDefault(require("gitlog2"));
+const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
 function isRevision(s) {
     if (!/^HEAD|^\d+$/.test(s) && /^\w{7,}$/.test(s)) {
@@ -49,14 +48,14 @@ exports.revisionRange = revisionRange;
 function resolveLog(from = 20, to = 'HEAD', options = {}) {
     options = getOptions(options);
     if (typeof from == 'string') {
-        return (0, gitlog2_1.default)({
+        return (0, gitlog2_1.gitlog)({
             ...options.gitlogOptions,
             repo: getCwd(options),
             branch: revisionRange(from, to),
             number: options.maxNumber || -1,
         });
     }
-    return (0, gitlog2_1.default)({
+    return (0, gitlog2_1.gitlog)({
         ...options.gitlogOptions,
         repo: getCwd(options),
         number: from + 1,
@@ -75,7 +74,7 @@ function resolveRevision(range, revision = 'HEAD', options = {}) {
     let to = toName;
     if (options && (options.realHash || options.fullHash)) {
         if (a.length === 0) {
-            a = (0, gitlog2_1.default)({
+            a = (0, gitlog2_1.gitlog)({
                 ...options.gitlogOptions,
                 repo: getCwd(options),
                 branch: to,

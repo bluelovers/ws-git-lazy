@@ -4,10 +4,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitDiffStagedFile = exports.gitDiffStagedDir = exports.gitDiffStaged = void 0;
-const tslib_1 = require("tslib");
 const root_1 = require("@git-lazy/root");
 const spawn_1 = require("@git-lazy/spawn");
-const data_1 = tslib_1.__importDefault(require("@git-lazy/spawn/lib/data"));
+const data_1 = require("@git-lazy/spawn/lib/data");
 function gitDiffStaged(git_root, options) {
     git_root = (0, root_1.hasGit)(git_root);
     const { bin = 'git' } = (options || {});
@@ -15,7 +14,7 @@ function gitDiffStaged(git_root, options) {
         cwd: git_root,
         stripAnsi: true,
     });
-    return (0, data_1.default)(cp.stdout.toString());
+    return (0, data_1.handleSpawnOutputArray)(cp.stdout.toString());
 }
 exports.gitDiffStaged = gitDiffStaged;
 function gitDiffStagedDir(git_root, options) {
@@ -29,7 +28,7 @@ function gitDiffStagedDir(git_root, options) {
         cwd: git_root,
         stripAnsi: true,
     });
-    return (0, data_1.default)([
+    return (0, data_1.handleSpawnOutputArray)([
         cp.stdout.toString(),
         cp2.stdout.toString(),
     ].join('\n'), s => {
@@ -48,7 +47,7 @@ function gitDiffStagedFile(git_root, options) {
         cwd: git_root,
         stripAnsi: true,
     });
-    return (0, data_1.default)([
+    return (0, data_1.handleSpawnOutputArray)([
         cp.stdout.toString(),
         cp2.stdout.toString(),
     ].join('\n'));

@@ -11,7 +11,7 @@ import {
 	IOptionsSplit, IOptions,
 } from './types';
 import { handlePrefix, assertString, handlePrefixPath } from './util';
-import crossSpawnGitAsync from '@git-lazy/spawn';
+import { crossSpawnGitAsync } from '@git-lazy/spawn';
 import { handleGitPath } from './util/git';
 
 export function handleOptions<O extends IOptions = IOptionsCommon>(options: O): IOptionsRuntime<O>

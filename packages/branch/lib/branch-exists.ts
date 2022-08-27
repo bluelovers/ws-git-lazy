@@ -6,7 +6,7 @@ import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@
 import { notEmptyString, debug } from '@git-lazy/util';
 import { isGitRoot } from 'git-root2/core';
 import fs from 'fs';
-import localBranchList from './branch-list';
+import { localBranchList } from './branch-list';
 
 export function localBranchExists(name: string, REPO_PATH: string)
 {

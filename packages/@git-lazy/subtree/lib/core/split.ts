@@ -2,7 +2,7 @@ import { IOptionsCommon, IOptionsRuntime, IOptionsSplit, IOptionsCore, EnumSubtr
 import { handleGitPath } from '../util/git';
 import { handlePrefix, handlePrefixPath, assertString } from '../util';
 import { handleOptions, _cmd } from '../core';
-import crossSpawnGitAsync from '@git-lazy/spawn';
+import { crossSpawnGitAsync } from '@git-lazy/spawn';
 
 export function assertValueSplit<O extends IOptionsSplit = IOptionsSplit>(optionsRuntime: IOptionsRuntime<O> | any): asserts optionsRuntime is IOptionsRuntime<O>
 {

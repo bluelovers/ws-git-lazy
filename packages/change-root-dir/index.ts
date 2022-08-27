@@ -5,7 +5,7 @@
 import { crossSpawnSync, SpawnSyncOptions, SpawnSyncReturns } from '@git-lazy/util/spawn/git';
 import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
 import { hasGit, isGitRoot } from '@git-lazy/root';
-import FastGlob, { Options, EntryItem } from '@bluelovers/fast-glob';
+import { Options, EntryItem, sync as syncFastGlob } from '@bluelovers/fast-glob';
 import { ITSRequiredWith } from 'ts-type';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
@@ -44,7 +44,7 @@ export function gitChangeRootDir(options: IOptions)
 
 	let { targetPath } = options;
 
-	let ls = FastGlob.sync([
+	let ls = syncFastGlob([
 		targetPath,
 		'!**/.git',
 	], {

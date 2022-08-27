@@ -11,7 +11,7 @@ export interface IGitDiffFromRow {
     path: string;
     fullpath: string;
 }
-export declare type IGitDiffFrom = Array<IGitDiffFromRow> & {
+export type IGitDiffFrom = Array<IGitDiffFromRow> & {
     from: string;
     to: string;
     cwd: string;

@@ -3,7 +3,7 @@
  */
 
 import { resolve } from "path";
-import lazyUnParse from '@git-lazy/util-args';
+import { lazyUnParse } from '@git-lazy/util-args';
 import { IOptionsGitClone, IOptionsGitCloneSync } from './types';
 import { defaultsDeep } from 'lodash';
 

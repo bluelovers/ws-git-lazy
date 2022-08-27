@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 'use strict';
-const gitDummyCommit = require('..');
+Object.defineProperty(exports, "__esModule", { value: true });
+const __1 = require("..");
 let argv = process.argv.slice(2);
 if (argv.length) {
-    gitDummyCommit(argv);
+    (0, __1.gitDummyCommit)(argv);
 }
 else {
     [

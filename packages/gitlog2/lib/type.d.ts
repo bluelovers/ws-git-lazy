@@ -106,7 +106,7 @@ export interface IOptionsGitWithValue {
 /**
  * @see https://cloud.tencent.com/developer/section/1138655
  */
-export declare type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlogsExtra & {
+export type IOptions = IOptionsGitFlogs & IOptionsGitWithValue & IOptionsGitFlogsExtra & {
     /**
      * An array of fields to return from the log
      */
@@ -220,7 +220,7 @@ export interface IParseCommitCore {
      */
     refNames?: string;
 }
-export declare type IParseCommit = IParseCommitCore & {
+export type IParseCommit = IParseCommitCore & {
     /**
      * 每個變動狀態的變動狀態與檔案名稱
      * = status + files
@@ -265,7 +265,7 @@ export declare enum EnumFileStatus {
      */
     UPDATED_BUT_UNMERGED = "U"
 }
-export declare type IFieldsArray = Array<keyof typeof fields>;
+export type IFieldsArray = Array<keyof typeof fields>;
 /**
  * for moment
  */
@@ -283,8 +283,8 @@ export declare enum EnumGitDateFormat {
     AUTHOR_DATE = "YYYY-MM-DD HH:mm:ss Z",
     COMMITTER_DATE = "ddd MMM DD HH:mm:ss YYYY ZZ"
 }
-export declare type IReturnCommits = IParseCommit[];
-export declare type ICommands = Array<number | string>;
+export type IReturnCommits = IParseCommit[];
+export type ICommands = Array<number | string>;
 export declare const KEY_ORDER: (keyof IParseCommit)[];
 export declare const delimiter = "\t";
 export declare const notOptFields: string[];

@@ -20,15 +20,15 @@ export interface IOptionsCorePlus {
     remote?: string;
     name?: string;
 }
-declare type IOptionsCommonCore = IOptionsCore & ITSRequireAtLeastOne<IOptionsCorePlus>;
-export declare type IOptionsCommon = IOptionsCommonCore & IOptionsCoreWithHandlers;
+type IOptionsCommonCore = IOptionsCore & ITSRequireAtLeastOne<IOptionsCorePlus>;
+export type IOptionsCommon = IOptionsCommonCore & IOptionsCoreWithHandlers;
 interface IOptionsSplitCore extends Omit<IOptionsCore & IOptionsCorePlus, 'handlers'> {
     rejoin?: boolean;
     ignoreJoins?: boolean;
 }
 export interface IOptionsSplit extends IOptionsSplitCore, IOptionsCoreWithHandlers<IOptionsSplitCore> {
 }
-export declare type IOptions = IOptionsCommon | IOptionsSplit;
+export type IOptions = IOptionsCommon | IOptionsSplit;
 export interface IOptionsRuntime<O extends IOptionsCore = IOptionsCommon> extends IReturnTypeHandlePrefixPath {
     options: O;
     remote: string;

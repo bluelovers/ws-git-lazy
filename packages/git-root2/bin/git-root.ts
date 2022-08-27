@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import gitRoot from '..';
+import { gitRoot } from '../core';
 
 const root = gitRoot();
 

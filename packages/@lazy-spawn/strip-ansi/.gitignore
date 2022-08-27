@@ -213,5 +213,10 @@ jest.config.js.map
 _snowpack
 web_modules
 tsc-multi.json.tpl
-/dist/index.umd.development.cjs
-/dist/index.umd.production.min.cjs
+
+dist/*.umd.*.*s
+
+/__root_ws.d.ts
+/__root_ws.js
+
+!/.yarnrc.yml

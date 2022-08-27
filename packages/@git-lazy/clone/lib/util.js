@@ -4,9 +4,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitCloneCmd = exports.handleOptions = void 0;
-const tslib_1 = require("tslib");
 const path_1 = require("path");
-const util_args_1 = tslib_1.__importDefault(require("@git-lazy/util-args"));
+const util_args_1 = require("@git-lazy/util-args");
 const lodash_1 = require("lodash");
 function handleOptions(remote, options) {
     var _a, _b;
@@ -39,7 +38,7 @@ function gitCloneCmd(remote, options) {
     if (((_a = options.targetDir) === null || _a === void 0 ? void 0 : _a.length) > 0) {
         args.push(options.targetDir);
     }
-    let ls = (0, util_args_1.default)((_b = options.cloneOptions) !== null && _b !== void 0 ? _b : {});
+    let ls = (0, util_args_1.lazyUnParse)((_b = options.cloneOptions) !== null && _b !== void 0 ? _b : {});
     if (ls.length) {
         args.push(...ls);
     }

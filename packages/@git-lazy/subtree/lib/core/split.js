@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._callSplit = exports._cmdSplit = exports.unparseCmdSplit = exports.handleOptionsSplit = exports.handleValueSplit = exports.assertValueSplit = void 0;
-const tslib_1 = require("tslib");
 const core_1 = require("../core");
-const spawn_1 = tslib_1.__importDefault(require("@git-lazy/spawn"));
+const spawn_1 = require("@git-lazy/spawn");
 function assertValueSplit(optionsRuntime) {
     //assertString(optionsRuntime.branch, 'branch');
 }
@@ -38,7 +37,7 @@ function unparseCmdSplit(cmd, opts) {
 }
 exports.unparseCmdSplit = unparseCmdSplit;
 function _cmdSplit(cmd, opts) {
-    return (0, spawn_1.default)('git', unparseCmdSplit(cmd, opts), {
+    return (0, spawn_1.crossSpawnGitAsync)('git', unparseCmdSplit(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });

@@ -6,11 +6,11 @@ import { checkGitOutput, crossSpawnSync, SpawnOptions } from '@git-lazy/util/spa
 import { debug, notEmptyString } from '@git-lazy/util';
 import { isGitRoot } from 'git-root2/core';
 import { filterCrossSpawnArgv } from '@git-lazy/util/spawn/util';
-import currentBranchName from './current-name';
-import localBranchExists from './branch-exists';
+import { currentBranchName } from './current-name';
+import { localBranchExists } from './branch-exists';
 import { getCWD } from '@git-lazy/util/util/index';
 import fs from 'fs';
-import gitlog from 'gitlog2';
+import { gitlog } from 'gitlog2';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 const defaultMessage = 'create empty branch by git-lazy';

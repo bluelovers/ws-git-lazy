@@ -6,11 +6,11 @@ import { gitClone, IOptionsGitClone } from '@git-lazy/clone';
 import { subtreeSplit } from '@git-lazy/subtree';
 import { handleOptions } from '@git-lazy/clone/lib/util';
 import { console, debugConsole, debug, enableDebug } from '@git-lazy/debug';
-import crossSpawnGitAsync from '@git-lazy/spawn';
+import { crossSpawnGitAsync } from '@git-lazy/spawn';
 import lazyUnParse from '@git-lazy/util-args';
 import { isGitRoot } from '@git-lazy/root';
-import localBranchExists from '@git-lazy/branch/lib/branch-exists';
-import currentBranchName from '@git-lazy/branch/lib/current-name';
+import { localBranchExists } from '@git-lazy/branch/lib/branch-exists';
+import { currentBranchName } from '@git-lazy/branch/lib/current-name';
 
 export interface IOptionsGitCloneSubDir extends IOptionsGitClone
 {

@@ -7,7 +7,7 @@ import { sortTree } from '@lazy-glob/sort-tree';
 import { array_unique, lazy_unique } from 'array-hyper-unique';
 import { handleSpawnOutputArray } from '@git-lazy/util/spawn/data';
 import { hasGit } from '@git-lazy/root';
-import path from 'path'
+import { dirname } from 'path'
 
 export interface IOptions
 {
@@ -31,7 +31,7 @@ export function gitUntrackedFile(git_root: string, options?: IOptions): string[]
 export function gitUntrackedDir(git_root: string, options?: IOptions): string[]
 {
 	return sortTree(array_unique(gitUntrackedFile(git_root, options)
-		.map(v => path.dirname(v))))
+		.map(v => dirname(v))))
 }
 
 export default gitUntrackedFile

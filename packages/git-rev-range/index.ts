@@ -2,7 +2,7 @@
  * Created by user on 2018/5/14/014.
  */
 
-import gitlog, { IOptions as IGitlogOptions, IReturnCommits } from 'gitlog2';
+import { gitlog, IOptions as IGitlogOptions, IReturnCommits } from 'gitlog2';
 
 export const REVISION_DEFAULT = 'HEAD';
 

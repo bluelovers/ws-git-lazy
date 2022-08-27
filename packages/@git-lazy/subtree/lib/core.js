@@ -4,9 +4,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._call = exports._cmd = exports.unparseCmd = exports.handleOptions = void 0;
-const tslib_1 = require("tslib");
 const util_1 = require("./util");
-const spawn_1 = tslib_1.__importDefault(require("@git-lazy/spawn"));
+const spawn_1 = require("@git-lazy/spawn");
 const git_1 = require("./util/git");
 function handleOptions(options) {
     var _a, _b, _c, _d, _e, _f;
@@ -64,7 +63,7 @@ function unparseCmd(cmd, opts) {
 }
 exports.unparseCmd = unparseCmd;
 function _cmd(cmd, opts) {
-    return (0, spawn_1.default)('git', unparseCmd(cmd, opts), {
+    return (0, spawn_1.crossSpawnGitAsync)('git', unparseCmd(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });

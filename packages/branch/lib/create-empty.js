@@ -4,15 +4,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEmptyBranch = void 0;
-const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const core_1 = require("git-root2/core");
 const util_2 = require("@git-lazy/util/spawn/util");
-const current_name_1 = tslib_1.__importDefault(require("./current-name"));
-const branch_exists_1 = tslib_1.__importDefault(require("./branch-exists"));
+const current_name_1 = require("./current-name");
+const branch_exists_1 = require("./branch-exists");
 const index_1 = require("@git-lazy/util/util/index");
-const gitlog2_1 = tslib_1.__importDefault(require("gitlog2"));
+const gitlog2_1 = require("gitlog2");
 const stringify_1 = require("@lazy-spawn/stringify");
 const defaultMessage = 'create empty branch by git-lazy';
 /**
@@ -28,11 +27,11 @@ function createEmptyBranch(new_name, options) {
             cwd,
             stripAnsi: true,
         };
-        let current_name = (0, current_name_1.default)(cwd);
+        let current_name = (0, current_name_1.currentBranchName)(cwd);
         if (!(0, util_1.notEmptyString)(current_name)) {
             throw new Error(`fatal: can't get current branch name`);
         }
-        if ((0, branch_exists_1.default)(new_name, cwd)) {
+        if ((0, branch_exists_1.localBranchExists)(new_name, cwd)) {
             throw new Error(`fatal: target branch "${new_name}" already exists`);
         }
         let cp = (0, git_1.checkGitOutput)((0, git_1.crossSpawnSync)('git', [
@@ -40,7 +39,7 @@ function createEmptyBranch(new_name, options) {
             '--orphan',
             new_name,
         ], opts), true);
-        let current_new = (0, current_name_1.default)(cwd);
+        let current_new = (0, current_name_1.currentBranchName)(cwd);
         if (current_new === new_name) {
             throw new Error(`fatal: branch "${new_name}" already exists, delete it or change a new name`);
         }
@@ -85,11 +84,11 @@ function createEmptyBranch(new_name, options) {
             msg,
         ]), opts), true);
         util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
-        let current_new2 = (0, current_name_1.default)(cwd);
+        let current_new2 = (0, current_name_1.currentBranchName)(cwd);
         if (current_new2 !== new_name) {
             throw new Error(`fatal: current branch "${current_new2}" should same as "${new_name}"`);
         }
-        let _logs = gitlog2_1.default.sync({
+        let _logs = gitlog2_1.gitlog.sync({
             cwd,
         });
         util_1.debug.enabled && (0, util_1.debug)(_logs);

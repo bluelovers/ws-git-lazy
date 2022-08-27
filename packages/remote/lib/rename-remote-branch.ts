@@ -8,7 +8,7 @@
 
 import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
 import { notEmptyString, debug } from '@git-lazy/util';
-import fs from 'fs';
+import { realpathSync } from 'fs';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
 export function renameRemoteBranch(remote: string, old_name: string, new_name: string, options?: renameRemoteBranch.IOptions)
@@ -60,7 +60,7 @@ function _check_before(remote: string, old_name: string, new_name: string, optio
 
 		let { cwd = process.cwd() } = options;
 
-		if (notEmptyString(cwd) && (cwd = fs.realpathSync(cwd)))
+		if (notEmptyString(cwd) && (cwd = realpathSync(cwd)))
 		{
 			options.cwd = cwd;
 

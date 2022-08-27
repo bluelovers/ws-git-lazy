@@ -4,10 +4,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports._core = exports.gitChangeRootDir = void 0;
-const tslib_1 = require("tslib");
 const git_1 = require("@git-lazy/util/spawn/git");
 const root_1 = require("@git-lazy/root");
-const fast_glob_1 = tslib_1.__importDefault(require("@bluelovers/fast-glob"));
+const fast_glob_1 = require("@bluelovers/fast-glob");
 const stringify_1 = require("@lazy-spawn/stringify");
 /**
  * https://stackoverflow.com/a/11764065/4563339
@@ -22,7 +21,7 @@ function gitChangeRootDir(options) {
         throw new Error(msg);
     }
     let { targetPath } = options;
-    let ls = fast_glob_1.default.sync([
+    let ls = (0, fast_glob_1.sync)([
         targetPath,
         '!**/.git',
     ], {

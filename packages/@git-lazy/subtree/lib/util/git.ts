@@ -3,7 +3,7 @@
  */
 
 import { resolve, normalize } from 'upath2';
-import gitRoot from 'git-root2/core';
+import { gitRoot } from 'git-root2/core';
 
 export function handleGitPath(options: {
 	cwd?: string,

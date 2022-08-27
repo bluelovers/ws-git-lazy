@@ -2,7 +2,7 @@
 
 'use strict';
 
-const gitDummyCommit = require('..');
+import { gitDummyCommit } from '..';
 
 let argv = process.argv.slice(2);
 

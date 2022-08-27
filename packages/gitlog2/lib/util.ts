@@ -19,7 +19,7 @@ import {
 } from './type';
 import extend from 'lodash.assign';
 import _decamelize from 'decamelize';
-import sortObjectKeys from 'sort-object-keys2';
+import { sortObjectKeys } from 'sort-object-keys2';
 import { SpawnSyncOptions, SpawnSyncReturns } from 'cross-spawn-extra/core';
 import { LF } from 'crlf-normalize';
 import { GitExecMaxBuffer } from '@git-lazy/const';

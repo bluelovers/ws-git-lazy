@@ -4,14 +4,13 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitCloneSubDir = void 0;
-const tslib_1 = require("tslib");
 const clone_1 = require("@git-lazy/clone");
 const subtree_1 = require("@git-lazy/subtree");
 const util_1 = require("@git-lazy/clone/lib/util");
-const spawn_1 = tslib_1.__importDefault(require("@git-lazy/spawn"));
+const spawn_1 = require("@git-lazy/spawn");
 const root_1 = require("@git-lazy/root");
-const branch_exists_1 = tslib_1.__importDefault(require("@git-lazy/branch/lib/branch-exists"));
-const current_name_1 = tslib_1.__importDefault(require("@git-lazy/branch/lib/current-name"));
+const branch_exists_1 = require("@git-lazy/branch/lib/branch-exists");
+const current_name_1 = require("@git-lazy/branch/lib/current-name");
 async function gitCloneSubDir(remote, options) {
     ({ remote, options } = (0, util_1.handleOptions)(remote, options));
     await (0, clone_1.gitClone)(remote, options);
@@ -25,10 +24,10 @@ async function gitCloneSubDir(remote, options) {
         prefix: options.subDir,
         branch,
     });
-    if (!(0, branch_exists_1.default)(branch, cwd)) {
+    if (!(0, branch_exists_1.localBranchExists)(branch, cwd)) {
         throw new Error(`branch '${branch}' not exists`);
     }
-    await (0, spawn_1.default)('git', [
+    await (0, spawn_1.crossSpawnGitAsync)('git', [
         'checkout',
         '-B',
         `master`,
@@ -37,7 +36,7 @@ async function gitCloneSubDir(remote, options) {
         cwd,
         stdio: 'inherit',
     });
-    if (branch !== (0, current_name_1.default)(cwd)) {
+    if (branch !== (0, current_name_1.currentBranchName)(cwd)) {
         throw new Error(`something wrong when switch branch {${branch} => master}`);
     }
 }

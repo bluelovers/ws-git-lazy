@@ -12,7 +12,7 @@ const git_decode_1 = require("git-decode");
 const type_1 = require("./type");
 const lodash_assign_1 = tslib_1.__importDefault(require("lodash.assign"));
 const decamelize_1 = tslib_1.__importDefault(require("decamelize"));
-const sort_object_keys2_1 = tslib_1.__importDefault(require("sort-object-keys2"));
+const sort_object_keys2_1 = require("sort-object-keys2");
 const crlf_normalize_1 = require("crlf-normalize");
 const const_1 = require("@git-lazy/const");
 const stringify_1 = require("@lazy-spawn/stringify");
@@ -251,7 +251,7 @@ function parseCommits(commits, options) {
             parsed.fileStatus = (0, array_hyper_unique_1.array_unique)(nameStatusFiles);
         }
         // @ts-ignore
-        parsed = (0, sort_object_keys2_1.default)(parsed, type_1.KEY_ORDER);
+        parsed = (0, sort_object_keys2_1.sortObjectKeys)(parsed, type_1.KEY_ORDER);
         return parsed;
     });
 }
