@@ -3,7 +3,7 @@
  */
 
 import { crossSpawnSync } from '@git-lazy/util/spawn/git';
-import { debug, notEmptyString } from '@git-lazy/util';
+import { debug } from '@git-lazy/util';
 import { getCWD } from '@git-lazy/util/util/index';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 

@@ -2,7 +2,7 @@
  * Created by user on 2019/3/10.
  */
 
-import { crossSpawnSync, crossSpawnAsync, SpawnOptions, checkGitOutput } from '@git-lazy/util/spawn/git';
+import { crossSpawnSync } from '@git-lazy/util/spawn/git';
 import { debug, notEmptyString } from '@git-lazy/util';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 
