@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "git-root2": "^1.0.33",
-    "glob-search": "^2.0.12",
+    "glob-search": "^2.0.13",
     "parse-git-config": "^3.0.0",
     "tslib": "^2"
   },

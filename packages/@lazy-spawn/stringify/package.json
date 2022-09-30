@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "@lazy-spawn/strip-ansi": "^1.0.2",
-    "ts-type": "^2.1.8",
+    "ts-type": "^2.1.10",
     "tslib": "^2"
   },
   "packageManager": "yarn@^1.22.11",

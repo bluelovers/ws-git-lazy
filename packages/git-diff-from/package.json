@@ -44,12 +44,12 @@
   },
   "dependencies": {
     "@git-lazy/spawn": "^1.0.35",
-    "crlf-normalize": "^1.0.7",
+    "crlf-normalize": "^1.0.15",
     "git-decode": "^1.0.16",
     "git-rev-range": "^1.1.30",
     "git-root2": "^1.0.33",
     "tslib": "^2",
-    "upath2": "^3.1.13"
+    "upath2": "^3.1.18"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

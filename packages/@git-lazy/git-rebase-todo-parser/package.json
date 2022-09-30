@@ -73,8 +73,8 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-node/readlines": "^2.0.16",
-    "ts-type": "^2.1.8",
+    "@lazy-node/readlines": "^2.0.21",
+    "ts-type": "^2.1.10",
     "tslib": "^2"
   },
   "packageManager": "yarn@1.22.19",

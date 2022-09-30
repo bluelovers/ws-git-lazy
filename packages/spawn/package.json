@@ -38,15 +38,15 @@
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.15",
-    "@lazy-glob/sort-tree": "^1.0.9",
+    "@lazy-glob/sort-tree": "^1.0.10",
     "@lazy-spawn/stringify": "^1.0.3",
     "@lazy-spawn/strip-ansi": "^1.0.2",
-    "array-hyper-unique": "^2.0.8",
+    "array-hyper-unique": "^2.1.2",
     "bluebird": "^3.7.2",
-    "crlf-normalize": "^1.0.7",
+    "crlf-normalize": "^1.0.15",
     "cross-spawn-extra": "^2.1.0",
-    "debug-color2": "^1.2.7",
-    "promise-tap-then-catch": "^1.0.3",
+    "debug-color2": "^1.3.2",
+    "promise-tap-then-catch": "^1.0.4",
     "tslib": "^2"
   },
   "publishConfig": {
