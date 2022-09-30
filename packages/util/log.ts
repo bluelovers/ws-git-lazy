@@ -3,6 +3,6 @@
  */
 
 export * from '@git-lazy/debug';
-import console from '@git-lazy/debug';
+import { console } from '@git-lazy/debug';
 
 export default console

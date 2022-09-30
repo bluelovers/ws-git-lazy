@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
 const yargs_1 = tslib_1.__importDefault(require("yargs"));
 const __1 = require("..");
 const core_1 = require("../lib/core");
-const logger_1 = tslib_1.__importDefault(require("debug-color2/logger"));
+const logger_1 = require("debug-color2/logger");
 const debug_1 = tslib_1.__importStar(require("@git-lazy/debug"));
 const package_json_1 = require("../package.json");
 const split_1 = require("../lib/core/split");
@@ -89,10 +89,10 @@ function _setup_cmd(yargs, cmd) {
             });
         }
         let argv = yargs.parseSync();
-        if (argv.help || argv.h) {
+        if (argv.help || argv['h']) {
             return yargs.showHelp();
         }
-        else if (argv.version || argv.v) {
+        else if (argv.version || argv['v']) {
             return debug_1.default.log(`${package_json_1.version}`);
         }
         return _builder(cmd, yargs);
@@ -110,11 +110,11 @@ async function _builder(cmd, yargs) {
     }
     // @ts-ignore
     branch = branch !== null && branch !== void 0 ? branch : _.shift();
-    delete args_plus.P;
-    delete args_plus.h;
-    delete args_plus.v;
-    delete args_plus.b;
-    delete args_plus.disableExec;
+    delete args_plus['P'];
+    delete args_plus['h'];
+    delete args_plus['v'];
+    delete args_plus['b'];
+    delete args_plus['disableExec'];
     delete args_plus['disable-exec'];
     let options = {
         ...args_plus,
@@ -140,9 +140,9 @@ async function _builder(cmd, yargs) {
         debug_1.default.log(command);
     }
     else {
-        logger_1.default.debug(`[GIT]`, opts.root);
-        logger_1.default.debug(`[CWD]`, opts.cwd);
-        logger_1.default.debug(command);
+        logger_1.consoleLogger.debug(`[GIT]`, opts.root);
+        logger_1.consoleLogger.debug(`[CWD]`, opts.cwd);
+        logger_1.consoleLogger.debug(command);
         if (cmd === __1.EnumSubtreeCmd.split) {
             if (!opts.branch) {
                 const ok = await (0, yesno_1.default)({

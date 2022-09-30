@@ -3,7 +3,7 @@
 import yargs, { Argv } from 'yargs';
 import { EnumSubtreeCmd, IOptionsCommon, IOptions, IOptionsRuntime, IOptionsSplit } from '..';
 import { handleOptions, _cmd, unparseCmd } from '../lib/core';
-import logger from 'debug-color2/logger';
+import { consoleLogger as logger } from 'debug-color2/logger';
 import console, { debug } from '@git-lazy/debug';
 import unparse from 'yargs-unparser';
 import { version } from '../package.json';
@@ -111,11 +111,11 @@ function _setup_cmd<Y extends typeof cli>(yargs: Y, cmd: EnumSubtreeCmd): Y
 
 			let argv = yargs.parseSync();
 
-			if (argv.help || argv.h)
+			if (argv.help || argv['h'])
 			{
 				return yargs.showHelp()
 			}
-			else if (argv.version || argv.v)
+			else if (argv.version || argv['v'])
 			{
 				return console.log(`${version}`)
 			}
@@ -144,11 +144,11 @@ async function _builder(cmd: EnumSubtreeCmd, yargs: typeof cli)
 	// @ts-ignore
 	branch = branch ?? _.shift();
 
-	delete args_plus.P;
-	delete args_plus.h;
-	delete args_plus.v;
-	delete args_plus.b;
-	delete args_plus.disableExec;
+	delete args_plus['P'];
+	delete args_plus['h'];
+	delete args_plus['v'];
+	delete args_plus['b'];
+	delete args_plus['disableExec'];
 	delete args_plus['disable-exec'];
 
 	let options: IOptions = {

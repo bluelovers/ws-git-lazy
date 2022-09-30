@@ -2,7 +2,7 @@
  * Created by user on 2018/5/15/015.
  */
 
-import UString from 'uni-string';
+import { UString } from 'uni-string';
 import { removeQuote } from './lib/util';
 
 export function encode(s: string)

@@ -4,11 +4,10 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decode2 = exports.decode = exports.encode = void 0;
-const tslib_1 = require("tslib");
-const uni_string_1 = tslib_1.__importDefault(require("uni-string"));
+const uni_string_1 = require("uni-string");
 const util_1 = require("./lib/util");
 function encode(s) {
-    return uni_string_1.default.split(s, '')
+    return uni_string_1.UString.split(s, '')
         .map(function (v) {
         let s = Buffer.from(v);
         if (s.length > 1 || (s.length == 1 && s[0] >= 0x7F)) {
