@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.36](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.35...@git-lazy/untracked@1.0.36) (2022-09-30)
+
+
+
+### 📚　Documentation
+
+* update metadata ([8ec317a](https://github.com/bluelovers/ws-git-lazy/commit/8ec317aa3c7980d250ea96e1d97e3c303b4e3f6e))
+
+
+### 📌　Dependencies
+
+* update deps ([f331f47](https://github.com/bluelovers/ws-git-lazy/commit/f331f4791cdb6cf556ffb0a58b4d6aa2fde71f56))
+
+
+
 ## [1.0.35](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/untracked@1.0.34...@git-lazy/untracked@1.0.35) (2022-08-27)
 
 

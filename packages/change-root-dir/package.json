@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/change-root-dir",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "description": "Change the root directory of a Git repository",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/change-root-dir#readme",
@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@bluelovers/fast-glob": "^3.0.4",
-    "@git-lazy/root": "^1.0.32",
-    "@git-lazy/util": "^1.0.37",
-    "@lazy-spawn/stringify": "^1.0.3",
+    "@git-lazy/root": "^1.0.33",
+    "@git-lazy/util": "^1.0.38",
+    "@lazy-spawn/stringify": "^1.0.4",
     "ts-type": "^2.1.10",
     "tslib": "^2"
   },

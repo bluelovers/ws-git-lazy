@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.31](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.30...git-rev-range@1.1.31) (2022-09-30)
+
+
+
+### 📚　Documentation
+
+* update metadata ([8ec317a](https://github.com/bluelovers/ws-git-lazy/commit/8ec317aa3c7980d250ea96e1d97e3c303b4e3f6e))
+
+
+
 ## [1.1.30](https://github.com/bluelovers/ws-git-lazy/compare/git-rev-range@1.1.29...git-rev-range@1.1.30) (2022-08-27)
 
 

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/git-env-var@1.0.3...@git-lazy/git-env-var@1.0.4) (2022-09-30)
+
+
+
+### 📚　Documentation
+
+* update metadata ([8ec317a](https://github.com/bluelovers/ws-git-lazy/commit/8ec317aa3c7980d250ea96e1d97e3c303b4e3f6e))
+
+
+
 ## [1.0.3](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/git-env-var@1.0.1...@git-lazy/git-env-var@1.0.3) (2022-08-27)
 
 

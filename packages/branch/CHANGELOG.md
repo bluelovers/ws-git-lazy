@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.41](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.40...@git-lazy/branch@1.0.41) (2022-09-30)
+
+
+
+### 📦　Code Refactoring
+
+* update import and code splitting ([27d4d39](https://github.com/bluelovers/ws-git-lazy/commit/27d4d394e8c20351869cebf78fa1bf064b0170df))
+
+
+### 📚　Documentation
+
+* update metadata ([8ec317a](https://github.com/bluelovers/ws-git-lazy/commit/8ec317aa3c7980d250ea96e1d97e3c303b4e3f6e))
+
+
+
 ## [1.0.40](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.39...@git-lazy/branch@1.0.40) (2022-08-27)
 
 

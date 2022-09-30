@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone-subdir@1.0.18...@git-lazy/clone-subdir@1.0.19) (2022-09-30)
+
+
+
+### 🐛　Bug Fixes
+
+* fix bug when check branch ([77aef46](https://github.com/bluelovers/ws-git-lazy/commit/77aef4631ea89c4927d0e22ad0327ee85e3e413c))
+
+
+### 📚　Documentation
+
+* update metadata ([8ec317a](https://github.com/bluelovers/ws-git-lazy/commit/8ec317aa3c7980d250ea96e1d97e3c303b4e3f6e))
+
+
+
 ## [1.0.18](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone-subdir@1.0.17...@git-lazy/clone-subdir@1.0.18) (2022-08-27)
 
 
