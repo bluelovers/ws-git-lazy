@@ -5,6 +5,9 @@ export declare function crossSpawnOutput(buf: SpawnSyncReturns["output"] | ITSVa
 	clearEol?: boolean;
 	stripAnsi?: boolean;
 }): string;
-export default crossSpawnOutput;
+
+export {
+	crossSpawnOutput as default,
+};
 
 export {};

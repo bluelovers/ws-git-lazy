@@ -42,7 +42,7 @@ export interface IRebaseCommentLine {
 	type: EnumRebaseLineType.COMMENT;
 	raw: string;
 }
-export declare type IRebaseLine = IRebaseCommandLine | IRebaseCommentLine;
+export type IRebaseLine = IRebaseCommandLine | IRebaseCommentLine;
 export declare function toRebaseCommand(cmd: ITSAndStringLiteral<EnumRebaseCommands>): EnumRebaseCommands;
 export declare const re: RegExp;
 export declare function isRebaseCommentLineString(line: string): boolean;
@@ -64,6 +64,9 @@ export declare function generatorParseRebaseTodoFromBuffer(context: string | Uin
 export declare function generatorParseRebaseTodoFromIterable(iterator: Iterable<Uint8Array> | Iterable<string>): Generator<IRebaseCommentLine | IRebaseCommandLine<EnumRebaseCommands>, void, unknown>;
 export declare function generatorParseRebaseTodoFromArray(lines: string[] | Uint8Array[]): Generator<IRebaseCommentLine | IRebaseCommandLine<EnumRebaseCommands>, void, unknown>;
 export declare function parseRebaseTodo(context: ITSValueOrArray<string> | ITSValueOrArray<Uint8Array>): (IRebaseCommentLine | IRebaseCommandLine<EnumRebaseCommands>)[];
-export default parseRebaseTodo;
+
+export {
+	parseRebaseTodo as default,
+};
 
 export {};

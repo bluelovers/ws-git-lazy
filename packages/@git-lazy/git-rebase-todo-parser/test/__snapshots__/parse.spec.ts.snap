@@ -1,193 +1,193 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parseRebaseTodo 1`] = `
-Array [
-  Object {
+[
+  {
     "cmd": "pick",
     "hash": "baa07436",
     "message": "ci: update deps and tweak commit msg",
     "raw": "pick baa07436 ci: update deps and tweak commit msg",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "aa865222",
     "message": "build(cache): update version-map",
     "raw": "pick aa865222 build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "f463494f",
     "message": "build(cache): update version-map",
     "raw": "pick f463494f build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "e69997c5",
     "message": "build(cache): update version-map",
     "raw": "pick e69997c5 build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "670fa5fc",
     "message": "build(cache): update version-map",
     "raw": "pick 670fa5fc build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "75cc4fc6",
     "message": "feat(cli): 現在起支援打包／下載指定系列的歷史版本",
     "raw": "pick 75cc4fc6 feat(cli): 現在起支援打包／下載指定系列的歷史版本",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "07b43157",
     "message": "chore(cli): 防止 yargs 出現警告訊息",
     "raw": "pick 07b43157 chore(cli): 防止 yargs 出現警告訊息",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "50c45517",
     "message": "build(cache): update version-map",
     "raw": "pick 50c45517 build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "c155fe51",
     "message": "build(release): update build ( 223.35 )",
     "raw": "pick c155fe51 build(release): update build ( 223.35 )",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "553cbba0",
     "message": "fix: add \`since\`",
     "raw": "pick 553cbba0 fix: add \`since\`",
     "type": 1,
   },
-  Object {
+  {
     "cmd": "pick",
     "hash": "b2edc578",
     "message": "build(cache): update version-map",
     "raw": "pick b2edc578 build(cache): update version-map",
     "type": 1,
   },
-  Object {
+  {
     "raw": "",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# Rebase 43c2d166..af80a3d5 onto 43c2d166 (19 commands)",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# Commands:",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# p, pick <commit> = use commit",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# r, reword <commit> = use commit, but edit the commit message",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# e, edit <commit> = use commit, but stop for amending",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# s, squash <commit> = use commit, but meld into previous commit",
     "type": 0,
   },
-  Object {
-    "raw": "# f, fixup [-C | -c] <commit> = like \\"squash\\" but keep only the previous",
+  {
+    "raw": "# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#                    commit's log message, unless -C is used, in which case",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#                    keep only this commit's message; -c is same as -C but",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#                    opens the editor",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# x, exec <command> = run command (the rest of the line) using shell",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# b, break = stop here (continue rebase later with 'git rebase --continue')",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# d, drop <commit> = remove commit",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# l, label <label> = label current HEAD with a name",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# t, reset <label> = reset HEAD to a label",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# .       create a merge commit using the original merge commit's",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# .       message (or the oneline, if no original merge commit was",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# .       specified); use -c <commit> to reword the commit message",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# These lines can be re-ordered; they are executed from top to bottom.",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# If you remove a line here THAT COMMIT WILL BE LOST.",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#",
     "type": 0,
   },
-  Object {
+  {
     "raw": "# However, if you remove everything, the rebase will be aborted.",
     "type": 0,
   },
-  Object {
+  {
     "raw": "#",
     "type": 0,
   },
