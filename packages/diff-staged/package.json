@@ -3,13 +3,14 @@
   "version": "1.0.37",
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/bluelovers/ws-git-lazy#readme",
+  "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/diff-staged#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-git-lazy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-git-lazy.git"
+    "url": "git+https://github.com/bluelovers/ws-git-lazy.git",
+    "directory": "packages/diff-staged"
   },
   "license": "ISC",
   "author": "bluelovers",
@@ -24,6 +25,7 @@
     "test:jest": "jest --passWithNoTests",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --cd-version patch",
     "preversion": "yarn run test",
