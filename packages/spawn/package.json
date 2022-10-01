@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@git-lazy/debug": "^1.0.17",
-    "@lazy-glob/sort-tree": "^1.0.10",
+    "@lazy-glob/sort-tree": "^1.0.11",
     "@lazy-spawn/stringify": "^1.0.4",
     "@lazy-spawn/strip-ansi": "^1.0.3",
     "array-hyper-unique": "^2.1.2",
