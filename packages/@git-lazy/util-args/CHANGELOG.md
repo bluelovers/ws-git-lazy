@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/util-args@1.0.18...@git-lazy/util-args@1.0.19) (2022-10-01)
+
+
+
+### 📌　Dependencies
+
+* update deps ([5cb7394](https://github.com/bluelovers/ws-git-lazy/commit/5cb739437c77472bd6bc434ce55f845f4214f738))
+
+
+
 ## [1.0.18](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/util-args@1.0.17...@git-lazy/util-args@1.0.18) (2022-09-30)
 
 

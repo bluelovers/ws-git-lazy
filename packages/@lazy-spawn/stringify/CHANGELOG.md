@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-git-lazy/compare/@lazy-spawn/stringify@1.0.4...@lazy-spawn/stringify@1.0.5) (2022-10-01)
+
+
+
+### 📌　Dependencies
+
+* update deps ([5cb7394](https://github.com/bluelovers/ws-git-lazy/commit/5cb739437c77472bd6bc434ce55f845f4214f738))
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-git-lazy/compare/@lazy-spawn/stringify@1.0.3...@lazy-spawn/stringify@1.0.4) (2022-09-30)
 
 
