@@ -1,4 +1,4 @@
-import { LineByLine as e } from "@lazy-node/readlines/class";
+import { LineByLine as e } from "@lazy-node/readlines";
 
 const r = /^(\w+)\s(\w+)\s(.*)$/;
 

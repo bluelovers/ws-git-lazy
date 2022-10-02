@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var _class = require('@lazy-node/readlines/class');
+var readlines = require('@lazy-node/readlines');
 
 const re = /^(\w+)\s(\w+)\s(.*)$/;
 function isRebaseCommentLineString(line) {
@@ -76,7 +76,7 @@ function parseRebaseLine(raw) {
   };
 }
 function generatorParseRebaseTodoFromBuffer(context) {
-  const liner = new _class.LineByLine(context);
+  const liner = new readlines.LineByLine(context);
   return generatorParseRebaseTodoFromIterable(liner.generator());
 }
 function* generatorParseRebaseTodoFromIterable(iterator) {

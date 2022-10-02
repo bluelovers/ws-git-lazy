@@ -1,4 +1,4 @@
-import { LineByLine } from '@lazy-node/readlines/class';
+import { LineByLine } from '@lazy-node/readlines';
 import { EnumRebaseCommands, EnumRebaseLineType, IRebaseCommandLine, IRebaseCommentLine } from './types';
 import { isRebaseCommentLineString, re } from './filter';
 import { assertRebaseCommand } from './assert';
