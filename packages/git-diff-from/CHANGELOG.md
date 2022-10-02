@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.36](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.35...git-diff-from@1.1.36) (2022-10-02)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([14f1588](https://github.com/bluelovers/ws-git-lazy/commit/14f1588a98e455ea2317224edc380a180696d81c))
+
+
+
 ## [1.1.35](https://github.com/bluelovers/ws-git-lazy/compare/git-diff-from@1.1.34...git-diff-from@1.1.35) (2022-10-01)
 
 

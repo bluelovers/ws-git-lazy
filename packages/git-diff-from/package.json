@@ -1,6 +1,6 @@
 {
   "name": "git-diff-from",
-  "version": "1.1.35",
+  "version": "1.1.36",
   "description": "git diff-tree",
   "keywords": [
     "commit",
@@ -49,7 +49,7 @@
     "crlf-normalize": "^1.0.15",
     "git-decode": "^1.0.18",
     "git-rev-range": "^1.1.32",
-    "git-root2": "^1.0.35",
+    "git-root2": "^1.0.37",
     "tslib": "^2",
     "upath2": "^3.1.19"
   },

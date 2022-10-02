@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/diff-staged",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/diff-staged#readme",
@@ -35,7 +35,7 @@
     "sort-package-json": "npx yarn-tool sort"
   },
   "dependencies": {
-    "@git-lazy/root": "^1.0.34",
+    "@git-lazy/root": "^1.0.35",
     "@git-lazy/spawn": "^1.0.37",
     "tslib": "^2"
   },

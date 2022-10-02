@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/git-dir-path@1.0.4...@git-lazy/git-dir-path@1.0.6) (2022-10-02)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([b3c8f88](https://github.com/bluelovers/ws-git-lazy/commit/b3c8f88dbf478f8af31da2e4f489105a7c9273c3))
+* . ([14f1588](https://github.com/bluelovers/ws-git-lazy/commit/14f1588a98e455ea2317224edc380a180696d81c))
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/git-dir-path@1.0.4...@git-lazy/git-dir-path@1.0.5) (2022-10-02)
 
 
