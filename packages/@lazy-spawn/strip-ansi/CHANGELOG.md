@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-git-lazy/compare/@lazy-spawn/strip-ansi@1.0.4...@lazy-spawn/strip-ansi@1.0.5) (2022-10-28)
+
+
+
+### 🛠　Build System
+
+* update build ([f705790](https://github.com/bluelovers/ws-git-lazy/commit/f705790ea4a4a6c69a4c957b41ee2b1f42cc026c))
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-git-lazy/compare/@lazy-spawn/strip-ansi@1.0.3...@lazy-spawn/strip-ansi@1.0.4) (2022-10-01)
 
 

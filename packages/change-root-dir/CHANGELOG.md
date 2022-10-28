@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.39](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/change-root-dir@1.0.38...@git-lazy/change-root-dir@1.0.39) (2022-10-28)
+
+
+
+### 📌　Dependencies
+
+* update deps ([e5ef30b](https://github.com/bluelovers/ws-git-lazy/commit/e5ef30b98df91868dfb52ad66144ca00e33698fd))
+
+
+
 ## [1.0.38](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/change-root-dir@1.0.37...@git-lazy/change-root-dir@1.0.38) (2022-10-02)
 
 **Note:** Version bump only for package @git-lazy/change-root-dir

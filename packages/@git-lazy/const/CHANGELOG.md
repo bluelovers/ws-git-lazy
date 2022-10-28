@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/const@1.0.7...@git-lazy/const@1.0.8) (2022-10-28)
+
+
+
+### 🛠　Build System
+
+* update build ([f705790](https://github.com/bluelovers/ws-git-lazy/commit/f705790ea4a4a6c69a4c957b41ee2b1f42cc026c))
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/const@1.0.6...@git-lazy/const@1.0.7) (2022-10-01)
 
 
