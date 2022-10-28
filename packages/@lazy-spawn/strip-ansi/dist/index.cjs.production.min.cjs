@@ -1,2 +1,16 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("strip-ansi"),t=require("has-ansi");function _interopDefaultLegacy(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var r=_interopDefaultLegacy(e),i=_interopDefaultLegacy(t);function stripAnsiValue(e,t){if(!e)return e;let u="string"!=typeof e,a=e.toString();return a=r.default(a),u&&!t?i.default(a)?Buffer.from(a):e:a}exports.default=stripAnsiValue,exports.stripAnsiValue=stripAnsiValue;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("strip-ansi"), r = require("has-ansi");
+
+function stripAnsiValue(t, i) {
+  if (!t) return t;
+  let s = "string" != typeof t, u = t.toString();
+  return u = e(u), s && !i ? r(u) ? Buffer.from(u) : t : u;
+}
+
+exports.default = stripAnsiValue, exports.stripAnsiValue = stripAnsiValue;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

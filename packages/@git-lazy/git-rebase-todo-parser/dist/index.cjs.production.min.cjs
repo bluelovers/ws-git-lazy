@@ -1,2 +1,83 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("@lazy-node/readlines");const r=/^(\w+)\s(\w+)\s(.*)$/;function isRebaseCommentLineString(e){return/^(?:\s*)(?:#.*)?$/.test(e)}var a,o;function toRebaseCommand(e){return exports.EnumRebaseCommands[e]}function validRebaseCommand(e){var r;return(null===(r=toRebaseCommand(e))||void 0===r?void 0:r.length)>0}function assertRebaseCommand(e){if(!validRebaseCommand(e))throw new RangeError(`${e} is not valid rebase command`)}function parseRebaseCommandLine(e){const a=r.exec(e),[,o,s,n]=a;return assertRebaseCommand(o),{raw:e,cmd:o,hash:s,message:n}}function parseRebaseLine(e){return isRebaseCommentLineString(e)?{type:0,raw:e}:{type:1,...parseRebaseCommandLine(e)}}function generatorParseRebaseTodoFromBuffer(r){return generatorParseRebaseTodoFromIterable(new e.LineByLine(r).generator())}function*generatorParseRebaseTodoFromIterable(e){for(let r of e)yield parseRebaseLine(r.toString())}function generatorParseRebaseTodoFromArray(e){if(!Array.isArray(e))throw new TypeError("lines must be an array");return generatorParseRebaseTodoFromIterable(e)}function parseRebaseTodo(e){return[...(Array.isArray(e)?generatorParseRebaseTodoFromArray:generatorParseRebaseTodoFromBuffer)(e)]}exports.EnumRebaseLineType=void 0,(a=exports.EnumRebaseLineType||(exports.EnumRebaseLineType={}))[a.COMMENT=0]="COMMENT",a[a.COMMAND=1]="COMMAND",exports.EnumRebaseCommands=void 0,(o=exports.EnumRebaseCommands||(exports.EnumRebaseCommands={})).pick="pick",o.reword="reword",o.edit="edit",o.squash="squash",o.fixup="fixup",o.exec="exec",exports.assertRebaseCommand=assertRebaseCommand,exports.default=parseRebaseTodo,exports.filterRebaseListByType=function filterRebaseListByType(e,r){return e.filter((e=>e.type===r))},exports.generatorParseRebaseTodoFromArray=generatorParseRebaseTodoFromArray,exports.generatorParseRebaseTodoFromBuffer=generatorParseRebaseTodoFromBuffer,exports.generatorParseRebaseTodoFromIterable=generatorParseRebaseTodoFromIterable,exports.isRebaseCommandLine=function isRebaseCommandLine(e){return 1===e.type},exports.isRebaseCommentLine=function isRebaseCommentLine(e){return 0===e.type},exports.isRebaseCommentLineString=isRebaseCommentLineString,exports.parseRebaseCommandLine=parseRebaseCommandLine,exports.parseRebaseLine=parseRebaseLine,exports.parseRebaseTodo=parseRebaseTodo,exports.re=r,exports.toRebaseCommand=toRebaseCommand,exports.validRebaseCommand=validRebaseCommand;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var e = require("@lazy-node/readlines");
+
+const r = /^(\w+)\s(\w+)\s(.*)$/;
+
+function isRebaseCommentLineString(e) {
+  return /^(?:\s*)(?:#.*)?$/.test(e);
+}
+
+var a, o;
+
+function toRebaseCommand(e) {
+  return exports.EnumRebaseCommands[e];
+}
+
+function validRebaseCommand(e) {
+  var r;
+  return (null === (r = toRebaseCommand(e)) || void 0 === r ? void 0 : r.length) > 0;
+}
+
+function assertRebaseCommand(e) {
+  if (!validRebaseCommand(e)) throw new RangeError(`${e} is not valid rebase command`);
+}
+
+function parseRebaseCommandLine(e) {
+  const a = r.exec(e), [, o, s, n] = a;
+  return assertRebaseCommand(o), {
+    raw: e,
+    cmd: o,
+    hash: s,
+    message: n
+  };
+}
+
+function parseRebaseLine(e) {
+  return isRebaseCommentLineString(e) ? {
+    type: 0,
+    raw: e
+  } : {
+    type: 1,
+    ...parseRebaseCommandLine(e)
+  };
+}
+
+function generatorParseRebaseTodoFromBuffer(r) {
+  return generatorParseRebaseTodoFromIterable(new e.LineByLine(r).generator());
+}
+
+function* generatorParseRebaseTodoFromIterable(e) {
+  for (let r of e) yield parseRebaseLine(r.toString());
+}
+
+function generatorParseRebaseTodoFromArray(e) {
+  if (!Array.isArray(e)) throw new TypeError("lines must be an array");
+  return generatorParseRebaseTodoFromIterable(e);
+}
+
+function parseRebaseTodo(e) {
+  return [ ...(Array.isArray(e) ? generatorParseRebaseTodoFromArray : generatorParseRebaseTodoFromBuffer)(e) ];
+}
+
+exports.EnumRebaseLineType = void 0, (a = exports.EnumRebaseLineType || (exports.EnumRebaseLineType = {}))[a.COMMENT = 0] = "COMMENT", 
+a[a.COMMAND = 1] = "COMMAND", exports.EnumRebaseCommands = void 0, (o = exports.EnumRebaseCommands || (exports.EnumRebaseCommands = {})).pick = "pick", 
+o.reword = "reword", o.edit = "edit", o.squash = "squash", o.fixup = "fixup", o.exec = "exec", 
+exports.assertRebaseCommand = assertRebaseCommand, exports.default = parseRebaseTodo, 
+exports.filterRebaseListByType = function filterRebaseListByType(e, r) {
+  return e.filter((e => e.type === r));
+}, exports.generatorParseRebaseTodoFromArray = generatorParseRebaseTodoFromArray, 
+exports.generatorParseRebaseTodoFromBuffer = generatorParseRebaseTodoFromBuffer, 
+exports.generatorParseRebaseTodoFromIterable = generatorParseRebaseTodoFromIterable, 
+exports.isRebaseCommandLine = function isRebaseCommandLine(e) {
+  return 1 === e.type;
+}, exports.isRebaseCommentLine = function isRebaseCommentLine(e) {
+  return 0 === e.type;
+}, exports.isRebaseCommentLineString = isRebaseCommentLineString, exports.parseRebaseCommandLine = parseRebaseCommandLine, 
+exports.parseRebaseLine = parseRebaseLine, exports.parseRebaseTodo = parseRebaseTodo, 
+exports.re = r, exports.toRebaseCommand = toRebaseCommand, exports.validRebaseCommand = validRebaseCommand;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

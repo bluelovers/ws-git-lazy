@@ -9,7 +9,6 @@ function crossSpawnOutput(buf, options = {
   clearEol: true
 }) {
   let output = '';
-
   if (!Buffer.isBuffer(buf) && Array.isArray(buf)) {
     output = buf.filter(function (b) {
       return !(!b || !b.length);
@@ -19,20 +18,16 @@ function crossSpawnOutput(buf, options = {
   } else {
     output = (buf || '').toString();
   }
-
   if (options.stripAnsi) {
     output = stripAnsi.stripAnsiValue(output);
   }
-
   output = crlfNormalize.crlf(output);
-
   if (options.clearEol || options.clearEol == null) {
     output = output.replace(/\n+$/g, '');
   }
-
   return output;
 }
 
 exports.crossSpawnOutput = crossSpawnOutput;
-exports["default"] = crossSpawnOutput;
+exports.default = crossSpawnOutput;
 //# sourceMappingURL=index.cjs.development.cjs.map

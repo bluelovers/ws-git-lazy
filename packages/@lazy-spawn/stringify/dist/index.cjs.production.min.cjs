@@ -1,2 +1,23 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var r=require("crlf-normalize"),t=require("@lazy-spawn/strip-ansi");function crossSpawnOutput(e,n={clearEol:!0}){let u="";return u=!Buffer.isBuffer(e)&&Array.isArray(e)?e.filter((function(r){return!(!r||!r.length)})).map((function(r){return r.toString()})).join("\n"):(e||"").toString(),n.stripAnsi&&(u=t.stripAnsiValue(u)),u=r.crlf(u),(n.clearEol||null==n.clearEol)&&(u=u.replace(/\n+$/g,"")),u}exports.crossSpawnOutput=crossSpawnOutput,exports.default=crossSpawnOutput;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: !0
+});
+
+var r = require("crlf-normalize"), t = require("@lazy-spawn/strip-ansi");
+
+function crossSpawnOutput(e, n = {
+  clearEol: !0
+}) {
+  let u = "";
+  return u = !Buffer.isBuffer(e) && Array.isArray(e) ? e.filter((function(r) {
+    return !(!r || !r.length);
+  })).map((function(r) {
+    return r.toString();
+  })).join("\n") : (e || "").toString(), n.stripAnsi && (u = t.stripAnsiValue(u)), 
+  u = r.crlf(u), (n.clearEol || null == n.clearEol) && (u = u.replace(/\n+$/g, "")), 
+  u;
+}
+
+exports.crossSpawnOutput = crossSpawnOutput, exports.default = crossSpawnOutput;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

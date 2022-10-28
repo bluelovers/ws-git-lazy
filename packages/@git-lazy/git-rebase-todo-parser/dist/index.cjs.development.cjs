@@ -19,14 +19,11 @@ function filterRebaseListByType(lines, type) {
 }
 
 exports.EnumRebaseLineType = void 0;
-
 (function (EnumRebaseLineType) {
   EnumRebaseLineType[EnumRebaseLineType["COMMENT"] = 0] = "COMMENT";
   EnumRebaseLineType[EnumRebaseLineType["COMMAND"] = 1] = "COMMAND";
 })(exports.EnumRebaseLineType || (exports.EnumRebaseLineType = {}));
-
 exports.EnumRebaseCommands = void 0;
-
 (function (EnumRebaseCommands) {
   EnumRebaseCommands["pick"] = "pick";
   EnumRebaseCommands["reword"] = "reword";
@@ -35,14 +32,12 @@ exports.EnumRebaseCommands = void 0;
   EnumRebaseCommands["fixup"] = "fixup";
   EnumRebaseCommands["exec"] = "exec";
 })(exports.EnumRebaseCommands || (exports.EnumRebaseCommands = {}));
-
 function toRebaseCommand(cmd) {
   return exports.EnumRebaseCommands[cmd];
 }
 
 function validRebaseCommand(cmd) {
   var _toRebaseCommand;
-
   return ((_toRebaseCommand = toRebaseCommand(cmd)) === null || _toRebaseCommand === void 0 ? void 0 : _toRebaseCommand.length) > 0;
 }
 function assertRebaseCommand(cmd) {
@@ -69,7 +64,6 @@ function parseRebaseLine(raw) {
       raw
     };
   }
-
   return {
     type: 1,
     ...parseRebaseCommandLine(raw)
@@ -88,7 +82,6 @@ function generatorParseRebaseTodoFromArray(lines) {
   if (!Array.isArray(lines)) {
     throw new TypeError(`lines must be an array`);
   }
-
   return generatorParseRebaseTodoFromIterable(lines);
 }
 function parseRebaseTodo(context) {
@@ -96,7 +89,7 @@ function parseRebaseTodo(context) {
 }
 
 exports.assertRebaseCommand = assertRebaseCommand;
-exports["default"] = parseRebaseTodo;
+exports.default = parseRebaseTodo;
 exports.filterRebaseListByType = filterRebaseListByType;
 exports.generatorParseRebaseTodoFromArray = generatorParseRebaseTodoFromArray;
 exports.generatorParseRebaseTodoFromBuffer = generatorParseRebaseTodoFromBuffer;
