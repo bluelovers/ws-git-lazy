@@ -10,7 +10,7 @@ var EnumSort;
     EnumSort["taggerdate"] = "taggerdate";
     EnumSort["creatordate"] = "creatordate";
     EnumSort["refname"] = "refname";
-})(EnumSort = exports.EnumSort || (exports.EnumSort = {}));
+})(EnumSort || (exports.EnumSort = EnumSort = {}));
 function buildCmd(options) {
     options !== null && options !== void 0 ? options : (options = {});
     const args = [

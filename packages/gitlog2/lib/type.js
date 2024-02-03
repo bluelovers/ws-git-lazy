@@ -74,7 +74,7 @@ var EnumFileStatus;
      * updated but unmerged
      */
     EnumFileStatus["UPDATED_BUT_UNMERGED"] = "U";
-})(EnumFileStatus = exports.EnumFileStatus || (exports.EnumFileStatus = {}));
+})(EnumFileStatus || (exports.EnumFileStatus = EnumFileStatus = {}));
 /**
  * for moment
  */
@@ -93,7 +93,7 @@ var EnumGitDateFormat;
     // old version
     EnumGitDateFormat["AUTHOR_DATE"] = "YYYY-MM-DD HH:mm:ss Z";
     EnumGitDateFormat["COMMITTER_DATE"] = "ddd MMM DD HH:mm:ss YYYY ZZ";
-})(EnumGitDateFormat = exports.EnumGitDateFormat || (exports.EnumGitDateFormat = {}));
+})(EnumGitDateFormat || (exports.EnumGitDateFormat = EnumGitDateFormat = {}));
 exports.KEY_ORDER = [
     '_index',
     'hash',
@@ -127,12 +127,12 @@ var EnumPrettyFormatFlags;
 (function (EnumPrettyFormatFlags) {
     EnumPrettyFormatFlags["PRETTY"] = "pretty";
     EnumPrettyFormatFlags["FORMAT"] = "format";
-})(EnumPrettyFormatFlags = exports.EnumPrettyFormatFlags || (exports.EnumPrettyFormatFlags = {}));
+})(EnumPrettyFormatFlags || (exports.EnumPrettyFormatFlags = EnumPrettyFormatFlags = {}));
 var EnumPrettyFormatMark;
 (function (EnumPrettyFormatMark) {
     EnumPrettyFormatMark["BEGIN"] = "@begin@";
     EnumPrettyFormatMark["DELIMITER"] = "\t";
     EnumPrettyFormatMark["END"] = "@end@";
     EnumPrettyFormatMark["JOIN"] = "";
-})(EnumPrettyFormatMark = exports.EnumPrettyFormatMark || (exports.EnumPrettyFormatMark = {}));
+})(EnumPrettyFormatMark || (exports.EnumPrettyFormatMark = EnumPrettyFormatMark = {}));
 //# sourceMappingURL=type.js.map

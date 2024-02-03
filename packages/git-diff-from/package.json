@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@git-lazy/spawn": "^1.0.38",
-    "crlf-normalize": "^1.0.16",
+    "crlf-normalize": "^1.0.20",
     "git-decode": "^1.0.19",
     "git-rev-range": "^1.1.33",
     "git-root2": "^1.0.38",

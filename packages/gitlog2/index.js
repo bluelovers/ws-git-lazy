@@ -90,7 +90,7 @@ exports.gitlog = gitlog;
      */
     function dummy() { }
     gitlog.EnumGitDateFormat = type_1.EnumGitDateFormat;
-})(gitlog = exports.gitlog || (exports.gitlog = {}));
+})(gitlog || (exports.gitlog = gitlog = {}));
 exports.sync = gitlog.sync;
 exports.asyncCallback = gitlog.asyncCallback;
 exports.async = gitlog.async;

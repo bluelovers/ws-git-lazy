@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "tslib": "^2",
-    "uni-string": "^2.0.2"
+    "uni-string": "^2.0.7"
   },
   "gitHead": "e6872f3abd350ed73ab7d95b5175cb20fbf5d07d"
 }

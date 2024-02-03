@@ -9,12 +9,12 @@ var EnumPrefixType;
     EnumPrefixType[EnumPrefixType["ROOT"] = 0] = "ROOT";
     EnumPrefixType[EnumPrefixType["RELATIVE"] = 1] = "RELATIVE";
     EnumPrefixType[EnumPrefixType["ABSOLUTE"] = 2] = "ABSOLUTE";
-})(EnumPrefixType = exports.EnumPrefixType || (exports.EnumPrefixType = {}));
+})(EnumPrefixType || (exports.EnumPrefixType = EnumPrefixType = {}));
 var EnumSubtreeCmd;
 (function (EnumSubtreeCmd) {
     EnumSubtreeCmd["add"] = "add";
     EnumSubtreeCmd["push"] = "push";
     EnumSubtreeCmd["pull"] = "pull";
     EnumSubtreeCmd["split"] = "split";
-})(EnumSubtreeCmd = exports.EnumSubtreeCmd || (exports.EnumSubtreeCmd = {}));
+})(EnumSubtreeCmd || (exports.EnumSubtreeCmd = EnumSubtreeCmd = {}));
 //# sourceMappingURL=types.js.map
