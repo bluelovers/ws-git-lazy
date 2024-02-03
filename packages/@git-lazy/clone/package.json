@@ -1,6 +1,6 @@
 {
   "name": "@git-lazy/clone",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "",
   "homepage": "https://github.com/bluelovers/ws-git-lazy/tree/master/packages/@git-lazy/clone#readme",
   "bugs": {
@@ -35,7 +35,7 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@git-lazy/spawn": "^1.0.38",
+    "@git-lazy/spawn": "^1.0.39",
     "@git-lazy/util-args": "^1.0.19",
     "tslib": "^2"
   },

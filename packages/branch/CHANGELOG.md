@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.45](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.44...@git-lazy/branch@1.0.45) (2024-02-03)
+
+**Note:** Version bump only for package @git-lazy/branch
+
+
+
+
+
 ## [1.0.44](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.43...@git-lazy/branch@1.0.44) (2022-10-28)
 
 **Note:** Version bump only for package @git-lazy/branch

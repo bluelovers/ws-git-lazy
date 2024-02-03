@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone@1.0.19...@git-lazy/clone@1.0.20) (2024-02-03)
+
+**Note:** Version bump only for package @git-lazy/clone
+
+
+
+
+
 ## [1.0.19](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/clone@1.0.18...@git-lazy/clone@1.0.19) (2022-10-28)
 
 **Note:** Version bump only for package @git-lazy/clone
