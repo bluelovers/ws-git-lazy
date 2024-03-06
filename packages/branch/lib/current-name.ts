@@ -17,6 +17,7 @@ export function currentBranchName(REPO_PATH: string)
 		'HEAD',
 	], {
 		cwd: REPO_PATH,
+		throwError: false,
 	});
 
 	if (!cp.error)
