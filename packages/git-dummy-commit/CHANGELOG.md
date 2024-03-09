@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.21](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.20...git-dummy-commit2@1.3.21) (2024-03-09)
+
+
+### BREAKING CHANGES
+
+* update `cross-spawn-extra`
+
+
+
+### 📌　Dependencies
+
+* update `cross-spawn-extra` ([7c6738b](https://github.com/bluelovers/ws-git-lazy/commit/7c6738bae57dd640cbb75f5d3b5d6bdf5f3ddfce))
+
+
+
 ## [1.3.20](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.19...git-dummy-commit2@1.3.20) (2024-02-03)
 
 **Note:** Version bump only for package git-dummy-commit2

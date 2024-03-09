@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.46](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.45...@git-lazy/branch@1.0.46) (2024-03-09)
+
+
+### BREAKING CHANGES
+
+* update `cross-spawn-extra`
+
+
+
+### 🐛　Bug Fixes
+
+* not throw error when get branch name ([d658360](https://github.com/bluelovers/ws-git-lazy/commit/d658360b0779230756a449606b6f48f39453a193))
+
+
+### 📌　Dependencies
+
+* update `cross-spawn-extra` ([7c6738b](https://github.com/bluelovers/ws-git-lazy/commit/7c6738bae57dd640cbb75f5d3b5d6bdf5f3ddfce))
+
+
+
 ## [1.0.45](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/branch@1.0.44...@git-lazy/branch@1.0.45) (2024-02-03)
 
 **Note:** Version bump only for package @git-lazy/branch
