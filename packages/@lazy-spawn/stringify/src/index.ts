@@ -1,7 +1,7 @@
 /**
  * Created by user on 2022/4/6.
  */
-import { SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { SpawnSyncReturns } from 'cross-spawn-extra';
 import { crlf } from 'crlf-normalize';
 import { stripAnsiValue } from '@lazy-spawn/strip-ansi';
 import { ITSValueOrArray } from 'ts-type/lib/type/base';

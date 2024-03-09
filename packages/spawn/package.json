@@ -46,7 +46,7 @@
     "array-hyper-unique": "^2.1.4",
     "bluebird": "^3.7.2",
     "crlf-normalize": "^1.0.20",
-    "cross-spawn-extra": "^3.0.1",
+    "cross-spawn-extra": "^3.0.2",
     "debug-color2": "^1.3.2",
     "promise-tap-then-catch": "^1.0.4",
     "tslib": "^2"
