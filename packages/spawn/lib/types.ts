@@ -3,8 +3,8 @@
  */
 
 import Bluebird from 'bluebird';
-import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra/type';
-import { SpawnASyncReturns, SpawnASyncReturnsPromise, ISpawnASyncError, SpawnSyncReturns, CrossSpawnExtra } from 'cross-spawn-extra/core';
+import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra';
+import { SpawnASyncReturns, SpawnASyncReturnsPromise, ISpawnASyncError, SpawnSyncReturns, CrossSpawnExtra } from 'cross-spawn-extra';
 export { SpawnSyncOptions, SpawnOptions, SpawnASyncReturns, SpawnSyncReturns }
 
 export interface IOptionsCheck

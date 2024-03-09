@@ -3,7 +3,9 @@
  * Created by user on 2018/5/15/015.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.decode2 = exports.decode = exports.encode = void 0;
+exports.encode = encode;
+exports.decode = decode;
+exports.decode2 = decode2;
 const uni_string_1 = require("uni-string");
 const util_1 = require("./lib/util");
 function encode(s) {
@@ -21,7 +23,6 @@ function encode(s) {
     })
         .join('');
 }
-exports.encode = encode;
 function decode(s) {
     let matches = [];
     let t = '';
@@ -56,13 +57,11 @@ function decode(s) {
     }
     return t;
 }
-exports.decode = decode;
 function decode2(input) {
     if (/(?:\\(\d{3}))/.test(input)) {
         input = decode(input);
     }
     return (0, util_1.removeQuote)(input);
 }
-exports.decode2 = decode2;
 exports.default = exports;
 //# sourceMappingURL=index.js.map

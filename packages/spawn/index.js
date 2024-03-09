@@ -3,7 +3,12 @@
  * Created by user on 2020/5/27.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.async = exports.sync = exports.checkGitOutput = exports.crossSpawnGitAsync = exports.crossSpawnGitSync = exports.SymbolRawArgv = exports.crossSpawnOutput = void 0;
+exports.async = exports.sync = exports.SymbolRawArgv = exports.crossSpawnOutput = void 0;
+exports.crossSpawnGitSync = crossSpawnGitSync;
+exports.sync = crossSpawnGitSync;
+exports.crossSpawnGitAsync = crossSpawnGitAsync;
+exports.async = crossSpawnGitAsync;
+exports.checkGitOutput = checkGitOutput;
 const tslib_1 = require("tslib");
 const debug_1 = require("@git-lazy/debug");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
@@ -37,8 +42,6 @@ function crossSpawnGitSync(command, args, options) {
     checkGitOutput(cp, options === null || options === void 0 ? void 0 : options.throwError, options === null || options === void 0 ? void 0 : options.printStderr);
     return cp;
 }
-exports.crossSpawnGitSync = crossSpawnGitSync;
-exports.sync = crossSpawnGitSync;
 /**
  * 適用於 git 的 crossSpawnAsync
  */
@@ -53,8 +56,6 @@ function crossSpawnGitAsync(command, args, options) {
         };
     });
 }
-exports.crossSpawnGitAsync = crossSpawnGitAsync;
-exports.async = crossSpawnGitAsync;
 /**
  * 檢查 git 輸出訊息來判斷指令是否成功或錯誤
  *
@@ -96,7 +97,6 @@ function checkGitOutput(cp, throwError, printStderr) {
     }
     return cp;
 }
-exports.checkGitOutput = checkGitOutput;
 crossSpawnGitAsync.async = crossSpawnGitAsync;
 crossSpawnGitAsync.sync = crossSpawnGitSync;
 crossSpawnGitAsync.default = crossSpawnGitAsync;

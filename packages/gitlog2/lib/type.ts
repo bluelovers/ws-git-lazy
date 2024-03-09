@@ -3,7 +3,7 @@
  */
 
 import { SpawnSyncOptions } from "child_process";
-import { SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { SpawnSyncReturns } from 'cross-spawn-extra';
 
 export const defaultFields: IFieldsArray = ['abbrevHash', 'hash', 'subject', 'authorName'];
 export const defaultOptions: IOptions = {

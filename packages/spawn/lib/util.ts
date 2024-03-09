@@ -2,7 +2,7 @@
  * Created by user on 2020/5/27.
  */
 
-import { CrossSpawnExtra, ISpawnASyncError, SpawnASyncReturns } from 'cross-spawn-extra/core';
+import { CrossSpawnExtra, ISpawnASyncError, SpawnASyncReturns } from 'cross-spawn-extra';
 export { stripAnsiValue as stripAnsi } from '@lazy-spawn/strip-ansi';
 
 export function getCrossSpawnError<T extends SpawnASyncReturns>(cp: T | any): ISpawnASyncError<T>

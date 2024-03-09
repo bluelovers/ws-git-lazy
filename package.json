@@ -75,7 +75,7 @@
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.34",
+    "@bluelovers/tsconfig": "^1.0.35",
     "@types/bluebird": "^3.5.42",
     "@types/debug": "^4.1.12",
     "@types/fs-extra": "^11.0.4",
@@ -83,7 +83,7 @@
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.202",
     "@types/micromatch": "^4.0.6",
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.11.25",
     "@types/parse-git-config": "^3.0.4",
     "@types/yargs": "^17.0.32",
     "@yarn-tool/ws-find-up-paths": "^1.0.12",

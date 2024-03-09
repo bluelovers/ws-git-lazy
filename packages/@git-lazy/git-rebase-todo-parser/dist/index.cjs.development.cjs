@@ -9,12 +9,13 @@ function isRebaseCommentLineString(line) {
   return /^(?:\s*)(?:#.*)?$/.test(line);
 }
 function isRebaseCommentLine(line) {
-  return line.type === 0;
+  return line.type === 0 /* EnumRebaseLineType.COMMENT */;
 }
 function isRebaseCommandLine(line) {
-  return line.type === 1;
+  return line.type === 1 /* EnumRebaseLineType.COMMAND */;
 }
 function filterRebaseListByType(lines, type) {
+  // @ts-ignore
   return lines.filter(line => line.type === type);
 }
 
@@ -33,6 +34,7 @@ exports.EnumRebaseCommands = void 0;
   EnumRebaseCommands["exec"] = "exec";
 })(exports.EnumRebaseCommands || (exports.EnumRebaseCommands = {}));
 function toRebaseCommand(cmd) {
+  // @ts-ignore
   return exports.EnumRebaseCommands[cmd];
 }
 
@@ -60,12 +62,12 @@ function parseRebaseCommandLine(raw) {
 function parseRebaseLine(raw) {
   if (isRebaseCommentLineString(raw)) {
     return {
-      type: 0,
+      type: 0 /* EnumRebaseLineType.COMMENT */,
       raw
     };
   }
   return {
-    type: 1,
+    type: 1 /* EnumRebaseLineType.COMMAND */,
     ...parseRebaseCommandLine(raw)
   };
 }

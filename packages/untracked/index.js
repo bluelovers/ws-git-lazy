@@ -3,7 +3,8 @@
  * Created by user on 2019/6/13.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitUntrackedDir = exports.gitUntrackedFile = void 0;
+exports.gitUntrackedFile = gitUntrackedFile;
+exports.gitUntrackedDir = gitUntrackedDir;
 const git_1 = require("@git-lazy/util/spawn/git");
 const sort_tree_1 = require("@lazy-glob/sort-tree");
 const array_hyper_unique_1 = require("array-hyper-unique");
@@ -19,11 +20,9 @@ function gitUntrackedFile(git_root, options) {
     });
     return (0, data_1.handleSpawnOutputArray)(cp.stdout.toString());
 }
-exports.gitUntrackedFile = gitUntrackedFile;
 function gitUntrackedDir(git_root, options) {
     return (0, sort_tree_1.sortTree)((0, array_hyper_unique_1.array_unique)(gitUntrackedFile(git_root, options)
         .map(v => (0, path_1.dirname)(v))));
 }
-exports.gitUntrackedDir = gitUntrackedDir;
 exports.default = gitUntrackedFile;
 //# sourceMappingURL=index.js.map

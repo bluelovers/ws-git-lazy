@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.async = exports.sync = exports.isGitRoot = exports.gitRoot = void 0;
+exports.gitRoot = gitRoot;
+exports.isGitRoot = isGitRoot;
+exports.sync = sync;
+exports.async = async;
 const upath2_1 = require("upath2");
 const fs_1 = require("fs");
 const spawn_1 = require("@git-lazy/spawn");
@@ -25,20 +28,16 @@ function gitRoot(cwd) {
     }
     return null;
 }
-exports.gitRoot = gitRoot;
 function isGitRoot(target) {
     return (0, path_is_same_1.pathIsSame)(target, gitRoot(target));
 }
-exports.isGitRoot = isGitRoot;
 function sync(cwd) {
     return gitRoot(cwd);
 }
-exports.sync = sync;
 // lazy fake async
 async function async(cwd) {
     return gitRoot(cwd);
 }
-exports.async = async;
 gitRoot.isGitRoot = isGitRoot;
 gitRoot.sync = sync;
 gitRoot.async = async;

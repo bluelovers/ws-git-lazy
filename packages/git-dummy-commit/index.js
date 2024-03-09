@@ -1,6 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitDummyCommit = exports.defaultMsg = void 0;
+exports.defaultMsg = void 0;
+exports.gitDummyCommit = gitDummyCommit;
 const spawn_1 = require("@git-lazy/spawn");
 const defaultMsg = 'Test commit';
 exports.defaultMsg = defaultMsg;
@@ -45,6 +46,5 @@ function gitDummyCommit(msg, options) {
         stdio: (options === null || options === void 0 ? void 0 : options.silent) === false ? 'inherit' : void 0
     });
 }
-exports.gitDummyCommit = gitDummyCommit;
 exports.default = gitDummyCommit;
 //# sourceMappingURL=index.js.map

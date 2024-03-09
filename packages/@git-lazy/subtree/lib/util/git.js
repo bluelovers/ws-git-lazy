@@ -3,7 +3,7 @@
  * Created by user on 2020/6/6.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleGitPath = void 0;
+exports.handleGitPath = handleGitPath;
 const upath2_1 = require("upath2");
 const core_1 = require("git-root2/core");
 function handleGitPath(options) {
@@ -15,5 +15,4 @@ function handleGitPath(options) {
         root,
     };
 }
-exports.handleGitPath = handleGitPath;
 //# sourceMappingURL=git.js.map

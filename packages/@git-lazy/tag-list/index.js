@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._handleResult = exports.gitTagListSync = exports.gitTagList = exports.buildCmd = exports.EnumSort = void 0;
+exports.EnumSort = void 0;
+exports.buildCmd = buildCmd;
+exports.gitTagList = gitTagList;
+exports.gitTagListSync = gitTagListSync;
+exports._handleResult = _handleResult;
 const spawn_1 = require("@git-lazy/spawn");
 const util_1 = require("@git-lazy/spawn/lib/util");
 const data_1 = require("@git-lazy/spawn/lib/data");
@@ -37,7 +41,6 @@ function buildCmd(options) {
     args.push(options.sort || "taggerdate" /* EnumSort.taggerdate */);
     return (0, util_1.filterCrossSpawnArgv)(args);
 }
-exports.buildCmd = buildCmd;
 /**
  * @see https://gist.github.com/rponte/fdc0724dd984088606b0
  */
@@ -54,7 +57,6 @@ function gitTagList(options, spawnOptions) {
     })
         .then(_handleResult);
 }
-exports.gitTagList = gitTagList;
 function gitTagListSync(options, spawnOptions) {
     var _a, _b;
     let cwd = (_b = (_a = options === null || options === void 0 ? void 0 : options.cwd) !== null && _a !== void 0 ? _a : spawnOptions === null || spawnOptions === void 0 ? void 0 : spawnOptions.cwd) !== null && _b !== void 0 ? _b : process.cwd();
@@ -65,7 +67,6 @@ function gitTagListSync(options, spawnOptions) {
     });
     return _handleResult((0, data_1.handleSpawnOutputArray)(cp.stdout.toString()));
 }
-exports.gitTagListSync = gitTagListSync;
 function _handleResult(list) {
     return list.map(v => {
         let data = v
@@ -78,6 +79,5 @@ function _handleResult(list) {
         // @ts-ignore
         .sort((a, b) => (b[1] - a[1]));
 }
-exports._handleResult = _handleResult;
 exports.default = gitTagList;
 //# sourceMappingURL=index.js.map

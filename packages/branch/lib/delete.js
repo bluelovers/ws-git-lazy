@@ -3,7 +3,7 @@
  * Created by user on 2019/3/10.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteBranch = void 0;
+exports.deleteBranch = deleteBranch;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const index_1 = require("@git-lazy/util/util/index");
@@ -21,6 +21,5 @@ function deleteBranch(REPO_PATH, name, force) {
         return true;
     }
 }
-exports.deleteBranch = deleteBranch;
 exports.default = deleteBranch;
 //# sourceMappingURL=delete.js.map

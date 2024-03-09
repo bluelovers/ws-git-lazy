@@ -3,7 +3,8 @@
  * Created by user on 2020/6/15.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitCloneSync = exports.gitClone = void 0;
+exports.gitClone = gitClone;
+exports.gitCloneSync = gitCloneSync;
 const tslib_1 = require("tslib");
 const spawn_1 = require("@git-lazy/spawn");
 const util_1 = require("./lib/util");
@@ -19,7 +20,6 @@ function gitClone(remote, options) {
         cwd,
     });
 }
-exports.gitClone = gitClone;
 function gitCloneSync(remote, options) {
     var _a;
     options = options !== null && options !== void 0 ? options : {};
@@ -31,6 +31,5 @@ function gitCloneSync(remote, options) {
         cwd,
     });
 }
-exports.gitCloneSync = gitCloneSync;
 exports.default = gitClone;
 //# sourceMappingURL=index.js.map

@@ -3,7 +3,9 @@
  * Created by user on 2018/5/14/014.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filterArgv = exports.gitDiffFrom = exports.defaultOptions = void 0;
+exports.defaultOptions = void 0;
+exports.gitDiffFrom = gitDiffFrom;
+exports.filterArgv = filterArgv;
 const git_rev_range_1 = require("git-rev-range");
 const upath2_1 = require("upath2");
 const crlf_normalize_1 = require("crlf-normalize");
@@ -80,12 +82,10 @@ function gitDiffFrom(from = 'HEAD', to = 'HEAD', options = {}) {
         files,
     });
 }
-exports.gitDiffFrom = gitDiffFrom;
 function filterArgv(argv) {
     return argv.filter(function (v) {
         return v !== null && v !== '';
     });
 }
-exports.filterArgv = filterArgv;
 exports.default = gitDiffFrom;
 //# sourceMappingURL=index.js.map

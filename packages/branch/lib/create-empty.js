@@ -3,7 +3,7 @@
  * Created by user on 2019/3/10.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createEmptyBranch = void 0;
+exports.createEmptyBranch = createEmptyBranch;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const core_1 = require("git-root2/core");
@@ -105,7 +105,6 @@ function createEmptyBranch(new_name, options) {
         return cwd;
     }
 }
-exports.createEmptyBranch = createEmptyBranch;
 exports.default = createEmptyBranch;
 function _createEmptyBranch(new_name, options) {
     if ((0, util_1.notEmptyString)(new_name)) {

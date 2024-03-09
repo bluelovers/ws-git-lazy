@@ -2,7 +2,7 @@
  * Created by user on 2020/5/27.
  */
 /// <reference types="node" />
-import { SpawnASyncReturns, SpawnASyncReturnsPromise, SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { SpawnASyncReturns, SpawnASyncReturnsPromise, SpawnSyncReturns } from 'cross-spawn-extra';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';
 import { crossSpawnOutput } from '@lazy-spawn/stringify';
 export * from './lib/types';

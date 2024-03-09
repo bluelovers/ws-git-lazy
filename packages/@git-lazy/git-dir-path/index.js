@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findGitDirAsync = exports.findGitDir = void 0;
+exports.findGitDir = findGitDir;
+exports.findGitDirAsync = findGitDirAsync;
 const git_env_var_1 = require("@git-lazy/git-env-var");
 const find_up_paths_1 = require("find-up-paths");
 const DEFAULT_GIT_DIR = '.git';
@@ -14,7 +15,6 @@ function findGitDir(options) {
         throwIfNoEntry: options.throwIfNoEntry,
     })) === null || _b === void 0 ? void 0 : _b.result;
 }
-exports.findGitDir = findGitDir;
 function findGitDirAsync(options) {
     var _a;
     options !== null && options !== void 0 ? options : (options = {});
@@ -25,6 +25,5 @@ function findGitDirAsync(options) {
         throwIfNoEntry: options.throwIfNoEntry,
     }).then(data => data === null || data === void 0 ? void 0 : data.result);
 }
-exports.findGitDirAsync = findGitDirAsync;
 exports.default = findGitDir;
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.notEmptyString = exports.getCWD = void 0;
+exports.getCWD = getCWD;
+exports.notEmptyString = notEmptyString;
 const fs_1 = require("fs");
 const path_1 = require("path");
 function getCWD(cwd, realpath, failback) {
@@ -32,11 +33,9 @@ function getCWD(cwd, realpath, failback) {
     }
     return cwd;
 }
-exports.getCWD = getCWD;
 function notEmptyString(s) {
     return typeof s === 'string' && s.trim() !== '';
 }
-exports.notEmptyString = notEmptyString;
 exports.default = exports;
 //console.log(getCWD(null, true, 'll'));
 //# sourceMappingURL=index.js.map

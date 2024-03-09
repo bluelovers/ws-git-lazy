@@ -4,7 +4,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { SpawnSyncOptions } from "child_process";
-import { SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { SpawnSyncReturns } from 'cross-spawn-extra';
 export declare const defaultFields: IFieldsArray;
 export declare const defaultOptions: IOptions;
 export interface IOptionsGitFlogsExtra {

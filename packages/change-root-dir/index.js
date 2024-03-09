@@ -3,7 +3,8 @@
  * Created by user on 2019/7/6.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._core = exports.gitChangeRootDir = void 0;
+exports.gitChangeRootDir = gitChangeRootDir;
+exports._core = _core;
 const git_1 = require("@git-lazy/util/spawn/git");
 const root_1 = require("@git-lazy/root");
 const fast_glob_1 = require("@bluelovers/fast-glob");
@@ -45,7 +46,6 @@ function gitChangeRootDir(options) {
         });
     });
 }
-exports.gitChangeRootDir = gitChangeRootDir;
 function _core(options) {
     const { bin = 'git', cwd, targetPath, force, stdio = 'inherit' } = options;
     if (typeof targetPath !== 'string' || targetPath === '') {
@@ -74,6 +74,5 @@ function _core(options) {
     }
     return cp;
 }
-exports._core = _core;
 exports.default = gitChangeRootDir;
 //# sourceMappingURL=index.js.map

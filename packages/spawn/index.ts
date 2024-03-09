@@ -2,14 +2,14 @@
  * Created by user on 2020/5/27.
  */
 
-import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra/type';
+import { SpawnSyncOptions, SpawnOptions } from 'cross-spawn-extra';
 import {
 	SpawnASyncReturns,
 	SpawnASyncReturnsPromise,
 	ISpawnASyncError,
 	SpawnSyncReturns,
 	CrossSpawnExtra,
-} from 'cross-spawn-extra/core';
+} from 'cross-spawn-extra';
 import { console, debugConsole, debug } from '@git-lazy/debug';
 import { sync as CrossSpawnSync, async as CrossSpawnASync } from 'cross-spawn-extra';
 import { ISpawnGitSyncOptions, ISpawnGitAsyncOptions } from './lib/types';

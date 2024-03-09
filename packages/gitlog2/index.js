@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.async = exports.asyncCallback = exports.sync = exports.gitlog = exports.defaultOptions = exports.defaultFields = exports.EnumGitDateFormat = void 0;
+exports.async = exports.asyncCallback = exports.sync = exports.defaultOptions = exports.defaultFields = exports.EnumGitDateFormat = void 0;
+exports.gitlog = gitlog;
 const tslib_1 = require("tslib");
 const type_1 = require("./lib/type");
 Object.defineProperty(exports, "defaultOptions", { enumerable: true, get: function () { return type_1.defaultOptions; } });
@@ -41,7 +42,6 @@ function gitlog(options, cb) {
         }
     });
 }
-exports.gitlog = gitlog;
 (function (gitlog) {
     /**
      * this method can make sure u are use sync mode

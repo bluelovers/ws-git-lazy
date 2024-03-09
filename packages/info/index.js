@@ -3,7 +3,9 @@
  * Created by user on 2019/6/4.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filterRemoteUrl = exports.parseConfig = exports.findConfigPathLocal = void 0;
+exports.findConfigPathLocal = findConfigPathLocal;
+exports.parseConfig = parseConfig;
+exports.filterRemoteUrl = filterRemoteUrl;
 const parse_git_config_1 = require("parse-git-config");
 const core_1 = require("git-root2/core");
 const glob_search_1 = require("glob-search");
@@ -18,14 +20,12 @@ function findConfigPathLocal(cwd) {
         stopPath: root,
     }).value[0];
 }
-exports.findConfigPathLocal = findConfigPathLocal;
 function parseConfig(file) {
     let o = (0, parse_git_config_1.sync)({
         path: file,
     });
     return (0, parse_git_config_1.expandKeys)(o);
 }
-exports.parseConfig = parseConfig;
 function filterRemoteUrl(o) {
     let ret;
     if (o.branch && o.branch['master'] && o.branch['master'].remote) {
@@ -50,6 +50,5 @@ function filterRemoteUrl(o) {
         }
     }
 }
-exports.filterRemoteUrl = filterRemoteUrl;
 exports.default = findConfigPathLocal;
 //# sourceMappingURL=index.js.map

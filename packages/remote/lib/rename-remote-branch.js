@@ -3,7 +3,7 @@
  * Created by user on 2019/3/10.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.renameRemoteBranch = void 0;
+exports.renameRemoteBranch = renameRemoteBranch;
 /**
  * Created by user on 2019/3/10.
  */
@@ -29,7 +29,6 @@ function renameRemoteBranch(remote, old_name, new_name, options) {
         util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
     }
 }
-exports.renameRemoteBranch = renameRemoteBranch;
 exports.default = renameRemoteBranch;
 function _check_before(remote, old_name, new_name, options) {
     if ((0, util_1.notEmptyString)(remote) && (0, util_1.notEmptyString)(old_name) && (0, util_1.notEmptyString)(new_name) && old_name !== new_name) {

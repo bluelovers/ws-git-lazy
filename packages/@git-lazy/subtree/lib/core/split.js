@@ -1,16 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._callSplit = exports._cmdSplit = exports.unparseCmdSplit = exports.handleOptionsSplit = exports.handleValueSplit = exports.assertValueSplit = void 0;
+exports.assertValueSplit = assertValueSplit;
+exports.handleValueSplit = handleValueSplit;
+exports.handleOptionsSplit = handleOptionsSplit;
+exports.unparseCmdSplit = unparseCmdSplit;
+exports._cmdSplit = _cmdSplit;
+exports._callSplit = _callSplit;
 const core_1 = require("../core");
 const spawn_1 = require("@git-lazy/spawn");
 function assertValueSplit(optionsRuntime) {
     //assertString(optionsRuntime.branch, 'branch');
 }
-exports.assertValueSplit = assertValueSplit;
 function handleValueSplit(options) {
     return options;
 }
-exports.handleValueSplit = handleValueSplit;
 function handleOptionsSplit(options) {
     var _a;
     let handlers = (_a = options.handlers) !== null && _a !== void 0 ? _a : {};
@@ -23,7 +26,6 @@ function handleOptionsSplit(options) {
         }
     });
 }
-exports.handleOptionsSplit = handleOptionsSplit;
 function unparseCmdSplit(cmd, opts) {
     return [
         'subtree',
@@ -35,17 +37,14 @@ function unparseCmdSplit(cmd, opts) {
         ...(opts.options.ignoreJoins ? ['--ignore-joins'] : []),
     ];
 }
-exports.unparseCmdSplit = unparseCmdSplit;
 function _cmdSplit(cmd, opts) {
     return (0, spawn_1.crossSpawnGitAsync)('git', unparseCmdSplit(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });
 }
-exports._cmdSplit = _cmdSplit;
 function _callSplit(cmd, options) {
     let opts = handleOptionsSplit(options);
     return _cmdSplit(cmd, opts);
 }
-exports._callSplit = _callSplit;
 //# sourceMappingURL=split.js.map

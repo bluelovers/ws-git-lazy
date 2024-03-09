@@ -3,7 +3,7 @@
  * Created by user on 2019/3/10.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.localBranchList = void 0;
+exports.localBranchList = localBranchList;
 const git_1 = require("@git-lazy/util/spawn/git");
 const util_1 = require("@git-lazy/util");
 const stringify_1 = require("@lazy-spawn/stringify");
@@ -31,6 +31,5 @@ function localBranchList(REPO_PATH) {
     util_1.debug.enabled && (0, util_1.debug)((0, stringify_1.crossSpawnOutput)(cp.output));
     return [];
 }
-exports.localBranchList = localBranchList;
 exports.default = localBranchList;
 //# sourceMappingURL=branch-list.js.map

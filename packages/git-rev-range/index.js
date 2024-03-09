@@ -3,7 +3,15 @@
  * Created by user on 2018/5/14/014.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCwd = exports.getOptions = exports.resolveRevision = exports.resolveLog = exports.revisionRange = exports.revisionBefore = exports.revisionRangeData = exports.isRevision = exports.REVISION_DEFAULT = void 0;
+exports.REVISION_DEFAULT = void 0;
+exports.isRevision = isRevision;
+exports.revisionRangeData = revisionRangeData;
+exports.revisionBefore = revisionBefore;
+exports.revisionRange = revisionRange;
+exports.resolveLog = resolveLog;
+exports.resolveRevision = resolveRevision;
+exports.getOptions = getOptions;
+exports.getCwd = getCwd;
 const gitlog2_1 = require("gitlog2");
 exports.REVISION_DEFAULT = 'HEAD';
 function isRevision(s) {
@@ -12,7 +20,6 @@ function isRevision(s) {
     }
     return false;
 }
-exports.isRevision = isRevision;
 function revisionRangeData(from, to = 'HEAD', options = {}) {
     if (typeof from == 'number' || ((options.realHash || options.fullHash) && (!isRevision(from) || !isRevision(to)))) {
         if (typeof from == 'string' && !options.excludeStart) {
@@ -24,7 +31,6 @@ function revisionRangeData(from, to = 'HEAD', options = {}) {
     }
     return { from, to };
 }
-exports.revisionRangeData = revisionRangeData;
 function revisionBefore(rev, n = 1) {
     if (typeof rev === 'number' || /^\d{1,7}$/.test(rev)) {
         //
@@ -39,12 +45,10 @@ function revisionBefore(rev, n = 1) {
     }
     return rev;
 }
-exports.revisionBefore = revisionBefore;
 function revisionRange(from, to = 'HEAD', options = {}) {
     ({ from, to } = revisionRangeData(from, to, options));
     return `${from}..${to}`;
 }
-exports.revisionRange = revisionRange;
 function resolveLog(from = 20, to = 'HEAD', options = {}) {
     options = getOptions(options);
     if (typeof from == 'string') {
@@ -62,7 +66,6 @@ function resolveLog(from = 20, to = 'HEAD', options = {}) {
         branch: `${to}`,
     });
 }
-exports.resolveLog = resolveLog;
 function resolveRevision(range, revision = 'HEAD', options = {}) {
     revision = revision || 'HEAD';
     options = getOptions(options);
@@ -99,7 +102,6 @@ function resolveRevision(range, revision = 'HEAD', options = {}) {
         length: a.length,
     };
 }
-exports.resolveRevision = resolveRevision;
 function getOptions(cwd) {
     if (typeof cwd == 'string') {
         return {
@@ -108,10 +110,8 @@ function getOptions(cwd) {
     }
     return cwd;
 }
-exports.getOptions = getOptions;
 function getCwd(cwd) {
     return cwd && (typeof cwd == 'string' ? cwd : cwd.cwd) || process.cwd();
 }
-exports.getCwd = getCwd;
 exports.default = exports;
 //# sourceMappingURL=index.js.map

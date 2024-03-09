@@ -3,7 +3,9 @@
  * Created by user on 2020/6/15.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitTagSync = exports.gitTag = exports.buildCmd = void 0;
+exports.buildCmd = buildCmd;
+exports.gitTag = gitTag;
+exports.gitTagSync = gitTagSync;
 const spawn_1 = require("@git-lazy/spawn");
 const util_1 = require("@git-lazy/spawn/lib/util");
 function buildCmd(tag, options) {
@@ -29,7 +31,6 @@ function buildCmd(tag, options) {
     }
     return (0, util_1.filterCrossSpawnArgv)(args);
 }
-exports.buildCmd = buildCmd;
 function gitTag(tag, options, spawnOptions) {
     var _a, _b;
     let cwd = (_b = (_a = options === null || options === void 0 ? void 0 : options.cwd) !== null && _a !== void 0 ? _a : spawnOptions === null || spawnOptions === void 0 ? void 0 : spawnOptions.cwd) !== null && _b !== void 0 ? _b : process.cwd();
@@ -39,7 +40,6 @@ function gitTag(tag, options, spawnOptions) {
         cwd,
     });
 }
-exports.gitTag = gitTag;
 function gitTagSync(tag, options, spawnOptions) {
     var _a, _b;
     let cwd = (_b = (_a = options === null || options === void 0 ? void 0 : options.cwd) !== null && _a !== void 0 ? _a : spawnOptions === null || spawnOptions === void 0 ? void 0 : spawnOptions.cwd) !== null && _b !== void 0 ? _b : process.cwd();
@@ -49,6 +49,5 @@ function gitTagSync(tag, options, spawnOptions) {
         cwd,
     });
 }
-exports.gitTagSync = gitTagSync;
 exports.default = gitTag;
 //# sourceMappingURL=index.js.map

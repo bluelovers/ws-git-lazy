@@ -4,7 +4,7 @@
 /// <reference types="node" />
 import debug0 from 'debug';
 import { EnumPrettyFormatFlags, ICommands, IFieldsArray, IOptions, IOptionsGitFlogs, IParseCommit, IReturnCommits } from './type';
-import { SpawnSyncReturns } from 'cross-spawn-extra/core';
+import { SpawnSyncReturns } from 'cross-spawn-extra';
 export declare const debug: debug0.Debugger;
 export declare function handleOptions(options: IOptions): IOptions;
 export declare function buildCommands(options: IOptions): {

@@ -3,7 +3,10 @@
  * Created by user on 2020/6/5.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._call = exports._cmd = exports.unparseCmd = exports.handleOptions = void 0;
+exports.handleOptions = handleOptions;
+exports.unparseCmd = unparseCmd;
+exports._cmd = _cmd;
+exports._call = _call;
 const util_1 = require("./util");
 const spawn_1 = require("@git-lazy/spawn");
 const git_1 = require("./util/git");
@@ -49,7 +52,6 @@ function handleOptions(options) {
     (0, util_1.assertString)(data.prefixPath, 'prefix');
     return data;
 }
-exports.handleOptions = handleOptions;
 function unparseCmd(cmd, opts) {
     return [
         'subtree',
@@ -61,17 +63,14 @@ function unparseCmd(cmd, opts) {
         ...(opts.options.squash ? ['--squash'] : []),
     ];
 }
-exports.unparseCmd = unparseCmd;
 function _cmd(cmd, opts) {
     return (0, spawn_1.crossSpawnGitAsync)('git', unparseCmd(cmd, opts), {
         cwd: opts.root,
         stdio: 'inherit',
     });
 }
-exports._cmd = _cmd;
 function _call(cmd, options) {
     let opts = handleOptions(options);
     return _cmd(cmd, opts);
 }
-exports._call = _call;
 //# sourceMappingURL=core.js.map

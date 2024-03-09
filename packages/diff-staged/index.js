@@ -3,7 +3,9 @@
  * Created by user on 2019/6/13.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitDiffStagedFile = exports.gitDiffStagedDir = exports.gitDiffStaged = void 0;
+exports.gitDiffStaged = gitDiffStaged;
+exports.gitDiffStagedDir = gitDiffStagedDir;
+exports.gitDiffStagedFile = gitDiffStagedFile;
 const root_1 = require("@git-lazy/root");
 const spawn_1 = require("@git-lazy/spawn");
 const data_1 = require("@git-lazy/spawn/lib/data");
@@ -16,7 +18,6 @@ function gitDiffStaged(git_root, options) {
     });
     return (0, data_1.handleSpawnOutputArray)(cp.stdout.toString());
 }
-exports.gitDiffStaged = gitDiffStaged;
 function gitDiffStagedDir(git_root, options) {
     git_root = (0, root_1.hasGit)(git_root);
     const { bin = 'git' } = (options || {});
@@ -35,7 +36,6 @@ function gitDiffStagedDir(git_root, options) {
         return s.replace(/^\s+\d+(\.\d+)%\s+/, '');
     });
 }
-exports.gitDiffStagedDir = gitDiffStagedDir;
 function gitDiffStagedFile(git_root, options) {
     git_root = (0, root_1.hasGit)(git_root);
     const { bin = 'git' } = (options || {});
@@ -52,6 +52,5 @@ function gitDiffStagedFile(git_root, options) {
         cp2.stdout.toString(),
     ].join('\n'));
 }
-exports.gitDiffStagedFile = gitDiffStagedFile;
 exports.default = gitDiffStagedFile;
 //# sourceMappingURL=index.js.map

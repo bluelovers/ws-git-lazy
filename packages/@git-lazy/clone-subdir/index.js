@@ -3,7 +3,7 @@
  * Created by user on 2020/6/15.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gitCloneSubDir = void 0;
+exports.gitCloneSubDir = gitCloneSubDir;
 const clone_1 = require("@git-lazy/clone");
 const subtree_1 = require("@git-lazy/subtree");
 const util_1 = require("@git-lazy/clone/lib/util");
@@ -72,7 +72,6 @@ async function gitCloneSubDir(remote, options) {
     });
     _assertCurrentBranchName(newBranch, cwd);
 }
-exports.gitCloneSubDir = gitCloneSubDir;
 function _assertCurrentBranchName(name, cwd, message) {
     const _branch = (0, current_name_1.currentBranchName)(cwd);
     (0, assert_1.deepStrictEqual)(_branch, name, message);

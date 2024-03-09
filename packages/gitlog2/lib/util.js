@@ -3,7 +3,19 @@
  * Created by user on 2019/1/6/006.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createError = exports.parseCommitsStdout = exports.parseCommits = exports.parseCommitFields = exports.addOptional = exports.addFlagsBool = exports.toFlag = exports.decamelize = exports.decode = exports.addPrettyFormat = exports.buildCommands = exports.handleOptions = exports.debug = void 0;
+exports.debug = void 0;
+exports.handleOptions = handleOptions;
+exports.buildCommands = buildCommands;
+exports.addPrettyFormat = addPrettyFormat;
+exports.decode = decode;
+exports.decamelize = decamelize;
+exports.toFlag = toFlag;
+exports.addFlagsBool = addFlagsBool;
+exports.addOptional = addOptional;
+exports.parseCommitFields = parseCommitFields;
+exports.parseCommits = parseCommits;
+exports.parseCommitsStdout = parseCommitsStdout;
+exports.createError = createError;
 const tslib_1 = require("tslib");
 const array_hyper_unique_1 = require("array-hyper-unique");
 const debug_1 = tslib_1.__importDefault(require("debug"));
@@ -42,7 +54,6 @@ function handleOptions(options) {
     }
     return options;
 }
-exports.handleOptions = handleOptions;
 function buildCommands(options) {
     // Start constructing command
     let bin = 'git';
@@ -93,7 +104,6 @@ function buildCommands(options) {
     (0, exports.debug)('command', options.execOptions, commands);
     return { bin, commands };
 }
-exports.buildCommands = buildCommands;
 function addPrettyFormat(commands, options, flagName = "pretty" /* EnumPrettyFormatFlags.PRETTY */) {
     // Start of custom format
     // Iterating through the fields and adding them to the custom format
@@ -108,7 +118,6 @@ function addPrettyFormat(commands, options, flagName = "pretty" /* EnumPrettyFor
     commands.push(command);
     return commands;
 }
-exports.addPrettyFormat = addPrettyFormat;
 function decode(file) {
     if (file.indexOf('"') == 0 || file.match(/(?:\\(\d{3}))/)) {
         file = file.replace(/^"|"$/g, '');
@@ -116,15 +125,12 @@ function decode(file) {
     }
     return file;
 }
-exports.decode = decode;
 function decamelize(key) {
     return (0, decamelize_1.default)(key, { separator: '-' });
 }
-exports.decamelize = decamelize;
 function toFlag(key) {
     return '--' + decamelize(key);
 }
-exports.toFlag = toFlag;
 function addFlagsBool(commands, options, flagNames) {
     for (let k of flagNames) {
         if (options[k]) {
@@ -133,7 +139,6 @@ function addFlagsBool(commands, options, flagNames) {
     }
     return commands;
 }
-exports.addFlagsBool = addFlagsBool;
 /***
  Add optional parameter to command
  */
@@ -154,7 +159,6 @@ function addOptional(commands, options) {
     }
     return commands;
 }
-exports.addOptional = addOptional;
 function parseCommitFields(parsed, commitField, index, fields) {
     let key = fields[index];
     switch (key) {
@@ -183,7 +187,6 @@ function parseCommitFields(parsed, commitField, index, fields) {
     }
     return parsed;
 }
-exports.parseCommitFields = parseCommitFields;
 function parseCommits(commits, options) {
     let { fields, nameStatus } = options;
     return commits.map(function (_commit, _index) {
@@ -255,7 +258,6 @@ function parseCommits(commits, options) {
         return parsed;
     });
 }
-exports.parseCommits = parseCommits;
 function parseCommitsStdout(options, stdout) {
     let str;
     (0, exports.debug)('stdout', stdout);
@@ -275,7 +277,6 @@ function parseCommitsStdout(options, stdout) {
     (0, exports.debug)('commits:parsed', commits);
     return commits;
 }
-exports.parseCommitsStdout = parseCommitsStdout;
 function createError(message, data, err) {
     // @ts-ignore
     err = err || Error;
@@ -285,5 +286,4 @@ function createError(message, data, err) {
     // @ts-ignore
     return e;
 }
-exports.createError = createError;
 //# sourceMappingURL=util.js.map
