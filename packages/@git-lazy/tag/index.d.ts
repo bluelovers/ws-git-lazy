@@ -17,5 +17,5 @@ export interface IOptions {
 }
 export declare function buildCmd(tag: string, options?: IOptions): string[];
 export declare function gitTag(tag: string, options?: IOptions, spawnOptions?: ISpawnGitAsyncOptions): import("cross-spawn-extra").SpawnASyncReturnsPromise<string | Buffer>;
-export declare function gitTagSync(tag: string, options?: IOptions, spawnOptions?: ISpawnGitSyncOptions): import("cross-spawn-extra/core").SpawnSyncReturns<string | Buffer>;
+export declare function gitTagSync(tag: string, options?: IOptions, spawnOptions?: ISpawnGitSyncOptions): import("cross-spawn-extra").SpawnSyncReturns<string | Buffer>;
 export default gitTag;

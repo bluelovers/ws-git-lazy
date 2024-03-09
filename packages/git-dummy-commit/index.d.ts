@@ -7,5 +7,5 @@ export interface IOptionsGitDummyCommit {
     silent?: boolean;
     msg?: string | string[];
 }
-export declare function gitDummyCommit(msg?: string | string[] | IOptionsGitDummyCommit, options?: IOptionsGitDummyCommit): import("cross-spawn-extra/core").SpawnSyncReturns<string | Buffer>;
+export declare function gitDummyCommit(msg?: string | string[] | IOptionsGitDummyCommit, options?: IOptionsGitDummyCommit): import("cross-spawn-extra").SpawnSyncReturns<string | Buffer>;
 export default gitDummyCommit;
