@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.22](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.21...git-dummy-commit2@1.3.22) (2024-03-09)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([5022e05](https://github.com/bluelovers/ws-git-lazy/commit/5022e05b22e63da3420f6545f0e19a9d587caa8f))
+
+
+
 ## [1.3.21](https://github.com/bluelovers/ws-git-lazy/compare/git-dummy-commit2@1.3.20...git-dummy-commit2@1.3.21) (2024-03-09)
 
 

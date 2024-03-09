@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.41](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.40...@git-lazy/spawn@1.0.41) (2024-03-09)
+
+
+
+### 🔖　Miscellaneous
+
+* . ([5022e05](https://github.com/bluelovers/ws-git-lazy/commit/5022e05b22e63da3420f6545f0e19a9d587caa8f))
+
+
+
 ## [1.0.40](https://github.com/bluelovers/ws-git-lazy/compare/@git-lazy/spawn@1.0.39...@git-lazy/spawn@1.0.40) (2024-03-09)
 
 
